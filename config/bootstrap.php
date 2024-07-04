@@ -65,13 +65,13 @@ require CAKE . 'functions.php';
  * security risks. See https://github.com/josegonzalez/php-dotenv#general-security-information
  * for more information for recommended practices.
 */
-// if (!env('APP_NAME') && file_exists(CONFIG . '.env')) {
-//     $dotenv = new \josegonzalez\Dotenv\Loader([CONFIG . '.env']);
-//     $dotenv->parse()
-//         ->putenv()
-//         ->toEnv()
-//         ->toServer();
-// }
+if (!env('APP_NAME') && file_exists(CONFIG . '.env')) {
+    $dotenv = new \josegonzalez\Dotenv\Loader([CONFIG . '.env']);
+    $dotenv->parse()
+        ->putenv()
+        ->toEnv()
+        ->toServer();
+}
 
 /*
  * Read configuration file and inject configuration into various
@@ -84,6 +84,7 @@ require CAKE . 'functions.php';
 try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
+    Configure::load('plugins', 'default', false);
 } catch (\Exception $e) {
     exit($e->getMessage() . "\n");
 }
