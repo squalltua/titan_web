@@ -65,6 +65,7 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/', 'Pages::index');
         $builder->connect('/login', 'Users::login');
         $builder->connect('/logout', 'Users::logout');
+        $builder->connect('/init-user', 'Users::initUser');
 
         $builder->scope('/articles', function (RouteBuilder $builder): void {
             $builder->connect('/', 'Articles::index');

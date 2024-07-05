@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace App\Controller\Manager;
 
+use Cake\Utility\Hash;
+use Cake\Utility\Security;
+
 /**
  * Users controller
- *
  * @property \App\Model\Table\UsersTable $Users
  * @property \Authentication\Controller\Component\AuthenticationComponent $Authentication
  */
@@ -15,7 +17,7 @@ class UsersController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Authentication->allowUnauthenticated(['login']);
+        $this->Authentication->allowUnauthenticated(['login', 'initUser']);
     }
 
     /**
@@ -108,11 +110,12 @@ class UsersController extends AppController
      */
     public function login(): ?\Cake\Http\Response
     {
+        $this->viewBuilder()->setLayout('login');
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
 
         if ($result && $result->isValid()) {
-            $target = $this->Authentication->getLoginRedirect() ?? '/home';
+            $target = $this->Authentication->getLoginRedirect() ?? '/manager';
             return $this->redirect($target);
         }
 
@@ -129,6 +132,33 @@ class UsersController extends AppController
     public function logout(): ?\Cake\Http\Response
     {
         $this->Authentication->logout();
+        return $this->redirect('/manager/login');
+    }
+
+    public function initUser(): ?\Cake\Http\Response
+    {
+        $userAdmin = $this->Users->find()->where(['username' => 'admin', 'role' => 'admin'])->first();
+        if (!$userAdmin) {
+            $password = Security::randomString(8); //cbe965e2
+            $user = $this->Users->newEntity([
+                'username' => 'admin',
+                'role' => 'admin',
+                'full_name' => 'admin admin',
+                'email' => 'admin@titanscript.com',
+                'is_superadmin' => 1,
+                'password' => $password,
+                'status' => 'active',
+            ]);
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been initiated. password is {0}', $password));
+            } else {
+                $this->Flash->error(__('The user could be initiated. Please, try again.'));
+            }
+        } else {
+            echo '!error';
+            exit;
+        }
+
         return $this->redirect('/manager/login');
     }
 }

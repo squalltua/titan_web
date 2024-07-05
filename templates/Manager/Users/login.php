@@ -1,14 +1,17 @@
-<div class="users form">
-    <?= $this->Flash->render() ?>
-    <h3>Login</h3>
-    <?= $this->Form->create() ?>
-    <fieldset>
-        <legend><?= __('Please enter your username and password') ?></legend>
-        <?= $this->Form->control('email', ['required' => true]) ?>
-        <?= $this->Form->control('password', ['required' => true]) ?>
-    </fieldset>
-    <?= $this->Form->submit(__('Login')); ?>
-    <?= $this->Form->end() ?>
+<?= $this->Form->create() ?>
+    <h3 class="text-center"><?= __('TF Manager') ?></h3>
+    <div class="mb-3">
+        <h5 class="text-center"><?= __('Please login first.') ?></h5>
+        <?= $this->Flash->render() ?>
+    </div>
 
-    <?= $this->Html->link("Add User", ['action' => 'add']) ?>
-</div>
+    <div class="form-floating">
+        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="Please enter you email.">
+        <label for="floatingInput"><?= __('Email') ?></label>
+    </div>
+    <div class="form-floating">
+        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Please enter you password.">
+        <label for="floatingPassword"><?= __('Password') ?></label>
+    </div>
+    <button class="btn btn-primary w-100 py-2" type="submit"><?= __('Sign-in') ?></button>
+<?= $this->Form->end() ?>
