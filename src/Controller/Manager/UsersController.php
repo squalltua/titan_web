@@ -139,7 +139,7 @@ class UsersController extends AppController
     {
         $userAdmin = $this->Users->find()->where(['username' => 'admin', 'role' => 'admin'])->first();
         if (!$userAdmin) {
-            $password = Security::randomString(8); //cbe965e2
+            $password = Security::randomString(8); // 75b42c1b
             $user = $this->Users->newEntity([
                 'username' => 'admin',
                 'role' => 'admin',

@@ -5,68 +5,27 @@
         </div>
         <ul class="sidebar-nav">
             <li class="sidebar-header">
-                <?= __('Core') ?>
+                <i class="bi bi-body-text pe-2"></i><?= __('Posts') ?>
             </li>
-            <li class="sidebar-item">
-                <?= $this->Html->link(
-                    '<i class="bi bi-file-earmark-medical pe-2"></i>' . __('บันทึกที่ละรายการ'),
-                    '/report-records/add',
-                    [
-                        'class' => $menuActive === 'add_one' ? 'sidebar-link active' : 'sidebar-link',
-                        'escape' => false,
-                    ]
-                ) ?>
+            <li class="sidebar-item ms-3">
+                <?= $this->Html->link(__('All posts'), '/manager/posts', ['class' => $menuActive === 'posts' ? 'sidebar-link active' : 'sidebar-link']) ?>
             </li>
-
+            <li class="sidebar-item ms-3">
+                <?= $this->Html->link(__('Categories'), '/manager/posts/categories', ['class' => $menuActive === 'post-categories' ? 'sidebar-link active' : 'sidebar-link']) ?>
+            </li>
+            <li class="sidebar-item ms-3">
+                <?= $this->Html->link(__('Tags'), '/manager/posts/tags', ['class' => $menuActive === 'post-tags' ? 'sidebar-link active' : 'sidebar-link']) ?>
+            </li>
 
             <li class="sidebar-header">
-                <?= __('Reporting') ?>
+                <i class="bi bi-gear pe-2"></i><?= __('Settings') ?>
             </li>
-            <li class="sidebar-item">
-                <?= $this->Html->link(
-                    '<i class="bi bi-printer pe-2"></i>' . __('สร้าง Excel ไฟล์'),
-                    '/printing-records',
-                    [
-                        'class' => $menuActive === 'export' ? 'sidebar-link active' : 'sidebar-link',
-                        'escape' => false,
-                    ]
-                ) ?>
+            <li class="sidebar-item ms-3">
+                <?= $this->Html->link(__('System'), '/manager/system', ['class' => $menuActive === 'system' ? 'sidebar-link active' : 'sidebar-link']) ?>
             </li>
-            <?php if ($this->Identity->get('role') !== 'enduser') : ?>
-                <li class="sidebar-header">
-                    <?= __('Settings') ?>
-                </li>
-                <li class="sidebar-item">
-                    <?= $this->Html->link(
-                        '<i class="bi bi-calendar3 pe-2"></i>' . __('ปีงบประมาณ'),
-                        '/fiscal-years',
-                        [
-                            'class' => $menuActive === 'fiscal_year' ? 'sidebar-link active' : 'sidebar-link',
-                            'escape' => false,
-                        ]
-                    ) ?>
-                </li>
-                <li class="sidebar-item">
-                    <?= $this->Html->link(
-                        '<i class="bi bi-diagram-3 pe-2"></i>' . __('หน่วย'),
-                        '/units',
-                        [
-                            'class' => $menuActive === 'unit' ? 'sidebar-link active' : 'sidebar-link',
-                            'escape' => false,
-                        ]
-                    ) ?>
-                </li>
-                <li class="sidebar-item">
-                    <?= $this->Html->link(
-                        '<i class="bi bi-people-fill pe-2"></i>' . __('บัญชีผู้ใช้งาน'),
-                        '/users',
-                        [
-                            'class' => $menuActive === 'user' ? 'sidebar-link active' : 'sidebar-link',
-                            'escape' => false,
-                        ]
-                    ) ?>
-                </li>
-            <?php endif ?>
+            <li class="sidebar-item ms-3">
+                <?= $this->Html->link(__('Users'), '/manager/users', ['class' => $menuActive === 'users' ? 'sidebar-link active' : 'sidebar-link']) ?>
+            </li>
         </ul>
     </div>
 </aside>

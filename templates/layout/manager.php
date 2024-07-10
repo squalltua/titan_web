@@ -32,7 +32,7 @@
     <?= $this->element('sidebar') ?>
     <div class="main">
         <?= $this->element('header') ?>
-        <main class="content px-3 py-2">
+        <main class="content py-3">
             <div class="container-fluid">
                 <?= $this->Flash->render() ?>
                 <?= $this->fetch('content') ?>

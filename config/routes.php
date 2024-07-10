@@ -58,7 +58,7 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
 
         $builder->connect('/*', 'Pages::pageNotFoundError');
-        $builder->fallbacks();
+        // $builder->fallbacks();
     });
 
     $routes->prefix('Manager', function (RouteBuilder $builder): void {
@@ -67,27 +67,47 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/logout', 'Users::logout');
         $builder->connect('/init-user', 'Users::initUser');
 
-        $builder->scope('/articles', function (RouteBuilder $builder): void {
-            $builder->connect('/', 'Articles::index');
-            $builder->connect('/edit/{id}', 'Articles::edit')->setPass(['id']);
-            $builder->connect('/delete/{id}', 'Articles::delete')->setPass(['id']);
+        $builder->scope('/posts', function (RouteBuilder $builder): void {
+            $builder->connect('/', 'Posts::index');
+            $builder->connect('/add', 'Posts::add');
+            $builder->connect('/edit/{id}', 'Posts::edit')->setPass(['id']);
+            $builder->connect('/delete/{id}', 'Posts::delete')->setPass(['id']);
+
+            $builder->connect('/categories', 'PostCategories::index');
+            $builder->connect('/categories/add', 'PostCategories::add');
+            $builder->connect('/categories/edit/{id}', 'PostCategories::edit')->setPass(['id']);
+            $builder->connect('/categories/delete/{id}', 'PostCategories::delete')->setPass(['id']);
+
+            $builder->connect('/tags', 'PostTags::index');
+            $builder->connect('/tags/add', 'PostTags::add');
+            $builder->connect('/tags/edit/{id}', 'PostTags::edit')->setPass(['id']);
+            $builder->connect('/tags/delete/{id}', 'PostTags::delete')->setPass(['id']);
         });
 
         $builder->scope('/settings', function (RouteBuilder $builder): void {
             $builder->connect('/', 'Settings::index');
         });
 
-        $builder->connect('/*', 'Pages::pageNotFoundError');
-        $builder->fallbacks();
-    });
+        $builder->scope('/users', function (RouteBuilder $builder): void {
+            $builder->connect('/', 'Users::index');
+            $builder->connect('/add', 'Users::add');
+            $builder->connect('/edit/{id}', 'Users::edit');
+            $builder->connect('/delete/{id}', 'Users::delete');
+        });
 
-    /**
-     * API routes
-     */
-    $routes->scope('/api', function (RouteBuilder $builder): void {
-        // No $builder->applyMiddleware() here.
-        // Parse specified extensions from URLs
-        // $builder->setExtensions(['json', 'xml']);
-        // Connect API actions here.
+        /**
+         * API routes
+         */
+        $builder->scope('/api/v1', function (RouteBuilder $builder): void {
+            // No $builder->applyMiddleware() here.
+            // Parse specified extensions from URLs
+            $builder->setExtensions(['json']);
+            // Connect API actions here.
+            $builder->connect('/users', 'Manager/Api/v1/Users::index');
+            $builder->connect('/posts', 'Manager/Api/v1/Posts::index');
+        });
+
+        $builder->connect('/*', 'Pages::pageNotFoundError');
+        // $builder->fallbacks();
     });
 };
