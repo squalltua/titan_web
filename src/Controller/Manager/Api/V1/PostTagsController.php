@@ -5,9 +5,6 @@ namespace App\Controller\Manager\Api\V1;
 use App\Controller\Manager\AppController;
 use Cake\View\JsonView;
 
-/**
- * @property \App\Model\Table\PostGroupsTable $PostGroups
- */
 class PostTagsController extends AppController
 {
     public function viewClasses(): array
@@ -17,7 +14,8 @@ class PostTagsController extends AppController
 
     public function index(): \Cake\Http\Response
     {
-        $tags = $this->PostGroups->getTags();
+        $tags = $this->fetchTable('PostGroups')->find()
+            ->where(['type' => 'tag']);
         $this->set('tags', $tags);
         $this->viewBuilder()->setOption('serialize', 'tags');
 

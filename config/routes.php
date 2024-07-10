@@ -105,6 +105,8 @@ return function (RouteBuilder $routes): void {
             // Connect API actions here.
             $builder->connect('/users', 'Manager/Api/v1/Users::index');
             $builder->connect('/posts', 'Manager/Api/v1/Posts::index');
+            $builder->connect('/post-tags', 'Manager/Api/v1/PostTags::index');
+            $builder->connect('/post-categories', 'Manager/Api/v1/PostCategories::index');
         });
 
         $builder->connect('/*', 'Pages::pageNotFoundError');
