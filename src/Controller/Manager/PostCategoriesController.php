@@ -26,11 +26,11 @@ class PostCategoriesController extends AppController
      */
     public function add(): \Cake\Http\Response
     {
-        $tag = $this->fetchTable('PostGroup')->newEmptyEntity();
+        $category = $this->fetchTable('PostGroups')->newEmptyEntity();
         if ($this->request->is('post')) {
-            $tag = $this->fetchTable('PostGroup')->patchEntity($tag, $this->request->getData());
-            $tag->type = 'categories';
-            if ($this->fetchTable('PostGroup')->save($tag)) {
+            $category = $this->fetchTable('PostGroups')->patchEntity($category, $this->request->getData());
+            $category->type = 'categories';
+            if ($this->fetchTable('PostGroups')->save($category)) {
                 $this->Flash->success(__('The category has been saved.'));
 
                 return $this->redirect('/manager/categories/tags');
@@ -39,7 +39,7 @@ class PostCategoriesController extends AppController
             $this->Flash->error(__('The category could not be saved. Please, try again.'));
         }
 
-        $this->set(compact('tag'));
+        $this->set(compact('category'));
 
         return $this->render();
     }
@@ -50,10 +50,10 @@ class PostCategoriesController extends AppController
      */
     public function edit(string $id): \Cake\Http\Response
     {
-        $tag = $this->fetchTable('PostGroup')->get($id);
+        $category = $this->fetchTable('PostGroups')->get($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
-            $tag = $this->fetchTable('PostGroup')->patchEntity($tag, $this->request->getData());
-            if ($this->fetchTable('PostGroup')->save($tag)) {
+            $category = $this->fetchTable('PostGroups')->patchEntity($category, $this->request->getData());
+            if ($this->fetchTable('PostGroups')->save($category)) {
                 $this->Flash->success(__('The category has been saved.'));
 
                 return $this->redirect('/manager/categories/tags');
@@ -62,7 +62,7 @@ class PostCategoriesController extends AppController
             $this->Flash->error(__('The category could not be saved. Please, try again.'));
         }
 
-        $this->set(compact('tag'));
+        $this->set(compact('category'));
 
         return $this->render();
     }
@@ -74,8 +74,8 @@ class PostCategoriesController extends AppController
     public function delete(string $id): \Cake\Http\Response
     {
         $this->request->allowMethod(['post', 'delete']);
-        $tag = $this->fetchTable('PostGroup')->get($id);
-        if ($this->fetchTable('PostGroup')->delete($tag)) {
+        $category = $this->fetchTable('PostGroups')->get($id);
+        if ($this->fetchTable('PostGroups')->delete($category)) {
             $this->Flash->success(__('The category has been deleted.'));
             return $this->redirect('/manager/post-tags');
         }

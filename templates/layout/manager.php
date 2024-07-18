@@ -21,6 +21,7 @@
         'jquery-3.7.0.min.js',
         '/vendor/bootstrap-5.3.3/js/bootstrap.bundle.min.js',
         '/vendor/kendoui.for.jquery.2024.1.130/js/kendo.all.min.js',
+        'component.js',
     ]) ?>
 
     <?= $this->fetch('meta') ?>

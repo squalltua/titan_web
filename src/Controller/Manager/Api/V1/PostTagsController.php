@@ -15,7 +15,7 @@ class PostTagsController extends AppController
     public function index(): \Cake\Http\Response
     {
         $tags = $this->fetchTable('PostGroups')->find()
-            ->where(['type' => 'tag']);
+            ->where(['type' => 'tags']);
         $this->set('tags', $tags);
         $this->viewBuilder()->setOption('serialize', 'tags');
 

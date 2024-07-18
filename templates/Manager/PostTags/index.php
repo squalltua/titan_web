@@ -2,10 +2,10 @@
     <div class="card-body">
         <div class="d-flex mb-2">
             <div class="flex-grow-1">
-                <h3>
+                <h4>
                     <?= __('Post Tags') ?>
-                    <?= $this->Html->link(__('New'), '/manager/posts/tags/add', ['class' => 'btn btn-primary ms-3']) ?>
-                </h3>
+                    <?= $this->Html->link(__('New'), '/manager/posts/tags/add', ['class' => 'btn btn-primary btn-sm ms-3']) ?>
+                </h4>
             </div>
         </div>
 
@@ -25,8 +25,6 @@
                         fields: {
                             id: {type: "number"},
                             name: {type: "string"},
-                            created: {type: "date"},
-                            modified: {type: "date"},
                         }
                     }
                 },
@@ -44,19 +42,14 @@
             columns: [
                 {
                     field: "name",
-                    title: "Category name",
-                },
-                {
-                    field: "created",
-                    title: "Created",
-                    format: "{0:dd/MM/yyyy}",
-                    width: 120,
+                    title: "Tag name",
                 },
                 {
                     title: "",
-                    text: '<a href="/manager/posts/tags/edit/#:data.id#"><?= __('Edit') ?></a>',
+                    template: '<a href="/manager/posts/tags/edit/#:data.id#" class="btn btn-sm btn-link"><?= __('Edit') ?></a>',
                     exportable: false,
                     filterable: false,
+                    attributes: {class: 'text-center'},
                     width: 120,
                 }
             ]

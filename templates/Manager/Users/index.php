@@ -3,8 +3,8 @@
         <div class="d-flex mb-2">
             <div class="flex-grow-1">
                 <h4>
-                    <?= __('Posts') ?>
-                    <?= $this->Html->link(__('New'), '/manager/posts/add', ['class' => 'btn btn-primary btn-sm ms-3']) ?>
+                    <?= __('Users') ?>
+                    <?= $this->Html->link(__('New'), '/manager/users/add', ['class' => 'btn btn-primary btn-sm ms-3']) ?>
                 </h4>
             </div>
         </div>
@@ -18,13 +18,12 @@
         $("#grid").kendoGrid({
             dataSource: {
                 transport: {
-                    read: "/manager/api/v1/posts.json"
+                    read: "/manager/api/v1/users.json"
                 },
                 schema: {
                     model: {
                         fields: {
                             id: {type: "number"},
-                            title: {type: "string"},
                             status: {type: "string"},
                             created: {type: "date"},
                             modified: {type: "date"},
@@ -44,8 +43,21 @@
             pageable: true,
             columns: [
                 {
-                    field: "title",
-                    title: "Title",
+                    field: "full_name",
+                    title: "Full name",
+                },
+                {
+                    field: "username",
+                    title: "Username",
+                },
+                {
+                    field: "email",
+                    title: "Email",
+                },
+                {
+                    field: "role",
+                    title: "Role",
+                    width: 120,
                 },
                 {
                     field: "status",
@@ -66,9 +78,10 @@
                 },
                 {
                     title: "",
-                    text: '<a href="/manager/posts/edit/#:data.id#"><?= __('Edit') ?></a>',
+                    template: '<a href="/manager/users/edit/#:data.id#" class="btn btn-sm btn-link"><?= __('Edit') ?></a>',
                     exportable: false,
                     filterable: false,
+                    attributes: {class: 'text-center'},
                     width: 120,
                 }
             ]

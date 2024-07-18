@@ -11,6 +11,9 @@
                 <?= $this->Html->link(__('All posts'), '/manager/posts', ['class' => $menuActive === 'posts' ? 'sidebar-link active' : 'sidebar-link']) ?>
             </li>
             <li class="sidebar-item ms-3">
+                <?= $this->Html->link(__('New post'), '/manager/posts/add', ['class' => $menuActive === 'new-post' ? 'sidebar-link active' : 'sidebar-link']) ?>
+            </li>
+            <li class="sidebar-item ms-3">
                 <?= $this->Html->link(__('Categories'), '/manager/posts/categories', ['class' => $menuActive === 'post-categories' ? 'sidebar-link active' : 'sidebar-link']) ?>
             </li>
             <li class="sidebar-item ms-3">

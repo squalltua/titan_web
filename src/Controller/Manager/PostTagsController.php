@@ -26,11 +26,11 @@ class PostTagsController extends AppController
      */
     public function add(): \Cake\Http\Response
     {
-        $tag = $this->fetchTable('PostGroup')->newEmptyEntity();
+        $tag = $this->fetchTable('PostGroups')->newEmptyEntity();
         if ($this->request->is('post')) {
-            $tag = $this->fetchTable('PostGroup')->patchEntity($tag, $this->request->getData());
+            $tag = $this->fetchTable('PostGroups')->patchEntity($tag, $this->request->getData());
             $tag->type = 'tags';
-            if ($this->fetchTable('PostGroup')->save($tag)) {
+            if ($this->fetchTable('PostGroups')->save($tag)) {
                 $this->Flash->success(__('The tag has been saved.'));
 
                 return $this->redirect('/manager/posts/tags');
@@ -50,10 +50,10 @@ class PostTagsController extends AppController
      */
     public function edit(string $id): \Cake\Http\Response
     {
-        $tag = $this->fetchTable('PostGroup')->get($id);
+        $tag = $this->fetchTable('PostGroups')->get($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
-            $tag = $this->fetchTable('PostGroup')->patchEntity($tag, $this->request->getData());
-            if ($this->fetchTable('PostGroup')->save($tag)) {
+            $tag = $this->fetchTable('PostGroups')->patchEntity($tag, $this->request->getData());
+            if ($this->fetchTable('PostGroups')->save($tag)) {
                 $this->Flash->success(__('The tag has been saved.'));
 
                 return $this->redirect('/manager/posts/tags');
@@ -74,8 +74,8 @@ class PostTagsController extends AppController
     public function delete(string $id): \Cake\Http\Response
     {
         $this->request->allowMethod(['post', 'delete']);
-        $tag = $this->fetchTable('PostGroup')->get($id);
-        if ($this->fetchTable('PostGroup')->delete($tag)) {
+        $tag = $this->fetchTable('PostGroups')->get($id);
+        if ($this->fetchTable('PostGroups')->delete($tag)) {
             $this->Flash->success(__('The tag has been deleted.'));
             return $this->redirect('/manager/post-tags');
         }

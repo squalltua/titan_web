@@ -91,8 +91,9 @@ return function (RouteBuilder $routes): void {
         $builder->scope('/users', function (RouteBuilder $builder): void {
             $builder->connect('/', 'Users::index');
             $builder->connect('/add', 'Users::add');
-            $builder->connect('/edit/{id}', 'Users::edit');
-            $builder->connect('/delete/{id}', 'Users::delete');
+            $builder->connect('/edit/{id}', 'Users::edit')->setPass(['id']);
+            $builder->connect('/delete/{id}', 'Users::delete')->setPass(['id']);
+            $builder->connect('/change-password/{id}', 'Users::changePassword')->setPass(['id']);
         });
 
         /**

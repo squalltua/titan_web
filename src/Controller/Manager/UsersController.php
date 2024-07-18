@@ -18,6 +18,7 @@ class UsersController extends AppController
         parent::beforeFilter($event);
 
         $this->Authentication->allowUnauthenticated(['login', 'initUser']);
+        $this->set('menuActive', 'users');
     }
 
     /**
@@ -31,18 +32,6 @@ class UsersController extends AppController
         $users = $this->paginate($query);
 
         $this->set(compact('users'));
-    }
-
-    /**
-     * View method
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view(string $id = null)
-    {
-        $user = $this->Users->get($id, contain: ['MetaUsers', 'Posts']);
-        $this->set(compact('user'));
     }
 
     /**
@@ -73,7 +62,7 @@ class UsersController extends AppController
      */
     public function edit(string $id = null)
     {
-        $user = $this->Users->get($id, contain: []);
+        $user = $this->Users->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
@@ -103,6 +92,29 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * @param string|null $id
+     * @return \Cake\Http\Response|null
+     */
+    public function changePassword(string $id = null): ?\Cake\Http\Response
+    {
+        $user = $this->Users->get($id);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
+
+                return $this->redirect("/manager/users/edit/{$id}");
+            }
+
+            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+        }
+
+        $this->set(compact('user'));
+
+        return $this->render();
     }
 
     /**
