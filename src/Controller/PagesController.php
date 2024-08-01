@@ -70,4 +70,14 @@ class PagesController extends AppController
             throw new NotFoundException();
         }
     }
+
+    /**
+     * Sandbox Error 404 here
+     * @return Response
+     */
+    public function pageNotFoundError(): Response
+    {
+        $this->viewBuilder()->setLayout('error');
+        return $this->render();
+    }
 }
