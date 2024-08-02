@@ -55,7 +55,7 @@ return function (RouteBuilder $routes): void {
          * its action called 'display', and we pass a param to select the view file
          * to use (in this case, templates/Pages/home.php)...
          */
-        $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+        $builder->connect('/', ['controller' => 'Pages', 'action' => 'home']);
 
         $builder->connect('/*', 'Pages::pageNotFoundError');
         // $builder->fallbacks();
@@ -85,7 +85,7 @@ return function (RouteBuilder $routes): void {
         });
 
         $builder->scope('/settings', function (RouteBuilder $builder): void {
-            $builder->connect('/', 'Settings::index');
+            $builder->connect('/system', 'Settings::system');
         });
 
         $builder->scope('/users', function (RouteBuilder $builder): void {

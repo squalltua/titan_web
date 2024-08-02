@@ -31,44 +31,39 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class PagesController extends AppController
 {
-    /**
-     * Displays a view
-     *
-     * @param string ...$path Path segments.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Http\Exception\ForbiddenException When a directory traversal attempt.
-     * @throws \Cake\View\Exception\MissingTemplateException When the view file could not
-     *   be found and in debug mode.
-     * @throws \Cake\Http\Exception\NotFoundException When the view file could not
-     *   be found and not in debug mode.
-     * @throws \Cake\View\Exception\MissingTemplateException In debug mode.
-     */
-    public function display(string ...$path): ?Response
+    public function beforeRender(\Cake\Event\EventInterface $event)
     {
-        if (!$path) {
-            return $this->redirect('/');
-        }
-        if (in_array('..', $path, true) || in_array('.', $path, true)) {
-            throw new ForbiddenException();
-        }
-        $page = $subpage = null;
+        $this->viewBuilder()->setTheme('DefaultTheme');
+    }
 
-        if (!empty($path[0])) {
-            $page = $path[0];
-        }
-        if (!empty($path[1])) {
-            $subpage = $path[1];
-        }
-        $this->set(compact('page', 'subpage'));
+    public function home(): Response
+    {
+        // load content here.
 
-        try {
-            return $this->render(implode('/', $path));
-        } catch (MissingTemplateException $exception) {
-            if (Configure::read('debug')) {
-                throw $exception;
-            }
-            throw new NotFoundException();
-        }
+        return $this->render();
+    }
+
+    public function about(): Response
+    {
+        return $this->render();
+    }
+
+    public function contact(): Response
+    {
+        return $this->render();
+    }
+
+    public function blogs(): Response
+    {
+        return $this->render();
+    }
+
+    public function blog(string $slug): Response
+    {
+        $post = $this->fetchTable('Posts')->getPost($slug);
+        $this->set(compact('post'));
+
+        return $this->render();
     }
 
     /**

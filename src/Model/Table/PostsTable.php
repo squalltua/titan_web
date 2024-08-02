@@ -128,4 +128,21 @@ class PostsTable extends Table
 
         return $rules;
     }
+
+    /**
+     * @return SelectQuery
+     */
+    public function getAllPosts(): SelectQuery
+    {
+        return $this->find('all')->orderByDesc('created');
+    }
+
+    /**
+     * @param string $slug
+     * @return mixed
+     */
+    public function getPost(string $slug)
+    {
+        return $this->find()->where(['slug' => $slug])->contain(['MetaPosts'])->first();
+    }
 }

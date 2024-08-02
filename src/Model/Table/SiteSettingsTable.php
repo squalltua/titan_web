@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\Datasource\ConnectionManager;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Utility\Hash;
 use Cake\Validation\Validator;
 
 /**
@@ -61,5 +63,46 @@ class SiteSettingsTable extends Table
             ->allowEmptyString('value_field');
 
         return $validator;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSiteSetting(): array
+    {
+        $settingData = $this->find('all');
+        return Hash::combine($settingData->toArray(), '{n}.key_field', '{n}.value_field');
+    }
+
+    /**
+     * @param array $data
+     * @return bool
+     */
+    public function saveSiteSetting(array $data): bool
+    {
+        $conn = ConnectionManager::get('default');
+        $conn->begin();
+        foreach ($data as $key => $value) {
+            $setting = $this->find()->where(['key_field' => $key])->first();
+            if ($setting) {
+                // update data
+                $setting->value_field = $value;
+            } else {
+                // new data
+                $setting = $this->newEntity([
+                    'key_field' => $key,
+                    'value_field' => $value
+                ]);
+            }
+
+            // save data
+            if (!$this->save($setting)) {
+                $conn->rollback();
+                return false;
+            }
+        }
+
+        $conn->commit();
+        return true;
     }
 }
