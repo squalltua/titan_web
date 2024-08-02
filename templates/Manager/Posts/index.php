@@ -51,25 +51,29 @@
                     field: "status",
                     title: "Status",
                     width: 120,
+                    attributes: {class: "text-center"},
                 },
                 {
                     field: "created",
                     title: "Created",
                     format: "{0:dd/MM/yyyy}",
                     width: 120,
+                    attributes: {class: "text-center"},
                 },
                 {
                     field: "modified",
                     title: "Last modified",
                     format: "{0:dd/MM/yyyy}",
                     width: 120,
+                    attributes: {class: "text-center"},
                 },
                 {
                     title: "",
-                    text: '<a href="/manager/posts/edit/#:data.id#"><?= __('Edit') ?></a>',
+                    template: '<a href="/manager/posts/edit/#:data.id#"><?= __('Edit') ?></a>',
                     exportable: false,
                     filterable: false,
                     width: 120,
+                    attributes: {class: "text-center"},
                 }
             ]
         });

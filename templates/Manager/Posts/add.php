@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="d-flex mb-2">
             <div class="flex-grow-1">
-                <h3><?= __('Posts') ?></h3>
+                <h3><?= __('Posts :: New') ?></h3>
             </div>
         </div>
 
@@ -19,14 +19,34 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="content"><?= __('Content') ?></label>
-                    <?= $this->Form->textarea('content', ['class' => 'form-control', 'id' => 'content', 'row' => 50]) ?>
+                    <?= $this->Form->textarea(
+                        'content',
+                        [
+                            'class' => 'form-control',
+                            'id' => 'content',
+                            'rows' => '10',
+                            'style' => "width:100%; height:450px"
+                        ]
+                    ) ?>
                 </div>
             </div>
             <div class="col-3">
                 <div class="card">
-                    <div class="card-body d-grid gap-2 d-md-flex">
-                        <?= $this->Form->button(__('Save Draft'), ['class' => 'btn btn-primary me-md-2', 'name' => 'save_draft']) ?>
-                        <?= $this->Form->button(__('Publish'), ['class' => 'btn btn-success', 'name' => 'publish']) ?>
+                    <div class="card-body">
+                        <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary me-md-2', 'name' => 'save_draft']) ?>
+
+                        <div class="form-group mt-3">
+                            <label for="status" class="form-label"><?= __('Status') ?></label>
+                            <?= $this->Form->select(
+                                'status',
+                                [
+                                    'draft' => __('Draft'),
+                                    'published' => __('Published'),
+                                    'unpublished' => __('Unpublished')
+                                ],
+                                ['class' => 'form-select', 'id' => 'status']
+                            ) ?>
+                        </div>
                     </div>
                 </div>
 
@@ -130,26 +150,6 @@
                 "undo",
                 "redo",
                 {name: "separator1", type:"separator"},
-                {
-                    name: "fontName",
-                    items: [
-                        { text: "Andale Mono", value: "\"Andale Mono\"" }, // Font-family names composed of several words should be wrapped in \" \"
-                        { text: "Arial", value: "Arial" },
-                        { text: "Arial Black", value: "\"Arial Black\"" },
-                        { text: "Book Antiqua", value: "\"Book Antiqua\"" },
-                        { text: "Comic Sans MS", value: "\"Comic Sans MS\"" },
-                        { text: "Courier New", value: "\"Courier New\"" },
-                        { text: "Georgia", value: "Georgia" },
-                        { text: "Helvetica", value: "Helvetica" },
-                        { text: "Impact", value: "Impact" },
-                        { text: "Symbol", value: "Symbol" },
-                        { text: "Tahoma", value: "Tahoma" },
-                        { text: "Terminal", value: "Terminal" },
-                        { text: "Times New Roman", value: "\"Times New Roman\"" },
-                        { text: "Trebuchet MS", value: "\"Trebuchet MS\"" },
-                        { text: "Verdana", value: "Verdana" },
-                    ]
-                },
                 "fontSize",
                 "bold",
                 "italic",

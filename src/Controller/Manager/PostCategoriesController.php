@@ -33,7 +33,7 @@ class PostCategoriesController extends AppController
             if ($this->fetchTable('PostGroups')->save($category)) {
                 $this->Flash->success(__('The category has been saved.'));
 
-                return $this->redirect('/manager/categories/tags');
+                return $this->redirect('/manager/posts/categories');
             }
 
             $this->Flash->error(__('The category could not be saved. Please, try again.'));
@@ -56,7 +56,7 @@ class PostCategoriesController extends AppController
             if ($this->fetchTable('PostGroups')->save($category)) {
                 $this->Flash->success(__('The category has been saved.'));
 
-                return $this->redirect('/manager/categories/tags');
+                return $this->redirect('/manager/posts/categories');
             }
 
             $this->Flash->error(__('The category could not be saved. Please, try again.'));

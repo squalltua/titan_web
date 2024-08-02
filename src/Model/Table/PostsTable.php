@@ -55,6 +55,8 @@ class PostsTable extends Table
         ]);
         $this->hasMany('MetaPosts', [
             'foreignKey' => 'post_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
         $this->belongsToMany('PostGroups', [
             'foreignKey' => 'post_id',

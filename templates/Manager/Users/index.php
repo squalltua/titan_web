@@ -58,23 +58,27 @@
                     field: "role",
                     title: "Role",
                     width: 120,
+                    attributes: {class: "text-center"},
                 },
                 {
                     field: "status",
                     title: "Status",
                     width: 120,
+                    attributes: {class: "text-center"},
                 },
                 {
                     field: "created",
                     title: "Created",
                     format: "{0:dd/MM/yyyy}",
                     width: 120,
+                    attributes: {class: "text-center"},
                 },
                 {
                     field: "modified",
                     title: "Last modified",
                     format: "{0:dd/MM/yyyy}",
                     width: 120,
+                    attributes: {class: "text-center"},
                 },
                 {
                     title: "",
