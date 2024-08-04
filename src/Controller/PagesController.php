@@ -20,6 +20,7 @@ use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
+use Cake\Utility\Hash;
 use Cake\View\Exception\MissingTemplateException;
 
 /**
@@ -34,6 +35,10 @@ class PagesController extends AppController
     public function beforeRender(\Cake\Event\EventInterface $event)
     {
         $this->viewBuilder()->setTheme('DefaultTheme');
+        $siteSettingData = $this->fetchTable('SiteSettings')->find('all');
+        $siteSetting = Hash::combine($siteSettingData->toArray(), '{n}.key_field', '{n}.value_field');
+
+        $this->set(compact('siteSetting'));
     }
 
     public function home(): Response
