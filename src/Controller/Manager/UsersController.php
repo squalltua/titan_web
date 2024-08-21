@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Manager;
 
+use Cake\Datasource\ConnectionManager;
 use Cake\Utility\Hash;
 use Cake\Utility\Security;
 
@@ -17,7 +18,7 @@ class UsersController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Authentication->allowUnauthenticated(['login', 'initUser']);
+        $this->Authentication->allowUnauthenticated(['login', 'initializeData']);
         $this->set('menuActive', 'users');
     }
 
@@ -147,10 +148,28 @@ class UsersController extends AppController
         return $this->redirect('/manager/login');
     }
 
-    public function initUser(): ?\Cake\Http\Response
+    public function initializeData(): ?\Cake\Http\Response
     {
+        $connection = ConnectionManager::get('default');
+        $connection->begin();
         $userAdmin = $this->Users->find()->where(['username' => 'admin', 'role' => 'admin'])->first();
         if (!$userAdmin) {
+            $settings = $this->fetchTable('SiteSettings')->newEntities([
+                ['key_field' => 'site_name', 'value_field' => 'Site name'],
+                ['key_field' => 'telephone', 'value_field' => " "],
+                ['key_field' => 'address', 'value_field' => " "],
+                ['key_field' => 'contact_email', 'value_field' => " "],
+                ['key_field' => 'support_email', 'value_field' => " "],
+                ['key_field' => 'sns_facebook_name', 'value_field' => " "],
+                ['key_field' => 'sns_facebook_url', 'value_field' => " "],
+                ['key_field' => 'sns_twitter_name', 'value_field' => " "],
+                ['key_field' => 'sns_twitter_url', 'value_field' => " "],
+                ['key_field' => 'sns_instagram_name', 'value_field' => " "],
+                ['key_field' => 'sns_instagram_url', 'value_field' => " "],
+                ['key_field' => 'sns_tiktok_name', 'value_field' => " "],
+                ['key_field' => 'sns_tiktok_url', 'value_field' => " "],
+            ]);
+
             // $password = Security::randomString(8);
             $password = 'admin';
             $user = $this->Users->newEntity([
@@ -162,12 +181,16 @@ class UsersController extends AppController
                 'password' => $password,
                 'status' => 'active',
             ]);
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been initiated. password is {0}', $password));
+
+            if ($this->fetchTable('SiteSettings')->saveMany($settings) && $this->Users->save($user)) {
+                $connection->commit();
+                $this->Flash->success(__('The data has been initiated. password is {0}', $password));
             } else {
-                $this->Flash->error(__('The user could be initiated. Please, try again.'));
+                $connection->rollback();
+                $this->Flash->error(__('The data could be initiated. Please, try again.'));
             }
         } else {
+            $connection->rollback();
             echo '!error';
             exit;
         }
