@@ -60,6 +60,14 @@ class PagesController extends AppController
 
     public function blogs(): Response
     {
+        $blogs = $this->fetchTable('Posts')->find()
+            ->where([
+                'status' => 'published',
+            ])
+            ->contain(['PostsPostGroups', 'MetaPosts'])
+            ->orderByDesc('published');
+        $this->set(compact('blogs'));
+
         return $this->render();
     }
 
