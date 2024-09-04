@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\Database\Query;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -81,5 +82,15 @@ class PostGroupsTable extends Table
             ->notEmptyString('type');
 
         return $validator;
+    }
+
+    public function getCategoriesList(): Query
+    {
+        return $this->find('list')->where(['type' => 'categories']);
+    }
+
+    public function getTagsList(): Query
+    {
+        return $this->find('list')->where(['type' => 'tags']);
     }
 }

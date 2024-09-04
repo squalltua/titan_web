@@ -67,22 +67,14 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/logout', 'Users::logout');
         $builder->connect('/initialize-data', 'Users::initializeData');
 
-        $builder->scope('/posts', function (RouteBuilder $builder): void {
-            $builder->connect('/', 'Posts::index');
-            $builder->connect('/add', 'Posts::add');
-            $builder->connect('/edit/{id}', 'Posts::edit')->setPass(['id']);
-            $builder->connect('/delete/{id}', 'Posts::delete')->setPass(['id']);
+        $builder->prefix('Cms', function (RouteBuilder $builder): void {
+            $builder->connect('/', ['prefix' => 'Manager/Cms', 'controller' => 'Cms', 'action' => 'dashboard']);
 
-            $builder->connect('/categories', 'PostCategories::index');
-            $builder->connect('/categories/add', 'PostCategories::add');
-            $builder->connect('/categories/edit/{id}', 'PostCategories::edit')->setPass(['id']);
-            $builder->connect('/categories/delete/{id}', 'PostCategories::delete')->setPass(['id']);
-
-            $builder->connect('/tags', 'PostTags::index');
-            $builder->connect('/tags/add', 'PostTags::add');
-            $builder->connect('/tags/edit/{id}', 'PostTags::edit')->setPass(['id']);
-            $builder->connect('/tags/delete/{id}', 'PostTags::delete')->setPass(['id']);
+            $builder->connect('/posts', ['prefix' => 'Manager/Cms', 'controller' => 'Posts', 'action' => 'index' ]);
+            $builder->connect('/posts/{action}/*', ['prefix' => 'Manager/Cms', 'controller' => 'Posts']);
         });
+
+        
 
         $builder->scope('/settings', function (RouteBuilder $builder): void {
             $builder->connect('/system', 'Settings::system');
@@ -108,6 +100,8 @@ return function (RouteBuilder $routes): void {
             $builder->connect('/posts', 'Manager/Api/v1/Posts::index');
             $builder->connect('/post-tags', 'Manager/Api/v1/PostTags::index');
             $builder->connect('/post-categories', 'Manager/Api/v1/PostCategories::index');
+
+            $builder->resources('Medias', ['prefix' => 'Api/V1']);
         });
 
         $builder->connect('/*', 'Pages::pageNotFoundError');

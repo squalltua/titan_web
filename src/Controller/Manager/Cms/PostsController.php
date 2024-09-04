@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Controller\Manager;
+namespace App\Controller\Manager\Cms;
 
 use App\Controller\Manager\AppController;
 use Authentication\Controller\Component\AuthenticationComponent;
+use Cake\Http\Exception\NotFoundException;
 
 /**
  * @property \App\Model\Table\PostsTable $Posts
@@ -11,11 +12,20 @@ use Authentication\Controller\Component\AuthenticationComponent;
  */
 class PostsController extends AppController
 {
+    protected array $paginate = [
+        'limit' => 25,
+        'order' => [
+            'Posts.created' => 'desc',
+        ],
+    ];
+
     public function initialize(): void
     {
         parent::initialize();
 
-        $this->set('menuActive', 'posts');
+        $this->set('subMenu', 'cms_menu');
+        $this->set('subMenuActive', 'posts');
+        $this->set('applicationName', __('Content management system'));
     }
 
     /**
@@ -23,7 +33,13 @@ class PostsController extends AppController
      */
     public function index(): \Cake\Http\Response
     {
-        $posts = $this->paginate($this->Posts);
+        try {
+            $posts = $this->paginate($this->Posts);
+        } catch (NotFoundException $e) {
+            // Do something here like redirecting to first or last page.
+            // $e->getPrevious()->getAttributes('pagingParams') will give you required info.
+        }
+        
         $this->set(compact('posts'));
 
         return $this->render();
@@ -48,7 +64,10 @@ class PostsController extends AppController
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
         }
 
-        $this->set(compact('post'));
+        $categories = $this->fetchTable('PostGroups')->getCategoriesList();
+        $tags = $this->fetchTable('PostGroups')->getTagsList();
+
+        $this->set(compact('post', 'categories', 'tags'));
         $this->set('menuActive', 'new-post');
 
         return $this->render();
@@ -62,17 +81,22 @@ class PostsController extends AppController
     {
         $post = $this->Posts->get($id);
         if ($this->request->is(['post', 'put'])) {
+            debug($this->request->getData());
+            exit;
             $post = $this->Posts->patchEntity($post, $this->request->getData());
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));
 
-                return $this->redirect("/manager/post/categories/edit/{$post->id}");
+                return $this->redirect("/manager/post/edit/{$post->id}");
             }
 
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
         }
 
-        $this->set(compact('post'));
+        $categories = $this->fetchTable('PostGroups')->getCategoriesList();
+        $tags = $this->fetchTable('PostGroups')->getTagsList();
+
+        $this->set(compact('post', 'categories', 'tags'));
         return $this->render();
     }
 
