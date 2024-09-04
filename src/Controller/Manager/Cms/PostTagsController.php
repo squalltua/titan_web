@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Controller\Manager;
+declare(strict_types=1);
+
+namespace App\Controller\Manager\Cms;
 
 use App\Controller\Manager\AppController;
 
@@ -10,7 +12,9 @@ class PostTagsController extends AppController
     {
         parent::initialize();
 
-        $this->set('menuActive', 'post-tags');
+        $this->set('subMenu', 'cms_menu');
+        $this->set('subMenuActive', 'tags');
+        $this->set('applicationName', __('Content management system'));
     }
 
     /**
@@ -33,7 +37,7 @@ class PostTagsController extends AppController
             if ($this->fetchTable('PostGroups')->save($tag)) {
                 $this->Flash->success(__('The tag has been saved.'));
 
-                return $this->redirect('/manager/posts/tags');
+                return $this->redirect('/manager/cms/tags');
             }
 
             $this->Flash->error(__('The tag could not be saved. Please, try again.'));
@@ -56,7 +60,7 @@ class PostTagsController extends AppController
             if ($this->fetchTable('PostGroups')->save($tag)) {
                 $this->Flash->success(__('The tag has been saved.'));
 
-                return $this->redirect('/manager/posts/tags');
+                return $this->redirect('/manager/cms/tags');
             }
 
             $this->Flash->error(__('The tag could not be saved. Please, try again.'));
@@ -77,10 +81,10 @@ class PostTagsController extends AppController
         $tag = $this->fetchTable('PostGroups')->get($id);
         if ($this->fetchTable('PostGroups')->delete($tag)) {
             $this->Flash->success(__('The tag has been deleted.'));
-            return $this->redirect('/manager/post-tags');
+            return $this->redirect('/manager/cms');
         }
 
         $this->Flash->error(__('The tag could not be deleted. Please, try again.'));
-        return $this->redirect("/manager/posts/tags/edit/{$id}");
+        return $this->redirect("/manager/cms/tags/edit/{$id}");
     }
 }

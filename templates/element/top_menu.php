@@ -13,13 +13,12 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/manager"><?= __('All') ?></a></li>
             <li><a class="dropdown-item" href="/manager/cms"><?= __('Content management') ?></a></li>
-            <li><a class="dropdown-item" href="/manager/products"><?= __('Products management') ?></a></li>
-            <li><a class="dropdown-item" href="/manager/customers"><?= __('Customers manangment') ?></a></li>
-            <li><a class="dropdown-item" href="/manager/warehouses"><?= __('Warehouses management') ?></a></li>
-            <li><a class="dropdown-item" href="/manager/financials"><?= __('Financials management') ?></a></li>
+            <li><a class="dropdown-item" href="/manager/pim"><?= __('Products management') ?></a></li>
+            <li><a class="dropdown-item" href="/manager/crm"><?= __('Customers manangment') ?></a></li>
+            <li><a class="dropdown-item" href="/manager/fnm"><?= __('Financials management') ?></a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="/manager/system/users"><?= __('Users management') ?></a></li>
-            <li><a class="dropdown-item" href="/manager/system/configuration">configuration</a></li>
+            <li><a class="dropdown-item" href="/manager/system/configuration"><?= __('Configuration') ?></a></li>
           </ul>
         </li>
       </ul>
@@ -29,7 +28,7 @@
             <?= $this->Identity->get('username'); ?>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="/manager/setting/profile"><?= __('Profile') ?></a></li>
+            <li><a class="dropdown-item" href="/manager/settings/users/profile"><?= __('Profile') ?></a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="/manager/logout"><?= __('Logout') ?></a></li>
           </ul>

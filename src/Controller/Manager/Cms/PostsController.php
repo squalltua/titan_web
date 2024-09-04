@@ -60,7 +60,7 @@ class PostsController extends AppController
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));
 
-                return $this->redirect("/manager/posts/edit/{$post->id}");
+                return $this->redirect("/manager/cms/posts/edit/{$post->id}");
             }
 
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
@@ -89,7 +89,7 @@ class PostsController extends AppController
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));
 
-                return $this->redirect("/manager/post/edit/{$post->id}");
+                return $this->redirect("/manager/cms/post/edit/{$post->id}");
             }
 
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
@@ -116,6 +116,15 @@ class PostsController extends AppController
             $this->Flash->error(__('The post could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect("/manager/posts");
+        return $this->redirect("/manager/cms/posts");
+    }
+
+    public function publishedPosts()
+    {
+        /** ----------------------------------------
+         * published post to json file or radis database.
+         * ----------------------------------------- */
+
+        return $this->redirect('/manager/cms/posts');
     }
 }

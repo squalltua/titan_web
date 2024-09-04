@@ -84,13 +84,26 @@ return function (RouteBuilder $routes): void {
             $builder->connect('/tags/{action}/*', ['prefix' => 'Manager/Cms', 'controller' => 'PostTags']);
         });
 
+        $builder->prefix('Pim', function (RouteBuilder $builder): void {
+            $builder->connect('/', ['prefix' => 'Manager/Pim', 'controller' => 'Pim', 'action' => 'dashboard']);
+
+            $builder->connect('/products', ['prefix' => 'Manager/Pim', 'controller' => 'Products', 'action' => 'index']);
+            $builder->connect('/products/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'Products']);
+
+            $builder->connect('/categories', ['prefix' => 'Manager/Pim', 'controller' => 'ProductCategories', 'action' => 'index']);
+            $builder->connect('/categories/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'ProductCategories']);
+
+            $builder->connect('/tags', ['prefix' => 'Manager/Pim', 'controller' => 'ProductTags', 'action' => 'index']);
+            $builder->connect('/tags/{action}/*', ['prefix' => 'Managaer/Pim', 'controller' => 'ProductTags']);
+        });
+
         $builder->prefix('Settings', function (RouteBuilder $builder): void {
             $builder->connect('/system', 'Settings::system');
 
             $builder->connect('/users', ['prefix', 'Manager/Settings', 'controller' => 'Users', 'action' => 'index']);
             $builder->connect('/users/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'Users']);
         });
-        
+
         /**
          * API routes
          */

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Manager;
+namespace App\Controller\Manager\Cms;
 
 use App\Controller\Manager\AppController;
 
@@ -12,7 +12,9 @@ class PostCategoriesController extends AppController
     {
         parent::initialize();
 
-        $this->set('menuActive', 'post-categories');
+        $this->set('subMenu', 'cms_menu');
+        $this->set('subMenuActive', 'categories');
+        $this->set('applicationName', __('Content management system'));
     }
 
     /**
@@ -35,7 +37,7 @@ class PostCategoriesController extends AppController
             if ($this->fetchTable('PostGroups')->save($category)) {
                 $this->Flash->success(__('The category has been saved.'));
 
-                return $this->redirect('/manager/posts/categories');
+                return $this->redirect('/manager/cms/categories');
             }
 
             $this->Flash->error(__('The category could not be saved. Please, try again.'));
@@ -58,7 +60,7 @@ class PostCategoriesController extends AppController
             if ($this->fetchTable('PostGroups')->save($category)) {
                 $this->Flash->success(__('The category has been saved.'));
 
-                return $this->redirect('/manager/posts/categories');
+                return $this->redirect('/manager/cms/categories');
             }
 
             $this->Flash->error(__('The category could not be saved. Please, try again.'));
@@ -79,10 +81,10 @@ class PostCategoriesController extends AppController
         $category = $this->fetchTable('PostGroups')->get($id);
         if ($this->fetchTable('PostGroups')->delete($category)) {
             $this->Flash->success(__('The category has been deleted.'));
-            return $this->redirect('/manager/post-tags');
+            return $this->redirect('/manager/cms/categories');
         }
 
         $this->Flash->error(__('The category could not be deleted. Please, try again.'));
-        return $this->redirect("/manager/posts/categories/edit/{$id}");
+        return $this->redirect("/manager/cms/categories/edit/{$id}");
     }
 }
