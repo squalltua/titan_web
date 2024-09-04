@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Manager\Cms;
 
 use App\Controller\Manager\AppController;
@@ -39,7 +41,7 @@ class PostsController extends AppController
             // Do something here like redirecting to first or last page.
             // $e->getPrevious()->getAttributes('pagingParams') will give you required info.
         }
-        
+
         $this->set(compact('posts'));
 
         return $this->render();

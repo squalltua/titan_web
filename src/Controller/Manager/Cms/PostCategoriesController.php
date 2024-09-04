@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Manager;
 
 use App\Controller\Manager\AppController;

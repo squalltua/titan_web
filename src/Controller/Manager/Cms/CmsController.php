@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Manager\Cms;
 
 use App\Controller\Manager\AppController;
@@ -15,8 +17,5 @@ class CmsController extends AppController
         $this->set('applicationName', __('Content management system'));
     }
 
-    public function dashboard()
-    {
-        
-    }
+    public function dashboard() {}
 }

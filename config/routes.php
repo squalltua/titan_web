@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Routes configuration.
  *
@@ -29,6 +32,7 @@ use Cake\Routing\RouteBuilder;
   * So you can use  `$this` to reference the application class instance
   * if required.
  */
+
 return function (RouteBuilder $routes): void {
     /*
      * The default class to use for all routes
@@ -70,24 +74,23 @@ return function (RouteBuilder $routes): void {
         $builder->prefix('Cms', function (RouteBuilder $builder): void {
             $builder->connect('/', ['prefix' => 'Manager/Cms', 'controller' => 'Cms', 'action' => 'dashboard']);
 
-            $builder->connect('/posts', ['prefix' => 'Manager/Cms', 'controller' => 'Posts', 'action' => 'index' ]);
+            $builder->connect('/posts', ['prefix' => 'Manager/Cms', 'controller' => 'Posts', 'action' => 'index']);
             $builder->connect('/posts/{action}/*', ['prefix' => 'Manager/Cms', 'controller' => 'Posts']);
+
+            $builder->connect('/categories', ['prefix' => 'Manager/Cms', 'controller' => 'PostCategories', 'action' => 'index']);
+            $builder->connect('/categories/{action}/*', ['prefix' => 'Manager/Cms', 'controller', 'PostCategories']);
+
+            $builder->connect('/tags', ['prefix' => 'Manager/Cms', 'controller' => 'PostTags', 'action' => 'index']);
+            $builder->connect('/tags/{action}/*', ['prefix' => 'Manager/Cms', 'controller' => 'PostTags']);
         });
 
-        
-
-        $builder->scope('/settings', function (RouteBuilder $builder): void {
+        $builder->prefix('Settings', function (RouteBuilder $builder): void {
             $builder->connect('/system', 'Settings::system');
-        });
 
-        $builder->scope('/users', function (RouteBuilder $builder): void {
-            $builder->connect('/', 'Users::index');
-            $builder->connect('/add', 'Users::add');
-            $builder->connect('/edit/{id}', 'Users::edit')->setPass(['id']);
-            $builder->connect('/delete/{id}', 'Users::delete')->setPass(['id']);
-            $builder->connect('/change-password/{id}', 'Users::changePassword')->setPass(['id']);
+            $builder->connect('/users', ['prefix', 'Manager/Settings', 'controller' => 'Users', 'action' => 'index']);
+            $builder->connect('/users/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'Users']);
         });
-
+        
         /**
          * API routes
          */

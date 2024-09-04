@@ -1,11 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Controller\Manager;
+namespace App\Controller\Manager\Settings;
 
+use App\Controller\Manager\AppController;
 use Cake\Datasource\ConnectionManager;
-use Cake\Utility\Hash;
-use Cake\Utility\Security;
 
 /**
  * Users controller
