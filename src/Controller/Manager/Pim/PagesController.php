@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Manager\Cms;
+namespace App\Controller\Manager\Pim;
 
 use App\Controller\Manager\AppController;
 
-class CmsController extends AppController
+class PagesController extends AppController
 {
     public function initialize(): void
     {
         parent::initialize();
 
-        $this->set('subMenu', 'cms_menu');
+        $this->set('subMenu', 'pim_menu');
         $this->set('subMenuActive', 'dashboard');
-        $this->set('applicationName', __('Content management system'));
+        $this->set('applicationName', __('Product information management'));
     }
 
     public function dashboard() {}

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controller\Manager;
+namespace App\Controller\Manager\Settings;
 
 use App\Controller\Manager\AppController;
 
-class SettingsController extends AppController
+class SystemSettingsController extends AppController
 {
     public function initialize(): void
     {

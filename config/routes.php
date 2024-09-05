@@ -72,7 +72,7 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/initialize-data', 'Users::initializeData');
 
         $builder->prefix('Cms', function (RouteBuilder $builder): void {
-            $builder->connect('/', ['prefix' => 'Manager/Cms', 'controller' => 'Cms', 'action' => 'dashboard']);
+            $builder->connect('/', ['prefix' => 'Manager/Cms', 'controller' => 'Pages', 'action' => 'dashboard']);
 
             $builder->connect('/posts', ['prefix' => 'Manager/Cms', 'controller' => 'Posts', 'action' => 'index']);
             $builder->connect('/posts/{action}/*', ['prefix' => 'Manager/Cms', 'controller' => 'Posts']);
@@ -84,8 +84,21 @@ return function (RouteBuilder $routes): void {
             $builder->connect('/tags/{action}/*', ['prefix' => 'Manager/Cms', 'controller' => 'PostTags']);
         });
 
+        $builder->prefix('Crm', function (RouteBuilder $builder): void {
+            $builder->connect('/', ['prefix' => 'Manager/Crm', 'controller' => 'Pages', 'action' => 'dashboard']);
+
+            $builder->connect('/customers', ['prefix' => 'Manager/Crm', 'controller' => 'Customers', 'action' => 'inddex']);
+            $builder->connect('/customers/{action}/*', ['prefix' => 'Manager/Crm', 'controller' => 'Customers']);
+
+            $builder->connect('/categories', ['prefix' => 'Manager/Crm', 'controller' => 'CustomerCategories', 'action' => 'index']);
+            $builder->connect('/categories/{action}/*', ['prefix' => 'Manager/Crm', 'controller' => 'CustomerCategories']);
+        
+            $builder->connect('/tags', ['prefix' => 'Manager/Crm', 'controller' => 'CustomerTags', 'action' => 'index']);
+            $builder->connect('/tags/{action}/*', ['prefix' => 'Manager/Crm', 'controller' => 'CustomerTags']);
+        });
+
         $builder->prefix('Pim', function (RouteBuilder $builder): void {
-            $builder->connect('/', ['prefix' => 'Manager/Pim', 'controller' => 'Pim', 'action' => 'dashboard']);
+            $builder->connect('/', ['prefix' => 'Manager/Pim', 'controller' => 'Pages', 'action' => 'dashboard']);
 
             $builder->connect('/products', ['prefix' => 'Manager/Pim', 'controller' => 'Products', 'action' => 'index']);
             $builder->connect('/products/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'Products']);
@@ -98,7 +111,7 @@ return function (RouteBuilder $routes): void {
         });
 
         $builder->prefix('Settings', function (RouteBuilder $builder): void {
-            $builder->connect('/system', 'Settings::system');
+            $builder->connect('/system', 'SystemSettings::system');
 
             $builder->connect('/users', ['prefix', 'Manager/Settings', 'controller' => 'Users', 'action' => 'index']);
             $builder->connect('/users/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'Users']);

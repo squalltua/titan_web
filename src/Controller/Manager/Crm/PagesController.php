@@ -6,7 +6,7 @@ namespace App\Controller\Manager\Crm;
 
 use App\Controller\Manager\AppController;
 
-class CrmController extends AppController
+class PagesController extends AppController
 {
     public function initialize(): void
     {
