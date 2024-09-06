@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Controller\Manager\Pim;
 
 use App\Controller\Manager\AppController;
-
+/**
+ * @property \App\Model\Table\ProductsTable $Products
+ */
 class ProductsController extends AppController
 {
     public function initialize(): void
@@ -13,25 +15,39 @@ class ProductsController extends AppController
         parent::initialize();
 
         $this->set('subMenu', 'pim_menu');
-        $this->set('subMenuActive', 'dashboard');
+        $this->set('subMenuActive', 'products');
         $this->set('applicationName', __('Product information management'));
     }
 
-    public function index() 
+    /**
+     * @return \Cake\Http\Response
+     */
+    public function index(): \Cake\Http\Response
     {
         $products = $this->paginate($this->Products);
 
         $this->set(compact('products'));
+
+        return $this->render();
     }
 
-    public function view(string $id)
+    /**
+     * @param string $id - product id
+     * @return \Cake\Http\Response
+     */
+    public function view(string $id): \Cake\Http\Response
     {
         $product = $this->Products->get($id);
 
         $this->set(compact('product'));
+
+        return $this->render();
     }
 
-    public function add()
+    /**
+     * @return \Cake\Http\Response
+     */
+    public function add(): \Cake\Http\Response
     {
         $product = $this->Products->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -50,9 +66,15 @@ class ProductsController extends AppController
         $tags = $this->Products->ProductGroups->getTagsList();
 
         $this->set(compact('product', 'categories', 'tags'));
+
+        return $this->render();
     }
 
-    public function edit(string $id)
+    /**
+     * @param string $id - product id
+     * @return \Cake\Http\Response
+     */
+    public function edit(string $id): \Cake\Http\Response
     {
         $product = $this->Products->get($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
@@ -70,9 +92,15 @@ class ProductsController extends AppController
         $tags = $this->Products->ProductGroups->getTagsList();
 
         $this->set(compact('product', 'categories', 'tags'));
+
+        return $this->render();
     }
 
-    public function delete(string $id)
+    /**
+     * @param string $id - product id
+     * @return \Cake\Http\Response
+     */
+    public function delete(string $id): \Cake\Http\Response
     {
         $this->request->allowMethod(['delete', 'post']);
         $product = $this->Products->get($id);

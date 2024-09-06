@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Manager\Cms;
 
 use App\Controller\Manager\AppController;
+use Cake\Http\Exception\NotFoundException;
 
 class PostCategoriesController extends AppController
 {
@@ -22,6 +23,15 @@ class PostCategoriesController extends AppController
      */
     public function index(): \Cake\Http\Response
     {
+        try {
+            $categories = $this->paginate($this->fetchTable('PostGroups')->getCategoriesAll());
+        } catch (NotFoundException $e) {
+            // Do something here like redirecting to first or last page.
+            // $e->getPrevious()->getAttributes('pagingParams') will give you required info.
+        }
+
+        $this->set(compact('categories'));
+
         return $this->render();
     }
 

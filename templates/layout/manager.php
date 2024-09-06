@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
 
 <head>
     <?= $this->Html->charset() ?>
@@ -18,14 +18,18 @@
     <?= $this->fetch('script') ?>
 </head>
 
-<body class="bg-body-tertiary">
+<body class="d-flex flex-column bg-body-tertiary h-100">
     <?= $this->element('top_menu') ?>
     <?= $this->element($subMenu ?? 'submenu_default') ?>
     <main class="container-fluid">
         <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
     </main>
-    <footer>
+    <footer class="footer mt-auto">
+        <div class="container-fluid d-flex flex-wrap justify-content-between align-items-center py-3">
+            <p class="col-md-4 mb-0 text-body-secondary">© <?= date('Y') ?> Titansacript business consult co.,ltd.</p>
+            <p class="col-md-4 mb-0 text-body-secondary text-end">Version 1.0</p>
+        </div>
     </footer>
     <?= $this->Html->script(['/vendor/bootstrap-5.3.3/js/bootstrap.bundle.min.js']) ?>
 </body>

@@ -42,7 +42,7 @@ class ProductGroupsTable extends Table
         parent::initialize($config);
 
         $this->setTable('product_groups');
-        $this->setDisplayField('title');
+        $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('ParentProductGroups', [
@@ -79,10 +79,10 @@ class ProductGroupsTable extends Table
             ->notEmptyString('type');
 
         $validator
-            ->scalar('title')
-            ->maxLength('title', 100)
-            ->requirePresence('title', 'create')
-            ->notEmptyString('title');
+            ->scalar('name')
+            ->maxLength('name', 100)
+            ->requirePresence('name', 'create')
+            ->notEmptyString('name');
 
         $validator
             ->scalar('slug')
@@ -108,5 +108,10 @@ class ProductGroupsTable extends Table
         $rules->add($rules->existsIn(['parent_id'], 'ParentProductGroups'), ['errorField' => 'parent_id']);
 
         return $rules;
+    }
+
+    public function getCategoriesList()
+    {
+        return $this->find()->where(['type' => 'categories']);
     }
 }

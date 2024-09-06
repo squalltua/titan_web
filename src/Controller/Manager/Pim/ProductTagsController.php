@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Manager\pim;
+namespace App\Controller\Manager\Pim;
 
 use App\Controller\Manager\AppController;
 

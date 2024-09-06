@@ -1,59 +1,48 @@
-<div class="card shadow-sm">
-    <div class="card-body">
-        <div class="d-flex mb-2">
-            <div class="flex-grow-1">
-                <h4>
-                    <?= __('Post Categories') ?>
-                    <?= $this->Html->link(__('New'), '/manager/posts/categories/add', ['class' => 'btn btn-primary btn-sm ms-3']) ?>
-                </h4>
-            </div>
-        </div>
-
-        <div id="grid"></div>
+<div class="row">
+    <div class="col">
+        <h4>
+            <?= __('Post Cateogires') ?>
+            <?= $this->Html->link(__('New'), '/manager/cms/categories/add', ['class' => 'btn btn-primary btn-sm ms-3']) ?>
+        </h4>
     </div>
 </div>
 
-<script>
-    $(document).ready(function () {
-        $("#grid").kendoGrid({
-            dataSource: {
-                transport: {
-                    read: "/manager/api/v1/post-categories.json"
-                },
-                schema: {
-                    model: {
-                        fields: {
-                            id: {type: "number"},
-                            name: {type: "string"},
-                        }
-                    }
-                },
-                pageSize: 20,
-                serverPaging: true,
-                serverFiltering: true,
-                serverSorting: true
-            },
-            toolbar: ['search'],
-            height: 700,
-            size: "small",
-            filterable: true,
-            sortable: true,
-            pageable: true,
-            columns: [
-                {
-                    field: "name",
-                    title: "Category name",
-                },
-                {
-                    title: "",
-                    template: '<a href="/manager/posts/categories/edit/#:data.id#" class="btn btn-sm btn-link"><?= __('Edit') ?></a>',
-                    exportable: false,
-                    filterable: false,
-                    attributes: {class: 'text-center'},
-                    width: 120,
-                }
-            ]
-        });
-    });
-</script>
-
+<div class="row">
+    <div class="col">
+        <table class="table table-bordered bg-white">
+            <thead>
+                <tr>
+                    <th><?= $this->Paginator->sort('name') ?></th>
+                    <th><?= $this->Paginator->sort('slug') ?></th>
+                    <th><?= $this->Paginator->sort('content') ?></th>
+                    <th><?= __('Action') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($categories as $category): ?>
+                    <tr>
+                        <td><?= h($category->name) ?></td>
+                        <td><?= h($category->slug) ?></td>
+                        <td><?= h($category->content) ?></td>
+                        <td>
+                            <?= $this->Html->link(__('Edit'), "/manager/cms/categories/edit/{$category->id}", ['class' => 'me-3']) ?>
+                            <?= $this->Form->postLink(__('Delete'), "/manager/cms/categories/delete/{$category->id}") ?>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-between">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <?= $this->Paginator->prev('« Previous') ?>
+                    <?= $this->Paginator->numbers() ?>
+                    <?= $this->Paginator->next('Next »') ?>
+                </ul>
+            </nav>
+            <div>
+                <?= $this->Paginator->counter('range'); ?>
+            </div>
+        </div>
+    </div>
+</div>

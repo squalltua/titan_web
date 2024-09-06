@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Manager\pim;
+namespace App\Controller\Manager\Pim;
 
 use App\Controller\Manager\AppController;
 
@@ -13,15 +13,18 @@ class ProductCategoriesController extends AppController
         parent::initialize();
 
         $this->set('subMenu', 'pim_menu');
-        $this->set('subMenuActive', 'dashboard');
+        $this->set('subMenuActive', 'categories');
         $this->set('applicationName', __('Product information management'));
     }
 
-    public function index()
+    public function index() : \Cake\Http\Response
     {
-        $categories = $this->paginate($this->fetchTable('ProductGroups'));
+        $categories = $this->paginate($this->fetchTable('ProductGroups')->getCategoriesList());
+        debug($categories);exit;
 
         $this->set(compact('categories'));
+
+        return $this->render();
     }
 
     public function add()

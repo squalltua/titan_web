@@ -14,11 +14,7 @@
                     <?= $this->Form->text('title', ['class' => 'form-control', 'id' => 'title']) ?>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="slug" class="form-label"><?= __('Slug') ?></label>
-                    <?= $this->Form->text('slug', ['class' => 'form-control', 'id' => 'slug']) ?>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="content"><?= __('Content') ?></label>
+                    <label for="content" class="form-label"><?= __('Content (Markdown syntex supported)') ?></label>
                     <?= $this->Form->textarea(
                         'content',
                         [
@@ -28,6 +24,24 @@
                             'style' => "width:100%; height:500px"
                         ]
                     ) ?>
+                    <div id="emailHelp" class="form-text"><?= __('The content box is supported Markdown syntext. We recommened use Markdown.') ?></div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="meta-posts-og-tag-title" class="form-label"><?= __('OG Tag Title') ?></label>
+                    <?= $this->Form->text('meta_posts.og_tag_title', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-title']) ?>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="meta-posts-og-tag-description" class="form-label"><?= __('OG Tag description') ?></label>
+                    <?= $this->Form->textarea('meta_posts.og_tag_description', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-description']) ?>
+                    <div id="emailHelp" class="form-text"><?= __('Only text for short description for display another plateform.') ?></div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="meta-posts-og-tag-image" class="form-label"><?= __('OG Tag image') ?></label>
+                    <?= $this->Form->file('meta_posts.og_tag_image', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-image']) ?>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="meta-posts-og-tag-url" class="form-label"><?= __('OG Tag URL') ?></label>
+                    <?= $this->Form->text('meta_posts.og_tag_url', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-url']) ?>
                 </div>
             </div>
             <div class="col-3">
@@ -51,89 +65,26 @@
 
                 <div class="form-group mb-3">
                     <label for="categories-ids" class="form-label"><?= __('Categories') ?></label>
-                    <?= $this->Form->select('categories._ids', $categories, ['class' => 'form-select', 'id' => 'categories-ids']) ?>
+                    <?= $this->Form->select('categories._ids', $categories, ['class' => 'form-select', 'id' => 'categories-ids', 'placeholder' => __('Optional')]) ?>
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="tags-ids" class="form-label"><?= __('Tags') ?></label>
-                    <?= $this->Form->select('tags._ids', $categories, ['class' => 'form-select', 'id' => 'tags-ids']) ?>
+                    <?= $this->Form->select('tags._ids', $categories, ['class' => 'form-select', 'id' => 'tags-ids', 'placeholder' => __('Optional')]) ?>
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="feature-image" class="form-label"><?= __('Feature image') ?></label>
-                    <?= $this->Form->file('menta_posts.feature_image', ['class' => 'form-control', 'id' => 'feature-image']) ?>
+                    <?= $this->Form->file('meta_posts.menta_posts.feature_image', ['class' => 'form-control', 'id' => 'feature-image']) ?>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary me-md-2']) ?>
-                <?= $this->Form->postLink(
-                    __('Delete'),
-                    "/manager/posts/delete/{$post->id}",
-                    [
-                        'class' => 'btn btn-danger me-md-2',
-                    ]
-                ) ?>
+                <?= $this->Html->link(__('Cancel'), "/manager/cms/posts/view/{$post->id}", ['class' => 'btn btn-secondary']) ?>
             </div>
         </div>
         <?= $this->Form->end() ?>
     </div>
 </div>
-
-<script>
-    $(document).ready(function() {
-        $("#title").keyup(function() {
-            const slug = $(this).val().slugify();
-            $("#slug").val(slug);
-        })
-
-        var editor = $("#content").kendoEditor({
-            stylesheets: [
-                "../content/shared/styles/editor.css",
-            ],
-            tools: [
-                "undo",
-                "redo",
-                {
-                    name: "separator1",
-                    type: "separator"
-                },
-                "fontSize",
-                "bold",
-                "italic",
-                "underline",
-                "backColor",
-                "foreColor",
-                {
-                    name: "separator2",
-                    type: "separator"
-                },
-                "insertUnorderedList",
-                "justifyLeft",
-                "justifyCenter",
-                "justifyRight",
-                {
-                    name: "separator3",
-                    type: "separator"
-                },
-                "formatting",
-                {
-                    name: "separator4",
-                    type: "separator"
-                },
-                "createLink",
-                "unlink",
-                "insertImage",
-                {
-                    name: "separator5",
-                    type: "separator"
-                },
-                "tableWizard",
-                "tableProperties",
-                "tableCellProperties",
-                "createTable",
-            ]
-        });
-    });
-</script>

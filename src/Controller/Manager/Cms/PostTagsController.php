@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Manager\Cms;
 
 use App\Controller\Manager\AppController;
+use Cake\Http\Exception\NotFoundException;
 
 class PostTagsController extends AppController
 {
@@ -22,6 +23,15 @@ class PostTagsController extends AppController
      */
     public function index(): \Cake\Http\Response
     {
+        try {
+            $tags = $this->paginate($this->fetchTable('PostGroups')->getTagsAll());
+        } catch (NotFoundException $e) {
+            // Do something here like redirecting to first or last page.
+            // $e->getPrevious()->getAttributes('pagingParams') will give you required info.
+        }
+
+        $this->set(compact('tags'));
+
         return $this->render();
     }
 

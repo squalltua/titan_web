@@ -1,59 +1,48 @@
-<div class="card shadow-sm">
-    <div class="card-body">
-        <div class="d-flex mb-2">
-            <div class="flex-grow-1">
-                <h4>
-                    <?= __('Post Tags') ?>
-                    <?= $this->Html->link(__('New'), '/manager/posts/tags/add', ['class' => 'btn btn-primary btn-sm ms-3']) ?>
-                </h4>
-            </div>
-        </div>
-
-        <div id="grid"></div>
+<div class="row">
+    <div class="col">
+        <h4>
+            <?= __('Post Tags') ?>
+            <?= $this->Html->link(__('New'), '/manager/cms/tags/add', ['class' => 'btn btn-primary btn-sm ms-3']) ?>
+        </h4>
     </div>
 </div>
 
-<script>
-    $(document).ready(function () {
-        $("#grid").kendoGrid({
-            dataSource: {
-                transport: {
-                    read: "/manager/api/v1/post-tags.json"
-                },
-                schema: {
-                    model: {
-                        fields: {
-                            id: {type: "number"},
-                            name: {type: "string"},
-                        }
-                    }
-                },
-                pageSize: 20,
-                serverPaging: true,
-                serverFiltering: true,
-                serverSorting: true
-            },
-            toolbar: ['search'],
-            height: 700,
-            size: "small",
-            filterable: true,
-            sortable: true,
-            pageable: true,
-            columns: [
-                {
-                    field: "name",
-                    title: "Tag name",
-                },
-                {
-                    title: "",
-                    template: '<a href="/manager/posts/tags/edit/#:data.id#" class="btn btn-sm btn-link"><?= __('Edit') ?></a>',
-                    exportable: false,
-                    filterable: false,
-                    attributes: {class: 'text-center'},
-                    width: 120,
-                }
-            ]
-        });
-    });
-</script>
-
+<div class="row">
+    <div class="col">
+        <table class="table table-bordered bg-white">
+            <thead>
+                <tr>
+                    <th><?= $this->Paginator->sort('name') ?></th>
+                    <th><?= $this->Paginator->sort('slug') ?></th>
+                    <th><?= $this->Paginator->sort('content') ?></th>
+                    <th><?= __('Action') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($tags as $tag): ?>
+                    <tr>
+                        <td><?= h($tag->name) ?></td>
+                        <td><?= h($tag->slug) ?></td>
+                        <td><?= h($tag->content) ?></td>
+                        <td>
+                            <?= $this->Html->link(__('Edit'), "/manager/cms/tags/edit/{$tag->id}", ['class' => 'me-3']) ?>
+                            <?= $this->Form->postLink(__('Delete'), "/manager/cms/tags/delete/{$tag->id}") ?>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-between">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <?= $this->Paginator->prev('« Previous') ?>
+                    <?= $this->Paginator->numbers() ?>
+                    <?= $this->Paginator->next('Next »') ?>
+                </ul>
+            </nav>
+            <div>
+                <?= $this->Paginator->counter('range'); ?>
+            </div>
+        </div>
+    </div>
+</div>

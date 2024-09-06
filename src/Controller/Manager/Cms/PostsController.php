@@ -50,6 +50,17 @@ class PostsController extends AppController
     /**
      * @return \Cake\Http\Response
      */
+    public function view(string $id) : \Cake\Http\Response 
+    {
+        $post = $this->Posts->get($id, ['contain' => ['MetaPosts']]);
+        $this->set(compact('post'));
+
+        return $this->render();
+    }
+
+    /**
+     * @return \Cake\Http\Response
+     */
     public function add(): \Cake\Http\Response
     {
         $post = $this->Posts->newEmptyEntity();
@@ -99,6 +110,7 @@ class PostsController extends AppController
         $tags = $this->fetchTable('PostGroups')->getTagsList();
 
         $this->set(compact('post', 'categories', 'tags'));
+        
         return $this->render();
     }
 

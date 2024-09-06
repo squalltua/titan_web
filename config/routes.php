@@ -78,7 +78,7 @@ return function (RouteBuilder $routes): void {
             $builder->connect('/posts/{action}/*', ['prefix' => 'Manager/Cms', 'controller' => 'Posts']);
 
             $builder->connect('/categories', ['prefix' => 'Manager/Cms', 'controller' => 'PostCategories', 'action' => 'index']);
-            $builder->connect('/categories/{action}/*', ['prefix' => 'Manager/Cms', 'controller', 'PostCategories']);
+            $builder->connect('/categories/{action}/*', ['prefix' => 'Manager/Cms', 'controller'=> 'PostCategories']);
 
             $builder->connect('/tags', ['prefix' => 'Manager/Cms', 'controller' => 'PostTags', 'action' => 'index']);
             $builder->connect('/tags/{action}/*', ['prefix' => 'Manager/Cms', 'controller' => 'PostTags']);

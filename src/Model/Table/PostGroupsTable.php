@@ -84,6 +84,16 @@ class PostGroupsTable extends Table
         return $validator;
     }
 
+    public function getCategoriesAll()
+    {
+        return $this->find('all')->where(['type' => 'categories']);
+    }
+
+    public function getTagsAll()
+    {
+        return $this->find('all')->where(['type' => 'tags']);
+    }
+
     public function getCategoriesList(): Query
     {
         return $this->find('list')->where(['type' => 'categories']);
