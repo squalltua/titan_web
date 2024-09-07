@@ -50,7 +50,7 @@ class PostsController extends AppController
     /**
      * @return \Cake\Http\Response
      */
-    public function view(string $id) : \Cake\Http\Response 
+    public function view(string $id): \Cake\Http\Response
     {
         $post = $this->Posts->get($id, ['contain' => ['MetaPosts']]);
         $this->set(compact('post'));
@@ -66,12 +66,41 @@ class PostsController extends AppController
         $post = $this->Posts->newEmptyEntity();
 
         if ($this->request->is('post')) {
+            $data = $this->request->getData();
+            $meta = $data['meta_posts'];
+
+            // create attrachment data
+            $featureImageData = $this->request->getUploadedFile('feature_image');
+            $ogTagImageData = $this->request->getUploadedFile('meta_posts.og_tag_image');
+
+            unset($data['meta_posts']);
+
+            debug($featureImageData);
+            debug($ogTagImageData);
+
+            exit;
+
+
             $post = $this->Posts->patchEntity($post, $this->request->getData());
             $post->user_id = $this->Authentication->getIdentity()->getIdentifier();
             if ($this->Posts->save($post)) {
-                $this->Flash->success(__('The post has been saved.'));
+                // save media and upload feature image
+                if (
+                    $this->fetchTable('Medias')->uploadImage($featureImageData) &&
+                    $this->fetchTable('Medias')->uploadImage($ogTagImageData)
+                ) {
 
-                return $this->redirect("/manager/cms/posts/edit/{$post->id}");
+                }
+
+
+                // save meta data
+                if ($this->fetchTable('MetaPosts')->saveMetaData($meta)) {
+                    $this->Flash->success(__('The post has been saved.'));
+
+                    return $this->redirect("/manager/cms/posts/edit/{$post->id}");
+                }
+
+                $this->Flash->error(__('The meta data could not be saved.'));
             }
 
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
@@ -110,7 +139,7 @@ class PostsController extends AppController
         $tags = $this->fetchTable('PostGroups')->getTagsList();
 
         $this->set(compact('post', 'categories', 'tags'));
-        
+
         return $this->render();
     }
 

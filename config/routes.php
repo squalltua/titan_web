@@ -136,4 +136,10 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/*', 'Pages::pageNotFoundError');
         // $builder->fallbacks();
     });
+
+    $routes->scope('/api/v1', function (RouteBuilder $builder): void {
+        $builder->scope('/medias', function (RouteBuilder $builder): void {
+            $builder->connect('/images/{slug}', 'Api/V1/Medias::getImage')->setPass(['slug']);
+        });
+    });
 };

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Table;
@@ -6,6 +7,7 @@ namespace App\Model\Table;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Utility\Text;
 use Cake\Validation\Validator;
 
 /**
@@ -114,5 +116,34 @@ class MediasTable extends Table
             ->allowEmptyString('uuid');
 
         return $validator;
+    }
+
+    public function uploadImage(object $image): bool
+    {
+        $fileName = Text::slug(str_replace(['.jpg', '.png'], '', $image->getClientFilename));
+        $fileExtension = ['image/jpeg' => '.jpg', 'image/png' => '.png'];
+        $webroot = WWW_ROOT;
+
+        $media = $this->newEntity([
+            'filename' => "{$fileName}{$fileExtension[$image->getClientMediaType()]}",
+            'path' => "{$webroot}storage/{$fileName}{$fileExtension[$image->getClientMediaType()]}",
+            'size' => $image->getSize(),
+            'mime' => $image->getClientMediaType(),
+            'hash' => null,
+            'using_type' => 'feature_image',
+            'title' => $fileName,
+            'description' => null,
+            'alt' => $fileName,
+            'order_index' => 0,
+            'link_url' => 'https://',
+            'uuid' => null,
+        ]);
+
+        return false;
+    }
+
+    public function removeImage(object $image): bool
+    {
+        return false;
     }
 }
