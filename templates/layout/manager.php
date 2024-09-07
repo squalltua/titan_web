@@ -31,7 +31,11 @@
             <p class="col-md-4 mb-0 text-body-secondary text-end">Version 1.0</p>
         </div>
     </footer>
-    <?= $this->Html->script(['/vendor/bootstrap-5.3.3/js/bootstrap.bundle.min.js']) ?>
+    <?= $this->Html->script([
+        '/vendor/bootstrap-5.3.3/js/bootstrap.bundle.min.js',
+        'component.js',
+        'main.js',
+    ]) ?>
 </body>
 
 </html>
