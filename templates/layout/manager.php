@@ -11,6 +11,7 @@
         '/vendor/bootstrap-5.3.3/css/bootstrap.min.css',
         '/vendor/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css',
         '/vendor/bootstrap-5.3.3/css/bootstrap.min.css',
+        'main.css',
     ]) ?>
 
     <?= $this->fetch('meta') ?>

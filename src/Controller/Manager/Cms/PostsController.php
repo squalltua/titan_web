@@ -7,6 +7,7 @@ namespace App\Controller\Manager\Cms;
 use App\Controller\Manager\AppController;
 use Authentication\Controller\Component\AuthenticationComponent;
 use Cake\Http\Exception\NotFoundException;
+use Parsedown;
 
 /**
  * @property \App\Model\Table\PostsTable $Posts
@@ -53,7 +54,12 @@ class PostsController extends AppController
     public function view(string $id): \Cake\Http\Response
     {
         $post = $this->Posts->get($id, ['contain' => ['MetaPosts']]);
-        $this->set(compact('post'));
+        $Parsedown = new Parsedown();
+        $post->content_display = $Parsedown->text($post->content);
+        $categories = $this->fetchTable('PostGroups')->getCategoriesList();
+        $tags = $this->fetchTable('PostGroups')->getTagsList();
+
+        $this->set(compact('post', 'categories', 'tags'));
 
         return $this->render();
     }
@@ -68,33 +74,29 @@ class PostsController extends AppController
         if ($this->request->is('post')) {
             $data = $this->request->getData();
             $meta = $data['meta_posts'];
-
-            // create attrachment data
-            $featureImageData = $this->request->getUploadedFile('feature_image');
-            $ogTagImageData = $this->request->getUploadedFile('meta_posts.og_tag_image');
-
             unset($data['meta_posts']);
 
-            debug($featureImageData);
-            debug($ogTagImageData);
+            // upload feature image and save to media data
+            $featureImageData = $this->request->getUploadedFile('feature_image');
+            $featureImageMedia = $this->fetchTable('Medias')->uploadImage($featureImageData);
+            if (!$featureImageData) {
+                $this->Flash->error(__('The feature image could not be uploaded. Please try again.'));
+                return $this->redirect("/manager/cms/posts/add");
+            }
 
-            exit;
-
-
+            // upload og tag image and save to media data
+            $ogTagImageData = $this->request->getUploadedFile('meta_posts.og_tag_image');
+            $ogTagImageMedia = $this->fetchTable('Meaids')->uploadImage($ogTagImageData);
+            if (!$ogTagImageData) {
+                $this->Flash->error(__('The og tag image could not be uploaded. Please try again.'));
+                return $this->redirect("/manager/cms/posts/add");
+            }
+            
             $post = $this->Posts->patchEntity($post, $this->request->getData());
             $post->user_id = $this->Authentication->getIdentity()->getIdentifier();
             if ($this->Posts->save($post)) {
-                // save media and upload feature image
-                if (
-                    $this->fetchTable('Medias')->uploadImage($featureImageData) &&
-                    $this->fetchTable('Medias')->uploadImage($ogTagImageData)
-                ) {
-
-                }
-
-
                 // save meta data
-                if ($this->fetchTable('MetaPosts')->saveMetaData($meta)) {
+                if ($this->fetchTable('MetaPosts')->saveMetasData($meta, $post->id)) {
                     $this->Flash->success(__('The post has been saved.'));
 
                     return $this->redirect("/manager/cms/posts/edit/{$post->id}");
@@ -123,13 +125,14 @@ class PostsController extends AppController
     {
         $post = $this->Posts->get($id);
         if ($this->request->is(['post', 'put'])) {
-            debug($this->request->getData());
-            exit;
-            $post = $this->Posts->patchEntity($post, $this->request->getData());
+            $data = $this->request->getData();
+            $meta = $data['meta_posts'];
+            unset($data['meta_posts']);
+            $post = $this->Posts->patchEntity($post, $data);
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));
 
-                return $this->redirect("/manager/cms/post/edit/{$post->id}");
+                return $this->redirect("/manager/cms/posts/edit/{$post->id}");
             }
 
             $this->Flash->error(__('The post could not be saved. Please, try again.'));

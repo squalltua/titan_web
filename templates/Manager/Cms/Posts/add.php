@@ -81,10 +81,9 @@
         </div>
         <div class="row">
             <div class="col">
-                <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary me-md-2', 'name' => 'save_draft']) ?>
+                <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary me-md-2']) ?>
             </div>
         </div>
-
         <?= $this->Form->end() ?>
     </div>
 </div>

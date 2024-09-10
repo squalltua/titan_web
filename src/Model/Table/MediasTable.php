@@ -7,6 +7,7 @@ namespace App\Model\Table;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Routing\Route\Route;
 use Cake\Utility\Text;
 use Cake\Validation\Validator;
 
@@ -118,11 +119,12 @@ class MediasTable extends Table
         return $validator;
     }
 
-    public function uploadImage(object $image): bool
+    public function uploadImage(object $image): mixed
     {
         $fileName = Text::slug(str_replace(['.jpg', '.png'], '', $image->getClientFilename));
         $fileExtension = ['image/jpeg' => '.jpg', 'image/png' => '.png'];
         $webroot = WWW_ROOT;
+        $fullUrl = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]/api/v1/medias/images/{$fileName}";
 
         $media = $this->newEntity([
             'filename' => "{$fileName}{$fileExtension[$image->getClientMediaType()]}",
@@ -135,14 +137,23 @@ class MediasTable extends Table
             'description' => null,
             'alt' => $fileName,
             'order_index' => 0,
-            'link_url' => 'https://',
+            'link_url' => $fullUrl,
             'uuid' => null,
         ]);
+
+        if ($this->save($media)) {
+            return $media;
+        }
 
         return false;
     }
 
-    public function removeImage(object $image): bool
+    public function removeFileBySlug(string $slug): bool
+    {
+        return false;
+    }
+
+    public function removeFileById(string $slug): bool
     {
         return false;
     }

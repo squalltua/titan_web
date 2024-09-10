@@ -3,6 +3,7 @@
 namespace App\Controller\Api\V1;
 
 use App\Controller\AppController;
+use Cake\Routing\Route\Route;
 use Cake\View\JsonView;
 
 /**

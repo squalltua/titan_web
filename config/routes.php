@@ -67,9 +67,9 @@ return function (RouteBuilder $routes): void {
 
     $routes->prefix('Manager', function (RouteBuilder $builder): void {
         $builder->connect('/', 'Pages::index');
-        $builder->connect('/login', 'Users::login');
-        $builder->connect('/logout', 'Users::logout');
-        $builder->connect('/initialize-data', 'Users::initializeData');
+        $builder->connect('/login', 'Manager/Settings/Users::login');
+        $builder->connect('/logout', 'Manager/Settings/Users::logout');
+        $builder->connect('/initialize-data', 'Manager/Settings/Users::initializeData');
 
         $builder->prefix('Cms', function (RouteBuilder $builder): void {
             $builder->connect('/', ['prefix' => 'Manager/Cms', 'controller' => 'Pages', 'action' => 'dashboard']);

@@ -87,4 +87,22 @@ class MetaPostsTable extends Table
 
         return $rules;
     }
+
+    public function saveMetasData(array $metaData, int $postId)
+    {
+        $data = [];
+        foreach ($metaData as $key => $value) {
+            $data[] = [
+                'post_id' => $postId,
+                'meta_key' => $key,
+                'meta_value' => $value, 
+            ];
+        }
+        $metaPosts = $this->newEntities($data);
+        if ($this->save($metaPosts)) {
+            return true;
+        }
+
+        return false;
+    }
 }
