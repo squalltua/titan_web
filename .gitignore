@@ -55,3 +55,4 @@ yarn-error.log
 /Docker_folder/
 /.env
 /docker-compose.yml
+/webroot/storage
