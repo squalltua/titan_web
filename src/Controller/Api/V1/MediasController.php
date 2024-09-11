@@ -6,9 +6,6 @@ use App\Controller\AppController;
 use Cake\Routing\Route\Route;
 use Cake\View\JsonView;
 
-/**
- * @property \App\Model\Table\PostsTable $Posts
- */
 class MediasController extends AppController
 {
     public function viewClasses(): array
@@ -16,11 +13,11 @@ class MediasController extends AppController
         return [JsonView::class];
     }
 
-    public function getImage()
+    public function getImage(string $slug)
     {
         // $file = $this->Attachments->getFile($slug);
-        $image = WWW_ROOT . 'storage/test-image.png';
-        $response = $this->response->withFile($image);
+        $file = $this->Medias->findByFilename($slug)->first();
+        $response = $this->response->withFile($file->path);
         // Return the response to prevent controller from trying to render
         // a view.
         return $response;

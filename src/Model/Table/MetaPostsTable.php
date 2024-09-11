@@ -88,7 +88,7 @@ class MetaPostsTable extends Table
         return $rules;
     }
 
-    public function saveMetasData(array $metaData, int $postId)
+    public function saveMetaData(array $metaData, int $postId)
     {
         $data = [];
         foreach ($metaData as $key => $value) {
@@ -98,6 +98,7 @@ class MetaPostsTable extends Table
                 'meta_value' => $value, 
             ];
         }
+
         $metaPosts = $this->newEntities($data);
         if ($this->save($metaPosts)) {
             return true;

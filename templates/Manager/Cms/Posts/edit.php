@@ -28,20 +28,43 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="meta-posts-og-tag-title" class="form-label"><?= __('OG Tag Title') ?></label>
-                    <?= $this->Form->text('meta_posts.og_tag_title', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-title']) ?>
+                    <?= $this->Form->text(
+                        'meta_posts.og_tag_title',
+                        ['class' => 'form-control', 'id' => 'meta-posts-og-tag-title', 'value' => $post->meta['og_tag_title']]
+                    ) ?>
                 </div>
                 <div class="form-group mb-3">
                     <label for="meta-posts-og-tag-description" class="form-label"><?= __('OG Tag description') ?></label>
-                    <?= $this->Form->textarea('meta_posts.og_tag_description', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-description']) ?>
+                    <?= $this->Form->textarea(
+                        'meta_posts.og_tag_description',
+                        ['class' => 'form-control', 'id' => 'meta-posts-og-tag-description', 'value' => $post->meta['og_tag_description']]
+                    ) ?>
                     <div id="emailHelp" class="form-text"><?= __('Only text for short description for display another plateform.') ?></div>
                 </div>
                 <div class="form-group mb-3">
                     <label for="meta-posts-og-tag-image" class="form-label"><?= __('OG Tag image') ?></label>
-                    <?= $this->Form->file('meta_posts.og_tag_image', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-image']) ?>
+                    <?php if (empty($post->meta['og_tag_image'])): ?>
+                        <?= $this->Form->file('meta_posts.og_tag_image', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-image']) ?>
+                    <?php else: ?>
+                        <?= $this->Html->image($post->meta['og_tag_image'], ['class' => 'img-fluid']) ?>
+                        <div>
+                            <?= $this->Html->link(
+                                __('Remove image'),
+                                "/manager/cms/posts/remove-image/{$post->id}/og_tag_image",
+                                [
+                                    'class' => 'text-danger',
+                                    'confirm' => __('Do you want to delete this image?')
+                                ]
+                            ) ?>
+                        </div>
+                    <?php endif ?>
                 </div>
                 <div class="form-group mb-3">
                     <label for="meta-posts-og-tag-url" class="form-label"><?= __('OG Tag URL') ?></label>
-                    <?= $this->Form->text('meta_posts.og_tag_url', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-url']) ?>
+                    <?= $this->Form->text(
+                        'meta_posts.og_tag_url',
+                        ['class' => 'form-control', 'id' => 'meta-posts-og-tag-url', 'value' => $post->meta['og_tag_url']]
+                    ) ?>
                 </div>
             </div>
             <div class="col-3">
@@ -64,18 +87,36 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="categories-ids" class="form-label"><?= __('Categories') ?></label>
-                    <?= $this->Form->select('categories._ids', $categories, ['class' => 'form-select', 'id' => 'categories-ids', 'placeholder' => __('Optional')]) ?>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label for="tags-ids" class="form-label"><?= __('Tags') ?></label>
-                    <?= $this->Form->select('tags._ids', $categories, ['class' => 'form-select', 'id' => 'tags-ids', 'placeholder' => __('Optional')]) ?>
+                    <label for="post-groups-ids" class="form-label"><?= __('Groups') ?></label>
+                    <?= $this->Form->select(
+                        'post_groups._ids',
+                        $postGroups,
+                        [
+                            'class' => 'form-select',
+                            'id' => 'post-groups-ids',
+                            'empty' => __('Optional'),
+                            'multiple' => true
+                        ]
+                    ) ?>
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="feature-image" class="form-label"><?= __('Feature image') ?></label>
-                    <?= $this->Form->file('meta_posts.menta_posts.feature_image', ['class' => 'form-control', 'id' => 'feature-image']) ?>
+                    <?php if (empty($post->meta['feature_image'])): ?>
+                        <?= $this->Form->file('meta_posts.feature_image', ['class' => 'form-control', 'id' => 'feature-image']) ?>
+                    <?php else: ?>
+                        <?= $this->Html->image($post->meta['feature_image'], ['class' => 'img-fluid']) ?>
+                        <div>
+                            <?= $this->Html->link(
+                                __('Remove image'),
+                                "/manager/cms/posts/remove-image/{$post->id}/feature_image",
+                                [
+                                    'class' => 'text-danger',
+                                    'confirm' => __('Do you want to delete this image?')
+                                ]
+                            ) ?>
+                        </div>
+                    <?php endif ?>
                 </div>
             </div>
         </div>

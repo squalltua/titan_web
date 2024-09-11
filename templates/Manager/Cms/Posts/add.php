@@ -64,13 +64,17 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="categories-ids" class="form-label"><?= __('Categories') ?></label>
-                    <?= $this->Form->select('categories._ids', $categories, ['class' => 'form-select', 'id' => 'categories-ids', 'placeholder' => __('Optional')]) ?>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label for="tags-ids" class="form-label"><?= __('Tags') ?></label>
-                    <?= $this->Form->select('tags._ids', $categories, ['class' => 'form-select', 'id' => 'tags-ids', 'placeholder' => __('Optional')]) ?>
+                    <label for="post-groups-ids" class="form-label"><?= __('Groups') ?></label>
+                    <?= $this->Form->select(
+                        'post_groups._ids',
+                        $postGroups,
+                        [
+                            'class' => 'form-select',
+                            'id' => 'post-groups-ids',
+                            'empty' => __('Optional'),
+                            'multiple' => true
+                        ]
+                    ) ?>
                 </div>
 
                 <div class="form-group mb-3">

@@ -119,29 +119,32 @@ class MediasTable extends Table
         return $validator;
     }
 
-    public function uploadImage(object $image): mixed
+    public function uploadImage(string $type, object $image): mixed
     {
-        $fileName = Text::slug(str_replace(['.jpg', '.png'], '', $image->getClientFilename));
+        $fileName = Text::slug(strtolower(str_replace(['.jpg', '.png'], '', $image->getClientFilename())));
         $fileExtension = ['image/jpeg' => '.jpg', 'image/png' => '.png'];
         $webroot = WWW_ROOT;
         $fullUrl = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]/api/v1/medias/images/{$fileName}";
+        $uuid = Text::uuid();
+        $path = "{$webroot}storage/{$uuid}{$fileExtension[$image->getClientMediaType()]}";
 
         $media = $this->newEntity([
-            'filename' => "{$fileName}{$fileExtension[$image->getClientMediaType()]}",
-            'path' => "{$webroot}storage/{$fileName}{$fileExtension[$image->getClientMediaType()]}",
+            'filename' => "{$fileName}",
+            'path' => $path,
             'size' => $image->getSize(),
             'mime' => $image->getClientMediaType(),
             'hash' => null,
-            'using_type' => 'feature_image',
+            'using_type' => $type,
             'title' => $fileName,
             'description' => null,
             'alt' => $fileName,
             'order_index' => 0,
             'link_url' => $fullUrl,
-            'uuid' => null,
+            'uuid' => $uuid,
         ]);
 
         if ($this->save($media)) {
+            $image->moveTo($path);
             return $media;
         }
 
