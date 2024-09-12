@@ -81,16 +81,6 @@ return function (RouteBuilder $routes): void {
             $builder->connect('/groups/{action}/*', ['prefix' => 'Manager/Cms', 'controller'=> 'PostGroups']);
         });
 
-        $builder->prefix('Crm', function (RouteBuilder $builder): void {
-            $builder->connect('/', ['prefix' => 'Manager/Crm', 'controller' => 'Pages', 'action' => 'dashboard']);
-
-            $builder->connect('/customers', ['prefix' => 'Manager/Crm', 'controller' => 'Customers', 'action' => 'inddex']);
-            $builder->connect('/customers/{action}/*', ['prefix' => 'Manager/Crm', 'controller' => 'Customers']);
-
-            $builder->connect('/groups', ['prefix' => 'Manager/Crm', 'controller' => 'CustomerGroups', 'action' => 'index']);
-            $builder->connect('/groups/{action}/*', ['prefix' => 'Manager/Crm', 'controller' => 'CustomerGroups']);
-        });
-
         $builder->prefix('Pim', function (RouteBuilder $builder): void {
             $builder->connect('/', ['prefix' => 'Manager/Pim', 'controller' => 'Pages', 'action' => 'dashboard']);
 
@@ -99,6 +89,23 @@ return function (RouteBuilder $routes): void {
 
             $builder->connect('/groups', ['prefix' => 'Manager/Pim', 'controller' => 'ProductGroups', 'action' => 'index']);
             $builder->connect('/groups/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'ProductGroups']);
+        });
+
+        $builder->prefix('Dam', function (RouteBuilder $builder): void {
+            $builder->connect('/', ['prefix' => 'Manager/Dam', 'controller' => 'Pages', 'action' => 'dashboard']);
+
+            $builder->connect('/medias', ['prefix' => 'Manager/Dam', 'controller' => 'Medias', 'action' => 'index']);
+            $builder->connect('/medias/{action}/*', ['prefix' => 'Manager/Dam', 'controller' => 'Medias']);
+        });
+
+        $builder->prefix('Crm', function (RouteBuilder $builder): void {
+            $builder->connect('/', ['prefix' => 'Manager/Crm', 'controller' => 'Pages', 'action' => 'dashboard']);
+
+            $builder->connect('/customers', ['prefix' => 'Manager/Crm', 'controller' => 'Customers', 'action' => 'inddex']);
+            $builder->connect('/customers/{action}/*', ['prefix' => 'Manager/Crm', 'controller' => 'Customers']);
+
+            $builder->connect('/groups', ['prefix' => 'Manager/Crm', 'controller' => 'CustomerGroups', 'action' => 'index']);
+            $builder->connect('/groups/{action}/*', ['prefix' => 'Manager/Crm', 'controller' => 'CustomerGroups']);
         });
 
         $builder->prefix('Settings', function (RouteBuilder $builder): void {
