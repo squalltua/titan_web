@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col">
         <h4>
-            <?= __('Post Tags') ?>
-            <?= $this->Html->link(__('New'), '/manager/cms/tags/add', ['class' => 'btn btn-primary btn-sm ms-3']) ?>
+            <?= __('Post groups') ?>
+            <?= $this->Html->link(__('New'), '/manager/cms/groups/add', ['class' => 'btn btn-primary btn-sm ms-3']) ?>
         </h4>
     </div>
 </div>
@@ -19,14 +19,14 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($tags as $tag): ?>
+                <?php foreach ($groups as $group): ?>
                     <tr>
-                        <td><?= h($tag->name) ?></td>
-                        <td><?= h($tag->slug) ?></td>
-                        <td><?= h($tag->content) ?></td>
+                        <td><?= h($group->name) ?></td>
+                        <td><?= h($group->slug) ?></td>
+                        <td><?= h($group->content) ?></td>
                         <td>
-                            <?= $this->Html->link(__('Edit'), "/manager/cms/tags/edit/{$tag->id}", ['class' => 'me-3']) ?>
-                            <?= $this->Form->postLink(__('Delete'), "/manager/cms/tags/delete/{$tag->id}") ?>
+                            <?= $this->Html->link(__('Edit'), "/manager/cms/groups/edit/{$group->id}", ['class' => 'me-3']) ?>
+                            <?= $this->Form->postLink(__('Delete'), "/manager/cms/groups/delete/{$group->id}") ?>
                         </td>
                     </tr>
                 <?php endforeach ?>

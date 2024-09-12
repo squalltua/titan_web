@@ -6,5 +6,8 @@
     <li class="nav-item">
       <?= $this->Html->link(__('Customer'), '/manager/crm/customers', ['class' => $subMenuActive === 'list' ? 'nav-link active' : 'nav-link']) ?>
     </li>
+    <li class="nav-item">
+      <?= $this->Html->link(__('Groups'), '/manager/crm/groups', ['class' => $subMenuActive === 'groups' ? 'nav-link active' : 'nav-link']) ?>
+    </li>
   </ul>
 </nav>

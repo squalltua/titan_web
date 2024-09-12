@@ -8,10 +8,7 @@
       <?= $this->Html->link(__('Posts'), '/manager/cms/posts', ['class' => $subMenuActive === 'posts' ? 'nav-link active' : 'nav-link']) ?>
     </li>
     <li class="nav-item">
-      <?= $this->Html->link(__('Categoriey'), '/manager/cms/categories', ['class' => $subMenuActive === 'categories' ? 'nav-link active' : 'nav-link']) ?>
-    </li>
-    <li class="nav-item">
-      <?= $this->Html->link(__('Tags'), '/manager/cms/tags', ['class' => $subMenuActive === 'tags' ? 'nav-link active' : 'nav-link']) ?>
+      <?= $this->Html->link(__('Groups'), '/manager/cms/groups', ['class' => $subMenuActive === 'groups' ? 'nav-link active' : 'nav-link']) ?>
     </li>
   </ul>
 </nav>

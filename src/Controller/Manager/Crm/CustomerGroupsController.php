@@ -6,34 +6,34 @@ namespace App\Controller\Manager\Crm;
 
 use App\Controller\Manager\AppController;
 
-class CustomerCategoriesController extends AppController
+class CustomerGroupsController extends AppController
 {
     public function initialize(): void
     {
         parent::initialize();
 
         $this->set('subMenu', 'crm_menu');
-        $this->set('subMenuActive', 'dashboard');
+        $this->set('subMenuActive', 'groups');
         $this->set('applicationName', __('Customer relationship managment'));
     }
 
     public function index()
     {
-        $categories = $this->paginate($this->fetchTable('CustomerGroups'));
+        $groups = $this->paginate($this->CustomerGroups);
 
-        $this->set(compact('categories'));
+        $this->set(compact('groups'));
     }
 
     public function add()
     {
-        $category = $this->fetchTable('CustomerGroups')->newEmptyEntity();
+        $category = $this->CustomerGroups->newEmptyEntity();
         if ($this->request->is('post')) {
-            $category = $this->fetchTable('CustomerGroups')->patchEntity($category, $this->request->getData());
-            $category->type = 'categories';
-            if ($this->fetchTable('CustomerGroups')->save($category)) {
+            $category = $this->CustomerGroups->patchEntity($category, $this->request->getData());
+            $category->type = 'groups';
+            if ($this->CustomerGroups->save($category)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect('/manager/crm/categories');
+                return $this->redirect('/manager/crm/groups');
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
@@ -44,13 +44,13 @@ class CustomerCategoriesController extends AppController
 
     public function edit(string $id)
     {
-        $category = $this->fetchTable('CustomerGroups')->get($id);
+        $category = $this->CustomerGroups->get($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
-            $category = $this->fetchTable('CustomerGroups')->patchEntity($category, $this->request->getData());
-            if ($this->fetchTable('CustomerGroups')->save($category)) {
+            $category = $this->CustomerGroups->patchEntity($category, $this->request->getData());
+            if ($this->CustomerGroups->save($category)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/crm/categories/edit/{$id}");
+                return $this->redirect("/manager/crm/groups/edit/{$id}");
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
@@ -62,13 +62,13 @@ class CustomerCategoriesController extends AppController
     public function delete(string $id)
     {
         $this->request->allowMethod(['delete', 'post']);
-        $category = $this->fetchTable('CustomerGroups')->get($id);
-        if ($this->fetchTable('CustomerGroups')->delete($category)) {
+        $category = $this->CustomerGroups->get($id);
+        if ($this->CustomerGroups->delete($category)) {
             $this->Flash->success(__('The data has been deleted.'));
         } else {
             $this->Flash->error(__('The data could not be deleted. Please try again.'));
         }
 
-        return $this->redirect('/manager/crm/categories');
+        return $this->redirect('/manager/crm/groups');
     }
 }
