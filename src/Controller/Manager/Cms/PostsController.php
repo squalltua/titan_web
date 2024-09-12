@@ -8,6 +8,7 @@ use App\Controller\Manager\AppController;
 use Authentication\Controller\Component\AuthenticationComponent;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Utility\Hash;
+use Cake\Utility\Text;
 use Parsedown;
 
 /**
@@ -54,13 +55,13 @@ class PostsController extends AppController
      */
     public function view(string $id): \Cake\Http\Response
     {
-        $post = $this->Posts->get($id, ['contain' => ['MetaPosts']]);
+        $post = $this->Posts->get($id, ['contain' => ['MetaPosts', 'PostGroups']]);
         $Parsedown = new Parsedown();
         $post->content_display = $Parsedown->text($post->content);
-        $categories = $this->fetchTable('PostGroups')->getCategoriesList();
-        $tags = $this->fetchTable('PostGroups')->getTagsList();
+        $post->meta = Hash::combine($post->meta_posts, '{n}.meta_key', '{n}.meta_value');
+        $postGroups = $this->fetchTable('PostGroups')->find('list');
 
-        $this->set(compact('post', 'categories', 'tags'));
+        $this->set(compact('post', 'postGroups'));
 
         return $this->render();
     }
@@ -77,33 +78,47 @@ class PostsController extends AppController
             $meta = $data['meta_posts'];
             unset($data['meta_posts']);
 
-            // upload feature image and save to media data
-            $featureImageData = $this->request->getUploadedFile('meta_posts.feature_image');
-            $featureImageMedia = $this->fetchTable('Medias')->uploadImage($featureImageData);
-            if (!$featureImageData) {
-                $this->Flash->error(__('The feature image could not be uploaded. Please try again.'));
-                return $this->redirect("/manager/cms/posts/add");
-            }
-
-            // upload og tag image and save to media data
-            $ogTagImageData = $this->request->getUploadedFile('meta_posts.og_tag_image');
-            $ogTagImageMedia = $this->fetchTable('Meaids')->uploadImage($ogTagImageData);
-            if (!$ogTagImageData) {
-                $this->Flash->error(__('The og tag image could not be uploaded. Please try again.'));
-                return $this->redirect("/manager/cms/posts/add");
-            }
-
-            $post = $this->Posts->patchEntity($post, $this->request->getData());
+            $post = $this->Posts->patchEntity($post, $data);
             $post->user_id = $this->Authentication->getIdentity()->getIdentifier();
+            $post->slug = Text::slug($post->title);
             if ($this->Posts->save($post)) {
                 // save meta data
-                if ($this->fetchTable('MetaPosts')->saveMetaData($meta, $post->id)) {
-                    $this->Flash->success(__('The post has been saved.'));
-
-                    return $this->redirect("/manager/cms/posts/view/{$post->id}");
+                $metaPostsData = [];
+                foreach ($meta as $key => $value) {
+                    if (!in_array($key, $this->Posts->imageKey)) {
+                        $metaPostsData[] = [
+                            'post_id' => $post->id,
+                            'meta_key' => $key,
+                            'meta_value' => $value,
+                        ];
+                    }
                 }
 
-                $this->Flash->error(__('The meta data could not be saved.'));
+                foreach ($this->Posts->imageKey as $key) {
+                    if (!$meta[$key]->getError()) {
+                        $imageMedia = $this->fetchTable('Medias')->uploadImage($key, $meta[$key]);
+                        if (!$imageMedia) {
+                            $this->Flash->error(__('The {0} image could not be uploaded. Please try again.'));
+
+                            return $this->redirect("/manager/cms/posts/add");
+                        }
+
+                        $metaPostsData[] = [
+                            'post_id' => $post->id,
+                            'meta_key' => $key,
+                            'meta_value' => $imageMedia->link_url,
+                        ];
+                    }
+                }
+
+                $metaPosts = $this->fetchTable('MetaPosts')->newEntities($metaPostsData);
+                if (!$this->Posts->MetaPosts->saveMany($metaPosts)) {
+                    $this->Flash->error(__('The meta data could not be saved.'));
+                }
+
+                $this->Flash->success(__('The post has been saved.'));
+
+                return $this->redirect("/manager/cms/posts/view/{$post->id}");
             }
 
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
@@ -191,7 +206,7 @@ class PostsController extends AppController
                         $metaPostsData[] = [
                             'post_id' => $post->id,
                             'meta_key' => 'feature_image',
-                            'meta_vakue' => $featureImageMedia->id,
+                            'meta_vakue' => $featureImageMedia->link_url,
                         ];
                     } elseif ($key === 'og_tag_image') {
                         $ogTagImageMediaId = '';
@@ -209,7 +224,7 @@ class PostsController extends AppController
                         $metaPostsData[] = [
                             'post_id' => $post->id,
                             'meta_key' => 'og_tag_image',
-                            'meta_vakue' => $ogTagImageMedia->id,
+                            'meta_vakue' => $ogTagImageMedia->link_url,
                         ];
                     } else {
                         $metaPostsData[] = [

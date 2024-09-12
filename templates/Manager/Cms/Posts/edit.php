@@ -30,14 +30,14 @@
                     <label for="meta-posts-og-tag-title" class="form-label"><?= __('OG Tag Title') ?></label>
                     <?= $this->Form->text(
                         'meta_posts.og_tag_title',
-                        ['class' => 'form-control', 'id' => 'meta-posts-og-tag-title', 'value' => $post->meta['og_tag_title']]
+                        ['class' => 'form-control', 'id' => 'meta-posts-og-tag-title', 'value' => $post->meta['og_tag_title'] ?? '']
                     ) ?>
                 </div>
                 <div class="form-group mb-3">
                     <label for="meta-posts-og-tag-description" class="form-label"><?= __('OG Tag description') ?></label>
                     <?= $this->Form->textarea(
                         'meta_posts.og_tag_description',
-                        ['class' => 'form-control', 'id' => 'meta-posts-og-tag-description', 'value' => $post->meta['og_tag_description']]
+                        ['class' => 'form-control', 'id' => 'meta-posts-og-tag-description', 'value' => $post->meta['og_tag_description'] ?? '']
                     ) ?>
                     <div id="emailHelp" class="form-text"><?= __('Only text for short description for display another plateform.') ?></div>
                 </div>
@@ -63,7 +63,7 @@
                     <label for="meta-posts-og-tag-url" class="form-label"><?= __('OG Tag URL') ?></label>
                     <?= $this->Form->text(
                         'meta_posts.og_tag_url',
-                        ['class' => 'form-control', 'id' => 'meta-posts-og-tag-url', 'value' => $post->meta['og_tag_url']]
+                        ['class' => 'form-control', 'id' => 'meta-posts-og-tag-url', 'value' => $post->meta['og_tag_url'] ?? '']
                     ) ?>
                 </div>
             </div>

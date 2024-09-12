@@ -71,7 +71,6 @@
                         [
                             'class' => 'form-select',
                             'id' => 'post-groups-ids',
-                            'empty' => __('Optional'),
                             'multiple' => true
                         ]
                     ) ?>
@@ -79,7 +78,7 @@
 
                 <div class="form-group mb-3">
                     <label for="feature-image" class="form-label"><?= __('Feature image') ?></label>
-                    <?= $this->Form->file('feature_image', ['class' => 'form-control', 'id' => 'feature-image']) ?>
+                    <?= $this->Form->file('meta_posts.feature_image', ['class' => 'form-control', 'id' => 'feature-image']) ?>
                 </div>
             </div>
         </div>

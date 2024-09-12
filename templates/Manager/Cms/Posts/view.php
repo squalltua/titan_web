@@ -22,7 +22,8 @@
                             [
                                 'class' => 'form-control-plaintext',
                                 'id' => 'meta-posts-og-tag-title',
-                                'readonly' => true
+                                'readonly' => true,
+                                'value' => $post->meta['og_tag_title'] ?? '',
                             ]
                         ) ?>
                     </div>
@@ -33,20 +34,19 @@
                             [
                                 'class' => 'form-control-plaintext',
                                 'id' => 'meta-posts-og-tag-description',
-                                'readonly' => true
+                                'readonly' => true,
+                                'value' => $post->meta['og_tag_description'] ?? ''
                             ]
                         ) ?>
                         <div id="emailHelp" class="form-text"><?= __('Only text for short description for display another plateform.') ?></div>
                     </div>
                     <div class="form-group mb-3">
                         <label for="meta-posts-og-tag-image" class="form-label"><?= __('OG Tag image') ?></label>
-                        <?= $this->Form->file(
-                            'meta_posts.og_tag_image',
-                            [
-                                'class' => 'form-control',
-                                'id' => 'meta-posts-og-tag-image'
-                            ]
-                        ) ?>
+                        <?php if (empty($post->meta['og_tag_image'])): ?>
+                            <p><?= __('- No image -') ?></p>
+                        <?php else: ?>
+                            <?= $this->Html->image($post->meta['og_tag_image'], ['class' => 'img-fluid']) ?>
+                        <?php endif ?>
                     </div>
                     <div class="form-group mb-3">
                         <label for="meta-posts-og-tag-url" class="form-label"><?= __('OG Tag URL') ?></label>
@@ -55,7 +55,8 @@
                             [
                                 'class' => 'form-control-plaintext',
                                 'id' => 'meta-posts-og-tag-url',
-                                'readonly' => true
+                                'readonly' => true,
+                                'value' => $post->meta['og_tag_url'] ?? '',
                             ]
                         ) ?>
                     </div>
@@ -75,6 +76,7 @@
                             'class' => 'form-select',
                             'id' => 'status',
                             'readonly' => true,
+                            'disabled' => true,
                             'value' => $post->status
                         ]
                     ) ?>
@@ -89,26 +91,21 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="categories-ids" class="form-label"><?= __('Categories') ?></label>
+                    <label for="categories-ids" class="form-label"><?= __('Groups') ?></label>
                     <?= $this->Form->select(
-                        'categories._ids',
-                        $categories,
-                        ['class' => 'form-select', 'id' => 'categories-ids', 'placeholder' => __('Optional'), 'readonly' => true]
-                    ) ?>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label for="tags-ids" class="form-label"><?= __('Tags') ?></label>
-                    <?= $this->Form->select(
-                        'tags._ids',
-                        $categories,
-                        ['class' => 'form-select', 'id' => 'tags-ids', 'placeholder' => __('Optional'), 'readonly' => true]
+                        'post_groups._ids',
+                        $postGroups,
+                        ['class' => 'form-select', 'id' => 'categories-ids', 'readonly' => true, 'disabled' => true]
                     ) ?>
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="feature-image" class="form-label"><?= __('Feature image') ?></label>
-                    <?= $this->Form->file('feature_image', ['class' => 'form-control', 'id' => 'feature-image']) ?>
+                    <?php if (empty($post->meta['feature_image'])): ?>
+                        <p><?= __('- No image -') ?></p>
+                    <?php else: ?>
+                        <?= $this->Html->image($post->meta['feature_image'], ['class' => 'img-fluid']) ?>
+                    <?php endif ?>
                 </div>
             </div>
         </div>
