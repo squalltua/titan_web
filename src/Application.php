@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -14,6 +15,7 @@ declare(strict_types=1);
  * @since     3.3.0
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App;
 
 use Cake\Core\Configure;
@@ -113,9 +115,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      * @return void
      * @link https://book.cakephp.org/4/en/development/dependency-injection.html#dependency-injection
      */
-    public function services(ContainerInterface $container): void
-    {
-    }
+    public function services(ContainerInterface $container): void {}
 
     /**
      * Returns a service provider instance.
@@ -125,11 +125,19 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      */
     public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
     {
+        $serviceType = $request->getAttribute('params')['prefix'];
+        $unauthenticatedRedirect = Router::url('/client/login');
+        $loginUrl = Router::url('/client/login');
+        if ($serviceType === 'Manager') {
+            $unauthenticatedRedirect = Router::url('/manager/login');
+            $loginUrl = Router::url('/manager/login');
+        }
+
         $service = new AuthenticationService();
 
         // Define where users should be redirected to when they are not authenticated
         $service->setConfig([
-            'unauthenticatedRedirect' => Router::url('/manager/login'),
+            'unauthenticatedRedirect' => $unauthenticatedRedirect,
             'queryParam' => 'redirect',
         ]);
 
@@ -141,7 +149,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         $service->loadAuthenticator('Authentication.Session');
         $service->loadAuthenticator('Authentication.Form', [
             'fields' => $fields,
-            'loginUrl' => Router::url('/manager/login'),
+            'loginUrl' => $loginUrl,
         ]);
 
         // Load identifiers

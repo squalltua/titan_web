@@ -65,6 +65,17 @@ return function (RouteBuilder $routes): void {
         // $builder->fallbacks();
     });
 
+    $routes->prefix('Client', function (RouteBuilder $builder): void  {
+        $builder->connect('/', 'Client/Clientusers::index');
+        $builder->connect('/login', 'Client/Clientusers::login');
+        $builder->connect('/logout', 'Client/Clientusers::logout');
+
+        $builder->connect('/setting/{action}/*', ['prefix' => 'Client', 'controller' => 'Settings']);
+        $builder->connect('/orders/{action}/*', ['prefix' => 'Client', 'controller' => 'Orders']);
+
+        $builder->connect('/*', 'Pages::pageNotFoundError');
+    });
+
     $routes->prefix('Manager', function (RouteBuilder $builder): void {
         $builder->connect('/', 'Pages::index');
         $builder->connect('/login', 'Manager/Settings/Users::login');
