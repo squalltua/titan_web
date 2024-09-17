@@ -125,12 +125,14 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      */
     public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
     {
-        $serviceType = $request->getAttribute('params')['prefix'] ?? null;
+        $serviceType = explode("/", $request->getAttribute('params')['prefix'] ?? "")[0] ?? "";
         $unauthenticatedRedirect = Router::url('/client/login');
         $loginUrl = Router::url('/client/login');
+        $userModel = 'Clientusers';
         if ($serviceType === 'Manager') {
             $unauthenticatedRedirect = Router::url('/manager/login');
             $loginUrl = Router::url('/manager/login');
+            $userModel = 'Adminusers';
         }
 
         $service = new AuthenticationService();
@@ -153,7 +155,16 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         ]);
 
         // Load identifiers
-        $service->loadIdentifier('Authentication.Password', compact('fields'));
+        $service->loadIdentifier('Authentication.Password', [
+            'fields' => [
+                AbstractIdentifier::CREDENTIAL_USERNAME => 'email',
+                AbstractIdentifier::CREDENTIAL_PASSWORD => 'password',
+            ],
+            'resolver' => [
+                'className' => 'Authentication.Orm',
+                'userModel' => $userModel,
+            ],
+        ]);
 
         return $service;
     }
