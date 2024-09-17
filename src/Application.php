@@ -125,7 +125,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      */
     public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
     {
-        $serviceType = $request->getAttribute('params')['prefix'];
+        $serviceType = $request->getAttribute('params')['prefix'] ?? null;
         $unauthenticatedRedirect = Router::url('/client/login');
         $loginUrl = Router::url('/client/login');
         if ($serviceType === 'Manager') {

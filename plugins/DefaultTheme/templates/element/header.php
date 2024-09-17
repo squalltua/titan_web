@@ -1,17 +1,40 @@
-<nav class="navbar navbar-expand px-3 border-bottom bg-light-subtle">
-    <button class="btn" id="sidebar-toggle" type="button">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse nav-bar">
-        <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-icon pe-md-0" data-bs-toggle="dropdown">
-                    <h6 class="m-0 text-dark"><?= $this->Identity->get('full_name') ?> (<?= $this->Identity->get('role') ?>)</h6>
+<div class="container">
+    <header class="border-bottom lh-1 py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-4 pt-1">
+                <a class="link-secondary" href="#">Subscribe</a>
+            </div>
+            <div class="col-4 text-center">
+                <a class="blog-header-logo text-body-emphasis text-decoration-none" href="/"><?= $siteSetting['site_name'] ?></a>
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <a class="link-secondary" href="#" aria-label="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                         stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img"
+                         viewBox="0 0 24 24"><title>Search</title>
+                        <circle cx="10.5" cy="10.5" r="7.5"/>
+                        <path d="M21 21l-5.2-5.2"/>
+                    </svg>
                 </a>
-                <div class="dropdown-menu dropdown-menu-end">
-                    <a href="/manager/logout" class="dropdown-item"><?= __('Sign-out') ?></a>
-                </div>
-            </li>
-        </ul>
+                <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="nav-scroller py-1 mb-3 border-bottom">
+        <nav class="nav nav-underline justify-content-between">
+            <a class="nav-item nav-link link-body-emphasis active" href="#">World</a>
+            <a class="nav-item nav-link link-body-emphasis" href="#">U.S.</a>
+            <a class="nav-item nav-link link-body-emphasis" href="#">Technology</a>
+            <a class="nav-item nav-link link-body-emphasis" href="#">Design</a>
+            <a class="nav-item nav-link link-body-emphasis" href="#">Culture</a>
+            <a class="nav-item nav-link link-body-emphasis" href="#">Business</a>
+            <a class="nav-item nav-link link-body-emphasis" href="#">Politics</a>
+            <a class="nav-item nav-link link-body-emphasis" href="#">Opinion</a>
+            <a class="nav-item nav-link link-body-emphasis" href="#">Science</a>
+            <a class="nav-item nav-link link-body-emphasis" href="#">Health</a>
+            <a class="nav-item nav-link link-body-emphasis" href="#">Style</a>
+            <a class="nav-item nav-link link-body-emphasis" href="#">Travel</a>
+        </nav>
     </div>
-</nav>
+</div>
