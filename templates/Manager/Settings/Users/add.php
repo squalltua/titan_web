@@ -18,8 +18,8 @@
                     <?= $this->Form->email('email', ['class' => 'form-control form-control-sm', 'id' => 'email', 'required' => true]) ?>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="role" class="form-label"><?= __('Role') ?></label>
-                    <?= $this->Form->select('role', ['admin' => __('Admin'), 'staff' => __('Staff')], ['class' => 'form-select form-select-sm', 'id' => 'role']) ?>
+                    <label for="role-id" class="form-label"><?= __('Role') ?></label>
+                    <?= $this->Form->select('role_id', $roles, ['class' => 'form-select form-select-sm', 'id' => 'role-id']) ?>
                 </div>
                 <div class="form-group mb-3">
                     <label for="username" class="form-label"><?= __('Username') ?></label>
@@ -27,24 +27,24 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="password" class="form-label"><?= __('Password') ?></label>
-                    <?= $this->Form->password('password', ['class' => 'password-input form-control form-control-sm', 'id' => 'password', 'required' => true]) ?>
+                    <?= $this->Form->password('password', ['class' => 'password-input form-control form-control-sm', 'id' => 'password', 'required' => true, 'value' => '']) ?>
                     <i class="show-password bi bi-eye px-2"></i>
                     <div id="password-help" class="form-text password-checklist">
-                        <p class="checklist-title mb-1">Password should be</p>
+                        <p class="checklist-title mb-1"><?= __('Password should be') ?></p>
 
                         <ul class="checklist">
-                            <li class="list-item">At least 8 character long</li>
-                            <li class="list-item">At least 1 number</li>
-                            <li class="list-item">At least 1 lowercase letter</li>
-                            <li class="list-item">At least 1 uppercase letter</li>
-                            <li class="list-item">At least 1 special character</li>
+                            <li class="list-item"><?= __('At least 8 character long') ?></li>
+                            <li class="list-item"><?= __('At least 1 number') ?></li>
+                            <li class="list-item"><?= __('At least 1 lowercase letter') ?></li>
+                            <li class="list-item"><?= __('At least 1 uppercase letter') ?></li>
+                            <li class="list-item"><?= __('At least 1 special character') ?></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="mt-4">
                     <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary btn submit-btn', 'disabled' => true]) ?>
-                    <?= $this->Html->link(__('Cancel'), "/manager/users", ['class' => 'btn btn-secondary btn']) ?>
+                    <?= $this->Html->link(__('Cancel'), "/manager/settings/users", ['class' => 'btn btn-secondary btn']) ?>
                 </div>
             </div>
         </div>

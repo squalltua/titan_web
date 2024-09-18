@@ -6,3 +6,33 @@
 .conent-display > p > img {
     width: 100%;
 }
+
+/* password input */
+.show-password {
+    float: right;
+    margin-left: -25px;
+    margin-top: -27px;
+    position: relative;
+    z-index: 2;
+}
+
+.checklist{
+    list-style: none;
+}
+
+.list-item::before{
+    content: "✖";
+    display: inline-block;
+    margin: 8px 0;
+    margin-left: -30px;
+    width: 20px;
+    font-size: 12px;
+}
+
+.list-item.checked{
+    opacity: 0.5;
+}
+
+.list-item.checked::before{
+    content: "✔";
+}

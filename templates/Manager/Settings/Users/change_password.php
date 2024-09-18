@@ -32,7 +32,7 @@
 
                 <div class="mt-4">
                     <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary btn submit-btn', 'disabled' => true]) ?>
-                    <?= $this->Html->link(__('Cancel'), "/manager/users/edit/{$user->id}", ['class' => 'btn btn-secondary btn']) ?>
+                    <?= $this->Html->link(__('Cancel'), "/manager/settings/users/edit/{$user->id}", ['class' => 'btn btn-secondary btn']) ?>
                 </div>
             </div>
         </div>

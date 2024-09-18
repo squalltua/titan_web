@@ -122,8 +122,11 @@ return function (RouteBuilder $routes): void {
         $builder->prefix('Settings', function (RouteBuilder $builder): void {
             $builder->connect('/system', 'SystemSettings::system');
 
-            $builder->connect('/users', ['prefix', 'Manager/Settings', 'controller' => 'Users', 'action' => 'index']);
+            $builder->connect('/users', ['prefix' => 'Manager/Settings', 'controller' => 'Users', 'action' => 'index']);
             $builder->connect('/users/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'Users']);
+
+            $builder->connect('/roles', ['prefix' => 'Manager/Settings', 'controller' => 'Roles', 'action' => 'index']);
+            $builder->connect('/roles/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'Roles']);
         });
 
         /**

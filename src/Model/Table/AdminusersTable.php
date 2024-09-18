@@ -11,6 +11,8 @@ use Cake\Validation\Validator;
 /**
  * Adminusers Model
  *
+ * @property \App\Model\Table\RolesTable&\Cake\ORM\Association\BelongsTo $Roles
+ * @property \App\Model\Table\MetaAdminusersTable&\Cake\ORM\Association\HasMany $MetaAdminusers
  * @property \App\Model\Table\PostsTable&\Cake\ORM\Association\HasMany $Posts
  *
  * @method \App\Model\Entity\Adminuser newEmptyEntity()

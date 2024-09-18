@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller\Manager\Settings;
@@ -8,7 +9,7 @@ use Cake\Datasource\ConnectionManager;
 
 /**
  * Users controller
- * @property \App\Model\Table\UsersTable $Users
+ * 
  * @property \Authentication\Controller\Component\AuthenticationComponent $Authentication
  */
 class UsersController extends AppController
@@ -18,7 +19,15 @@ class UsersController extends AppController
         parent::beforeFilter($event);
 
         $this->Authentication->allowUnauthenticated(['login', 'initializeData']);
-        $this->set('menuActive', 'users');
+    }
+
+    public function initialize(): void
+    {
+        parent::initialize();
+
+        $this->set('subMenu', 'settings_menu');
+        $this->set('subMenuActive', 'users');
+        $this->set('applicationName', __('Settings management'));
     }
 
     /**
@@ -28,7 +37,7 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $query = $this->Users->find();
+        $query = $this->fetchTable('Adminusers')->find()->contain(['Roles']);
         $users = $this->paginate($query);
 
         $this->set(compact('users'));
@@ -41,17 +50,21 @@ class UsersController extends AppController
      */
     public function add()
     {
-        $user = $this->Users->newEmptyEntity();
+        $user = $this->fetchTable('Adminusers')->newEmptyEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
+            $user = $this->fetchTable('Adminusers')->patchEntity($user, $this->request->getData());
+            $user->status = 'active';
+            if ($this->fetchTable('Adminusers')->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $this->set(compact('user'));
+
+        $roles = $this->fetchTable('Roles')->find('list');
+
+        $this->set(compact('user', 'roles'));
     }
 
     /**
@@ -62,17 +75,20 @@ class UsersController extends AppController
      */
     public function edit(string $id = null)
     {
-        $user = $this->Users->get($id);
+        $user = $this->fetchTable('Adminusers')->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
+            $user = $this->fetchTable('Adminusers')->patchEntity($user, $this->request->getData());
+            if ($this->fetchTable('Adminusers')->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $this->set(compact('user'));
+
+        $roles = $this->fetchTable('Roles')->find('list');
+
+        $this->set(compact('user', 'roles'));
     }
 
     /**
@@ -84,8 +100,8 @@ class UsersController extends AppController
     public function delete(string $id = null): ?\Cake\Http\Response
     {
         $this->request->allowMethod(['post', 'delete']);
-        $user = $this->Users->get($id);
-        if ($this->Users->delete($user)) {
+        $user = $this->fetchTable('Adminusers')->get($id);
+        if ($this->fetchTable('Adminusers')->delete($user)) {
             $this->Flash->success(__('The user has been deleted.'));
         } else {
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
@@ -100,10 +116,10 @@ class UsersController extends AppController
      */
     public function changePassword(string $id = null): ?\Cake\Http\Response
     {
-        $user = $this->Users->get($id);
+        $user = $this->fetchTable('Adminusers')->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
+            $user = $this->fetchTable('Adminusers')->patchEntity($user, $this->request->getData());
+            if ($this->fetchTable('Adminusers')->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect("/manager/users/edit/{$id}");
@@ -151,8 +167,11 @@ class UsersController extends AppController
     {
         $connection = ConnectionManager::get('default');
         $connection->begin();
-        $userAdmin = $this->Users->find()->where(['username' => 'admin', 'role' => 'admin'])->first();
+
+        $userAdmin = $this->fetchTable('Adminusers')->find()->where(['username' => 'admin'])->first();
         if (!$userAdmin) {
+
+            // create setting data
             $settings = $this->fetchTable('SiteSettings')->newEntities([
                 ['key_field' => 'site_name', 'value_field' => 'Site name'],
                 ['key_field' => 'telephone', 'value_field' => " "],
@@ -168,20 +187,40 @@ class UsersController extends AppController
                 ['key_field' => 'sns_tiktok_name', 'value_field' => " "],
                 ['key_field' => 'sns_tiktok_url', 'value_field' => " "],
             ]);
+            if ($this->fetchTable('SiteSettings')->saveMany($settings)) {
+                echo '<p>Create setting done.</p>';
+            }
+            // end create setting data
+
+            // create role data
+            $roles = $this->fetchTable('Roles')->newEntities([
+                [
+                    'title' => 'Admin',
+                    'slug' => 'admin',
+                ],
+                [
+                    'title' => 'Staff',
+                    'slug' => 'staff',
+                ]
+            ]);
+            if ($this->fetchTable('Roles')->saveMany($roles)) {
+                echo '<p>Create role done.</p>';
+            }
+            $adminRole = $this->fetchTable('Roles')->getBySlug('admin')->first();
+            // end create role data
 
             // $password = Security::randomString(8);
             $password = 'admin';
-            $user = $this->Users->newEntity([
+            $user = $this->fetchTable('Adminusers')->newEntity([
                 'username' => 'admin',
-                'role' => 'admin',
+                'role_id' => $adminRole->id,
                 'full_name' => 'admin admin',
                 'email' => 'admin@titanscript.com',
-                'is_superadmin' => 1,
                 'password' => $password,
                 'status' => 'active',
             ]);
 
-            if ($this->fetchTable('SiteSettings')->saveMany($settings) && $this->Users->save($user)) {
+            if ($this->fetchTable('Adminusers')->save($user)) {
                 $connection->commit();
                 $this->Flash->success(__('The data has been initiated. password is {0}', $password));
             } else {

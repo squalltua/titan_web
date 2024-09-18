@@ -18,8 +18,7 @@
             <li><a class="dropdown-item" href="/manager/crm"><?= __('Customers manangment') ?></a></li>
             <li><a class="dropdown-item" href="/manager/fnm"><?= __('Financials management') ?></a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="/manager/system/users"><?= __('Users management') ?></a></li>
-            <li><a class="dropdown-item" href="/manager/system/configuration"><?= __('Configuration') ?></a></li>
+            <li><a class="dropdown-item" href="/manager/settings"><?= __('Settings management') ?></a></li>
           </ul>
         </li>
       </ul>

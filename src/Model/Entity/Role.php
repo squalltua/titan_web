@@ -6,23 +6,20 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Adminuser Entity
+ * Role Entity
  *
  * @property int $id
- * @property string $full_name
- * @property string $username
- * @property string $password
- * @property string $email
+ * @property string $title
+ * @property string $slug
  * @property string $status
+ * @property string|null $description
+ * @property string|null $content
  * @property \Cake\I18n\DateTime|null $created
  * @property \Cake\I18n\DateTime|null $modified
- * @property int $role_id
  *
- * @property \App\Model\Entity\Role $role
- * @property \App\Model\Entity\MetaAdminuser[] $meta_adminusers
- * @property \App\Model\Entity\Post[] $posts
+ * @property \App\Model\Entity\Adminuser[] $adminusers
  */
-class Adminuser extends Entity
+class Role extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -34,25 +31,13 @@ class Adminuser extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
-        'full_name' => true,
-        'username' => true,
-        'password' => true,
-        'email' => true,
+        'title' => true,
+        'slug' => true,
         'status' => true,
+        'description' => true,
+        'content' => true,
         'created' => true,
         'modified' => true,
-        'role_id' => true,
-        'role' => true,
-        'meta_adminusers' => true,
-        'posts' => true,
-    ];
-
-    /**
-     * Fields that are excluded from JSON versions of the entity.
-     *
-     * @var list<string>
-     */
-    protected array $_hidden = [
-        'password',
+        'adminusers' => true,
     ];
 }
