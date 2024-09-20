@@ -8,6 +8,9 @@ use App\Controller\Manager\AppController;
 
 class PagesController extends AppController
 {
+    /**
+     * @return void
+     */
     public function initialize(): void
     {
         parent::initialize();
@@ -17,5 +20,13 @@ class PagesController extends AppController
         $this->set('applicationName', __('Digital assets management'));
     }
 
-    public function dashboard() {}
+    /**
+     * Dashboard function
+     *
+     * @return \Cake\Http\Response
+     */
+    public function dashboard()
+    {
+        // load dashboard here.
+    }
 }

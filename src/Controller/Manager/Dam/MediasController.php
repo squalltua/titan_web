@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace App\Controller\Manager\Dam;
 
 use App\Controller\Manager\AppController;
+use Cake\Http\Response;
 
 class MediasController extends AppController
 {
+    /**
+     * @return void
+     */
     public function initialize(): void
     {
         parent::initialize();
@@ -17,14 +21,24 @@ class MediasController extends AppController
         $this->set('applicationName', __('Digital assets management'));
     }
 
-    public function index()
+    /**
+     * Undocumented function
+     *
+     * @return \Cake\Http\Response
+     */
+    public function index(): Response
     {
         $medias = $this->paginate($this->Medias);
 
         $this->set(compact('medias'));
     }
 
-    public function add()
+    /**
+     * Add media
+     *
+     * @return \Cake\Http\Response
+     */
+    public function add(): Response
     {
         if ($this->request->is('post')) {
             $data = $this->request->getData('attachment');
@@ -37,9 +51,17 @@ class MediasController extends AppController
 
             return $this->redirect('/manager/dam/medias');
         }
+
+        return $this->render();
     }
-    
-    public function edit(string $id)
+
+    /**
+     * Edit media function
+     *
+     * @param string $id
+     * @return \Cake\Http\Response
+     */
+    public function edit(string $id): Response
     {
         $media = $this->Medias->get($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
@@ -56,7 +78,13 @@ class MediasController extends AppController
         $this->set('media', $media);
     }
 
-    public function delete(string $id)
+    /**
+     * Delete media function
+     *
+     * @param string $id
+     * @return \Cake\Http\Response
+     */
+    public function delete(string $id): Response
     {
         $this->request->allowMethod(['delete', 'post']);
         $media = $this->Medias->get($id);

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Manager\Pim;
 
-use App\Controller\Manager\AppController;
+use App\Controler\Manager\AppController;
 use Cake\Utility\Text;
 
-class ProductCategoriesController extends AppController
+class ProductTypesController extends AppController
 {
     /**
      * @return void
@@ -17,7 +17,7 @@ class ProductCategoriesController extends AppController
         parent::initialize();
 
         $this->set('subMenu', 'pim_menu');
-        $this->set('subMenuActive', 'categories');
+        $this->set('subMenuActive', 'types');
         $this->set('applicationName', __('Product information management'));
     }
 
@@ -26,9 +26,9 @@ class ProductCategoriesController extends AppController
      */
     public function index()
     {
-        $categories = $this->paginate($this->fetchTable('Taxonomies')->getCategories());
+        $types = $this->paginate($this->fetchTable('Taxonomies')->getProductTypes());
 
-        $this->set(compact('categories'));
+        $this->set('types', $types);
     }
 
     /**
@@ -36,21 +36,21 @@ class ProductCategoriesController extends AppController
      */
     public function add()
     {
-        $category = $this->fetchTable('Taxonomies')->newEmptyEntity();
+        $type = $this->fetchTable('Taxonomies')->newEmptyEntity();
         if ($this->request->is('post')) {
-            $category = $this->fetchTable('Taxonomies')->patchEntity($category, $this->request->getData());
-            $category->slug = Text::slug($category->name);
-            $category->type = 'categories';
-            if ($this->fetchTable('Taxonomies')->save($category)) {
+            $type = $this->fetchTable('Taxonomies')->patchEntity($type, $this->request->getData());
+            $type->slug = Text::slug($type->name);
+            $type->type = 'types';
+            if ($this->fetchTable('Taxonomies')->save($type)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect('/manager/pim/categories');
+                return $this->redirect('/manager/pim/product-types');
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $this->set(compact('category'));
+        $this->set(compact('type'));
     }
 
     /**
@@ -58,20 +58,20 @@ class ProductCategoriesController extends AppController
      */
     public function edit(string $id)
     {
-        $category = $this->fetchTable('ProductGroups')->getCategory($id);
+        $type = $this->fetchTable('Taxonomies')->getProductType($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
-            $category = $this->fetchTable('Taxonomies')->patchEntity($category, $this->request->getData());
-            $category->slug = Text::slug($category->name);
-            if ($this->fetchTable('Taxonomies')->save($category)) {
+            $type = $this->fetchTable('Taxonomies')->patchEntity($type, $this->request->getData());
+            $type->slug = Text::slug($type->name);
+            if ($this->fetchTable('Taxonomies')->save($type)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/pim/product-catetories/edit/{$id}");
+                return $this->redirect('/manager/pim/product-types');
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $this->set(compact('category'));
+        $this->set(compact('type'));
     }
 
     /**
@@ -80,13 +80,13 @@ class ProductCategoriesController extends AppController
     public function delete(string $id)
     {
         $this->request->allowMethod(['delete', 'post']);
-        $category = $this->fetchTable('Taxonomies')->getCategory($id);
-        if ($this->fetchTable('Taxonomies')->delete($category)) {
+        $type = $this->fetchTable('Taxonomies')->getProductType($id);
+        if ($this->fetchTable('Taxonomies')->delete($type)) {
             $this->Flash->success(__('The data has been deleted.'));
         } else {
             $this->Flash->error(__('The data could not be deleted. Please try again.'));
         }
 
-        return $this->redirect('/manager/pim/product-categories');
+        return $this->redirect('/manager/pim/product-types');
     }
 }

@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace App\Controller\Manager\Pim;
 
 use App\Controller\Manager\AppController;
+use Cake\Http\Response;
 
 class PagesController extends AppController
 {
+    /**
+     * @return void
+     */
     public function initialize(): void
     {
         parent::initialize();
@@ -17,5 +21,11 @@ class PagesController extends AppController
         $this->set('applicationName', __('Product information management'));
     }
 
-    public function dashboard() {}
+    /**
+     * @return \Cake\Http\Response
+     */
+    public function dashboard(): Response
+    {
+        return $this->render();
+    }
 }

@@ -1,12 +1,15 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\Database\Query;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use PhpParser\Node\Expr\Cast\Bool_;
 
 /**
  * Taxonomies Model
@@ -77,5 +80,63 @@ class TaxonomiesTable extends Table
             ->notEmptyString('type');
 
         return $validator;
+    }
+
+    /**
+     * @return \Cake\Database\Query
+     */
+    public function getTypes(): Query
+    {
+        return $this->find('all')->where(['type' => 'types']);
+    }
+
+    /**
+     * @return Array
+     */
+    public function getType(int $id): array
+    {
+        return $this->find()->where(['id' => $id, 'type' => 'types'])->first();
+    }
+
+    /**
+     * @return bool
+     */
+    public function deleteType(int $id): bool
+    {
+        $type = $this->find()->where(['id' => $id, 'type' => 'types'])->first();
+        if ($type && $this->delete($type)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @return \Cake\Database\Query
+     */
+    public function getCategories(): Query
+    {
+        return $this->find('all')->where(['type' => 'categories']);
+    }
+
+    /**
+     * @return array
+     */
+    public function getCategory(int $id): array
+    {
+        return $this->find()->where(['id' => $id, 'type' => 'categories'])->first();
+    }
+
+    /**
+     * @return bool
+     */
+    public function deleteCategory(int $id): bool
+    {
+        $category = $this->find()->where(['id' => $id, 'type' => 'categories'])->first();
+        if ($category && $this->delete($category)) {
+            return true;
+        }
+
+        return false;
     }
 }

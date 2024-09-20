@@ -5,11 +5,15 @@ declare(strict_types=1);
 namespace App\Controller\Manager\Pim;
 
 use App\Controller\Manager\AppController;
+
 /**
  * @property \App\Model\Table\ProductsTable $Products
  */
 class ProductsController extends AppController
 {
+    /**
+     * @return void
+     */
     public function initialize(): void
     {
         parent::initialize();
@@ -20,34 +24,32 @@ class ProductsController extends AppController
     }
 
     /**
+     * Index function
+     *
      * @return \Cake\Http\Response
      */
-    public function index(): \Cake\Http\Response
+    public function index()
     {
         $products = $this->paginate($this->Products);
 
         $this->set(compact('products'));
-
-        return $this->render();
     }
 
     /**
      * @param string $id - product id
      * @return \Cake\Http\Response
      */
-    public function view(string $id): \Cake\Http\Response
+    public function view(string $id)
     {
         $product = $this->Products->get($id);
 
         $this->set(compact('product'));
-
-        return $this->render();
     }
 
     /**
      * @return \Cake\Http\Response
      */
-    public function add(): \Cake\Http\Response
+    public function add()
     {
         $product = $this->Products->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -66,15 +68,13 @@ class ProductsController extends AppController
         $tags = $this->Products->ProductGroups->getTagsList();
 
         $this->set(compact('product', 'categories', 'tags'));
-
-        return $this->render();
     }
 
     /**
      * @param string $id - product id
      * @return \Cake\Http\Response
      */
-    public function edit(string $id): \Cake\Http\Response
+    public function edit(string $id)
     {
         $product = $this->Products->get($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
@@ -92,15 +92,13 @@ class ProductsController extends AppController
         $tags = $this->Products->ProductGroups->getTagsList();
 
         $this->set(compact('product', 'categories', 'tags'));
-
-        return $this->render();
     }
 
     /**
      * @param string $id - product id
      * @return \Cake\Http\Response
      */
-    public function delete(string $id): \Cake\Http\Response
+    public function delete(string $id)
     {
         $this->request->allowMethod(['delete', 'post']);
         $product = $this->Products->get($id);

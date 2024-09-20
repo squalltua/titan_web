@@ -9,5 +9,4 @@
             </nav>
         </div>
     </div>
-    empty
 </div>
