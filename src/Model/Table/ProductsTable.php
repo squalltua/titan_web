@@ -11,10 +11,8 @@ use Cake\Validation\Validator;
 /**
  * Products Model
  *
- * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\MetaProductsTable&\Cake\ORM\Association\HasMany $MetaProducts
  * @property \App\Model\Table\ProductReviewsTable&\Cake\ORM\Association\HasMany $ProductReviews
- * @property \App\Model\Table\ProductGroupsTable&\Cake\ORM\Association\BelongsToMany $ProductGroups
  *
  * @method \App\Model\Entity\Product newEmptyEntity()
  * @method \App\Model\Entity\Product newEntity(array $data, array $options = [])
@@ -50,9 +48,16 @@ class ProductsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Users', [
-            'foreignKey' => 'user_id',
+        $this->belongsTo('Adminusers', [
+            'foreignKey' => 'adminuser_id',
             'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('ProductFamilies', [
+            'foreignKey' => 'product_families_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->hasMany('Inventories', [
+            'foreignKey' => 'product_id',
         ]);
         $this->hasMany('MetaProducts', [
             'foreignKey' => 'product_id',
@@ -60,10 +65,15 @@ class ProductsTable extends Table
         $this->hasMany('ProductReviews', [
             'foreignKey' => 'product_id',
         ]);
-        $this->belongsToMany('ProductGroups', [
+        $this->belongsToMany('Attributes', [
             'foreignKey' => 'product_id',
-            'targetForeignKey' => 'product_group_id',
-            'joinTable' => 'products_product_groups',
+            'targetForeignKey' => 'attribute_id',
+            'joinTable' => 'products_attributes',
+        ]);
+        $this->belongsToMany('Taxonomies', [
+            'foreignKey' => 'product_id',
+            'targetForeignKey' => 'taxonomy_id',
+            'joinTable' => 'products_taxonomies',
         ]);
     }
 
@@ -77,7 +87,7 @@ class ProductsTable extends Table
     {
         $validator
             ->scalar('title')
-            ->maxLength('title', 255)
+            ->maxLength('title', 200)
             ->requirePresence('title', 'create')
             ->notEmptyString('title');
 
@@ -96,21 +106,16 @@ class ProductsTable extends Table
             ->allowEmptyString('content');
 
         $validator
-            ->scalar('status')
-            ->maxLength('status', 20)
-            ->allowEmptyString('status');
+            ->decimal('base_price')
+            ->allowEmptyString('base_price');
 
         $validator
-            ->decimal('price_base')
-            ->allowEmptyString('price_base');
+            ->decimal('sell_price')
+            ->allowEmptyString('sell_price');
 
         $validator
-            ->decimal('price_sell')
-            ->allowEmptyString('price_sell');
-
-        $validator
-            ->decimal('price_discount')
-            ->allowEmptyString('price_discount');
+            ->decimal('discount_price')
+            ->allowEmptyString('discount_price');
 
         $validator
             ->scalar('sku')
@@ -118,16 +123,21 @@ class ProductsTable extends Table
             ->allowEmptyString('sku');
 
         $validator
-            ->integer('quantity')
-            ->allowEmptyString('quantity');
+            ->scalar('model_name')
+            ->maxLength('model_name', 45)
+            ->allowEmptyString('model_name');
 
         $validator
-            ->scalar('type')
-            ->maxLength('type', 45)
-            ->allowEmptyString('type');
+            ->scalar('series_number')
+            ->maxLength('series_number', 45)
+            ->allowEmptyString('series_number');
 
         $validator
-            ->allowEmptyString('in_shop');
+            ->allowEmptyString('on_sale');
+
+        $validator
+            ->scalar('status')
+            ->allowEmptyString('status');
 
         $validator
             ->dateTime('start_at')
@@ -138,8 +148,12 @@ class ProductsTable extends Table
             ->allowEmptyDateTime('end_at');
 
         $validator
-            ->integer('user_id')
-            ->notEmptyString('user_id');
+            ->integer('adminuser_id')
+            ->notEmptyString('adminuser_id');
+
+        $validator
+            ->integer('product_families_id')
+            ->notEmptyString('product_families_id');
 
         return $validator;
     }
@@ -153,7 +167,8 @@ class ProductsTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn(['user_id'], 'Users'), ['errorField' => 'user_id']);
+        $rules->add($rules->existsIn(['adminuser_id'], 'Adminusers'), ['errorField' => 'adminuser_id']);
+        $rules->add($rules->existsIn(['product_families_id'], 'ProductFamilies'), ['errorField' => 'product_families_id']);
 
         return $rules;
     }
