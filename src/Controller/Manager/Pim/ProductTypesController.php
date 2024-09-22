@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Manager\Pim;
 
-use App\Controler\Manager\AppController;
+use App\Controller\Manager\AppController;
 use Cake\Utility\Text;
 
 class ProductTypesController extends AppController
@@ -26,7 +26,7 @@ class ProductTypesController extends AppController
      */
     public function index()
     {
-        $types = $this->paginate($this->fetchTable('Taxonomies')->getProductTypes());
+        $types = $this->paginate($this->fetchTable('Taxonomies')->getTypes());
 
         $this->set('types', $types);
     }
@@ -58,7 +58,7 @@ class ProductTypesController extends AppController
      */
     public function edit(string $id)
     {
-        $type = $this->fetchTable('Taxonomies')->getProductType($id);
+        $type = $this->fetchTable('Taxonomies')->getType($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $type = $this->fetchTable('Taxonomies')->patchEntity($type, $this->request->getData());
             $type->slug = Text::slug($type->name);
@@ -80,7 +80,7 @@ class ProductTypesController extends AppController
     public function delete(string $id)
     {
         $this->request->allowMethod(['delete', 'post']);
-        $type = $this->fetchTable('Taxonomies')->getProductType($id);
+        $type = $this->fetchTable('Taxonomies')->getType($id);
         if ($this->fetchTable('Taxonomies')->delete($type)) {
             $this->Flash->success(__('The data has been deleted.'));
         } else {

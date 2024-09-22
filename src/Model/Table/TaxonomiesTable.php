@@ -91,24 +91,11 @@ class TaxonomiesTable extends Table
     }
 
     /**
-     * @return Array
+     * @return mixed
      */
-    public function getType(int $id): array
+    public function getType(string $id): mixed
     {
         return $this->find()->where(['id' => $id, 'type' => 'types'])->first();
-    }
-
-    /**
-     * @return bool
-     */
-    public function deleteType(int $id): bool
-    {
-        $type = $this->find()->where(['id' => $id, 'type' => 'types'])->first();
-        if ($type && $this->delete($type)) {
-            return true;
-        }
-
-        return false;
     }
 
     /**
@@ -120,23 +107,11 @@ class TaxonomiesTable extends Table
     }
 
     /**
-     * @return array
+     * @param string $id taxonomy_id
+     * @return mixed
      */
-    public function getCategory(int $id): array
+    public function getCategory(string $id): mixed
     {
         return $this->find()->where(['id' => $id, 'type' => 'categories'])->first();
-    }
-
-    /**
-     * @return bool
-     */
-    public function deleteCategory(int $id): bool
-    {
-        $category = $this->find()->where(['id' => $id, 'type' => 'categories'])->first();
-        if ($category && $this->delete($category)) {
-            return true;
-        }
-
-        return false;
     }
 }

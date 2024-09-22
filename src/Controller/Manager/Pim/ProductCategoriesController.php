@@ -44,7 +44,7 @@ class ProductCategoriesController extends AppController
             if ($this->fetchTable('Taxonomies')->save($category)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect('/manager/pim/categories');
+                return $this->redirect('/manager/pim/product-categories');
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
@@ -58,14 +58,14 @@ class ProductCategoriesController extends AppController
      */
     public function edit(string $id)
     {
-        $category = $this->fetchTable('ProductGroups')->getCategory($id);
+        $category = $this->fetchTable('Taxonomies')->getCategory($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $category = $this->fetchTable('Taxonomies')->patchEntity($category, $this->request->getData());
             $category->slug = Text::slug($category->name);
             if ($this->fetchTable('Taxonomies')->save($category)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/pim/product-catetories/edit/{$id}");
+                return $this->redirect("/manager/pim/product-categories");
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
