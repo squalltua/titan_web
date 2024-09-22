@@ -26,12 +26,15 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\DateTime|null $created
  * @property \Cake\I18n\DateTime|null $modified
  * @property int $adminuser_id
- * @property int $product_families_id
+ * @property int|null $product_family_id
  *
- * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Adminuser $adminuser
+ * @property \App\Model\Entity\ProductFamily $product_family
+ * @property \App\Model\Entity\Inventory[] $inventories
  * @property \App\Model\Entity\MetaProduct[] $meta_products
  * @property \App\Model\Entity\ProductReview[] $product_reviews
- * @property \App\Model\Entity\ProductGroup[] $product_groups
+ * @property \App\Model\Entity\Attribute[] $attributes
+ * @property \App\Model\Entity\Taxonomy[] $taxonomies
  */
 class Product extends Entity
 {
@@ -62,10 +65,13 @@ class Product extends Entity
         'created' => true,
         'modified' => true,
         'adminuser_id' => true,
-        'product_families_id' => true,
-        'user' => true,
+        'product_family_id' => true,
+        'adminuser' => true,
+        'product_family' => true,
+        'inventories' => true,
         'meta_products' => true,
         'product_reviews' => true,
-        'product_groups' => true,
+        'attributes' => true,
+        'taxonomies' => true,
     ];
 }

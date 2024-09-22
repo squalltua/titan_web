@@ -25,10 +25,13 @@ class ProductsTableTest extends TestCase
      */
     protected array $fixtures = [
         'app.Products',
-        'app.Users',
+        'app.Adminusers',
+        'app.ProductFamilies',
+        'app.Inventories',
         'app.MetaProducts',
         'app.ProductReviews',
-        'app.ProductGroups',
+        'app.Attributes',
+        'app.Taxonomies',
     ];
 
     /**

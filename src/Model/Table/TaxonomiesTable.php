@@ -98,6 +98,11 @@ class TaxonomiesTable extends Table
         return $this->find()->where(['id' => $id, 'type' => 'types'])->first();
     }
 
+    public function getTypesList(): mixed
+    {
+        return $this->find('list')->where(['type' => 'types']);
+    }
+
     /**
      * @return \Cake\Database\Query
      */
@@ -113,5 +118,10 @@ class TaxonomiesTable extends Table
     public function getCategory(string $id): mixed
     {
         return $this->find()->where(['id' => $id, 'type' => 'categories'])->first();
+    }
+
+    public function getCategoriesList(): mixed
+    {
+        return $this->find('list')->where(['type' => 'categories']);
     }
 }

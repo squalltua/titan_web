@@ -32,12 +32,12 @@ class ProductsFixture extends TestFixture
                 'series_number' => 'Lorem ipsum dolor sit amet',
                 'on_sale' => 1,
                 'status' => 'Lorem ipsum dolor sit amet',
-                'start_at' => '2024-09-20 04:19:46',
-                'end_at' => '2024-09-20 04:19:46',
-                'created' => '2024-09-20 04:19:46',
-                'modified' => '2024-09-20 04:19:46',
+                'start_at' => '2024-09-22 08:34:59',
+                'end_at' => '2024-09-22 08:34:59',
+                'created' => '2024-09-22 08:34:59',
+                'modified' => '2024-09-22 08:34:59',
                 'adminuser_id' => 1,
-                'product_families_id' => 1,
+                'product_family_id' => 1,
             ],
         ];
         parent::init();

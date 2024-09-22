@@ -11,8 +11,13 @@ use Cake\Validation\Validator;
 /**
  * Products Model
  *
+ * @property \App\Model\Table\AdminusersTable&\Cake\ORM\Association\BelongsTo $Adminusers
+ * @property \App\Model\Table\ProductFamiliesTable&\Cake\ORM\Association\BelongsTo $ProductFamilies
+ * @property \App\Model\Table\InventoriesTable&\Cake\ORM\Association\HasMany $Inventories
  * @property \App\Model\Table\MetaProductsTable&\Cake\ORM\Association\HasMany $MetaProducts
  * @property \App\Model\Table\ProductReviewsTable&\Cake\ORM\Association\HasMany $ProductReviews
+ * @property \App\Model\Table\AttributesTable&\Cake\ORM\Association\BelongsToMany $Attributes
+ * @property \App\Model\Table\TaxonomiesTable&\Cake\ORM\Association\BelongsToMany $Taxonomies
  *
  * @method \App\Model\Entity\Product newEmptyEntity()
  * @method \App\Model\Entity\Product newEntity(array $data, array $options = [])
@@ -53,8 +58,7 @@ class ProductsTable extends Table
             'joinType' => 'INNER',
         ]);
         $this->belongsTo('ProductFamilies', [
-            'foreignKey' => 'product_families_id',
-            'joinType' => 'INNER',
+            'foreignKey' => 'product_family_id',
         ]);
         $this->hasMany('Inventories', [
             'foreignKey' => 'product_id',
@@ -152,8 +156,8 @@ class ProductsTable extends Table
             ->notEmptyString('adminuser_id');
 
         $validator
-            ->integer('product_families_id')
-            ->notEmptyString('product_families_id');
+            ->integer('product_family_id')
+            ->allowEmptyString('product_family_id');
 
         return $validator;
     }
@@ -168,7 +172,7 @@ class ProductsTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['adminuser_id'], 'Adminusers'), ['errorField' => 'adminuser_id']);
-        $rules->add($rules->existsIn(['product_families_id'], 'ProductFamilies'), ['errorField' => 'product_families_id']);
+        $rules->add($rules->existsIn(['product_family_id'], 'ProductFamilies'), ['errorField' => 'product_family_id']);
 
         return $rules;
     }
