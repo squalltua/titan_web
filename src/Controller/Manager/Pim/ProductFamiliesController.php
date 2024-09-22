@@ -46,7 +46,7 @@ class ProductFamiliesController extends AppController
     public function edit(string $id)
     {
         $family = $this->ProductFamilies->get($id);
-        if ($this->request->is('post')) {
+        if ($this->request->is(['post', 'put', 'patch'])) {
             $family = $this->ProductFamilies->patchEntity($family, $this->request->getData());
             if ($this->ProductFamilies->save($family)) {
                 $this->Flash->success(__('The data has been saved.'));
