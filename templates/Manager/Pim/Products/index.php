@@ -25,10 +25,10 @@
                     <tr>
                         <td><?= h($product->title) ?></td>
                         <td><?= h($product->sku) ?></td>
-                        <td><?= h($family->summary) ?></td>
-                        <td><?= h($family->description) ?></td>
+                        <td><?= h($product->summary) ?></td>
+                        <td><?= h($product->description) ?></td>
                         <td>
-                            <?= $this->Html->link(__('View'), "/manager/pim/products/view/{$product->id}", ['class' => 'me-3']) ?>
+                            <?= $this->Html->link(__('Detail'), "/manager/pim/products/detail/{$product->id}", ['class' => 'me-3']) ?>
                             <?= $this->Form->postLink(__('Delete'), "/manager/pim/products/delete/{$product->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>
                         </td>
                     </tr>

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Controller\Manager\Pim;
 
 use App\Controller\Manager\AppController;
+use Cake\Utility\Text;
+use Cake\I18n\Number;
 
 /**
  * @property \App\Model\Table\ProductsTable $Products
@@ -28,7 +30,7 @@ class ProductsController extends AppController
      *
      * @return \Cake\Http\Response
      */
-    public function index(): Response
+    public function index()
     {
         $products = $this->paginate($this->Products);
 
@@ -39,29 +41,34 @@ class ProductsController extends AppController
      * @param string $id - product id
      * @return \Cake\Http\Response
      */
-    public function view(string $id): Response
+    public function detail(string $id)
     {
         $product = $this->Products->get($id);
+        $product->base_price = Number::precision($product->base_price ?? 0.00, 2);
+        $product->sell_price = Number::precision($product->sell_price ?? 0.00, 2);
+        $product->discount_price = Number::precision($product->discount_price ?? 0.00, 2);
 
+        $this->set('objectMenuActive', 'detail');
         $this->set(compact('product'));
     }
 
     /**
      * @return \Cake\Http\Response
      */
-    public function attributes(string $id): Response
+    public function attributes(string $id)
     {
         $product = $this->Products->get($id, ['contain' => 'Attributes']);
 
+        $this->set('objectMenuActive', 'attributes');
         $this->set(compact('product'));
     }
 
     /**
      * @return \Cake\Http\Response
      */
-    public function attributeAdd(string $productId): Response
+    public function attributeAdd(string $productId)
     {
-        $product = $this->Products->get($id);
+        $product = $this->Products->get($productId);
         $attribute = $this->Products->Attributes->newEmptyEntity();
         if ($this->request->is('post')) {
             $attribute = $this->Products->Attributes->patchEntity($attribute, $this->request->getData());
@@ -77,34 +84,36 @@ class ProductsController extends AppController
             $this->Flash->error(__('The attribute could not be saved. Please try again.'));
         }
 
+        $this->set('objectMenuActive', 'attributes');
         $this->set(compact('product', 'attribute'));
     }
 
     /**
      * @return \Cake\Http\Response
      */
-    public function attributeEdit(string $productId, string $attributeId): Response
+    public function attributeEdit(string $productId, string $attributeId)
     {
-        $product = $thsi->Products->get($id);
+        $product = $this->Products->get($productId);
         $attribute = $this->Products->Attributes->get($attributeId);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $attribute = $this->Products->Attributes->patchEntity($attribute, $this->request->getData());
             if ($this->Products->Attributes->save($attribute)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                $this->redirect("/manager/pim/products/attributes/{$productId}");
+                return $this->redirect("/manager/pim/products/attributes/{$productId}");
             }
 
             $this->Flash->error(__('The attribute could not be saved. Please try again.'));
         }
 
+        $this->set('objectMenuActive', 'attributes');
         $this->set(compact('product', 'attribute'));
     }
 
     /**
      * @return \Cake\Http\Response
      */
-    public function attributeDelete(string $productId, string $attributeId): Response
+    public function attributeDelete(string $productId, string $attributeId)
     {
         $this->request->allowMethod(['delete', 'post']);
         $attribute = $this->Products->Attributes->get($attributeId);
@@ -120,13 +129,15 @@ class ProductsController extends AppController
     /**
      * @return \Cake\Http\Response
      */
-    public function add(): Response
+    public function add()
     {
         $product = $this->Products->newEmptyEntity();
         if ($this->request->is('post')) {
             $product = $this->Products->patchEntity($product, $this->request->getData());
             $product->status = 'active';
-            if ($this->Products->save($product)) {
+            $product->adminuser_id = $this->Authentication->getIdentity()->get('id');
+            $product->slug = Text::slug($product->title);
+            if ($this->Products->save($product)) { 
                 $this->Flash->success(__('The data has been saved.'));
 
                 return $this->redirect("/manager/pim/products/view/{$product->id}");
@@ -137,15 +148,17 @@ class ProductsController extends AppController
 
         $categories = $this->Products->Taxonomies->getCategoriesList();
         $types = $this->Products->Taxonomies->getTypesList();
+        $families = $this->Products->ProductFamilies->find('list');
 
-        $this->set(compact('product', 'categories', 'types'));
+
+        $this->set(compact('product', 'categories', 'types', 'families'));
     }
 
     /**
      * @param string $id - product id
      * @return \Cake\Http\Response
      */
-    public function edit(string $id): Response
+    public function edit(string $id)
     {
         $product = $this->Products->get($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
@@ -161,15 +174,17 @@ class ProductsController extends AppController
 
         $categories = $this->Products->Taxonomies->getCategoriesList();
         $types = $this->Products->Taxonomies->getTypesList();
+        $families = $this->Products->ProductFamilies->find('list');
 
-        $this->set(compact('product', 'categories', 'types'));
+
+        $this->set(compact('product', 'categories', 'types', 'families'));
     }
 
     /**
      * @param string $id - product id
      * @return \Cake\Http\Response
      */
-    public function delete(string $id): Response
+    public function delete(string $id)
     {
         $this->request->allowMethod(['delete', 'post']);
         $product = $this->Products->get($id);

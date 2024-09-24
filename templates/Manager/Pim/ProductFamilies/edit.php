@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col">
                 <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary']) ?>
-                <?= $this->Html->link(__('Cancel'), '/manager/pim/product-families', ['class' => 'btn btn-secondary']) ?>
+                <?= $this->Html->link(__('Back'), '/manager/pim/product-families', ['class' => 'btn btn-secondary']) ?>
             </div>
         </div>
         <?= $this->Form->end() ?>

@@ -24,7 +24,7 @@
 
                 <div class="mt-4">
                     <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary btn submit-btn']) ?>
-                    <?= $this->Html->link(__('Cancel'), "/manager/settings/roles", ['class' => 'btn btn-secondary btn']) ?>
+                    <?= $this->Html->link(__('Back'), "/manager/settings/roles", ['class' => 'btn btn-secondary btn']) ?>
                 </div>
             </div>
         </div>

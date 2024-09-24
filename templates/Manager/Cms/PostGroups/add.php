@@ -24,7 +24,7 @@
                 </div>
                 <div class="mt-4">
                     <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary btn']) ?>
-                    <?= $this->Html->link(__('Cancel'), "/manager/cms/groups", ['class' => 'btn btn-secondary btn']) ?>
+                    <?= $this->Html->link(__('Back'), "/manager/cms/groups", ['class' => 'btn btn-secondary btn']) ?>
                 </div>
             </div>
         </div>

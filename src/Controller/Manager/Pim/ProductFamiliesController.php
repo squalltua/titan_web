@@ -43,6 +43,12 @@ class ProductFamiliesController extends AppController
         $this->set(compact('family'));
     }
 
+    /**
+     * edit function
+     *
+     * @param string $id
+     * @return \Cake\Http\Response
+     */
     public function edit(string $id)
     {
         $family = $this->ProductFamilies->get($id);
@@ -60,6 +66,12 @@ class ProductFamiliesController extends AppController
         $this->set(compact('family'));
     }
 
+    /**
+     * delete method
+     *
+     * @param string $id
+     * @return \Cake\Http\Response
+     */
     public function delete(string $id)
     {
         
