@@ -18,7 +18,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\DateTime|null $publish_date
  * @property \Cake\I18n\DateTime|null $created
  * @property \Cake\I18n\DateTime|null $modified
- * @property int $user_id
+ * @property int $adminuser_id
  *
  * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\MetaPost[] $meta_posts
@@ -45,7 +45,7 @@ class Post extends Entity
         'publish_date' => true,
         'created' => true,
         'modified' => true,
-        'user_id' => true,
+        'adminuser_id' => true,
         'user' => true,
         'meta_posts' => true,
         'post_groups' => true,

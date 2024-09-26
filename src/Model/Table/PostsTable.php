@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\Database\Query;
-use Cake\ORM\Entity;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -13,7 +11,6 @@ use Cake\Validation\Validator;
 /**
  * Posts Model
  *
- * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\MetaPostsTable&\Cake\ORM\Association\HasMany $MetaPosts
  * @property \App\Model\Table\PostGroupsTable&\Cake\ORM\Association\BelongsToMany $PostGroups
  *
@@ -39,7 +36,7 @@ class PostsTable extends Table
         'feature_image',
         'og_tag_image',
     ];
-
+    
     /**
      * Initialize method
      *
@@ -56,14 +53,12 @@ class PostsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Users', [
-            'foreignKey' => 'user_id',
+        $this->belongsTo('Adminusers', [
+            'foreignKey' => 'adminuser_id',
             'joinType' => 'INNER',
         ]);
         $this->hasMany('MetaPosts', [
             'foreignKey' => 'post_id',
-            'dependent' => true,
-            'cascadeCallbacks' => true,
         ]);
         $this->belongsToMany('PostGroups', [
             'foreignKey' => 'post_id',
@@ -116,8 +111,8 @@ class PostsTable extends Table
             ->allowEmptyDateTime('publish_date');
 
         $validator
-            ->integer('user_id')
-            ->notEmptyString('user_id');
+            ->integer('adminuser_id')
+            ->notEmptyString('adminuser_id');
 
         return $validator;
     }
@@ -131,7 +126,7 @@ class PostsTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn(['user_id'], 'Users'), ['errorField' => 'user_id']);
+        $rules->add($rules->existsIn(['adminuser_id'], 'Adminusers'), ['errorField' => 'adminuser_id']);
 
         return $rules;
     }

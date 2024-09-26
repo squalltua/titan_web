@@ -75,4 +75,26 @@ class PostsTableTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    /**
+     * Test getAllPosts method
+     *
+     * @return void
+     * @uses \App\Model\Table\PostsTable::getAllPosts()
+     */
+    public function testGetAllPosts(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getPost method
+     *
+     * @return void
+     * @uses \App\Model\Table\PostsTable::getPost()
+     */
+    public function testGetPost(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
 }

@@ -100,7 +100,7 @@ class PostsController extends AppController
                         if (!$imageMedia) {
                             $this->Flash->error(__('The {0} image could not be uploaded. Please try again.'));
 
-                            return $this->redirect("/manager/cms/posts/add");
+                            return $this->redirect("/manager/wcm/posts/add");
                         }
 
                         $metaPostsData[] = [
@@ -118,7 +118,7 @@ class PostsController extends AppController
 
                 $this->Flash->success(__('The post has been saved.'));
 
-                return $this->redirect("/manager/cms/posts/view/{$post->id}");
+                return $this->redirect("/manager/wcm/posts/view/{$post->id}");
             }
 
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
@@ -161,7 +161,7 @@ class PostsController extends AppController
                                 } else {
                                     $this->Flash->error(__('The {0} image could not be uploaded. Please try again.', $key));
 
-                                    return $this->redirect("/manager/cms/posts/edit/{$id}");
+                                    return $this->redirect("/manager/wcm/posts/edit/{$id}");
                                 }
 
                                 if (array_search($key, array_column($metaPosts->toArray(), 'meta_key'))) {
@@ -179,7 +179,7 @@ class PostsController extends AppController
                                     if (!$this->Posts->MetaPosts->save($newMeta)) {
                                         $this->Flash->error(__('The {0} meta could not be saved. Please try again.', $key));
 
-                                        return $this->redirect("/manager/cms/posts/edit/{$id}");
+                                        return $this->redirect("/manager/wcm/posts/edit/{$id}");
                                     }
                                 }
                             }
@@ -199,7 +199,7 @@ class PostsController extends AppController
                             } else {
                                 $this->Flash->error(__('The feature image could not be uploaded. Please try again.'));
 
-                                return $this->redirect("/manager/cms/posts/edit/{$id}");
+                                return $this->redirect("/manager/wcm/posts/edit/{$id}");
                             }
                         }
 
@@ -217,7 +217,7 @@ class PostsController extends AppController
                             } else {
                                 $this->Flash->error(__('The og tag image could not be uploaded. Please try again.'));
 
-                                return $this->redirect("/manager/cms/posts/edit/{$id}");
+                                return $this->redirect("/manager/wcm/posts/edit/{$id}");
                             }
                         }
 
@@ -245,7 +245,7 @@ class PostsController extends AppController
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));
 
-                return $this->redirect("/manager/cms/posts/edit/{$post->id}");
+                return $this->redirect("/manager/wcm/posts/edit/{$post->id}");
             }
 
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
@@ -272,7 +272,7 @@ class PostsController extends AppController
             $this->Flash->error(__('The post could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect("/manager/cms/posts");
+        return $this->redirect("/manager/wcm/posts");
     }
 
     public function removeImage(string $id, string $key)
@@ -285,7 +285,7 @@ class PostsController extends AppController
             $this->Flash->error(__('The image could not be removed. Please try again'));
         }
 
-        return $this->redirect("/manager/cms/posts/edit/{$id}");
+        return $this->redirect("/manager/wcm/posts/edit/{$id}");
     }
 
     public function publishedPosts()
@@ -294,6 +294,6 @@ class PostsController extends AppController
          * published post to json file or radis database.
          * ----------------------------------------- */
 
-        return $this->redirect('/manager/cms/posts');
+        return $this->redirect('/manager/wcm/posts');
     }
 }
