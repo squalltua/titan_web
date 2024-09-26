@@ -137,7 +137,7 @@ class ProductsController extends AppController
             $product->status = 'active';
             $product->adminuser_id = $this->Authentication->getIdentity()->get('id');
             $product->slug = Text::slug($product->title);
-            if ($this->Products->save($product)) { 
+            if ($this->Products->save($product)) {
                 $this->Flash->success(__('The data has been saved.'));
 
                 return $this->redirect("/manager/pim/products/view/{$product->id}");
@@ -196,5 +196,13 @@ class ProductsController extends AppController
         }
 
         return $this->redirect('/manager/pim/products');
+    }
+
+    public function images(string $productId)
+    {
+        $product = $this->Products->get($productId, ['contain' => 'Attributes']);
+
+        $this->set('objectMenuActive', 'images');
+        $this->set(compact('product'));
     }
 }
