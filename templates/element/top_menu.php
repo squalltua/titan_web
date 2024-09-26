@@ -12,11 +12,10 @@
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/manager"><?= __('All') ?></a></li>
-                <li><a class="dropdown-item" href="/manager/cms"><?= __('Content management') ?></a></li>
-                <li><a class="dropdown-item" href="/manager/pim"><?= __('Products management') ?></a></li>
+                <li><a class="dropdown-item" href="/manager/cms"><?= __('Web Content management') ?></a></li>
+                <li><a class="dropdown-item" href="/manager/pim"><?= __('Product information management') ?></a></li>
                 <li><a class="dropdown-item" href="/manager/dam"><?= __('Digital assets management') ?></a></li>
-                <li><a class="dropdown-item" href="/manager/crm"><?= __('Customers manangment') ?></a></li>
-                <li><a class="dropdown-item" href="/manager/fnm"><?= __('Financials management') ?></a></li>
+                <li><a class="dropdown-item" href="/manager/crm"><?= __('Customer data manangment') ?></a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="/manager/settings"><?= __('Settings management') ?></a></li>
             </ul>

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Manager\Cms;
+namespace App\Controller\Manager\Wcm;
 
 use App\Controller\Manager\AppController;
 
@@ -12,9 +12,9 @@ class PagesController extends AppController
     {
         parent::initialize();
 
-        $this->set('subMenu', 'cms_menu');
+        $this->set('subMenu', 'wcm_menu');
         $this->set('subMenuActive', 'dashboard');
-        $this->set('applicationName', __('Content management system'));
+        $this->set('applicationName', __('Web content management'));
     }
 
     public function dashboard() {}

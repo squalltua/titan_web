@@ -82,14 +82,14 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/logout', 'Manager/Settings/Users::logout');
         $builder->connect('/initialize-data', 'Manager/Settings/Users::initializeData');
 
-        $builder->prefix('Cms', function (RouteBuilder $builder): void {
-            $builder->connect('/', ['prefix' => 'Manager/Cms', 'controller' => 'Pages', 'action' => 'dashboard']);
+        $builder->prefix('Wcm', function (RouteBuilder $builder): void {
+            $builder->connect('/', ['prefix' => 'Manager/Wcm', 'controller' => 'Pages', 'action' => 'dashboard']);
 
-            $builder->connect('/posts', ['prefix' => 'Manager/Cms', 'controller' => 'Posts', 'action' => 'index']);
-            $builder->connect('/posts/{action}/*', ['prefix' => 'Manager/Cms', 'controller' => 'Posts']);
+            $builder->connect('/posts', ['prefix' => 'Manager/Wcm', 'controller' => 'Posts', 'action' => 'index']);
+            $builder->connect('/posts/{action}/*', ['prefix' => 'Manager/Wcm', 'controller' => 'Posts']);
 
-            $builder->connect('/groups', ['prefix' => 'Manager/Cms', 'controller' => 'PostGroups', 'action' => 'index']);
-            $builder->connect('/groups/{action}/*', ['prefix' => 'Manager/Cms', 'controller' => 'PostGroups']);
+            $builder->connect('/groups', ['prefix' => 'Manager/Wcm', 'controller' => 'PostGroups', 'action' => 'index']);
+            $builder->connect('/groups/{action}/*', ['prefix' => 'Manager/Wcm', 'controller' => 'PostGroups']);
         });
 
         $builder->prefix('Pim', function (RouteBuilder $builder): void {
@@ -115,14 +115,14 @@ return function (RouteBuilder $routes): void {
             $builder->connect('/medias/{action}/*', ['prefix' => 'Manager/Dam', 'controller' => 'Medias']);
         });
 
-        $builder->prefix('Crm', function (RouteBuilder $builder): void {
-            $builder->connect('/', ['prefix' => 'Manager/Crm', 'controller' => 'Pages', 'action' => 'dashboard']);
+        $builder->prefix('Cdm', function (RouteBuilder $builder): void {
+            $builder->connect('/', ['prefix' => 'Manager/Cdm', 'controller' => 'Pages', 'action' => 'dashboard']);
 
-            $builder->connect('/customers', ['prefix' => 'Manager/Crm', 'controller' => 'Customers', 'action' => 'inddex']);
-            $builder->connect('/customers/{action}/*', ['prefix' => 'Manager/Crm', 'controller' => 'Customers']);
+            $builder->connect('/customers', ['prefix' => 'Manager/Cdm', 'controller' => 'Customers', 'action' => 'inddex']);
+            $builder->connect('/customers/{action}/*', ['prefix' => 'Manager/Cdm', 'controller' => 'Customers']);
 
-            $builder->connect('/groups', ['prefix' => 'Manager/Crm', 'controller' => 'CustomerGroups', 'action' => 'index']);
-            $builder->connect('/groups/{action}/*', ['prefix' => 'Manager/Crm', 'controller' => 'CustomerGroups']);
+            $builder->connect('/groups', ['prefix' => 'Manager/Cdm', 'controller' => 'CustomerGroups', 'action' => 'index']);
+            $builder->connect('/groups/{action}/*', ['prefix' => 'Manager/Cdm', 'controller' => 'CustomerGroups']);
         });
 
         $builder->prefix('Settings', function (RouteBuilder $builder): void {

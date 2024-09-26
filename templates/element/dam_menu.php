@@ -2,9 +2,6 @@
     <ul class="nav nav-underline">
         <li class="nav-item"><i class="bi bi-arrow-return-right nav-link disabled"></i></li>
         <li class="nav-item">
-            <?= $this->Html->link(__('Dashboard'), '/manager/dam', ['class' => $subMenuActive === 'dashboard' ? 'nav-link active' : 'nav-link']) ?>
-        </li>
-        <li class="nav-item">
             <?= $this->Html->link(__('Medias'), '/manager/dam/medias', ['class' => $subMenuActive === 'medias' ? 'nav-link active' : 'nav-link']) ?>
         </li>
     </ul>
