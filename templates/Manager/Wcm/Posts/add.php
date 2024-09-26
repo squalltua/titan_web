@@ -85,6 +85,7 @@
         <div class="row">
             <div class="col">
                 <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary me-md-2']) ?>
+                <?= $this->Html->link(__('Back'), "/manager/wcm/posts", ['class' => 'btn btn-secondary']) ?>
             </div>
         </div>
         <?= $this->Form->end() ?>

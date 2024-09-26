@@ -123,7 +123,7 @@
         <div class="row">
             <div class="col">
                 <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary me-md-2']) ?>
-                <?= $this->Html->link(__('Back'), "/manager/cms/posts/view/{$post->id}", ['class' => 'btn btn-secondary']) ?>
+                <?= $this->Html->link(__('Back'), "/manager/wcm/posts/view/{$post->id}", ['class' => 'btn btn-secondary']) ?>
             </div>
         </div>
         <?= $this->Form->end() ?>

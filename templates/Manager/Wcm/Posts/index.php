@@ -2,7 +2,7 @@
     <div class="col">
         <h4>
             <?= __('Posts') ?>
-            <?= $this->Html->link(__('New'), '/manager/cms/posts/add', ['class' => 'btn btn-primary btn-sm ms-3']) ?>
+            <?= $this->Html->link(__('New'), '/manager/wcm/posts/add', ['class' => 'btn btn-primary btn-sm ms-3']) ?>
         </h4>
     </div>
 </div>
@@ -27,9 +27,9 @@
                         <td><?= $this->Time->format($post->created) ?></td>
                         <td><?= $this->Time->format($post->modified) ?></td>
                         <td>
-                            <?= $this->Html->link(__('View'), "/manager/cms/posts/view/{$post->id}", ['class' => 'me-3']) ?>
-                            <?= $this->Html->link(__('Edit'), "/manager/cms/posts/edit/{$post->id}", ['class' => 'me-3']) ?>
-                            <?= $this->Form->postLink(__('Delete'), "/manager/cms/posts/delete/{$post->id}") ?>
+                            <?= $this->Html->link(__('View'), "/manager/wcm/posts/view/{$post->id}", ['class' => 'me-3']) ?>
+                            <?= $this->Html->link(__('Edit'), "/manager/wcm/posts/edit/{$post->id}", ['class' => 'me-3']) ?>
+                            <?= $this->Form->postLink(__('Delete'), "/manager/wcm/posts/delete/{$post->id}") ?>
                         </td>
                     </tr>
                 <?php endforeach ?>

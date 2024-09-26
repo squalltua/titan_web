@@ -113,10 +113,10 @@
             <div class="col">
                 <?= $this->Html->link(
                     __('Edit'),
-                    "/manager/cms/posts/edit/{$post->id}",
+                    "/manager/wcm/posts/edit/{$post->id}",
                     ['class' => 'btn btn-primary me-md-2']
                 ) ?>
-                <?= $this->Html->link(__('Back'), "/manager/cmr/posts", ['class' => 'btn btn-secondary']) ?>
+                <?= $this->Html->link(__('Back'), "/manager/wcm/posts", ['class' => 'btn btn-secondary']) ?>
             </div>
         </div>
     </div>
