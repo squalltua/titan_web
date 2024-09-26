@@ -201,8 +201,44 @@ class ProductsController extends AppController
     public function images(string $productId)
     {
         $product = $this->Products->get($productId, ['contain' => 'Attributes']);
+        if ($this->request->is('post')) {
+            // upload feature image only
+            if ($this->request->getData('feature_image')) {
+                $featureImage = $this->request->getData('feature_image');
+                if (!$featureImage->getError() && $this->fetchTable('Medias')->uploadImage('product_image', $featureImage)) {
+                    $this->Flash->success(__('The feature image has been uploaded.'));
+                } else {
+                    $this->Flash->error(__('The feature image could not be uploaded. Please try again.'));
+                }
+            }
+
+            // upload other image
+            if ($this->request->getData('product_images')) {
+                $productImage = $this->request->getData('product_image');
+                if (!$productImage->getError() && $this->fetchTable('Medias')->uploadImage('product_image', $productImage)) {
+                    $this->Flash->success(__('The product image has been uploaded.'));
+                } else {
+                    $this->Flash->error(__('The product image could not be uploaded. Please try again.'));
+                }
+            }
+
+            return $this->redirect("/manager/pim/products/images/{$productId}");
+        }
 
         $this->set('objectMenuActive', 'images');
         $this->set(compact('product'));
+    }
+
+    public function removeImage(string $productId, $mediaId)
+    {
+        $this->request->allowMethod(['delete', 'post']);
+        $media = $this->fetchTable('Medias')->get($mediaId);
+        if (unlink($media->path) && $this->fetchTable('Medias')->delete($media)) {
+            $this->Flash->success(__('The image has been deleted.'));
+        } else {
+            $this->Flash->error(__('The image could not be deleted. Please try again.'));
+        }
+
+        return $this->redirect("/manager/pim/products/images/{$productId}");
     }
 }

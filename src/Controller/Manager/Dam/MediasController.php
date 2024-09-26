@@ -26,7 +26,7 @@ class MediasController extends AppController
      *
      * @return \Cake\Http\Response
      */
-    public function index(): Response
+    public function index()
     {
         $medias = $this->paginate($this->Medias);
 
@@ -38,7 +38,7 @@ class MediasController extends AppController
      *
      * @return \Cake\Http\Response
      */
-    public function add(): Response
+    public function add()
     {
         if ($this->request->is('post')) {
             $data = $this->request->getData('attachment');
@@ -61,7 +61,7 @@ class MediasController extends AppController
      * @param string $id
      * @return \Cake\Http\Response
      */
-    public function edit(string $id): Response
+    public function edit(string $id)
     {
         $media = $this->Medias->get($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
@@ -84,7 +84,7 @@ class MediasController extends AppController
      * @param string $id
      * @return \Cake\Http\Response
      */
-    public function delete(string $id): Response
+    public function delete(string $id)
     {
         $this->request->allowMethod(['delete', 'post']);
         $media = $this->Medias->get($id);
