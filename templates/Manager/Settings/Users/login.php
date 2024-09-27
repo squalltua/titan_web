@@ -1,5 +1,5 @@
 <?= $this->Form->create() ?>
-    <h3 class="text-center"><?= __('TF Manager') ?></h3>
+    <h3 class="text-center"><?= __('TitanWEB') ?></h3>
     <div class="mb-3">
         <h5 class="text-center"><?= __('Please login first.') ?></h5>
         <?= $this->Flash->render() ?>
