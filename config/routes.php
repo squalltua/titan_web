@@ -118,7 +118,7 @@ return function (RouteBuilder $routes): void {
         $builder->prefix('Cdm', function (RouteBuilder $builder): void {
             $builder->connect('/', ['prefix' => 'Manager/Cdm', 'controller' => 'Pages', 'action' => 'dashboard']);
 
-            $builder->connect('/customers', ['prefix' => 'Manager/Cdm', 'controller' => 'Customers', 'action' => 'inddex']);
+            $builder->connect('/customers', ['prefix' => 'Manager/Cdm', 'controller' => 'Customers', 'action' => 'index']);
             $builder->connect('/customers/{action}/*', ['prefix' => 'Manager/Cdm', 'controller' => 'Customers']);
 
             $builder->connect('/groups', ['prefix' => 'Manager/Cdm', 'controller' => 'CustomerGroups', 'action' => 'index']);
