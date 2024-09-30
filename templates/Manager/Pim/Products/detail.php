@@ -13,6 +13,24 @@
             </div>
             <div class="col-6">
                 <dl class="row">
+                    <dt class="col-3"><?= __('SKUs') ?></dt>
+                    <dd class="col-9"><?= $product->sku ?></dd>
+
+                    <dt class="col-3"><?= __('Model') ?></dt>
+                    <dd class="col-9"><?= $product->model_name ?></dd>
+
+                    <dt class="col-3"><?= __('Series') ?></dt>
+                    <dd class="col-9"><?= $product->series_number ?></dd>
+
+                    <dt class="col-3"><?= __('Product family') ?></dt>
+                    <dd class="col-9"><?= $product->product_family->name ?? __('- No -') ?></dd>
+
+                    <dt class="col-3"><?= __('Category') ?></dt>
+                    <dd class="col-9"><?= $product->category->name ?? __('- No -') ?></dd>
+
+                    <dt class="col-3"><?= __('Type') ?></dt>
+                    <dd class="col-9"><?= $product->type->name ?? __('- No -') ?></dd>
+
                     <dt class="col-3"><?= __('Base price') ?></dt>
                     <dd class="col-9"><?= $product->base_price ?></dd>
 

@@ -181,4 +181,42 @@ class ProductsTable extends Table
 
         return $rules;
     }
+
+    public function getAllProducts()
+    {
+        $products = $this->find()->contain(['ProductFamilies', 'Taxonomies']);
+        foreach ($products as $product) {
+            $product->type = null;
+            $product->category = null;
+            foreach ($product->taxonomies as $taxonomy) {
+                if ($taxonomy->type === 'types') {
+                    $product->type = $taxonomy;
+                }
+
+                if ($taxonomy->type === 'categories') {
+                    $product->category = $taxonomy;
+                }
+            }
+        }
+
+        return $products;
+    }
+
+    public function getInformation(string $id)
+    {
+        $product = $this->get($id, ['contain' => ['ProductFamilies', 'Taxonomies']]);
+        $product->type = null;
+        $product->category = null;
+        foreach ($product->taxonomies as $taxonomy) {
+            if ($taxonomy->type === 'types') {
+                $product->type = $taxonomy;
+            }
+
+            if ($taxonomy->type === 'categories') {
+                $product->category = $taxonomy;
+            }
+        }
+
+        return $product;
+    }
 }

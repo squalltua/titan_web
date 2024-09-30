@@ -8,6 +8,7 @@ use App\Controller\Manager\AppController;
 use Cake\Utility\Text;
 use Cake\I18n\Number;
 use Cake\Utility\Hash;
+use Cake\Chronos\Chronos;
 
 /**
  * @property \App\Model\Table\ProductsTable $Products
@@ -33,7 +34,7 @@ class ProductsController extends AppController
      */
     public function index()
     {
-        $query = $this->Products->find()->contain(['ProductFamilies', 'Taxonomies']);
+        $query = $this->Products->getAllProducts();
         $products = $this->paginate($query);
 
         $this->set(compact('products'));
@@ -45,7 +46,7 @@ class ProductsController extends AppController
      */
     public function detail(string $id)
     {
-        $product = $this->Products->get($id);
+        $product = $this->Products->getInformation($id);
         $product->base_price = Number::precision($product->base_price ?? 0.00, 2);
         $product->sell_price = Number::precision($product->sell_price ?? 0.00, 2);
         $product->discount_price = Number::precision($product->discount_price ?? 0.00, 2);
@@ -162,13 +163,13 @@ class ProductsController extends AppController
      */
     public function edit(string $id)
     {
-        $product = $this->Products->get($id);
+        $product = $this->Products->getInformation($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $product = $this->Products->patchEntity($product, $this->request->getData());
             if ($this->Products->save($product)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/pim/products/detail/{$product->id}");
+                return $this->redirect("/manager/pim/products/edit/{$product->id}");
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));

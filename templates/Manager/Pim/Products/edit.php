@@ -35,12 +35,20 @@
             </div>
             <div class="col-6">
                 <div class="form-group mb-3">
-                    <label for="family-id" class="form-label"><?= __('Family') ?></label>
-                    <?= $this->Form->select('family_id', $families, ['class' => 'form-select', 'empty' => __('Optional')]) ?>
+                    <label for="product-family-id" class="form-label"><?= __('Family') ?></label>
+                    <?= $this->Form->select('product_family_id', $families, ['class' => 'form-select', 'empty' => __('Optional'), 'id' => 'product-family-id']) ?>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="taxonomies-type-id" class="form-label"><?= __('Type') ?></label>
+                    <?= $this->Form->select('taxonomies._ids[]', $types, ['class' => 'form-select', 'empty' => __('Optional'), 'id' => 'taxonomies-category-id']) ?>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="taxonomies-category-id" class="form-label"><?= __('Category') ?></label>
+                    <?= $this->Form->select('taxonomies._ids[]', $categories, ['class' => 'form-select', 'empty' => __('Optional'), 'id' => 'taxonomies-category-id']) ?>
                 </div>
                 <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" value="" id="on-sale" name="on_sale">
-                    <label class="form-check-label" for="flexCheckDefault"><?= __('On sale') ?></label>
+                    <?= $this->Form->checkbox('on_sale', ['class' => 'form-check-input', 'id' => 'on-sale']) ?>
+                    <label class="form-check-label" for="on-sale"><?= __('On sale') ?></label>
                   </div>
                 <div class="form-group mb-3">
                     <label for="base-price" class="form-label"><?= __('Base price') ?></label>
@@ -56,11 +64,11 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="start-at" class="form-label"><?= __('Start at') ?></label>
-                    <?= $this->Form->date('start_at', ['class' => 'form-control', 'id' => 'start-at']) ?>
+                    <?= $this->Form->datetime('start_at', ['class' => 'form-control', 'id' => 'start-at']) ?>
                 </div>
                 <div class="form-group mb-3">
                     <label for="end-at" class="form-label"><?= __('End at') ?></label>
-                    <?= $this->Form->date('end_at', ['class' => 'form-control', 'id' => 'end-at']) ?>
+                    <?= $this->Form->datetime('end_at', ['class' => 'form-control', 'id' => 'end-at']) ?>
                 </div>
                 <div class="form-group mb-3">
                     <label for="status" class="form-label"><?= __('Status') ?></label>

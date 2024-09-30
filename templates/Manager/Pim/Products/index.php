@@ -15,11 +15,10 @@
                 <tr>
                     <th><?= $this->Paginator->sort('title') ?></th>
                     <th><?= $this->Paginator->sort('sku', 'SKUs') ?></th>
-                    <th><?= $this->Paginator->sort('base_price') ?></th>
-                    <th><?= $this->Paginator->sort('sell_price') ?></th>
+                    <th><?= $this->Paginator->sort('model_name') ?></th>
+                    <th><?= $this->Paginator->sort('series_number') ?></th>
                     <th><?= $this->Paginator->sort('product_family_id') ?></th>
-                    <th><?= $this->Paginator->sort('start_at') ?></th>
-                    <th><?= $this->Paginator->sort('end_at') ?></th>
+                    <th><?= $this->Paginator->sort('on_sale') ?></th>
                     <th><?= $this->Paginator->sort('status') ?></th>
                     <th><?= __('Action') ?></th>
                 </tr>
@@ -29,11 +28,10 @@
                     <tr>
                         <td><?= h($product->title) ?></td>
                         <td><?= h($product->sku) ?></td>
-                        <td><?= $product->base_price ?></td>
-                        <td><?= $product->sell_price ?></td>
-                        <td><?= $product->prodcut_family->name ?? '' ?></td>
-                        <td><?= $product->start_at ?></th>
-                        <td><?= $product->end_at ?></td>
+                        <td><?= $product->model_name ?></td>
+                        <td><?= $product->series_number ?></td>
+                        <td><?= $product->product_family->name ?? '' ?></td>
+                        <td><?= $product->on_sale ? 'Yes' : 'No' ?></td>
                         <td><?= $product->status ?></td>
                         <td>
                             <?= $this->Html->link(__('Detail'), "/manager/pim/products/detail/{$product->id}", ['class' => 'me-3']) ?>
