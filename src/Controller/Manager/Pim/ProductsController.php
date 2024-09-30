@@ -33,7 +33,8 @@ class ProductsController extends AppController
      */
     public function index()
     {
-        $products = $this->paginate($this->Products);
+        $query = $this->Products->find()->contain(['ProductFamilies', 'Taxonomies']);
+        $products = $this->paginate($query);
 
         $this->set(compact('products'));
     }
@@ -177,7 +178,6 @@ class ProductsController extends AppController
         $types = $this->Products->Taxonomies->getTypesList();
         $families = $this->Products->ProductFamilies->find('list');
 
-
         $this->set(compact('product', 'categories', 'types', 'families'));
     }
 
@@ -256,7 +256,14 @@ class ProductsController extends AppController
         $this->set(compact('product', 'medias'));
     }
 
-    public function removeImage(string $productId, $mediaId)
+    /**
+     * remove image of product.
+     *
+     * @param string $productId
+     * @param string $mediaId
+     * @return void
+     */
+    public function removeImage(string $productId, string $mediaId)
     {
         $this->request->allowMethod(['delete', 'post']);
         $media = $this->fetchTable('Medias')->get($mediaId);

@@ -15,8 +15,12 @@
                 <tr>
                     <th><?= $this->Paginator->sort('title') ?></th>
                     <th><?= $this->Paginator->sort('sku', 'SKUs') ?></th>
-                    <th><?= $this->Paginator->sort('summary') ?></th>
-                    <th><?= $this->Paginator->sort('description') ?></th>
+                    <th><?= $this->Paginator->sort('base_price') ?></th>
+                    <th><?= $this->Paginator->sort('sell_price') ?></th>
+                    <th><?= $this->Paginator->sort('product_family_id') ?></th>
+                    <th><?= $this->Paginator->sort('start_at') ?></th>
+                    <th><?= $this->Paginator->sort('end_at') ?></th>
+                    <th><?= $this->Paginator->sort('status') ?></th>
                     <th><?= __('Action') ?></th>
                 </tr>
             </thead>
@@ -25,8 +29,12 @@
                     <tr>
                         <td><?= h($product->title) ?></td>
                         <td><?= h($product->sku) ?></td>
-                        <td><?= h($product->summary) ?></td>
-                        <td><?= h($product->description) ?></td>
+                        <td><?= $product->base_price ?></td>
+                        <td><?= $product->sell_price ?></td>
+                        <td><?= $product->prodcut_family->name ?? '' ?></td>
+                        <td><?= $product->start_at ?></th>
+                        <td><?= $product->end_at ?></td>
+                        <td><?= $product->status ?></td>
                         <td>
                             <?= $this->Html->link(__('Detail'), "/manager/pim/products/detail/{$product->id}", ['class' => 'me-3']) ?>
                             <?= $this->Form->postLink(__('Delete'), "/manager/pim/products/delete/{$product->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>
