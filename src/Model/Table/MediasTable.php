@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace App\Model\Table;
@@ -7,9 +6,8 @@ namespace App\Model\Table;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
-use Cake\Routing\Route\Route;
-use Cake\Utility\Text;
 use Cake\Validation\Validator;
+use Cake\Utility\Text;
 
 /**
  * Medias Model
@@ -52,6 +50,11 @@ class MediasTable extends Table
 
         $this->hasMany('MetaMedias', [
             'foreignKey' => 'media_id',
+        ]);
+        $this->belongsToMany('Products', [
+            'foreignKey' => 'media_id',
+            'targetForeignKey' => 'product_id',
+            'joinTable' => 'products_medias',
         ]);
     }
 
@@ -122,7 +125,7 @@ class MediasTable extends Table
     public function uploadImage(string $type, object $image): mixed
     {
         $fileName = Text::slug(strtolower(str_replace(['.jpg', '.png'], '', $image->getClientFilename())));
-        $fileExtension = ['image/jpeg' => '.jpg', 'image/png' => '.png'];
+        $fileExtension = ['image/jpeg' => '.jpg', 'image/png' => '.png', 'image/webp' => '.webp'];
         $webroot = WWW_ROOT;
         $fullUrl = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]/api/v1/medias/images/{$fileName}";
         $uuid = Text::uuid();

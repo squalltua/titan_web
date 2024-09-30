@@ -74,6 +74,11 @@ class ProductsTable extends Table
             'targetForeignKey' => 'attribute_id',
             'joinTable' => 'products_attributes',
         ]);
+        $this->belongsToMany('Medias', [
+            'foreignKey' => 'product_id',
+            'targetForeignKey' => 'media_id',
+            'joinTable' => 'products_medias',
+        ]);
         $this->belongsToMany('Taxonomies', [
             'foreignKey' => 'product_id',
             'targetForeignKey' => 'taxonomy_id',

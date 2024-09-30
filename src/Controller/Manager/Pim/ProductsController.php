@@ -7,6 +7,7 @@ namespace App\Controller\Manager\Pim;
 use App\Controller\Manager\AppController;
 use Cake\Utility\Text;
 use Cake\I18n\Number;
+use Cake\Utility\Hash;
 
 /**
  * @property \App\Model\Table\ProductsTable $Products
@@ -140,7 +141,7 @@ class ProductsController extends AppController
             if ($this->Products->save($product)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/pim/products/view/{$product->id}");
+                return $this->redirect("/manager/pim/products/detail/{$product->id}");
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
@@ -166,7 +167,7 @@ class ProductsController extends AppController
             if ($this->Products->save($product)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/pim/products/view/{$product->id}");
+                return $this->redirect("/manager/pim/products/detail/{$product->id}");
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
@@ -198,25 +199,39 @@ class ProductsController extends AppController
         return $this->redirect('/manager/pim/products');
     }
 
+    /**
+     * @param string $productId - product id
+     * @return \Cake\Http\Response
+     */
     public function images(string $productId)
     {
-        $product = $this->Products->get($productId, ['contain' => 'Attributes']);
+        $product = $this->Products->get($productId, ['contain' => ['Attributes', 'Medias']]);
         if ($this->request->is('post')) {
             // upload feature image only
             if ($this->request->getData('feature_image')) {
                 $featureImage = $this->request->getData('feature_image');
-                if (!$featureImage->getError() && $this->fetchTable('Medias')->uploadImage('product_image', $featureImage)) {
-                    $this->Flash->success(__('The feature image has been uploaded.'));
+                if (!$featureImage->getError()) {
+                    $featureMedia = $this->fetchTable('Medias')->uploadImage('feature_image', $featureImage);
+                    if ($featureMedia && $this->fetchTable('Products')->Medias->link($product, [$featureMedia])) {
+                        $this->Flash->success(__('The feature image has been uploaded.'));
+                    } else {
+                        $this->Flash->error(__('The product feature image could not link with prodcut data. Please try again.'));
+                    }
                 } else {
                     $this->Flash->error(__('The feature image could not be uploaded. Please try again.'));
                 }
             }
 
             // upload other image
-            if ($this->request->getData('product_images')) {
+            if ($this->request->getData('product_image')) {
                 $productImage = $this->request->getData('product_image');
-                if (!$productImage->getError() && $this->fetchTable('Medias')->uploadImage('product_image', $productImage)) {
-                    $this->Flash->success(__('The product image has been uploaded.'));
+                if (!$productImage->getError()) {
+                    $productMedida = $this->fetchTable('Medias')->uploadImage('product_image', $productImage);
+                    if ($productMedida && $this->fetchTable('Products')->Medias->link($product, [$productMedida])) {
+                        $this->Flash->success(__('The product image has been uploaded.'));    
+                    } else {
+                        $this->Flash->error(__('The product image could not link with product data. Please try again.'));
+                    }
                 } else {
                     $this->Flash->error(__('The product image could not be uploaded. Please try again.'));
                 }
@@ -225,8 +240,20 @@ class ProductsController extends AppController
             return $this->redirect("/manager/pim/products/images/{$productId}");
         }
 
+        $medias = [
+            'featureMediaImage' => null,
+            'productMediaImages' => [],   
+        ];
+        foreach ($product->medias as $media) {
+            if ($media->using_type === 'feature_image') {
+                $medias['featureMediaImage'] = $media;
+            } elseif ($media->using_type === 'product_image') {
+                $medias['productMediaImages'][] = $media;
+            }
+        }
+
         $this->set('objectMenuActive', 'images');
-        $this->set(compact('product'));
+        $this->set(compact('product', 'medias'));
     }
 
     public function removeImage(string $productId, $mediaId)
