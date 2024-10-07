@@ -121,8 +121,14 @@ return function (RouteBuilder $routes): void {
             $builder->connect('/customers', ['prefix' => 'Manager/Cdm', 'controller' => 'Customers', 'action' => 'index']);
             $builder->connect('/customers/{action}/*', ['prefix' => 'Manager/Cdm', 'controller' => 'Customers']);
 
-            $builder->connect('/groups', ['prefix' => 'Manager/Cdm', 'controller' => 'CustomerGroups', 'action' => 'index']);
-            $builder->connect('/groups/{action}/*', ['prefix' => 'Manager/Cdm', 'controller' => 'CustomerGroups']);
+            $builder->connect('/customers/notes/{customer_id}', ['prefix' => 'Manager/Cdm', 'controller' => 'CustomerNotes', 'action' => 'index'])->setPass(['customer_id']);
+            $builder->connect('/customers/notes/{customer_id}/{action}/*', ['prefix' => 'Manager/Cdm', 'controller' => 'CustomerNotes'])->setPass(['customer_id']);
+
+            $builder->connect('/customers/orders/{customer_id}', ['prefix' => 'Manager/Cdm', 'controller' => 'PurchaseOrders', 'action' => 'index'])->setPass(['customer_id']);
+            $builder->connect('/customers/orders/{customer_id}/{action}/*', ['prefix' => 'Manager/Cdm', 'controller' => 'PurchaseOrders'])->setPass(['customer_id']);
+
+            $builder->connect('/customers/contacts/{customer_id}', ['prefix' => 'Manager/Cdm', 'controller' => 'Contacts', 'action' => 'index'])->setPass(['customer_id']);
+            $builder->connect('/customers/contacts/{customer_id}/{action}/*', ['prefix' => 'Manager/Cdm', 'controller' => 'Contacts'])->setPass(['customer_id']);
         });
 
         $builder->prefix('Settings', function (RouteBuilder $builder): void {

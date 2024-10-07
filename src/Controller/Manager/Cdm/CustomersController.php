@@ -14,7 +14,7 @@ class CustomersController extends AppController
 
         $this->set('subMenu', 'cdm_menu');
         $this->set('subMenuActive', 'customers');
-        $this->set('applicationName', __('Customer data managment'));
+        $this->set('applicationName', __('Customer data management'));
     }
 
     /**

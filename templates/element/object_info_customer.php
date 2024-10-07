@@ -16,7 +16,10 @@
             <?= $this->Html->link(__('Detail'), "/manager/cdm/customers/detail/{$customer->id}", ['class' => $objectMenuActive === 'detail' ? 'nav-link active' : 'nav-link']) ?>
         </li>
         <li class="nav-item">
-            <?= $this->Html->link(__('Order History'), "/manager/cdm/customers/order-history/{$customer->id}", ['class' => $objectMenuActive === 'order-history' ? 'nav-link active' : 'nav-link']) ?>
+            <?= $this->Html->link(__('Contacts'), "/manager/cdm/customers/contacts/{$customer->id}", ['class' => $objectMenuActive === 'contacts' ? 'nav-link active' : 'nav-link']) ?>
+        </li>
+        <li class="nav-item">
+            <?= $this->Html->link(__('Orders'), "/manager/cdm/customers/orders/{$customer->id}", ['class' => $objectMenuActive === 'orders' ? 'nav-link active' : 'nav-link']) ?>
         </li>
         <li class="nav-item">
             <?= $this->Html->link(__('Notes'), "/amanger/cdm/customers/notes/{$customer->id}", ['class' => $objectMenuActive === 'notes' ? 'nav-link active' : 'nav-link']) ?>
