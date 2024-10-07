@@ -22,9 +22,15 @@ use Cake\ORM\Entity;
  * @property string|null $contact_type
  * @property string|null $avatar
  * @property \Cake\I18n\Date|null $date_of_birth
- * @property string|null $status
+ * @property string $type
+ * @property string|null $service_type
+ * @property string $status
  * @property \Cake\I18n\DateTime|null $created
  * @property \Cake\I18n\DateTime|null $modified
+ *
+ * @property \App\Model\Entity\Contact[] $contacts
+ * @property \App\Model\Entity\CustomerNote[] $customer_notes
+ * @property \App\Model\Entity\MetaCustomer[] $meta_customers
  */
 class Customer extends Entity
 {
@@ -51,8 +57,13 @@ class Customer extends Entity
         'contact_type' => true,
         'avatar' => true,
         'date_of_birth' => true,
+        'type' => true,
+        'service_type' => true,
         'status' => true,
         'created' => true,
         'modified' => true,
+        'contacts' => true,
+        'customer_notes' => true,
+        'meta_customers' => true,
     ];
 }

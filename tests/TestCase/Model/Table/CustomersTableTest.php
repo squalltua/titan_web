@@ -25,6 +25,9 @@ class CustomersTableTest extends TestCase
      */
     protected array $fixtures = [
         'app.Customers',
+        'app.Contacts',
+        'app.CustomerNotes',
+        'app.MetaCustomers',
     ];
 
     /**
@@ -58,6 +61,28 @@ class CustomersTableTest extends TestCase
      * @uses \App\Model\Table\CustomersTable::validationDefault()
      */
     public function testValidationDefault(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getListCompanyTypes method
+     *
+     * @return void
+     * @uses \App\Model\Table\CustomersTable::getListCompanyTypes()
+     */
+    public function testGetListCompanyTypes(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getListServiceTypes method
+     *
+     * @return void
+     * @uses \App\Model\Table\CustomersTable::getListServiceTypes()
+     */
+    public function testGetListServiceTypes(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

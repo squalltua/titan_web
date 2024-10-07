@@ -32,10 +32,12 @@ class CustomersFixture extends TestFixture
                 'source' => 'Lorem ipsum dolor sit amet',
                 'contact_type' => 'Lorem ipsum dolor sit amet',
                 'avatar' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-                'date_of_birth' => '2024-10-05',
+                'date_of_birth' => '2024-10-07',
+                'type' => 'Lorem ipsum dolor sit amet',
+                'service_type' => 'Lorem ipsum dolor sit amet',
                 'status' => 'Lorem ipsum dolor sit amet',
-                'created' => '2024-10-05 05:09:21',
-                'modified' => '2024-10-05 05:09:21',
+                'created' => '2024-10-07 06:06:33',
+                'modified' => '2024-10-07 06:06:33',
             ],
         ];
         parent::init();

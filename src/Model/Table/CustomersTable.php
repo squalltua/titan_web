@@ -11,6 +11,10 @@ use Cake\Validation\Validator;
 /**
  * Customers Model
  *
+ * @property \App\Model\Table\ContactsTable&\Cake\ORM\Association\HasMany $Contacts
+ * @property \App\Model\Table\CustomerNotesTable&\Cake\ORM\Association\HasMany $CustomerNotes
+ * @property \App\Model\Table\MetaCustomersTable&\Cake\ORM\Association\HasMany $MetaCustomers
+ *
  * @method \App\Model\Entity\Customer newEmptyEntity()
  * @method \App\Model\Entity\Customer newEntity(array $data, array $options = [])
  * @method array<\App\Model\Entity\Customer> newEntities(array $data, array $options = [])
@@ -130,10 +134,36 @@ class CustomersTable extends Table
             ->allowEmptyDate('date_of_birth');
 
         $validator
+            ->scalar('type')
+            ->requirePresence('type', 'create')
+            ->notEmptyString('type');
+
+        $validator
+            ->scalar('service_type')
+            ->maxLength('service_type', 45)
+            ->allowEmptyString('service_type');
+
+        $validator
             ->scalar('status')
             ->maxLength('status', 45)
-            ->allowEmptyString('status');
+            ->requirePresence('status', 'create')
+            ->notEmptyString('status');
 
         return $validator;
+    }
+
+    public function getListCompanyTypes()
+    {
+        return [
+            'individual' => __('Individual'),
+            'company' => __('Company'),
+        ];
+    }
+
+    public function getListServiceTypes()
+    {
+        return [
+            'none' => __('None'),
+        ];
     }
 }

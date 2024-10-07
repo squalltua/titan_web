@@ -28,8 +28,8 @@ class ContactsFixture extends TestFixture
                 'email' => 'Lorem ipsum dolor sit amet',
                 'position' => 'Lorem ipsum dolor sit amet',
                 'status' => 'Lorem ipsum dolor sit amet',
-                'created' => '2024-10-05 05:09:44',
-                'modified' => '2024-10-05 05:09:44',
+                'created' => '2024-10-07 06:06:48',
+                'modified' => '2024-10-07 06:06:48',
             ],
         ];
         parent::init();
