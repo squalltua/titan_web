@@ -32,7 +32,7 @@
                         <td>
                             <?= $this->Html->link(
                                 __('View'),
-                                "/manager/cdm/customers/view/{$customer->id}",
+                                "/manager/cdm/customers/detail/{$customer->id}",
                                 ['class' => 'me-3']
                             ) ?>
                             <?= $this->Form->postLink(

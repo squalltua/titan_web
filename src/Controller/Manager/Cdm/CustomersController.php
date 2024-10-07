@@ -72,7 +72,7 @@ class CustomersController extends AppController
             if ($this->Customers->save($customer)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/cdm/customers/edit/{$id}");
+                return $this->redirect("/manager/cdm/customers/detail/{$id}");
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));

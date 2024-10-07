@@ -58,6 +58,9 @@ class CustomersTable extends Table
         $this->hasMany('MetaCustomers', [
             'foreignKey' => 'customer_id',
         ]);
+        $this->hasMany('PurchaseOrders', [
+            'foreignKey' => 'customer_id',
+        ]);
     }
 
     /**

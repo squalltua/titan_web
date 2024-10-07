@@ -36,8 +36,8 @@ class CustomersFixture extends TestFixture
                 'type' => 'Lorem ipsum dolor sit amet',
                 'service_type' => 'Lorem ipsum dolor sit amet',
                 'status' => 'Lorem ipsum dolor sit amet',
-                'created' => '2024-10-07 06:06:33',
-                'modified' => '2024-10-07 06:06:33',
+                'created' => '2024-10-07 11:48:25',
+                'modified' => '2024-10-07 11:48:25',
             ],
         ];
         parent::init();

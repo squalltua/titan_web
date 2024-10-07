@@ -18,5 +18,8 @@
         <li class="nav-item">
             <?= $this->Html->link(__('Order History'), "/manager/cdm/customers/order-history/{$customer->id}", ['class' => $objectMenuActive === 'order-history' ? 'nav-link active' : 'nav-link']) ?>
         </li>
+        <li class="nav-item">
+            <?= $this->Html->link(__('Notes'), "/amanger/cdm/customers/notes/{$customer->id}", ['class' => $objectMenuActive === 'notes' ? 'nav-link active' : 'nav-link']) ?>
+        </li>
     </ul>
 </nav>
