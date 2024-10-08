@@ -11,18 +11,18 @@
 </div>
 <nav class="container-fluid bg-white shadow-sm mb-3 border-top">
     <ul class="nav nav-underline">
-        <li class="nav-item"><i class="bi bi-arrow-return-right nav-link disabled"></i></li>
+        <li class="nav-item"><i class="bi bi-arrow-return-right nav-link px-3 disabled"></i></li>
         <li class="nav-item">
-            <?= $this->Html->link(__('Detail'), "/manager/cdm/customers/detail/{$customer->id}", ['class' => $objectMenuActive === 'detail' ? 'nav-link active' : 'nav-link']) ?>
+            <?= $this->Html->link(__('Detail'), "/manager/cdm/customers/detail/{$customer->id}", ['class' => $objectMenuActive === 'detail' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
         </li>
         <li class="nav-item">
-            <?= $this->Html->link(__('Contacts'), "/manager/cdm/customers/contacts/{$customer->id}", ['class' => $objectMenuActive === 'contacts' ? 'nav-link active' : 'nav-link']) ?>
+            <?= $this->Html->link(__('Contacts'), "/manager/cdm/customers/contacts/{$customer->id}", ['class' => $objectMenuActive === 'contacts' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
         </li>
         <li class="nav-item">
-            <?= $this->Html->link(__('Orders'), "/manager/cdm/customers/orders/{$customer->id}", ['class' => $objectMenuActive === 'orders' ? 'nav-link active' : 'nav-link']) ?>
+            <?= $this->Html->link(__('Orders'), "/manager/cdm/customers/orders/{$customer->id}", ['class' => $objectMenuActive === 'orders' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
         </li>
         <li class="nav-item">
-            <?= $this->Html->link(__('Notes'), "/amanger/cdm/customers/notes/{$customer->id}", ['class' => $objectMenuActive === 'notes' ? 'nav-link active' : 'nav-link']) ?>
+            <?= $this->Html->link(__('Notes'), "/amanger/cdm/customers/notes/{$customer->id}", ['class' => $objectMenuActive === 'notes' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
         </li>
     </ul>
 </nav>
