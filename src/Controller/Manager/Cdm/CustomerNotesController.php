@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Manager\Cdm;
 
+use App\Controller\Manager\AppController;
+
 class CustomerNotesController extends AppController
 {
     public function initialize(): void
@@ -21,7 +23,7 @@ class CustomerNotesController extends AppController
         $customer = $this->fetchTable('Customers')->get($customerId);
         $notes = $this->CustomerNotes->find()->where(['customer_id' => $customerId]);
 
-        $this->set(comact('customer', 'notes'));
+        $this->set(compact('customer', 'notes'));
     }
 
     public function add(string $customerId)

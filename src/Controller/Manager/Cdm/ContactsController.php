@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Manager\Cdm;
 
+use App\Controller\Manager\AppController;
+
 class ContactsController extends AppController
 {
     public function initialize(): void

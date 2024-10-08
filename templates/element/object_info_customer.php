@@ -22,7 +22,7 @@
             <?= $this->Html->link(__('Orders'), "/manager/cdm/customers/orders/{$customer->id}", ['class' => $objectMenuActive === 'orders' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
         </li>
         <li class="nav-item">
-            <?= $this->Html->link(__('Notes'), "/amanger/cdm/customers/notes/{$customer->id}", ['class' => $objectMenuActive === 'notes' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
+            <?= $this->Html->link(__('Notes'), "/manager/cdm/customers/notes/{$customer->id}", ['class' => $objectMenuActive === 'notes' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
         </li>
     </ul>
 </nav>
