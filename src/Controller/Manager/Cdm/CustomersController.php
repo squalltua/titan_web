@@ -29,6 +29,12 @@ class CustomersController extends AppController
         $this->set(compact('customers'));
     }
 
+    /**
+     * Customer detail method
+     *
+     * @param string $id
+     * @return \Cake\Http\Response
+     */
     public function detail(string $id)
     {
         $customer = $this->Customers->get($id, ['contain' => ['Contacts']]);
@@ -64,6 +70,12 @@ class CustomersController extends AppController
         $this->set(compact('customer', 'companyTypes', 'serviceTypes'));
     }
 
+    /**
+     * Customer edit method
+     *
+     * @param string $id
+     * @return \Cake\Http\Response
+     */
     public function edit(string $id)
     {
         $customer = $this->Customers->get($id, ['contain' => ['Contacts']]);
@@ -84,6 +96,12 @@ class CustomersController extends AppController
         $this->set(compact('customer', 'companyTypes', 'serviceTypes'));
     }
 
+    /**
+     * Customer delete method
+     *
+     * @param string $id
+     * @return \Cake\Http\Response
+     */
     public function delete(string $id)
     {
         $this->request->allowMethod(['delete', 'post']);

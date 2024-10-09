@@ -27,7 +27,7 @@
                         <td><?= $this->Time->format($post->created) ?></td>
                         <td><?= $this->Time->format($post->modified) ?></td>
                         <td>
-                            <?= $this->Html->link(__('View'), "/manager/wcm/posts/view/{$post->id}", ['class' => 'me-3']) ?>
+                            <?= $this->Html->link(__('Detail'), "/manager/wcm/posts/view/{$post->id}", ['class' => 'me-3']) ?>
                             <?= $this->Html->link(__('Edit'), "/manager/wcm/posts/edit/{$post->id}", ['class' => 'me-3']) ?>
                             <?= $this->Form->postLink(__('Delete'), "/manager/wcm/posts/delete/{$post->id}") ?>
                         </td>

@@ -1,7 +1,7 @@
 <div class="card-body">
     <div class="d-flex justify-content-between">
         <div class="d-flex justify-content-start">
-            <a href="/manager/pim/products" class="btn btn-light me-4"><i class="bi bi-chevron-left"></i></a>
+            <a href="/manager/cdm/customers" class="btn btn-light me-4"><i class="bi bi-chevron-left"></i></a>
             <h3 class="m-0"><?= h($customer->title) ?></h3>
         </div>
         <div>

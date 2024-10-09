@@ -17,14 +17,26 @@ class PurchaseOrdersController extends AppController
         $this->set('objectMenuActive', 'orders');
     }
 
+    /**
+     * Purchase order method
+     *
+     * @param string $customerId
+     * @return \Cake\Http\Response
+     */
     public function index(string $customerId)
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
-        $orders = $this->PurchaseOrders->find()->where(['customer_id' => $customerId]);
+        $orders = $this->paginate($this->PurchaseOrders->find()->where(['customer_id' => $customerId]));
 
         $this->set(compact('customer', 'orders'));
     }
 
+    /**
+     * Purchase order add method
+     *
+     * @param string $customerId
+     * @return \Cake\Http\Response
+     */
     public function add(string $customerId)
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
@@ -44,6 +56,13 @@ class PurchaseOrdersController extends AppController
         $this->set(compact('customer', 'order'));
     }
 
+    /**
+     * Purchase order edit method
+     *
+     * @param string $customerId
+     * @param string $id
+     * @return \Cake\Http\Response
+     */
     public function edit(string $customerId, string $id)
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
@@ -62,6 +81,13 @@ class PurchaseOrdersController extends AppController
         $this->set(compact('customer', 'order'));
     }
 
+    /**
+     * Purchase order delete method
+     *
+     * @param string $customerId
+     * @param string $id
+     * @return \Cake\Http\Response
+     */
     public function delete(string $customerId, string $id)
     {
         $this->request->allowMethod(['delete', 'post']);

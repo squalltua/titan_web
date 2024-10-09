@@ -18,6 +18,12 @@ class CustomerNotesController extends AppController
         $this->set('objectMenuActive', 'notes');
     }
 
+    /**
+     * Customer notes method
+     *
+     * @param string $customerId
+     * @return \Cake\Http\Response
+     */
     public function index(string $customerId)
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
@@ -26,6 +32,12 @@ class CustomerNotesController extends AppController
         $this->set(compact('customer', 'notes'));
     }
 
+    /**
+     * Customer notes add method
+     *
+     * @param string $customerId
+     * @return \Cake\Http\Response
+     */
     public function add(string $customerId)
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
@@ -45,6 +57,13 @@ class CustomerNotesController extends AppController
         $this->set(compact('customer', 'note'));
     }
 
+    /**
+     * Customer notes edit method
+     *
+     * @param string $customerId
+     * @param string $id
+     * @return \Cake\Http\Response
+     */
     public function edit(string $customerId, string $id)
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
@@ -63,6 +82,13 @@ class CustomerNotesController extends AppController
         $this->set(compact('customer', 'note'));
     }
 
+    /**
+     * Customer notes delete method
+     *
+     * @param string $customerId
+     * @param string $id
+     * @return \Cake\Http\Response
+     */
     public function delete(string $customerId, string $id)
     {
         $this->request->allowMethod(['delete', 'post']);

@@ -18,14 +18,26 @@ class ContactsController extends AppController
         $this->set('objectMenuActive', 'contacts');
     }
 
+    /**
+     * Contact index method
+     *
+     * @param string $customerId
+     * @return \Cake\Http\Response
+     */
     public function index(string $customerId)
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
-        $contacts = $this->Contacts->find()->where(['customer_id' => $customerId]);
+        $contacts = $this->paginate($this->Contacts->find()->where(['customer_id' => $customerId]));
 
         $this->set(compact('customer', 'contacts'));
     }
 
+    /**
+     * Contact add method
+     *
+     * @param string $customerId
+     * @return \Cake\Http\Response
+     */
     public function add(string $customerId)
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
@@ -45,6 +57,13 @@ class ContactsController extends AppController
         $this->set(compact('customer', 'contact'));
     }
 
+    /**
+     * Contact edit method
+     *
+     * @param string $customerId
+     * @param string $id
+     * @return \Cake\Http\Response
+     */
     public function edit(string $customerId, string $id)
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
@@ -63,6 +82,13 @@ class ContactsController extends AppController
         $this->set(compact('customer', 'contact'));
     }
 
+    /**
+     * Contact delete method
+     *
+     * @param string $customerId
+     * @param string $id
+     * @return \Cake\Http\Response
+     */
     public function delete(string $customerId, string $id)
     {
         $this->request->allowMethod(['delete', 'post']);
