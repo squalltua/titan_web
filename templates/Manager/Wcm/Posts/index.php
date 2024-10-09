@@ -16,7 +16,7 @@
                     <th style="width: 150px"><?= $this->Paginator->sort('status') ?></th>
                     <th style="width: 150px"><?= $this->Paginator->sort('created') ?></th>
                     <th style="width: 150px"><?= $this->Paginator->sort('modified') ?></th>
-                    <th style="width: 170px"><?= __('Action') ?></th>
+                    <th style="width: 250px"><?= __('Action') ?></th>
                 </tr>
             </thead>
             <tbody>
