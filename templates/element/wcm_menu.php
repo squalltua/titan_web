@@ -1,11 +1,23 @@
-<nav class="container-fluid bg-white shadow-sm mb-3 border-top">
-    <ul class="nav nav-underline">
-        <li class="nav-item"><i class="bi bi-arrow-return-right nav-link px-3 disabled"></i></li>
-        <li class="nav-item">
-            <?= $this->Html->link(__('Posts'), '/manager/wcm/posts', ['class' => $subMenuActive === 'posts' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
-        </li>
-        <li class="nav-item">
-            <?= $this->Html->link(__('Groups'), '/manager/wcm/groups', ['class' => $subMenuActive === 'groups' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
-        </li>
-    </ul>
-</nav>
+<header class="navbar-expand-md">
+    <div class="collapse navbar-collapse" id="navbar-menu">
+        <div class="navbar">
+            <div class="container-xl">
+                <ul class="navbar-nav">
+                    <li class="<?= $subMenuActive === 'posts' ? 'nav-item active' : 'nav-item px-3' ?>">
+                        <?= $this->Html->link(__('Posts'), '/manager/wcm/posts', ['class' => $subMenuActive === 'posts' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
+                    </li>
+                    <li class="nav-item">
+                        <?= $this->Html->link(__('Groups'), '/manager/wcm/groups', ['class' => $subMenuActive === 'groups' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./">
+                            <span class="nav-link-title">
+                                Home
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
