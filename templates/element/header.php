@@ -5,8 +5,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-            <a href=".">
-                <img src="./static/logo.svg" width="110" height="32" alt="TitanWEB" class="navbar-brand-image">
+            <a href="/manager">
+                <?= $this->Html->image('logo.webp', ['class' => 'navbar-brand-image', 'alt' => 'TitanWEB', 'width' => 110, 'height' => 32]) ?>
             </a>
         </h1>
         <div class="navbar-nav flex-row order-md-last">
@@ -32,6 +32,19 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#navbar-third" data-bs-toggle="dropdown"
                             data-bs-auto-close="outside" role="button" aria-expanded="false">
+                            <span
+                                class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-baseline-density-small">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M4 3h16" />
+                                    <path d="M4 9h16" />
+                                    <path d="M4 15h16" />
+                                    <path d="M4 21h16" />
+                                </svg>
+                            </span>
                             <span class="nav-link-title">
                                 <?= $applicationName ?? __('Application') ?>
                             </span>
@@ -39,9 +52,12 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="/manager"><?= __('All') ?></a>
                             <a class="dropdown-item" href="/manager/wcm/posts"><?= __('Web Content management') ?></a>
-                            <a class="dropdown-item" href="/manager/pim/products"><?= __('Product information management') ?></a>
-                            <a class="dropdown-item" href="/manager/dam/medias"><?= __('Digital assets management') ?></a>
-                            <a class="dropdown-item" href="/manager/cdm/customers"><?= __('Customer data manangment') ?></a>
+                            <a class="dropdown-item"
+                                href="/manager/pim/products"><?= __('Product information management') ?></a>
+                            <a class="dropdown-item"
+                                href="/manager/dam/medias"><?= __('Digital assets management') ?></a>
+                            <a class="dropdown-item"
+                                href="/manager/cdm/customers"><?= __('Customer data manangment') ?></a>
                         </div>
                     </li>
                 </ul>

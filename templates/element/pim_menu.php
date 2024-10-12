@@ -1,17 +1,30 @@
-<nav class="container-fluid bg-white shadow-sm mb-3 border-top">
-    <ul class="nav nav-underline">
-        <li class="nav-item"><i class="bi bi-arrow-return-right nav-link px-3 disabled"></i></li>
-        <li class="nav-item">
-            <?= $this->Html->link(__('Products'), '/manager/pim/products', ['class' => $subMenuActive === 'products' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
-        </li>
-        <li class="nav-item">
-            <?= $this->Html->link(__('Families'), '/manager/pim/product-families', ['class' => $subMenuActive === 'families' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
-        </li>
-        <li class="nav-item">
-            <?= $this->Html->link(__('Categories'), '/manager/pim/product-categories', ['class' => $subMenuActive === 'categories' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
-        </li>
-        <li class="nav-item">
-            <?= $this->Html->link(__('Types'), '/manager/pim/product-types', ['class' => $subMenuActive === 'types' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
-        </li>
-    </ul>
-</nav>
+<header class="navbar-expand-md">
+    <div class="collapse navbar-collapse" id="navbar-menu">
+        <div class="navbar">
+            <div class="container-xl">
+                <ul class="navbar-nav">
+                    <li class="<?= $subMenuActive === 'products' ? 'nav-item active' : 'nav-item' ?>">
+                        <a class="nav-link" href="/manager/pim/products">
+                            <span class="nav-link-title"><?= __('Products') ?></span>
+                        </a>
+                    </li>
+                    <li class="<?= $subMenuActive === 'families' ? 'nav-item active' : 'nav-item' ?>">
+                        <a href="/manager/pim/product-families" class="nav-link">
+                            <span class="nav-link-title"><?= __('Families') ?></span>
+                        </a>
+                    </li>
+                    <li class="<?= $subMenuActive === 'categories' ? 'nav-item active' : 'nav-item' ?>">
+                        <a href="/manager/pim/product-categories" class="nav-link">
+                            <span class="nav-link-title"><?= __('Categories') ?></span>
+                        </a>
+                    </li>
+                    <li class="<?= $subMenuActive === 'types' ? 'nav-item active' : 'nav-item' ?>">
+                        <a href="/manager/pim/product-types" class="nav-link">
+                            <span class="nav-link-title"><?= __('Types') ?></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

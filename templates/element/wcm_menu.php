@@ -3,17 +3,14 @@
         <div class="navbar">
             <div class="container-xl">
                 <ul class="navbar-nav">
-                    <li class="<?= $subMenuActive === 'posts' ? 'nav-item active' : 'nav-item px-3' ?>">
-                        <?= $this->Html->link(__('Posts'), '/manager/wcm/posts', ['class' => $subMenuActive === 'posts' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
+                    <li class="<?= $subMenuActive === 'posts' ? 'nav-item active' : 'nav-item' ?>">
+                        <a class="nav-link" href="/manager/wcm/posts">
+                            <span class="nav-link-title"><?= __('Posts') ?></span>
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <?= $this->Html->link(__('Groups'), '/manager/wcm/groups', ['class' => $subMenuActive === 'groups' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./">
-                            <span class="nav-link-title">
-                                Home
-                            </span>
+                    <li class="<?= $subMenuActive === 'groups' ? 'nav-item active' : 'nav-item' ?>">
+                        <a href="/manager/wcm/groups" class="nav-link">
+                            <span class="nav-link-title"><?= __('Groups') ?></span>
                         </a>
                     </li>
                 </ul>
