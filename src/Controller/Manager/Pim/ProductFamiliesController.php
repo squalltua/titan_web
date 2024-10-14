@@ -5,11 +5,16 @@ declare(strict_types=1);
 namespace App\Controller\Manager\Pim;
 
 use App\Controller\Manager\AppController;
+use Cake\Http\Response;
 
+/**
+ * @property \App\Model\Table\ProductsTable $ProductFamilies
+ */
 class ProductFamiliesController extends AppController
 {
     /**
      * @return void
+     * @throws \Exception
      */
     public function initialize(): void
     {
@@ -20,13 +25,21 @@ class ProductFamiliesController extends AppController
         $this->set('applicationName', __('Product information management'));
     }
 
-    public function index()
+    /**
+     * @return Response
+     */
+    public function index(): \Cake\Http\Response
     {
         $families = $this->paginate($this->ProductFamilies);
         $this->set('families', $families);
+
+        return $this->render();
     }
 
-    public function add()
+    /**
+     * @return Response
+     */
+    public function add(): Response
     {
         $family = $this->ProductFamilies->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -41,6 +54,8 @@ class ProductFamiliesController extends AppController
         }
 
         $this->set(compact('family'));
+
+        return $this->render();
     }
 
     /**
@@ -49,7 +64,7 @@ class ProductFamiliesController extends AppController
      * @param string $id
      * @return \Cake\Http\Response
      */
-    public function edit(string $id)
+    public function edit(string $id): Response
     {
         $family = $this->ProductFamilies->get($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
@@ -64,6 +79,8 @@ class ProductFamiliesController extends AppController
         }
 
         $this->set(compact('family'));
+
+        return $this->render();
     }
 
     /**
@@ -74,7 +91,7 @@ class ProductFamiliesController extends AppController
      */
     public function delete(string $id)
     {
-        
+
         $this->request->allowMethod(['delete', 'post']);
         $family = $this->ProductFamilies->get($id);
         if ($this->ProductFamilies->delete($family)) {

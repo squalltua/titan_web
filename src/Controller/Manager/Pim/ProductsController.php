@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Manager\Pim;
 
 use App\Controller\Manager\AppController;
+use Cake\Http\Response;
 use Cake\Utility\Text;
 use Cake\I18n\Number;
 use Cake\Utility\Hash;
@@ -17,6 +18,7 @@ class ProductsController extends AppController
 {
     /**
      * @return void
+     * @throws \Exception
      */
     public function initialize(): void
     {
@@ -32,19 +34,21 @@ class ProductsController extends AppController
      *
      * @return \Cake\Http\Response
      */
-    public function index()
+    public function index(): \Cake\Http\Response
     {
         $query = $this->Products->getAllProducts();
         $products = $this->paginate($query);
 
         $this->set(compact('products'));
+
+        return $this->render();
     }
 
     /**
      * @param string $id - product id
      * @return \Cake\Http\Response
      */
-    public function detail(string $id)
+    public function detail(string $id): \Cake\Http\Response
     {
         $product = $this->Products->getInformation($id);
         $product->base_price = Number::precision($product->base_price ?? 0.00, 2);
@@ -53,23 +57,29 @@ class ProductsController extends AppController
 
         $this->set('objectMenuActive', 'detail');
         $this->set(compact('product'));
+
+        return $this->render();
     }
 
     /**
-     * @return \Cake\Http\Response
+     * @param string $id
+     * @return Response
      */
-    public function attributes(string $id)
+    public function attributes(string $id): \Cake\Http\Response
     {
         $product = $this->Products->get($id, ['contain' => 'Attributes']);
 
         $this->set('objectMenuActive', 'attributes');
         $this->set(compact('product'));
+
+        return $this->render();
     }
 
     /**
-     * @return \Cake\Http\Response
+     * @param string $productId
+     * @return Response
      */
-    public function attributeAdd(string $productId)
+    public function attributeAdd(string $productId): Response
     {
         $product = $this->Products->get($productId);
         $attribute = $this->Products->Attributes->newEmptyEntity();
@@ -89,12 +99,16 @@ class ProductsController extends AppController
 
         $this->set('objectMenuActive', 'attributes');
         $this->set(compact('product', 'attribute'));
+
+        return $this->render();
     }
 
     /**
-     * @return \Cake\Http\Response
+     * @param string $productId
+     * @param string $attributeId
+     * @return Response
      */
-    public function attributeEdit(string $productId, string $attributeId)
+    public function attributeEdit(string $productId, string $attributeId): Response
     {
         $product = $this->Products->get($productId);
         $attribute = $this->Products->Attributes->get($attributeId);
@@ -111,12 +125,16 @@ class ProductsController extends AppController
 
         $this->set('objectMenuActive', 'attributes');
         $this->set(compact('product', 'attribute'));
+
+        return $this->render();
     }
 
     /**
-     * @return \Cake\Http\Response
+     * @param string $productId
+     * @param string $attributeId
+     * @return Response
      */
-    public function attributeDelete(string $productId, string $attributeId)
+    public function attributeDelete(string $productId, string $attributeId): Response
     {
         $this->request->allowMethod(['delete', 'post']);
         $attribute = $this->Products->Attributes->get($attributeId);
@@ -132,7 +150,7 @@ class ProductsController extends AppController
     /**
      * @return \Cake\Http\Response
      */
-    public function add()
+    public function add(): Response
     {
         $product = $this->Products->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -153,15 +171,16 @@ class ProductsController extends AppController
         $types = $this->Products->Taxonomies->getTypesList();
         $families = $this->Products->ProductFamilies->find('list');
 
-
         $this->set(compact('product', 'categories', 'types', 'families'));
+
+        return $this->render();
     }
 
     /**
      * @param string $id - product id
      * @return \Cake\Http\Response
      */
-    public function edit(string $id)
+    public function edit(string $id): Response
     {
         $product = $this->Products->getInformation($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
@@ -180,13 +199,15 @@ class ProductsController extends AppController
         $families = $this->Products->ProductFamilies->find('list');
 
         $this->set(compact('product', 'categories', 'types', 'families'));
+
+        return $this->render();
     }
 
     /**
      * @param string $id - product id
      * @return \Cake\Http\Response
      */
-    public function delete(string $id)
+    public function delete(string $id): Response
     {
         $this->request->allowMethod(['delete', 'post']);
         $product = $this->Products->get($id);
@@ -204,7 +225,7 @@ class ProductsController extends AppController
      * @param string $productId - product id
      * @return \Cake\Http\Response
      */
-    public function images(string $productId)
+    public function images(string $productId): Response
     {
         $product = $this->Products->get($productId, ['contain' => ['Attributes', 'Medias']]);
         if ($this->request->is('post')) {
@@ -229,7 +250,7 @@ class ProductsController extends AppController
                 if (!$productImage->getError()) {
                     $productMedida = $this->fetchTable('Medias')->uploadImage('product_image', $productImage);
                     if ($productMedida && $this->fetchTable('Products')->Medias->link($product, [$productMedida])) {
-                        $this->Flash->success(__('The product image has been uploaded.'));    
+                        $this->Flash->success(__('The product image has been uploaded.'));
                     } else {
                         $this->Flash->error(__('The product image could not link with product data. Please try again.'));
                     }
@@ -243,7 +264,7 @@ class ProductsController extends AppController
 
         $medias = [
             'featureMediaImage' => null,
-            'productMediaImages' => [],   
+            'productMediaImages' => [],
         ];
         foreach ($product->medias as $media) {
             if ($media->using_type === 'feature_image') {
@@ -255,6 +276,8 @@ class ProductsController extends AppController
 
         $this->set('objectMenuActive', 'images');
         $this->set(compact('product', 'medias'));
+
+        return $this->render();
     }
 
     /**
@@ -262,9 +285,9 @@ class ProductsController extends AppController
      *
      * @param string $productId
      * @param string $mediaId
-     * @return void
+     * @return Response|null
      */
-    public function removeImage(string $productId, string $mediaId)
+    public function removeImage(string $productId, string $mediaId): ?Response
     {
         $this->request->allowMethod(['delete', 'post']);
         $media = $this->fetchTable('Medias')->get($mediaId);

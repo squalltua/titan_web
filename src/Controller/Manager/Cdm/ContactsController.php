@@ -6,6 +6,9 @@ namespace App\Controller\Manager\Cdm;
 
 use App\Controller\Manager\AppController;
 
+/**
+ * @property \App\Model\Table\ContactsTable $Contacts
+ */
 class ContactsController extends AppController
 {
     public function initialize(): void
@@ -24,12 +27,14 @@ class ContactsController extends AppController
      * @param string $customerId
      * @return \Cake\Http\Response
      */
-    public function index(string $customerId)
+    public function index(string $customerId): \Cake\Http\Response
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
         $contacts = $this->paginate($this->Contacts->find()->where(['customer_id' => $customerId]));
 
         $this->set(compact('customer', 'contacts'));
+
+        return $this->render();
     }
 
     /**
@@ -38,7 +43,7 @@ class ContactsController extends AppController
      * @param string $customerId
      * @return \Cake\Http\Response
      */
-    public function add(string $customerId)
+    public function add(string $customerId): \Cake\Http\Response
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
         $contact = $this->Contacts->newEmptyEntity();
@@ -55,6 +60,8 @@ class ContactsController extends AppController
         }
 
         $this->set(compact('customer', 'contact'));
+
+        return $this->render();
     }
 
     /**
@@ -64,7 +71,7 @@ class ContactsController extends AppController
      * @param string $id
      * @return \Cake\Http\Response
      */
-    public function edit(string $customerId, string $id)
+    public function edit(string $customerId, string $id): \Cake\Http\Response
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
         $contact = $this->Contacts->get($id);
@@ -80,6 +87,8 @@ class ContactsController extends AppController
         }
 
         $this->set(compact('customer', 'contact'));
+
+        return $this->render();
     }
 
     /**
@@ -89,7 +98,7 @@ class ContactsController extends AppController
      * @param string $id
      * @return \Cake\Http\Response
      */
-    public function delete(string $customerId, string $id)
+    public function delete(string $customerId, string $id): \Cake\Http\Response
     {
         $this->request->allowMethod(['delete', 'post']);
         $contact = $this->Contacts->get($id);

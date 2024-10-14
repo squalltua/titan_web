@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Manager\Settings;
 
 use App\Controller\Manager\AppController;
+use Cake\Http\Response;
 use Cake\Utility\Text;
 
 /**
@@ -21,14 +22,22 @@ class RolesController extends AppController
         $this->set('applicationName', __('Settings management'));
     }
 
-    public function index()
+    /**
+     * @return Response|null
+     */
+    public function index(): ?\Cake\Http\Response
     {
         $roles = $this->paginate($this->Roles);
 
         $this->set('roles', $roles);
+
+        return $this->render();
     }
 
-    public function add()
+    /**
+     * @return Response|null
+     */
+    public function add(): ?\Cake\Http\Response
     {
         $role = $this->Roles->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -45,9 +54,15 @@ class RolesController extends AppController
         }
 
         $this->set('role', $role);
+
+        return $this->render();
     }
 
-    public function edit(string $id)
+    /**
+     * @param string $id
+     * @return Response|null
+     */
+    public function edit(string $id): ?\Cake\Http\Response
     {
         $role = $this->Roles->get($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
@@ -63,9 +78,15 @@ class RolesController extends AppController
         }
 
         $this->set('role', $role);
+
+        return $this->render();
     }
 
-    public function delete(string $id)
+    /**
+     * @param string $id
+     * @return Response|null
+     */
+    public function delete(string $id): ?Response
     {
         $this->request->allowMethod(['delete', 'post']);
         $role = $this->Roles->get($id);

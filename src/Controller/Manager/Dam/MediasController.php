@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace App\Controller\Manager\Dam;
 
 use App\Controller\Manager\AppController;
-use Cake\Http\Response;
 
+/**
+ * @property \App\Model\Table\MediasTable $Medias
+ */
 class MediasController extends AppController
 {
     /**
      * @return void
+     * @throws \Exception
      */
     public function initialize(): void
     {
@@ -26,11 +29,13 @@ class MediasController extends AppController
      *
      * @return \Cake\Http\Response
      */
-    public function index()
+    public function index(): \Cake\Http\Response
     {
         $medias = $this->paginate($this->Medias);
 
         $this->set(compact('medias'));
+
+        return $this->render();
     }
 
     /**
@@ -38,7 +43,7 @@ class MediasController extends AppController
      *
      * @return \Cake\Http\Response
      */
-    public function add()
+    public function add(): \Cake\Http\Response
     {
         if ($this->request->is('post')) {
             $data = $this->request->getData('attachment');
@@ -61,7 +66,7 @@ class MediasController extends AppController
      * @param string $id
      * @return \Cake\Http\Response
      */
-    public function edit(string $id)
+    public function edit(string $id): \Cake\Http\Response
     {
         $media = $this->Medias->get($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
@@ -76,6 +81,8 @@ class MediasController extends AppController
         }
 
         $this->set('media', $media);
+
+        return $this->render();
     }
 
     /**
@@ -84,7 +91,7 @@ class MediasController extends AppController
      * @param string $id
      * @return \Cake\Http\Response
      */
-    public function delete(string $id)
+    public function delete(string $id): \Cake\Http\Response
     {
         $this->request->allowMethod(['delete', 'post']);
         $media = $this->Medias->get($id);

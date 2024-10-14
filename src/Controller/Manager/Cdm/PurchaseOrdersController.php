@@ -5,6 +5,9 @@ namespace App\Controller\Manager\Cdm;
 
 use App\Controller\Manager\AppController;
 
+/**
+ * @property \App\Model\Table\PurchaseOrdersTable $PurchaseOrders
+ */
 class PurchaseOrdersController extends AppController
 {
     public function initialize(): void
@@ -23,12 +26,14 @@ class PurchaseOrdersController extends AppController
      * @param string $customerId
      * @return \Cake\Http\Response
      */
-    public function index(string $customerId)
+    public function index(string $customerId): \Cake\Http\Response
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
         $orders = $this->paginate($this->PurchaseOrders->find()->where(['customer_id' => $customerId]));
 
         $this->set(compact('customer', 'orders'));
+
+        return $this->render();
     }
 
     /**
@@ -37,7 +42,7 @@ class PurchaseOrdersController extends AppController
      * @param string $customerId
      * @return \Cake\Http\Response
      */
-    public function add(string $customerId)
+    public function add(string $customerId): \Cake\Http\Response
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
         $order = $this->PurchaseOrders->newEmptyEntity();
@@ -54,6 +59,8 @@ class PurchaseOrdersController extends AppController
         }
 
         $this->set(compact('customer', 'order'));
+
+        return $this->render();
     }
 
     /**
@@ -63,7 +70,7 @@ class PurchaseOrdersController extends AppController
      * @param string $id
      * @return \Cake\Http\Response
      */
-    public function edit(string $customerId, string $id)
+    public function edit(string $customerId, string $id): \Cake\Http\Response
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
         $order = $this->PurchaseOrders->get($id);
@@ -79,6 +86,8 @@ class PurchaseOrdersController extends AppController
         }
 
         $this->set(compact('customer', 'order'));
+
+        return $this->render();
     }
 
     /**
@@ -88,16 +97,16 @@ class PurchaseOrdersController extends AppController
      * @param string $id
      * @return \Cake\Http\Response
      */
-    public function delete(string $customerId, string $id)
+    public function delete(string $customerId, string $id): \Cake\Http\Response
     {
         $this->request->allowMethod(['delete', 'post']);
-        $order = $thsi->PurchaseOrders->get($id);
+        $order = $this->PurchaseOrders->get($id);
         if ($this->PurchaseOrders->save($order)) {
             $this->Flash->success(__('The data has been deleted.'));
         } else {
             $this->Flash->error(__('The data could not be deleted. Please try again.'));
         }
 
-        $this->redirect("/manager/cdm/customers/orders/{$customerId}");
+        return $this->redirect("/manager/cdm/customers/orders/{$customerId}");
     }
 }

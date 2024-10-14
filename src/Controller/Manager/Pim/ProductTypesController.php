@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\Controller\Manager\Pim;
 
 use App\Controller\Manager\AppController;
+use Cake\Http\Response;
 use Cake\Utility\Text;
 
 class ProductTypesController extends AppController
 {
     /**
      * @return void
+     * @throws \Exception
      */
     public function initialize(): void
     {
@@ -24,17 +26,19 @@ class ProductTypesController extends AppController
     /**
      * @return \Cake\Http\Response
      */
-    public function index()
+    public function index(): \Cake\Http\Response
     {
         $types = $this->paginate($this->fetchTable('Taxonomies')->getTypes());
 
         $this->set('types', $types);
+
+        return $this->render();
     }
 
     /**
      * @return \Cake\Http\Response
      */
-    public function add()
+    public function add(): \Cake\Http\Response
     {
         $type = $this->fetchTable('Taxonomies')->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -51,12 +55,15 @@ class ProductTypesController extends AppController
         }
 
         $this->set(compact('type'));
+
+        return $this->render();
     }
 
     /**
-     * @return \Cake\Http\Response
+     * @param string $id
+     * @return Response
      */
-    public function edit(string $id)
+    public function edit(string $id): \Cake\Http\Response
     {
         $type = $this->fetchTable('Taxonomies')->getType($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
@@ -72,12 +79,15 @@ class ProductTypesController extends AppController
         }
 
         $this->set(compact('type'));
+
+        return $this->render();
     }
 
     /**
-     * @return \Cake\Http\Response
+     * @param string $id
+     * @return Response
      */
-    public function delete(string $id)
+    public function delete(string $id): Response
     {
         $this->request->allowMethod(['delete', 'post']);
         $type = $this->fetchTable('Taxonomies')->getType($id);

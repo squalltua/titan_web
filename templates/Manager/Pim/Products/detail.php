@@ -1,45 +1,98 @@
-<div class="card shadow-sm">
-    <?= $this->element('object_info_product') ?>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-6">
-                <dl class="row">
-                    <dt class="col-3"><?= __('Summary') ?></dt>
-                    <dd class="col-9"><?= nl2br($product->summary) ?></dd>
-
-                    <dt class="col-3"><?= __('Content') ?></dt>
-                    <dd class="col-9"><?= nl2br($product->content) ?></dd>
-                </dl>
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <div class="page-pretitle">
+                    <?= __('Information') ?>
+                </div>
+                <h2 class="page-title">
+                    <?= __('Products') ?>
+                </h2>
             </div>
-            <div class="col-6">
-                <dl class="row">
-                    <dt class="col-3"><?= __('SKUs') ?></dt>
-                    <dd class="col-9"><?= $product->sku ?></dd>
+            <div class="col-auto ms-auto">
+                <a href="/manager/pim/products/add" class="btn btn-primary d-none d-sm-inline-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    <?= __('Create new') ?>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
-                    <dt class="col-3"><?= __('Model') ?></dt>
-                    <dd class="col-9"><?= $product->model_name ?></dd>
+<div class="page-body">
+    <div class="container-xl">
+        <div class="card">
+            <?= $this->element('object_info_product') ?>
+            <div class="card-body">
+                <div class="datagrid">
+                    <div class="datagrid-item">
+                        <div class="datagrid-title"><?= __('Product name') ?></div>
+                        <div class="datagrid-content"><?= $product->title ?></div>
+                    </div>
+                    <div class="datagrid-item">
+                        <div class="datagrid-title"><?= __('SKUs') ?></div>
+                        <div class="datagrid-content"><?= $product->sku ?></div>
+                    </div>
+                    <div class="datagrid-item">
+                        <div class="datagrid-title"><?= __('Model') ?></div>
+                        <div class="datagrid-content"><?= $product->model_name ?></div>
+                    </div>
+                    <div class="datagrid-item">
+                        <div class="datagrid-title"><?= __('Series') ?></div>
+                        <div class="datagrid-content"><?= $product->series_number ?></div>
+                    </div>
+                    <div class="datagrid-item">
+                        <div class="datagrid-title"><?= __('Product family') ?></div>
+                        <div class="datagrid-content"><?= $product->product_family->name ?? '-' ?></div>
+                    </div>
+                    <div class="datagrid-item">
+                        <div class="datagrid-title"><?= __('Category') ?></div>
+                        <div class="datagrid-content"><?= $product->category->name ?? '-' ?></div>
+                    </div>
+                    <div class="datagrid-item">
+                        <div class="datagrid-title"><?= __('Type') ?></div>
+                        <div class="datagrid-content"><?= $product->type->name ?? '-' ?></div>
+                    </div>
+                    <div class="datagrid-item">
+                        <div class="datagrid-title"><?= __('Base price') ?></div>
+                        <div class="datagrid-content"><?= $product->base_price ?></div>
+                    </div>
+                    <div class="datagrid-item">
+                        <div class="datagrid-title"><?= __('Sell price') ?></div>
+                        <div class="datagrid-content"><?= $product->sell_price ?></div>
+                    </div>
+                    <div class="datagrid-item">
+                        <div class="datagrid-title"><?= __('Discount price') ?></div>
+                        <div class="datagrid-content"><?= $product->discount_price ?></div>
+                    </div>
+                    <div class="datagrid-item">
+                        <div class="datagrid-title"><?= __('Status') ?></div>
+                        <div class="datagrid-content">
+                            <span class="status status-secondary">
+                                <?= $product->status ?>
+                            </span>
+                        </div>
+                    </div>
+                </div>
 
-                    <dt class="col-3"><?= __('Series') ?></dt>
-                    <dd class="col-9"><?= $product->series_number ?></dd>
-
-                    <dt class="col-3"><?= __('Product family') ?></dt>
-                    <dd class="col-9"><?= $product->product_family->name ?? __('- No -') ?></dd>
-
-                    <dt class="col-3"><?= __('Category') ?></dt>
-                    <dd class="col-9"><?= $product->category->name ?? __('- No -') ?></dd>
-
-                    <dt class="col-3"><?= __('Type') ?></dt>
-                    <dd class="col-9"><?= $product->type->name ?? __('- No -') ?></dd>
-
-                    <dt class="col-3"><?= __('Base price') ?></dt>
-                    <dd class="col-9"><?= $product->base_price ?></dd>
-
-                    <dt class="col-3"><?= __('Sell price') ?></dt>
-                    <dd class="col-9"><?= $product->sell_price ?></dd>
-
-                    <dt class="col-3"><?= __('Discount price') ?></dt>
-                    <dd class="col-9"><?= $product->discount_price ?></dd>
-                </dl>
+                <div class="row mt-3">
+                    <div class="col">
+                        <small class="text-secondary">long description</small>
+                        <h3 class="lh-1"><?= __('Content') ?></h3>
+                        <div class="text-secondary mb-3"><?= nl2br($product->content) ?></div>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-secondary">short description</small>
+                        <h3 class="lh-1"><?= __('Summary') ?></h3>
+                        <div class="text-secondary mb-3"><?= nl2br($product->summary) ?></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

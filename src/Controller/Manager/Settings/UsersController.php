@@ -6,15 +6,17 @@ namespace App\Controller\Manager\Settings;
 
 use App\Controller\Manager\AppController;
 use Cake\Datasource\ConnectionManager;
+use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\Http\Response;
 
 /**
  * Users controller
- * 
+ *
  * @property \Authentication\Controller\Component\AuthenticationComponent $Authentication
  */
 class UsersController extends AppController
 {
-    public function beforeFilter(\Cake\Event\EventInterface $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event): void
     {
         parent::beforeFilter($event);
 
@@ -33,22 +35,24 @@ class UsersController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders view
+     * @return Response Renders view
      */
-    public function index()
+    public function index(): Response
     {
         $query = $this->fetchTable('Adminusers')->find()->contain(['Roles']);
         $users = $this->paginate($query);
 
         $this->set(compact('users'));
+
+        return $this->render();
     }
 
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(): ?Response
     {
         $user = $this->fetchTable('Adminusers')->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -65,15 +69,17 @@ class UsersController extends AppController
         $roles = $this->fetchTable('Roles')->find('list');
 
         $this->set(compact('user', 'roles'));
+
+        return $this->render();
     }
 
     /**
      * Edit method
      * @param string|null $id User id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @return Response|null Redirects on successful edit, renders view otherwise.
+     * @throws RecordNotFoundException When record not found.
      */
-    public function edit(string $id = null)
+    public function edit(string $id = null): ?Response
     {
         $user = $this->fetchTable('Adminusers')->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -89,15 +95,17 @@ class UsersController extends AppController
         $roles = $this->fetchTable('Roles')->find('list');
 
         $this->set(compact('user', 'roles'));
+
+        return $this->render();
     }
 
     /**
      * Delete method
      * @param string|null $id User id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @return Response|null Redirects to index.
+     * @throws RecordNotFoundException When record not found.
      */
-    public function delete(string $id = null): ?\Cake\Http\Response
+    public function delete(string $id = null): ?Response
     {
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->fetchTable('Adminusers')->get($id);
@@ -112,9 +120,9 @@ class UsersController extends AppController
 
     /**
      * @param string|null $id
-     * @return \Cake\Http\Response|null
+     * @return Response|null
      */
-    public function changePassword(string $id = null): ?\Cake\Http\Response
+    public function changePassword(string $id = null): ?Response
     {
         $user = $this->fetchTable('Adminusers')->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -134,9 +142,9 @@ class UsersController extends AppController
     }
 
     /**
-     * @return \Cake\Http\Response|null
+     * @return Response|null
      */
-    public function login(): ?\Cake\Http\Response
+    public function login(): ?Response
     {
         $this->viewBuilder()->setLayout('login');
         $this->request->allowMethod(['get', 'post']);
@@ -155,15 +163,15 @@ class UsersController extends AppController
     }
 
     /**
-     * @return \Cake\Http\Response|null
+     * @return Response|null
      */
-    public function logout(): ?\Cake\Http\Response
+    public function logout(): ?Response
     {
         $this->Authentication->logout();
         return $this->redirect('/manager/login');
     }
 
-    public function initializeData(): ?\Cake\Http\Response
+    public function initializeData(): ?Response
     {
         $connection = ConnectionManager::get('default');
         $connection->begin();

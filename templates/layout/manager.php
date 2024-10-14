@@ -34,9 +34,10 @@
 
 <body class="layout-fluid">
     <div class="page">
-        <?= $this->element('header') ?>
-        <?= $this->element($subMenu ?? 'submenu_default') ?>
-
+        <div class="sticky-top">
+            <?= $this->element('header') ?>
+            <?= $this->element($subMenu ?? 'submenu_default') ?>
+        </div>
         <div class="page-wrapper">
             <?= $this->Flash->render() ?>
             <?= $this->fetch('content') ?>
@@ -45,8 +46,8 @@
                     <div class="row text-center align-items-center flex-row-reverse">
                         <div class="col-lg-auto ms-lg-auto">
                             <ul class="list-inline list-inline-dots mb-0">
-                                <li class="list-inline-item"><a href="#" target="_blank"
-                                        class="link-secondary" rel="noopener">Documentation</a>
+                                <li class="list-inline-item"><a href="#" target="_blank" class="link-secondary"
+                                        rel="noopener">Documentation</a>
                                 </li>
                             </ul>
                         </div>
@@ -54,7 +55,8 @@
                             <ul class="list-inline list-inline-dots mb-0">
                                 <li class="list-inline-item">
                                     Copyright &copy; <?= date('Y') ?>
-                                    <a href="https://www.titanscript.com" class="link-secondary">Titanscript business consult col.,ltd</a>.
+                                    <a href="https://www.titanscript.com" class="link-secondary">Titanscript business
+                                        consult col.,ltd</a>.
                                     All rights reserved.
                                 </li>
                                 <li class="list-inline-item">

@@ -7,6 +7,7 @@ namespace App\Controller\Manager\Wcm;
 use App\Controller\Manager\AppController;
 use Authentication\Controller\Component\AuthenticationComponent;
 use Cake\Http\Exception\NotFoundException;
+use Cake\Http\Response;
 use Cake\Utility\Hash;
 use Cake\Utility\Text;
 use Parsedown;
@@ -34,26 +35,21 @@ class PostsController extends AppController
     }
 
     /**
-     * @return \Cake\Http\Response
+     * @return Response|null
      */
-    public function index(): \Cake\Http\Response
+    public function index(): ?\Cake\Http\Response
     {
-        try {
-            $posts = $this->paginate($this->Posts);
-        } catch (NotFoundException $e) {
-            // Do something here like redirecting to first or last page.
-            // $e->getPrevious()->getAttributes('pagingParams') will give you required info.
-        }
-
+        $posts = $this->paginate($this->Posts);
         $this->set(compact('posts'));
 
         return $this->render();
     }
 
     /**
-     * @return \Cake\Http\Response
+     * @param string $id
+     * @return Response|null
      */
-    public function view(string $id): \Cake\Http\Response
+    public function view(string $id): ?\Cake\Http\Response
     {
         $post = $this->Posts->get($id, ['contain' => ['MetaPosts', 'PostGroups']]);
         $Parsedown = new Parsedown();
@@ -67,9 +63,10 @@ class PostsController extends AppController
     }
 
     /**
-     * @return \Cake\Http\Response
+     * @return Response|null
+     * @throws \Exception
      */
-    public function add(): \Cake\Http\Response
+    public function add(): ?\Cake\Http\Response
     {
         $post = $this->Posts->newEmptyEntity();
 
@@ -134,9 +131,10 @@ class PostsController extends AppController
 
     /**
      * @param string $id
-     * @return \Cake\Http\Response
+     * @return Response|null
+     * @throws \Exception
      */
-    public function edit(string $id): \Cake\Http\Response
+    public function edit(string $id): ?\Cake\Http\Response
     {
         $post = $this->Posts->get($id, ['contain' => ['MetaPosts', 'PostGroups']]);
         $post->meta = Hash::combine($post->meta_posts, '{n}.meta_key', '{n}.meta_value');

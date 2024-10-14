@@ -6,6 +6,9 @@ namespace App\Controller\Manager\Cdm;
 
 use App\Controller\Manager\AppController;
 
+/**
+ * @property \App\Model\Table\CustomerNotesTable $CustomerNotes
+ */
 class CustomerNotesController extends AppController
 {
     public function initialize(): void
@@ -24,12 +27,14 @@ class CustomerNotesController extends AppController
      * @param string $customerId
      * @return \Cake\Http\Response
      */
-    public function index(string $customerId)
+    public function index(string $customerId): \Cake\Http\Response
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
         $notes = $this->CustomerNotes->find()->where(['customer_id' => $customerId]);
 
         $this->set(compact('customer', 'notes'));
+
+        return $this->render();
     }
 
     /**
@@ -38,7 +43,7 @@ class CustomerNotesController extends AppController
      * @param string $customerId
      * @return \Cake\Http\Response
      */
-    public function add(string $customerId)
+    public function add(string $customerId): \Cake\Http\Response
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
         $note = $this->CustomerNotes->newEmptyEntity();
@@ -55,6 +60,8 @@ class CustomerNotesController extends AppController
         }
 
         $this->set(compact('customer', 'note'));
+
+        return $this->render();
     }
 
     /**
@@ -64,7 +71,7 @@ class CustomerNotesController extends AppController
      * @param string $id
      * @return \Cake\Http\Response
      */
-    public function edit(string $customerId, string $id)
+    public function edit(string $customerId, string $id): \Cake\Http\Response
     {
         $customer = $this->fetchTable('Customers')->get($customerId);
         $note = $this->CustomerNotes->get($id);
@@ -80,6 +87,8 @@ class CustomerNotesController extends AppController
         }
 
         $this->set(compact('customer', 'note'));
+
+        return $this->render();
     }
 
     /**
@@ -89,7 +98,7 @@ class CustomerNotesController extends AppController
      * @param string $id
      * @return \Cake\Http\Response
      */
-    public function delete(string $customerId, string $id)
+    public function delete(string $customerId, string $id): \Cake\Http\Response
     {
         $this->request->allowMethod(['delete', 'post']);
         $note = $this->CustomerNotes->get($id);

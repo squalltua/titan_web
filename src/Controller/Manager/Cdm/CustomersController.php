@@ -6,6 +6,9 @@ namespace App\Controller\Manager\Cdm;
 
 use App\Controller\Manager\AppController;
 
+/**
+ * @property \App\Model\Table\CustomersTable $Customers
+ */
 class CustomersController extends AppController
 {
     public function initialize(): void
@@ -22,11 +25,13 @@ class CustomersController extends AppController
      *
      * @return \Cake\Http\Response
      */
-    public function index()
+    public function index(): \Cake\Http\Response
     {
         $customers = $this->paginate($this->Customers);
 
         $this->set(compact('customers'));
+
+        return $this->render();
     }
 
     /**
@@ -35,12 +40,14 @@ class CustomersController extends AppController
      * @param string $id
      * @return \Cake\Http\Response
      */
-    public function detail(string $id)
+    public function detail(string $id): \Cake\Http\Response
     {
         $customer = $this->Customers->get($id, ['contain' => ['Contacts']]);
 
         $this->set('objectMenuActive', 'detail');
         $this->set('customer', $customer);
+
+        return $this->render();
     }
 
     /**
@@ -48,7 +55,7 @@ class CustomersController extends AppController
      *
      * @return \Cake\Http\Response
      */
-    public function add()
+    public function add(): \Cake\Http\Response
     {
         $customer = $this->Customers->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -66,8 +73,10 @@ class CustomersController extends AppController
 
         $companyTypes = $this->Customers->getListCompanyTypes();
         $serviceTypes = $this->Customers->getListServiceTypes();
-    
+
         $this->set(compact('customer', 'companyTypes', 'serviceTypes'));
+
+        return $this->render();
     }
 
     /**
@@ -76,7 +85,7 @@ class CustomersController extends AppController
      * @param string $id
      * @return \Cake\Http\Response
      */
-    public function edit(string $id)
+    public function edit(string $id): \Cake\Http\Response
     {
         $customer = $this->Customers->get($id, ['contain' => ['Contacts']]);
         if ($this->request->is(['post', 'put', 'patch'])) {
@@ -92,8 +101,10 @@ class CustomersController extends AppController
 
         $companyTypes = $this->Customers->getListCompanyTypes();
         $serviceTypes = $this->Customers->getListServiceTypes();
-    
+
         $this->set(compact('customer', 'companyTypes', 'serviceTypes'));
+
+        return $this->render();
     }
 
     /**
@@ -102,7 +113,7 @@ class CustomersController extends AppController
      * @param string $id
      * @return \Cake\Http\Response
      */
-    public function delete(string $id)
+    public function delete(string $id): \Cake\Http\Response
     {
         $this->request->allowMethod(['delete', 'post']);
         $customer = $this->Customers->get($id);
