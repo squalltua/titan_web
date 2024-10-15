@@ -58,6 +58,7 @@ class PostsController extends AppController
         $postGroups = $this->fetchTable('PostGroups')->find('list');
 
         $this->set(compact('post', 'postGroups'));
+        $this->set('objectMenuActive', 'detail');
 
         return $this->render();
     }
