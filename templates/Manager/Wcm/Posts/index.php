@@ -86,7 +86,7 @@
                             <path d="M12 5l0 14"/>
                             <path d="M5 12l14 0"/>
                         </svg>
-                        <?= __('Add your first product') ?>
+                        <?= __('Add your first post') ?>
                     </a>
                 </div>
             </div>
