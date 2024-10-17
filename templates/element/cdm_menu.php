@@ -1,8 +1,15 @@
-<nav class="container-fluid bg-white shadow-sm mb-3">
-    <ul class="nav nav-underline">
-        <li class="nav-item"><i class="bi bi-arrow-return-right nav-link px-3 disabled"></i></li>
-        <li class="nav-item">
-            <?= $this->Html->link(__('Customer'), '/manager/cdm/customers', ['class' => $subMenuActive === 'customers' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
-        </li>
-    </ul>
-</nav>
+<header class="navbar-expand-md">
+    <div class="collapse navbar-collapse" id="navbar-menu">
+        <div class="navbar">
+            <div class="container-xl">
+                <ul class="navbar-nav">
+                    <li class="<?= $subMenuActive === 'customers' ? 'nav-item active' : 'nav-item' ?>">
+                        <a class="nav-link" href="/manager/cdm/customers">
+                            <span class="nav-link-title"><?= __('Customer') ?></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
