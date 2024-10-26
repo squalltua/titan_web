@@ -12,6 +12,9 @@ use Cake\ORM\Entity;
  * @property string $name
  * @property string $slug
  * @property string $type
+ * @property int|null $parent_id
+ * @property int|null $lft
+ * @property int|null $rght
  *
  * @property \App\Model\Entity\MetaPostGroup[] $meta_post_groups
  * @property \App\Model\Entity\Post[] $posts
@@ -31,6 +34,9 @@ class PostGroup extends Entity
         'name' => true,
         'slug' => true,
         'type' => true,
+        'parent_id' => true,
+        'lft' => true,
+        'rght' => true,
         'meta_post_groups' => true,
         'posts' => true,
     ];

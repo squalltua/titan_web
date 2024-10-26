@@ -63,4 +63,48 @@ class PostGroupsTableTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    /**
+     * Test getCategoriesAll method
+     *
+     * @return void
+     * @uses \App\Model\Table\PostGroupsTable::getCategoriesAll()
+     */
+    public function testGetCategoriesAll(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getTagsAll method
+     *
+     * @return void
+     * @uses \App\Model\Table\PostGroupsTable::getTagsAll()
+     */
+    public function testGetTagsAll(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getCategoriesList method
+     *
+     * @return void
+     * @uses \App\Model\Table\PostGroupsTable::getCategoriesList()
+     */
+    public function testGetCategoriesList(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getTagsList method
+     *
+     * @return void
+     * @uses \App\Model\Table\PostGroupsTable::getTagsList()
+     */
+    public function testGetTagsList(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
 }

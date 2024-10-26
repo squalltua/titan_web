@@ -1,15 +1,12 @@
 <?php
-
 declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\Database\Query;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-use PhpParser\Node\Expr\Cast\Bool_;
 
 /**
  * Taxonomies Model
@@ -29,13 +26,15 @@ use PhpParser\Node\Expr\Cast\Bool_;
  * @method iterable<\App\Model\Entity\Taxonomy>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Taxonomy> saveManyOrFail(iterable $entities, array $options = [])
  * @method iterable<\App\Model\Entity\Taxonomy>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Taxonomy>|false deleteMany(iterable $entities, array $options = [])
  * @method iterable<\App\Model\Entity\Taxonomy>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Taxonomy> deleteManyOrFail(iterable $entities, array $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TreeBehavior
  */
 class TaxonomiesTable extends Table
 {
     /**
      * Initialize method
      *
-     * @param array<string, mixed> $config The configuration for the Table.
+     * @param array $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void
@@ -46,6 +45,16 @@ class TaxonomiesTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
+        $this->addBehavior('Tree');
+
+        $this->belongsTo('ParentTaxonomies', [
+            'className' => 'Taxonomies',
+            'foreignKey' => 'parent_id',
+        ]);
+        $this->hasMany('ChildTaxonomies', [
+            'className' => 'Taxonomies',
+            'foreignKey' => 'parent_id',
+        ]);
         $this->belongsToMany('Products', [
             'foreignKey' => 'taxonomy_id',
             'targetForeignKey' => 'product_id',
@@ -79,18 +88,37 @@ class TaxonomiesTable extends Table
             ->requirePresence('type', 'create')
             ->notEmptyString('type');
 
+        $validator
+            ->integer('parent_id')
+            ->allowEmptyString('parent_id');
+
         return $validator;
     }
 
     /**
-     * @return \Cake\Database\Query
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
      */
-    public function getTypes(): Query
+    public function buildRules(RulesChecker $rules): RulesChecker
+    {
+        $rules->add($rules->existsIn(['parent_id'], 'ParentTaxonomies'), ['errorField' => 'parent_id']);
+
+        return $rules;
+    }
+
+    /**
+     * @return SelectQuery
+     */
+    public function getTypes(): SelectQuery
     {
         return $this->find('all')->where(['type' => 'types']);
     }
 
     /**
+     * @param string $id
      * @return mixed
      */
     public function getType(string $id): mixed
@@ -98,21 +126,24 @@ class TaxonomiesTable extends Table
         return $this->find()->where(['id' => $id, 'type' => 'types'])->first();
     }
 
-    public function getTypesList(): mixed
+    /**
+     * @return SelectQuery
+     */
+    public function getTypesList(): SelectQuery
     {
         return $this->find('list')->where(['type' => 'types']);
     }
 
     /**
-     * @return \Cake\Database\Query
+     * @return SelectQuery
      */
-    public function getCategories(): Query
+    public function getCategories(): SelectQuery
     {
         return $this->find('all')->where(['type' => 'categories']);
     }
 
     /**
-     * @param string $id taxonomy_id
+     * @param string $id
      * @return mixed
      */
     public function getCategory(string $id): mixed
@@ -120,7 +151,10 @@ class TaxonomiesTable extends Table
         return $this->find()->where(['id' => $id, 'type' => 'categories'])->first();
     }
 
-    public function getCategoriesList(): mixed
+    /**
+     * @return SelectQuery
+     */
+    public function getCategoriesList(): SelectQuery
     {
         return $this->find('list')->where(['type' => 'categories']);
     }

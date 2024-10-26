@@ -12,6 +12,9 @@ use Cake\ORM\Entity;
  * @property string $name
  * @property string $slug
  * @property string $type
+ * @property int|null $parent_id
+ * @property int|null $lft
+ * @property int|null $rght
  *
  * @property \App\Model\Entity\Product[] $products
  */
@@ -30,6 +33,9 @@ class Taxonomy extends Entity
         'name' => true,
         'slug' => true,
         'type' => true,
+        'parent_id' => true,
+        'lft' => true,
+        'rght' => true,
         'products' => true,
     ];
 }

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\Database\Query;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -28,13 +27,15 @@ use Cake\Validation\Validator;
  * @method iterable<\App\Model\Entity\PostGroup>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\PostGroup> saveManyOrFail(iterable $entities, array $options = [])
  * @method iterable<\App\Model\Entity\PostGroup>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\PostGroup>|false deleteMany(iterable $entities, array $options = [])
  * @method iterable<\App\Model\Entity\PostGroup>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\PostGroup> deleteManyOrFail(iterable $entities, array $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TreeBehavior
  */
 class PostGroupsTable extends Table
 {
     /**
      * Initialize method
      *
-     * @param array<string, mixed> $config The configuration for the Table.
+     * @param array $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void
@@ -45,8 +46,18 @@ class PostGroupsTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
+        $this->addBehavior('Tree');
+
+        $this->belongsTo('ParentPostGroups', [
+            'className' => 'PostGroups',
+            'foreignKey' => 'parent_id',
+        ]);
         $this->hasMany('MetaPostGroups', [
             'foreignKey' => 'post_group_id',
+        ]);
+        $this->hasMany('ChildPostGroups', [
+            'className' => 'PostGroups',
+            'foreignKey' => 'parent_id',
         ]);
         $this->belongsToMany('Posts', [
             'foreignKey' => 'post_group_id',
@@ -81,25 +92,55 @@ class PostGroupsTable extends Table
             ->requirePresence('type', 'create')
             ->notEmptyString('type');
 
+        $validator
+            ->integer('parent_id')
+            ->allowEmptyString('parent_id');
+
         return $validator;
     }
 
-    public function getCategoriesAll()
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules): RulesChecker
+    {
+        $rules->add($rules->existsIn(['parent_id'], 'ParentPostGroups'), ['errorField' => 'parent_id']);
+
+        return $rules;
+    }
+
+    /**
+     * @return SelectQuery
+     */
+    public function getCategoriesAll(): SelectQuery
     {
         return $this->find('all')->where(['type' => 'categories']);
     }
 
-    public function getTagsAll()
+    /**
+     * @return SelectQuery
+     */
+    public function getTagsAll(): SelectQuery
     {
         return $this->find('all')->where(['type' => 'tags']);
     }
 
-    public function getCategoriesList(): Query
+    /**
+     * @return SelectQuery
+     */
+    public function getCategoriesList(): SelectQuery
     {
         return $this->find('list')->where(['type' => 'categories']);
     }
 
-    public function getTagsList(): Query
+    /**
+     * @return SelectQuery
+     */
+    public function getTagsList(): SelectQuery
     {
         return $this->find('list')->where(['type' => 'tags']);
     }

@@ -62,4 +62,70 @@ class TaxonomiesTableTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    /**
+     * Test getTypes method
+     *
+     * @return void
+     * @uses \App\Model\Table\TaxonomiesTable::getTypes()
+     */
+    public function testGetTypes(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getType method
+     *
+     * @return void
+     * @uses \App\Model\Table\TaxonomiesTable::getType()
+     */
+    public function testGetType(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getTypesList method
+     *
+     * @return void
+     * @uses \App\Model\Table\TaxonomiesTable::getTypesList()
+     */
+    public function testGetTypesList(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getCategories method
+     *
+     * @return void
+     * @uses \App\Model\Table\TaxonomiesTable::getCategories()
+     */
+    public function testGetCategories(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getCategory method
+     *
+     * @return void
+     * @uses \App\Model\Table\TaxonomiesTable::getCategory()
+     */
+    public function testGetCategory(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getCategoriesList method
+     *
+     * @return void
+     * @uses \App\Model\Table\TaxonomiesTable::getCategoriesList()
+     */
+    public function testGetCategoriesList(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
 }
