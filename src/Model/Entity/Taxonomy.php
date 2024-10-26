@@ -15,7 +15,11 @@ use Cake\ORM\Entity;
  * @property int|null $parent_id
  * @property int|null $lft
  * @property int|null $rght
+ * @property int|null $level
+ * @property string|null $taxonomiescol
  *
+ * @property \App\Model\Entity\Taxonomy $parent_taxonomy
+ * @property \App\Model\Entity\Taxonomy[] $child_taxonomies
  * @property \App\Model\Entity\Product[] $products
  */
 class Taxonomy extends Entity
@@ -36,6 +40,10 @@ class Taxonomy extends Entity
         'parent_id' => true,
         'lft' => true,
         'rght' => true,
+        'level' => true,
+        'taxonomiescol' => true,
+        'parent_taxonomy' => true,
+        'child_taxonomies' => true,
         'products' => true,
     ];
 }

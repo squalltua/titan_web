@@ -26,6 +26,8 @@ class TaxonomiesFixture extends TestFixture
                 'parent_id' => 1,
                 'lft' => 1,
                 'rght' => 1,
+                'level' => 1,
+                'taxonomiescol' => 'Lorem ipsum dolor sit amet',
             ],
         ];
         parent::init();

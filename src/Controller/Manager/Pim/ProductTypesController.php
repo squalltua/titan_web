@@ -54,7 +54,9 @@ class ProductTypesController extends AppController
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $this->set(compact('type'));
+        $parents = $this->fetchTable('Taxonomies')->find('treeList')->where(['type' => 'types']);
+
+        $this->set(compact('type', 'parents'));
 
         return $this->render();
     }
@@ -78,7 +80,9 @@ class ProductTypesController extends AppController
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $this->set(compact('type'));
+        $parents = $this->fetchTable('Taxonomies')->find('treeList')->where(['type' => 'types']);
+
+        $this->set(compact('type', 'parents'));
 
         return $this->render();
     }

@@ -11,7 +11,9 @@ use Cake\Validation\Validator;
 /**
  * PostGroups Model
  *
+ * @property \App\Model\Table\PostGroupsTable&\Cake\ORM\Association\BelongsTo $ParentPostGroups
  * @property \App\Model\Table\MetaPostGroupsTable&\Cake\ORM\Association\HasMany $MetaPostGroups
+ * @property \App\Model\Table\PostGroupsTable&\Cake\ORM\Association\HasMany $ChildPostGroups
  * @property \App\Model\Table\PostsTable&\Cake\ORM\Association\BelongsToMany $Posts
  *
  * @method \App\Model\Entity\PostGroup newEmptyEntity()
@@ -35,7 +37,7 @@ class PostGroupsTable extends Table
     /**
      * Initialize method
      *
-     * @param array $config The configuration for the Table.
+     * @param array<string, mixed> $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void
@@ -46,7 +48,9 @@ class PostGroupsTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
-        $this->addBehavior('Tree');
+        $this->addBehavior('Tree', [
+            'level' => 'level',
+        ]);
 
         $this->belongsTo('ParentPostGroups', [
             'className' => 'PostGroups',
@@ -95,6 +99,10 @@ class PostGroupsTable extends Table
         $validator
             ->integer('parent_id')
             ->allowEmptyString('parent_id');
+
+        $validator
+            ->integer('level')
+            ->allowEmptyString('level');
 
         return $validator;
     }

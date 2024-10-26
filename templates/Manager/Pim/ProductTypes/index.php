@@ -40,7 +40,11 @@
                         <tbody>
                         <?php foreach ($types as $type): ?>
                             <tr>
-                                <td><?= h($type->name) ?></td>
+                                <td>
+                                    <span class="ps-<?= $type->level ?> ms-<?= $type->level ?>">
+                                        <?= h($type->name) ?>
+                                    </span>
+                                </td>
                                 <td class="text-end">
                                     <?= $this->Html->link(__('Edit'), "/manager/pim/product-types/edit/{$type->id}", ['class' => 'me-3']) ?>
                                     <?= $this->Form->postLink(__('Delete'), "/manager/pim/product-types/delete/{$type->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>

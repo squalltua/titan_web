@@ -26,6 +26,7 @@ class PostGroupsFixture extends TestFixture
                 'parent_id' => 1,
                 'lft' => 1,
                 'rght' => 1,
+                'level' => 1,
             ],
         ];
         parent::init();

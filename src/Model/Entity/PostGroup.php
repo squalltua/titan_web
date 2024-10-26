@@ -15,8 +15,11 @@ use Cake\ORM\Entity;
  * @property int|null $parent_id
  * @property int|null $lft
  * @property int|null $rght
+ * @property int|null $level
  *
+ * @property \App\Model\Entity\PostGroup $parent_post_group
  * @property \App\Model\Entity\MetaPostGroup[] $meta_post_groups
+ * @property \App\Model\Entity\PostGroup[] $child_post_groups
  * @property \App\Model\Entity\Post[] $posts
  */
 class PostGroup extends Entity
@@ -37,7 +40,10 @@ class PostGroup extends Entity
         'parent_id' => true,
         'lft' => true,
         'rght' => true,
+        'level' => true,
+        'parent_post_group' => true,
         'meta_post_groups' => true,
+        'child_post_groups' => true,
         'posts' => true,
     ];
 }

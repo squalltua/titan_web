@@ -20,6 +20,7 @@
                     </svg>
                     <?= __('Create new') ?>
                 </a>
+                <?= $this->Html->link(__('Recovery data'), '/manager/pim/product-categories/recovery', ['class' => 'btn btn-info d-none d-sm-inline-block']) ?>
             </div>
         </div>
     </div>
@@ -40,7 +41,11 @@
                     <?php if ($categories->count()): ?>
                         <?php foreach ($categories as $category): ?>
                             <tr>
-                                <td><?= h($category->name) ?></td>
+                                <td>
+                                    <span class="ps-<?= $category->level ?> ms-<?= $category->level ?>">
+                                        <?= h($category->name) ?>
+                                    </span>
+                                </td>
                                 <td class="text-end">
                                     <?= $this->Html->link(__('Edit'), "/manager/pim/product-categories/edit/{$category->id}", ['class' => 'me-3']) ?>
                                     <?= $this->Form->postLink(__('Delete'), "/manager/pim/product-categories/delete/{$category->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>

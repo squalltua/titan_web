@@ -54,7 +54,9 @@ class ProductCategoriesController extends AppController
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $this->set(compact('category'));
+        $parents = $this->fetchTable('Taxonomies')->find('treeList')->where(['type' => 'categories']);
+
+        $this->set(compact('category', 'parents'));
 
         return $this->render();
     }
@@ -78,16 +80,18 @@ class ProductCategoriesController extends AppController
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $this->set(compact('category'));
+        $parents = $this->fetchTable('Taxonomies')->find('treeList')->where(['type' => 'categories']);
+
+        $this->set(compact('category', 'parents'));
 
         return $this->render();
     }
 
     /**
      * @param string $id
-     * @return Response
+     * @return Response|null
      */
-    public function delete(string $id): Response
+    public function delete(string $id): ?Response
     {
         $this->request->allowMethod(['delete', 'post']);
         $category = $this->fetchTable('Taxonomies')->getCategory($id);
@@ -96,6 +100,17 @@ class ProductCategoriesController extends AppController
         } else {
             $this->Flash->error(__('The data could not be deleted. Please try again.'));
         }
+
+        return $this->redirect('/manager/pim/product-categories');
+    }
+
+    /**
+     * @return Response|null
+     */
+    public function recovery(): ?Response
+    {
+        $this->fetchTable('Taxonomies')->recover();
+        $this->Flash->success(__('Recovery data'));
 
         return $this->redirect('/manager/pim/product-categories');
     }

@@ -65,6 +65,17 @@ class PostGroupsTableTest extends TestCase
     }
 
     /**
+     * Test buildRules method
+     *
+     * @return void
+     * @uses \App\Model\Table\PostGroupsTable::buildRules()
+     */
+    public function testBuildRules(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
      * Test getCategoriesAll method
      *
      * @return void

@@ -41,6 +41,12 @@
                                 <?= $this->Form->text('name', ['class' => 'form-control', 'id' => 'name', 'required' => true]) ?>
                             </div>
                         </div>
+                        <div class="mb-3 row">
+                            <label for="parent-id" class="col-3 col-form-label"><?= __('Parent') ?></label>
+                            <div class="col">
+                                <?= $this->Form->select('parent_id', $parents, ['class' => 'form-select', 'id' => 'parent-id', 'empty' => __('Optional')]) ?>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer text-end">
                         <div class="d-flex">

@@ -11,6 +11,8 @@ use Cake\Validation\Validator;
 /**
  * Taxonomies Model
  *
+ * @property \App\Model\Table\TaxonomiesTable&\Cake\ORM\Association\BelongsTo $ParentTaxonomies
+ * @property \App\Model\Table\TaxonomiesTable&\Cake\ORM\Association\HasMany $ChildTaxonomies
  * @property \App\Model\Table\ProductsTable&\Cake\ORM\Association\BelongsToMany $Products
  *
  * @method \App\Model\Entity\Taxonomy newEmptyEntity()
@@ -34,7 +36,7 @@ class TaxonomiesTable extends Table
     /**
      * Initialize method
      *
-     * @param array $config The configuration for the Table.
+     * @param array<string, mixed> $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void
@@ -45,7 +47,9 @@ class TaxonomiesTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
-        $this->addBehavior('Tree');
+        $this->addBehavior('Tree', [
+            'level' => 'level',
+        ]);
 
         $this->belongsTo('ParentTaxonomies', [
             'className' => 'Taxonomies',
@@ -91,6 +95,10 @@ class TaxonomiesTable extends Table
         $validator
             ->integer('parent_id')
             ->allowEmptyString('parent_id');
+
+        $validator
+            ->integer('level')
+            ->allowEmptyString('level');
 
         return $validator;
     }

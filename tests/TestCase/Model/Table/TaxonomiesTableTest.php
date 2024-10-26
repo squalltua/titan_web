@@ -64,6 +64,17 @@ class TaxonomiesTableTest extends TestCase
     }
 
     /**
+     * Test buildRules method
+     *
+     * @return void
+     * @uses \App\Model\Table\TaxonomiesTable::buildRules()
+     */
+    public function testBuildRules(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
      * Test getTypes method
      *
      * @return void
