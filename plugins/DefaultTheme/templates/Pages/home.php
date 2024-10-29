@@ -20,16 +20,16 @@
                     <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
                         Continue reading
                         <svg class="bi">
-                            <use xlink:href="#chevron-right" />
+                            <use xlink:href="#chevron-right"/>
                         </svg>
                     </a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
                     <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
-                        role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
-                        focusable="false">
+                         role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
+                         focusable="false">
                         <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#55595c" />
+                        <rect width="100%" height="100%" fill="#55595c"/>
                         <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
                     </svg>
                 </div>
@@ -46,16 +46,16 @@
                     <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
                         Continue reading
                         <svg class="bi">
-                            <use xlink:href="#chevron-right" />
+                            <use xlink:href="#chevron-right"/>
                         </svg>
                     </a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
                     <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
-                        role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
-                        focusable="false">
+                         role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
+                         focusable="false">
                         <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#55595c" />
+                        <rect width="100%" height="100%" fill="#55595c"/>
                         <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
                     </svg>
                 </div>
@@ -169,35 +169,35 @@
                 <p>And don't forget about tables in these posts:</p>
                 <table class="table">
                     <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Upvotes</th>
-                            <th>Downvotes</th>
-                        </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Upvotes</th>
+                        <th>Downvotes</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Alice</td>
-                            <td>10</td>
-                            <td>11</td>
-                        </tr>
-                        <tr>
-                            <td>Bob</td>
-                            <td>4</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>Charlie</td>
-                            <td>7</td>
-                            <td>9</td>
-                        </tr>
+                    <tr>
+                        <td>Alice</td>
+                        <td>10</td>
+                        <td>11</td>
+                    </tr>
+                    <tr>
+                        <td>Bob</td>
+                        <td>4</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Charlie</td>
+                        <td>7</td>
+                        <td>9</td>
+                    </tr>
                     </tbody>
                     <tfoot>
-                        <tr>
-                            <td>Totals</td>
-                            <td>21</td>
-                            <td>23</td>
-                        </tr>
+                    <tr>
+                        <td>Totals</td>
+                        <td>21</td>
+                        <td>23</td>
+                    </tr>
                     </tfoot>
                 </table>
 
@@ -241,11 +241,11 @@
                     <ul class="list-unstyled">
                         <li>
                             <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                                href="#">
+                               href="#">
                                 <svg class="bd-placeholder-img" width="100%" height="96"
-                                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <rect width="100%" height="100%" fill="#777" />
+                                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                     preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <rect width="100%" height="100%" fill="#777"/>
                                 </svg>
                                 <div class="col-lg-8">
                                     <h6 class="mb-0">Example blog post title</h6>
@@ -255,11 +255,11 @@
                         </li>
                         <li>
                             <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                                href="#">
+                               href="#">
                                 <svg class="bd-placeholder-img" width="100%" height="96"
-                                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <rect width="100%" height="100%" fill="#777" />
+                                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                     preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <rect width="100%" height="100%" fill="#777"/>
                                 </svg>
                                 <div class="col-lg-8">
                                     <h6 class="mb-0">This is another blog post title</h6>
@@ -269,11 +269,11 @@
                         </li>
                         <li>
                             <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                                href="#">
+                               href="#">
                                 <svg class="bd-placeholder-img" width="100%" height="96"
-                                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <rect width="100%" height="100%" fill="#777" />
+                                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                     preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <rect width="100%" height="100%" fill="#777"/>
                                 </svg>
                                 <div class="col-lg-8">
                                     <h6 class="mb-0">Longer blog post title: This one has multiple lines!</h6>

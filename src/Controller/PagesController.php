@@ -14,6 +14,7 @@ declare(strict_types=1);
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Core\Configure;
@@ -35,8 +36,24 @@ class PagesController extends AppController
     public function beforeRender(\Cake\Event\EventInterface $event)
     {
         $this->viewBuilder()->setTheme('DefaultTheme');
-        $siteSettingData = $this->fetchTable('SiteSettings')->find('all');
-        $siteSetting = Hash::combine($siteSettingData->toArray(), '{n}.key_field', '{n}.value_field');
+//        $siteSettingData = $this->fetchTable('SiteSettings')->find('all');
+//        $siteSetting = Hash::combine($siteSettingData->toArray(), '{n}.key_field', '{n}.value_field');
+
+        $siteSetting = [
+            'site_name' => 'Site name',
+            'telephone' => ' ',
+            'address' => ' ',
+            'contact_email' => ' ',
+            'support_email' => ' ',
+            'sns_facebook_name' => ' ',
+            'sns_facebook_url' => ' ',
+            'sns_twitter_name' => ' ',
+            'sns_twitter_url' => ' ',
+            'sns_instagram_name' => ' ',
+            'sns_instagram_url' => ' ',
+            'sns_tiktok_name' => ' ',
+            'sns_tiktok_url' => ' ',
+        ];
 
         $this->set(compact('siteSetting'));
     }
@@ -60,21 +77,21 @@ class PagesController extends AppController
 
     public function blogs(): Response
     {
-        $blogs = $this->fetchTable('Posts')->find()
-            ->where([
-                'status' => 'published',
-            ])
-            ->contain(['PostsPostGroups', 'MetaPosts'])
-            ->orderByDesc('published');
-        $this->set(compact('blogs'));
+//        $blogs = $this->fetchTable('Posts')->find()
+//            ->where([
+//                'status' => 'published',
+//            ])
+//            ->contain(['PostsPostGroups', 'MetaPosts'])
+//            ->orderByDesc('published');
+//        $this->set(compact('blogs'));
 
         return $this->render();
     }
 
     public function blog(string $slug): Response
     {
-        $post = $this->fetchTable('Posts')->getPost($slug);
-        $this->set(compact('post'));
+//        $post = $this->fetchTable('Posts')->getPost($slug);
+//        $this->set(compact('post'));
 
         return $this->render();
     }

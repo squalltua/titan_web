@@ -59,7 +59,25 @@ return function (RouteBuilder $routes): void {
          * its action called 'display', and we pass a param to select the view file
          * to use (in this case, templates/Pages/home.php)...
          */
-        $builder->connect('/', ['controller' => 'Pages', 'action' => 'home']);
+        $builder->connect('/', 'Pages::home');
+        $builder->connect('/about', 'Pages::about');
+        $builder->connect('/contact', 'Pages::contact');
+        $builder->connect('/privacy-policy', 'Pages::privacyPolicy');
+        $builder->connect('/cookies-policy', 'Pages::cookiesPolicy');
+
+        // blogs module
+        $builder->connect('/blogs', 'Blogs::index');
+        $builder->connect('/blogs/{slug}', 'Blogs::view')->setPass(['slug']);
+        $builder->connect('/blogs/categories/{slug}', 'Blogs::categories')->setPass(['slug']);
+
+        /**
+         * products/services module
+         * change products to services if dont want product word
+         * or create new service routes
+         */
+        $builder->connect('/products', 'Products::index');
+        $builder->connect('/products/{slug}', 'Products::view')->setPass(['slug']);
+        $builder->connect('/products/categories/{slug}', 'Products::categories')->setPass(['slug']);
 
         $builder->connect('/*', 'Pages::pageNotFoundError');
         // $builder->fallbacks();
