@@ -1,0 +1,645 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2024-06-27 12:10+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ./templates/Pages/about.php:5
+msgid "About Titanscript."
+msgstr ""
+
+#: ./templates/Pages/about.php:6
+msgid "Providing consulting and developing software solutions with modern technology and innovation. I am committed to developing efficient software to meet the needs of every government and private sector in every industry. to solve the problem Increase work efficiency and create business advantages"
+msgstr ""
+
+#: ./templates/Pages/about.php:27
+msgid "That's me"
+msgstr ""
+
+#: ./templates/Pages/about.php:29
+msgid "I help organizations ship code faster and simplify development. Unlike big agencies, I won't hand you off to junior or outsourced developers. You work directly with me."
+msgstr ""
+
+#: ./templates/Pages/about.php:32
+msgid "Pukkapol Tantikittipisut"
+msgstr ""
+
+#: ./templates/Pages/about.php:33
+msgid "Everything in Titanscript"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:5
+#: ./templates/layout/default.php:58
+msgid "Consulting"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:5
+#: ./templates/layout/default.php:62
+msgid "Development"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:7
+msgid "Get expert Full-stack software engineering and advice for a simple fixed monthly price."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:8
+#: ./templates/Pages/consulting_and_development.php:155
+msgid "Ship faster. Reduce costly mistakes. Simplify development."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:10
+msgid "For just 80,000 THB/month"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:13
+#: ./templates/layout/default.php:108
+msgid "Contact Me"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:33
+msgid "How it works"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:34
+msgid "Skip the recruiters, rounds of interviews, and new employee paperwork, and get right to the fun part: shipping."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:44
+#: ./templates/Pages/home.php:53
+msgid "Request as many tasks as you want"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:45
+msgid "Unlimited projects. Unlimited tasks. Unlimited guidance."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:53
+#: ./templates/Pages/home.php:54
+msgid "Get code in days, not weeks"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:54
+msgid "I work on one active request at a time, and ship at least one meaningful deliverable a week on average."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:62
+#: ./templates/Pages/home.php:55
+msgid "Revise & iterate until you're 100% happy"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:63
+msgid "A great user experience is usually an iterative process. We'll keep revising your project until you're 100% happy with it."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:74
+msgid "How I can help"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:75
+msgid "There are a few different ways I can help you ship faster, reduce costly mistakes, and simplify your development process."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:85
+msgid "Analysis & Audit."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:86
+msgid "I can help you identify expensive bottlenecks, hidden issues, and potential problems with your site. I’ll put together a detailed report with actionable next-steps on how to fix any issues."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:96
+msgid "Roadmap & Planning."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:97
+msgid "We’ll identify your goals and challenges, and I’ll put together a custom roadmap to help you get there."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:107
+msgid "Implementation."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:108
+msgid "I can build your project for you, or work with your engineering team to accelerate your progress."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:118
+msgid "Team Training."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:119
+msgid "Give your team the skills they need to get more done. Grow, retain, and attract talented developers."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:129
+msgid "Ongoing Advisory."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:130
+msgid "Throughout the duration of your project, I’ll be available to review progress, answer questions, recommend tools and processes, share emerging best practices, and keep your project on the right track."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:140
+msgid "Help your team."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:141
+msgid "If you already have a team, this is ideal. I'll help your team."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:156
+msgid "Replace unreliable freelancers and expensive agencies with one flat monthly fee."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:164
+msgid "No Quotes or Invoices"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:165
+msgid "Sick of waiting for project proposals and getting surprise invoices? Say goodbye to both! Your subscription includes unlimited projects for one simple monthly fee."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:175
+msgid "No Meetings"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:176
+msgid "After an initial kick-off meeting, all communication happens async. Spend more time on what matters and less on pointless online meetings."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:186
+msgid "Easy Project Management"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:187
+msgid "No more digging through emails and Slack messages. Track your projects on Github Project or Trello with an easy, kanban-style management system. Or, bring your own system with you."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:226
+msgid "Always leave the code cleaner than you found it."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:227
+msgid "I’ve been building for the web for a long time, and worked with a wide range of users and clients. Technology is only as interesting as its ability to solve problems."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:228
+msgid "If your code is missing a README and documentation to get developers up to speed quickly, I’ll write it. If there are accessibility or performance issues that make it harder (or impossible) for people to use your site, I’ll flag them and fix them."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:234
+msgid "Websites, apps & more!"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:235
+msgid "I’m an expert at the full-stack. Spend less time getting a new developer up-to-speed and more time shipping."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:241
+msgid "PHP with CakePHP"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:242
+msgid "API Integration"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:243
+msgid "CSS & Design systems"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:244
+msgid "Vanilla JS & jQuery"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:245
+msgid "Bootstrap 5"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:250
+msgid "Web Performance"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:251
+msgid "Testing"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:252
+#: ./templates/Pages/website_ecommerce.php:73
+#: ./templates/Pages/website_ecommerce.php:123
+msgid "Responsive design"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:253
+msgid "Monolith architecture"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:254
+msgid "And more..."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:279
+msgid "TAX INVOICE"
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:280
+msgid "Tax invoice, of course, I will issue you a tax invoice. Titanscript business consult co.,ltd. is legally registered in Thailand. Able to issue tax invoices for Thailand."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:294
+msgid "Don't wait."
+msgstr ""
+
+#: ./templates/Pages/consulting_and_development.php:295
+msgid "Availability is limited. I usually only take on a handful of clients per year. If you are considering working with me, book a call now to get the process started."
+msgstr ""
+
+#: ./templates/Pages/contact_me.php:15
+#: ./templates/Pages/contact_me.php:19
+#: ./templates/Pages/privacy_policy.php:245
+msgid "Thailand"
+msgstr ""
+
+#: ./templates/Pages/contact_me.php:16
+#: ./templates/Pages/privacy_policy.php:242
+msgid "82, Moo 2, Na-O"
+msgstr ""
+
+#: ./templates/Pages/contact_me.php:17
+#: ./templates/Pages/privacy_policy.php:243
+msgid "Meuang Loei, Loei"
+msgstr ""
+
+#: ./templates/Pages/contact_me.php:28
+msgid "Want to make an appointment or contact me? just send mail"
+msgstr ""
+
+#: ./templates/Pages/home.php:46
+msgid "Consulting & Development"
+msgstr ""
+
+#: ./templates/Pages/home.php:48
+msgid "Get expert Full-stack software engineering and advice for a simple fixed monthly price. Ship faster. Reduce costly mistakes. Simplify development."
+msgstr ""
+
+#: ./templates/Pages/home.php:58
+#: ./templates/Pages/home.php:101
+msgid "Learn more"
+msgstr ""
+
+#: ./templates/Pages/home.php:89
+msgid "Web Application development"
+msgstr ""
+
+#: ./templates/Pages/home.php:91
+msgid "Web application development services for hire according to your requirements in various business groups and industries"
+msgstr ""
+
+#: ./templates/Pages/home.php:96
+msgid "CakePHP Framework"
+msgstr ""
+
+#: ./templates/Pages/home.php:97
+msgid "Small and Medium size application"
+msgstr ""
+
+#: ./templates/Pages/home.php:98
+msgid "Ship faster. Reduce costly mistakes"
+msgstr ""
+
+#: ./templates/Pages/home.php:132
+msgid "Developing all things website and ecommerce for business"
+msgstr ""
+
+#: ./templates/Pages/home.php:136
+msgid "Products information"
+msgstr ""
+
+#: ./templates/Pages/home.php:137
+msgid "Corporate website."
+msgstr ""
+
+#: ./templates/Pages/home.php:138
+msgid "Secure."
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:11
+msgid "Often we try to find a ready-made system instead. But in the end You had to stop using it. Finally, you have to hire a programmer. Because the system will be exactly what you want."
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:45
+msgid "Web application development service according to demand"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:46
+msgid "I provide application development services according to customer needs. It is committed to delivering high quality programs. to help solve problems Reduce working time, reduce costs and increase work efficiency. To meet the needs of use for SMEs"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:56
+msgid "Applications"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:60
+msgid "Content management system"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:61
+msgid "Product information management system"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:62
+msgid "Inventory management system"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:63
+msgid "Customer information management system"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:64
+msgid "Financial management system"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:65
+msgid "Employee management system"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:66
+msgid "Order management system"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:67
+msgid "Booking management system"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:68
+msgid "More..."
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:73
+msgid "Industries"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:77
+msgid "Food and beverage"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:78
+msgid "Retailing"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:79
+msgid "Hotel"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:85
+msgid "Entertainment"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:86
+msgid "Servicing"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:87
+msgid "Manufacturing"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:107
+msgid "Work Process"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:116
+msgid "Step 1"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:117
+msgid "Requirement and Planing"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:118
+msgid "This is the first meeting and we will start collecting information about needs. and plan system development"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:121
+#: ./templates/Pages/web_applications.php:150
+#: ./templates/Pages/web_applications.php:179
+msgid "TODO"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:123
+msgid "Meeting online with me by Google meet."
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:124
+msgid "Summarize needs into topics."
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:125
+msgid "Plan the work to be done."
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:145
+msgid "Step 2"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:146
+msgid "Build and Testing"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:147
+msgid "I will start designing and developing the system. where you can follow the progress"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:152
+msgid "Start to coding following plan tasks"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:153
+msgid "Test and Fix. Repeat."
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:154
+msgid "Project progress report"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:174
+msgid "Step 3"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:175
+msgid "Delivery and Maintenance"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:176
+msgid "Deliver excellent projects and documentation and make an appointment for training in use"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:181
+msgid "Delivering the project"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:182
+msgid "User manual and training"
+msgstr ""
+
+#: ./templates/Pages/web_applications.php:183
+msgid "Maintenance"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:5
+msgid "Open business opportunities with a"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:5
+msgid "Website"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:10
+msgid "A website can act as a company portfolio. And this can also catalog the products and services in your business. that is open all the time"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:40
+msgid "Our solutions"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:49
+msgid "Company website"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:50
+msgid "Show company and service information"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:58
+msgid "THB"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:65
+#: ./templates/Pages/website_ecommerce.php:114
+msgid "Company information"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:66
+#: ./templates/Pages/website_ecommerce.php:116
+msgid "Services information"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:67
+#: ./templates/Pages/website_ecommerce.php:117
+msgid "Blogs"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:72
+#: ./templates/Pages/website_ecommerce.php:122
+msgid "SEO implement"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:74
+#: ./templates/Pages/website_ecommerce.php:124
+msgid "Localization"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:75
+#: ./templates/Pages/website_ecommerce.php:125
+msgid "SSL"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:87
+#: ./templates/Pages/website_ecommerce.php:137
+msgid "Contact me"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:98
+msgid "Products Information website"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:99
+msgid "Online catalog information"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:104
+msgid "Start"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:115
+msgid "Products information"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:155
+msgid "The above price does not include Value Added Tax (VAT) 7% and server service fees and other service fees."
+msgstr ""
+
+#: ./templates/layout/default.php:42
+#: ./templates/layout/default.php:49
+msgid "Services"
+msgstr ""
+
+#: ./templates/layout/default.php:51
+msgid "We have other services that suits your business"
+msgstr ""
+
+#: ./templates/layout/default.php:60
+msgid "Consulting and Development"
+msgstr ""
+
+#: ./templates/layout/default.php:64
+msgid "Small & Medium Web Application"
+msgstr ""
+
+#: ./templates/layout/default.php:67
+msgid "Website and eCommerce"
+msgstr ""
+
+#: ./templates/layout/default.php:77
+#: ./templates/layout/default.php:83
+msgid "Products"
+msgstr ""
+
+#: ./templates/layout/default.php:85
+msgid "Products built for SME Easy to use and inexpensive"
+msgstr ""
+
+#: ./templates/layout/default.php:92
+msgid "Web apps"
+msgstr ""
+
+#: ./templates/layout/web_applications.php:50
+msgid "If interested or have questions, you can contact me."
+msgstr ""
+
+#: ./templates/layout/web_applications.php:57
+msgid "Answer every need"
+msgstr ""
+
+#: ./templates/layout/home.php:7
+msgid "Opportunities with Technology Applications"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:155
+msgid "For use in running the system"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:166
+msgid "Domain name price not more than 1,300 baht"
+msgstr ""
+
+#: ./templates/Pages/website_ecommerce.php:175
+msgid "VPS information"
+msgstr ""
+
+msgid "About Me"
+msgstr ""
+
+msgid "Address"
+msgstr ""
+
+msgid "If you have any questions about anything, feel free to email me at"
+msgstr ""

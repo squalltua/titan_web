@@ -1,0 +1,645 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2024-06-27 12:10+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ./templates/Pages/about.php:5
+msgid "About Titanscript."
+msgstr "เกี่ยวกับไททันสคริปท์"
+
+#: ./templates/Pages/about.php:6
+msgid "Providing consulting and developing software solutions with modern technology and innovation. I am committed to developing efficient software to meet the needs of every government and private sector in every industry. to solve the problem Increase work efficiency and create business advantages"
+msgstr "ให้คำปรึกษาและพัฒนาซอฟต์แวร์โซลูชั่นด้วยเทคโนโลยีและนวัตกรรมที่ทันสมัย ผมมุ่งมั่นที่จะพัฒนาซอฟต์แวร์ที่มีประสิทธิภาพเพื่อตอบสนองความต้องการของทุกภาครัฐและเอกชนในทุกอุตสาหกรรม เพื่อแก้ปัญหา เพิ่มประสิทธิภาพการทำงานและสร้างข้อได้เปรียบทางธุรกิจ"
+
+#: ./templates/Pages/about.php:27
+msgid "That's me"
+msgstr "นั้นผมเอง"
+
+#: ./templates/Pages/about.php:29
+msgid "I help organizations ship code faster and simplify development. Unlike big agencies, I won't hand you off to junior or outsourced developers. You work directly with me."
+msgstr "ผมช่วยให้องค์กรจัดส่งโค้ดได้เร็วขึ้นและทำให้การพัฒนาง่ายขึ้น ผมจะไม่มอบคุณให้กับนักพัฒนารุ่นเยาว์หรือจากภายนอกซึ่งแตกต่างจากเอเจนซี่รายใหญ่ คุณทำงานโดยตรงกับผม"
+
+#: ./templates/Pages/about.php:32
+msgid "Pukkapol Tantikittipisut"
+msgstr "ภัคพล ตันติกิตติพิสุทธิ์"
+
+#: ./templates/Pages/about.php:33
+msgid "Everything in Titanscript"
+msgstr "เป็นทุกอย่างในไททันสคริปท์"
+
+#: ./templates/Pages/consulting_and_development.php:5
+#: ./templates/layout/default.php:58
+msgid "Consulting"
+msgstr "การให้คำปรึกษา"
+
+#: ./templates/Pages/consulting_and_development.php:5
+#: ./templates/layout/default.php:62
+msgid "Development"
+msgstr "การพัฒนา"
+
+#: ./templates/Pages/consulting_and_development.php:7
+msgid "Get expert Full-stack software engineering and advice for a simple fixed monthly price."
+msgstr "รับผู้เชี่ยวชาญด้านวิศวกรรมซอฟต์แวร์ Full-stack และคำแนะนำในราคาคงที่รายเดือนแบบง่ายๆ"
+
+#: ./templates/Pages/consulting_and_development.php:8
+#: ./templates/Pages/consulting_and_development.php:155
+msgid "Ship faster. Reduce costly mistakes. Simplify development."
+msgstr "ส่งมอบงานได้เร็วขึ้น ลดข้อผิดพลาดที่มีค่าใช้จ่ายสูง ลดความซับซ้อนของการพัฒนา"
+
+#: ./templates/Pages/consulting_and_development.php:10
+msgid "For just 80,000 THB/month"
+msgstr "เพียง 80,000 บาท/เดือน"
+
+#: ./templates/Pages/consulting_and_development.php:13
+#: ./templates/layout/default.php:108
+msgid "Contact Me"
+msgstr "ติดต่อผม"
+
+#: ./templates/Pages/consulting_and_development.php:33
+msgid "How it works"
+msgstr "ทำงานอย่างไร"
+
+#: ./templates/Pages/consulting_and_development.php:34
+msgid "Skip the recruiters, rounds of interviews, and new employee paperwork, and get right to the fun part: shipping."
+msgstr "ข้ามการสรรหาบุคลากร การสัมภาษณ์รอบ และเอกสารของพนักงานใหม่ และเข้าสู่ส่วนที่สนุกสนาน: การส่งมอบงาน"
+
+#: ./templates/Pages/consulting_and_development.php:44
+#: ./templates/Pages/home.php:53
+msgid "Request as many tasks as you want"
+msgstr "ร้องของานได้มากเท่าที่คุณต้องการ"
+
+#: ./templates/Pages/consulting_and_development.php:45
+msgid "Unlimited projects. Unlimited tasks. Unlimited guidance."
+msgstr "โครงการไม่จำกัด งานไม่จำกัด คำแนะนำไม่จำกัด"
+
+#: ./templates/Pages/consulting_and_development.php:53
+#: ./templates/Pages/home.php:54
+msgid "Get code in days, not weeks"
+msgstr "โครงการไม่จำกัด งานไม่จำกัด คำแนะนำไม่จำกัด"
+
+#: ./templates/Pages/consulting_and_development.php:54
+msgid "I work on one active request at a time, and ship at least one meaningful deliverable a week on average."
+msgstr "ผมทำงานกับคำขอที่ดำเนินการอยู่ครั้งละหนึ่งคำขอ และจัดส่งการส่งมอบที่มีความหมายอย่างน้อยหนึ่งครั้งต่อสัปดาห์โดยเฉลี่ย"
+
+#: ./templates/Pages/consulting_and_development.php:62
+#: ./templates/Pages/home.php:55
+msgid "Revise & iterate until you're 100% happy"
+msgstr "แก้ไขและทำซ้ำจนกว่าคุณจะพอใจ 100%"
+
+#: ./templates/Pages/consulting_and_development.php:63
+msgid "A great user experience is usually an iterative process. We'll keep revising your project until you're 100% happy with it."
+msgstr "ประสบการณ์การใช้งานที่ยอดเยี่ยมมักเป็นกระบวนการที่ต้องทำซ้ำๆ เราจะแก้ไขโครงการของคุณต่อไปจนกว่าคุณจะพอใจ 100%"
+
+#: ./templates/Pages/consulting_and_development.php:74
+msgid "How I can help"
+msgstr "ผมสามารถช่วยได้อย่างไร"
+
+#: ./templates/Pages/consulting_and_development.php:75
+msgid "There are a few different ways I can help you ship faster, reduce costly mistakes, and simplify your development process."
+msgstr "มีหลายวิธีที่ผมสามารถช่วยให้คุณจัดส่งได้เร็วขึ้น ลดข้อผิดพลาดอันมีค่าใช้จ่ายสูง และทำให้กระบวนการพัฒนาของคุณง่ายขึ้น"
+
+#: ./templates/Pages/consulting_and_development.php:85
+msgid "Analysis & Audit."
+msgstr "การวิเคราะห์และการตรวจสอบ"
+
+#: ./templates/Pages/consulting_and_development.php:86
+msgid "I can help you identify expensive bottlenecks, hidden issues, and potential problems with your site. I’ll put together a detailed report with actionable next-steps on how to fix any issues."
+msgstr "ผมสามารถช่วยคุณระบุปัญหาคอขวดที่มีราคาแพง ปัญหาที่ซ่อนอยู่ และปัญหาที่อาจเกิดขึ้นกับไซต์ของคุณได้ ผมจะรวบรวมรายงานโดยละเอียดพร้อมขั้นตอนถัดไปที่สามารถดำเนินการได้เกี่ยวกับวิธีแก้ไขปัญหาต่างๆ"
+
+#: ./templates/Pages/consulting_and_development.php:96
+msgid "Roadmap & Planning."
+msgstr "แผนงานและการวางแผน"
+
+#: ./templates/Pages/consulting_and_development.php:97
+msgid "We’ll identify your goals and challenges, and I’ll put together a custom roadmap to help you get there."
+msgstr "เราจะระบุเป้าหมายและความท้าทายของคุณ และผมจะรวบรวมแผนงานที่กำหนดเองเพื่อช่วยให้คุณบรรลุเป้าหมาย"
+
+#: ./templates/Pages/consulting_and_development.php:107
+msgid "Implementation."
+msgstr "การนำไปปฏิบัติ"
+
+#: ./templates/Pages/consulting_and_development.php:108
+msgid "I can build your project for you, or work with your engineering team to accelerate your progress."
+msgstr "ผมสามารถสร้างโครงการให้คุณหรือทำงานร่วมกับทีมวิศวกรเพื่อเร่งความก้าวหน้าของคุณได้"
+
+#: ./templates/Pages/consulting_and_development.php:118
+msgid "Team Training."
+msgstr "การฝึกอบรมทีม"
+
+#: ./templates/Pages/consulting_and_development.php:119
+msgid "Give your team the skills they need to get more done. Grow, retain, and attract talented developers."
+msgstr "มอบทักษะที่จำเป็นให้กับทีมของคุณเพื่อให้ทำงานได้สำเร็จมากขึ้น เติบโต รักษา และดึงดูดนักพัฒนาที่มีความสามารถ"
+
+#: ./templates/Pages/consulting_and_development.php:129
+msgid "Ongoing Advisory."
+msgstr "ให้คำปรึกษาอย่างต่อเนื่อง"
+
+#: ./templates/Pages/consulting_and_development.php:130
+msgid "Throughout the duration of your project, I’ll be available to review progress, answer questions, recommend tools and processes, share emerging best practices, and keep your project on the right track."
+msgstr "ตลอดระยะเวลาของโครงการของคุณ ผมพร้อมที่จะตรวจสอบความคืบหน้า ตอบคำถาม แนะนำเครื่องมือและกระบวนการ แบ่งปันแนวทางปฏิบัติที่ดีที่สุดที่เกิดขึ้น และดูแลโครงการของคุณให้อยู่ในแนวทางที่ถูกต้อง"
+
+#: ./templates/Pages/consulting_and_development.php:140
+msgid "Help your team."
+msgstr "ช่วยเหลือทีมของคุณ"
+
+#: ./templates/Pages/consulting_and_development.php:141
+msgid "If you already have a team, this is ideal. I'll help your team."
+msgstr "หากคุณมีทีมอยู่แล้ว นี่ก็เหมาะอย่างยิ่ง ผมจะช่วยทีมของคุณ"
+
+#: ./templates/Pages/consulting_and_development.php:156
+msgid "Replace unreliable freelancers and expensive agencies with one flat monthly fee."
+msgstr "แทนที่ฟรีแลนซ์ที่ไม่น่าเชื่อถือและเอเจนซี่ราคาแพงด้วยค่าธรรมเนียมรายเดือนคงที่เพียงครั้งเดียว"
+
+#: ./templates/Pages/consulting_and_development.php:164
+msgid "No Quotes or Invoices"
+msgstr "ไม่มีใบเสนอราคาหรือใบแจ้งหนี้"
+
+#: ./templates/Pages/consulting_and_development.php:165
+msgid "Sick of waiting for project proposals and getting surprise invoices? Say goodbye to both! Your subscription includes unlimited projects for one simple monthly fee."
+msgstr "เบื่อกับการรอข้อเสนอโครงการและรับใบแจ้งหนี้ที่ไม่คาดคิดใช่หรือไม่ ลาก่อนทั้งคู่! การสมัครของคุณประกอบด้วยโปรเจ็กต์ไม่จำกัดด้วยค่าธรรมเนียมรายเดือนง่ายๆ เพียงครั้งเดียว"
+
+#: ./templates/Pages/consulting_and_development.php:175
+msgid "No Meetings"
+msgstr "ไม่มีการประชุม"
+
+#: ./templates/Pages/consulting_and_development.php:176
+msgid "After an initial kick-off meeting, all communication happens async. Spend more time on what matters and less on pointless online meetings."
+msgstr "หลังจากการประชุมเริ่มต้น การสื่อสารทั้งหมดจะเกิดขึ้นแบบไม่พร้อมกัน ใช้เวลากับสิ่งที่สำคัญมากขึ้นและน้อยลงกับการประชุมออนไลน์ที่ไร้จุดหมาย"
+
+#: ./templates/Pages/consulting_and_development.php:186
+msgid "Easy Project Management"
+msgstr "การจัดการโครงการที่ง่าย"
+
+#: ./templates/Pages/consulting_and_development.php:187
+msgid "No more digging through emails and Slack messages. Track your projects on Github Project or Trello with an easy, kanban-style management system. Or, bring your own system with you."
+msgstr "ไม่ต้องค้นหาอีเมลและข้อความ Slack อีกต่อไป ติดตามโครงการของคุณบน Github Project หรือ Trello ด้วยระบบการจัดการสไตล์คัมบังที่ใช้งานง่าย หรือนำระบบของคุณเองติดตัวไปด้วย"
+
+#: ./templates/Pages/consulting_and_development.php:226
+msgid "Always leave the code cleaner than you found it."
+msgstr "โค้ดสะอาดกว่าที่คุณพบเสมอ"
+
+#: ./templates/Pages/consulting_and_development.php:227
+msgid "I’ve been building for the web for a long time, and worked with a wide range of users and clients. Technology is only as interesting as its ability to solve problems."
+msgstr "ผมสร้างเว็บมาเป็นเวลานาน และทำงานร่วมกับผู้ใช้และลูกค้าที่หลากหลาย เทคโนโลยีมีความน่าสนใจพอๆ กับความสามารถในการแก้ปัญหาเท่านั้น"
+
+#: ./templates/Pages/consulting_and_development.php:228
+msgid "If your code is missing a README and documentation to get developers up to speed quickly, I’ll write it. If there are accessibility or performance issues that make it harder (or impossible) for people to use your site, I’ll flag them and fix them."
+msgstr "หากโค้ดของคุณขาด README และเอกสารประกอบเพื่อช่วยให้นักพัฒนาทำงานได้อย่างรวดเร็ว ผมจะเขียนมัน หากมีปัญหาด้านการเข้าถึงหรือประสิทธิภาพที่ทำให้ผู้อื่นใช้งานไซต์ของคุณได้ยากขึ้น (หรือเป็นไปไม่ได้) ผมจะแจ้งและแก้ไขปัญหาดังกล่าว"
+
+#: ./templates/Pages/consulting_and_development.php:234
+msgid "Websites, apps & more!"
+msgstr "เว็บไซต์ แอพ และอื่นๆ อีกมากมาย!"
+
+#: ./templates/Pages/consulting_and_development.php:235
+msgid "I’m an expert at the full-stack. Spend less time getting a new developer up-to-speed and more time shipping."
+msgstr "ผมเป็นผู้เชี่ยวชาญในเรื่อง full-stack ใช้เวลาน้อยลงในการทำให้นักพัฒนารายใหม่มีความรวดเร็วและมีเวลาจัดส่งมากขึ้น"
+
+#: ./templates/Pages/consulting_and_development.php:241
+msgid "PHP with CakePHP"
+msgstr "PHP ด้วย CakePHP"
+
+#: ./templates/Pages/consulting_and_development.php:242
+msgid "API Integration"
+msgstr "การผสานรวม API"
+
+#: ./templates/Pages/consulting_and_development.php:243
+msgid "CSS & Design systems"
+msgstr "CSS & ระบบการออกแบบ"
+
+#: ./templates/Pages/consulting_and_development.php:244
+msgid "Vanilla JS & jQuery"
+msgstr "Vanilla JS & jQuery"
+
+#: ./templates/Pages/consulting_and_development.php:245
+msgid "Bootstrap 5"
+msgstr "Bootstrap 5"
+
+#: ./templates/Pages/consulting_and_development.php:250
+msgid "Web Performance"
+msgstr "ประสิทธิภาพของเว็บ"
+
+#: ./templates/Pages/consulting_and_development.php:251
+msgid "Testing"
+msgstr "การทดสอบ"
+
+#: ./templates/Pages/consulting_and_development.php:252
+#: ./templates/Pages/website_ecommerce.php:73
+#: ./templates/Pages/website_ecommerce.php:123
+msgid "Responsive design"
+msgstr "Responsive design"
+
+#: ./templates/Pages/consulting_and_development.php:253
+msgid "Monolith architecture"
+msgstr "สถาปัตยกรรมแบบ Monolith"
+
+#: ./templates/Pages/consulting_and_development.php:254
+msgid "And more..."
+msgstr "และอื่นๆ ..."
+
+#: ./templates/Pages/consulting_and_development.php:279
+msgid "TAX INVOICE"
+msgstr "ใบกำกับภาษี"
+
+#: ./templates/Pages/consulting_and_development.php:280
+msgid "Tax invoice, of course, I will issue you a tax invoice. Titanscript business consult co.,ltd. is legally registered in Thailand. Able to issue tax invoices for Thailand."
+msgstr "ใบกำกับภาษี แน่นอน ผมจะออกใบกำกับภาษีให้คุณ บริษัท ไททันสคริปท์ บิสซิเนส คอนซัลท์ จำกัด ได้รับการจดทะเบียนถูกต้องตามกฎหมายในประเทศไทย สามารถออกใบกำกับภาษีสำหรับประเทศไทยได้"
+
+#: ./templates/Pages/consulting_and_development.php:294
+msgid "Don't wait."
+msgstr "อย่ารอช้า."
+
+#: ./templates/Pages/consulting_and_development.php:295
+msgid "Availability is limited. I usually only take on a handful of clients per year. If you are considering working with me, book a call now to get the process started."
+msgstr "ความพร้อมใช้งานมีจำกัด ผมมักจะรับลูกค้าเพียงไม่กี่รายต่อปี หากคุณกำลังพิจารณาที่จะร่วมงานกับผม โปรดโทรจองตอนนี้เพื่อเริ่มกระบวนการ"
+
+#: ./templates/Pages/contact_me.php:15
+#: ./templates/Pages/contact_me.php:19
+#: ./templates/Pages/privacy_policy.php:245
+msgid "Thailand"
+msgstr "ประเทศไทย"
+
+#: ./templates/Pages/contact_me.php:16
+#: ./templates/Pages/privacy_policy.php:242
+msgid "82, Moo 2, Na-O"
+msgstr "82 หมู่ 2 ตำลบนาอ้อ"
+
+#: ./templates/Pages/contact_me.php:17
+#: ./templates/Pages/privacy_policy.php:243
+msgid "Meuang Loei, Loei"
+msgstr "อำเภอเมือง จังหวัดเลย"
+
+#: ./templates/Pages/contact_me.php:28
+msgid "Want to make an appointment or contact me? just send mail"
+msgstr "ต้องการนัดหมายหรือติดต่อผม? เพียงแค่ส่ง email"
+
+#: ./templates/Pages/home.php:46
+msgid "Consulting & Development"
+msgstr "การให้คำปรึกษาและพัฒนา"
+
+#: ./templates/Pages/home.php:48
+msgid "Get expert Full-stack software engineering and advice for a simple fixed monthly price. Ship faster. Reduce costly mistakes. Simplify development."
+msgstr "รับผู้เชี่ยวชาญด้านวิศวกรรมซอฟต์แวร์ Full-stack และคำแนะนำในราคาคงที่รายเดือนแบบง่ายๆ จัดส่งได้เร็วขึ้น ลดข้อผิดพลาดที่มีค่าใช้จ่ายสูง ลดความซับซ้อนของการพัฒนา"
+
+#: ./templates/Pages/home.php:58
+#: ./templates/Pages/home.php:101
+msgid "Learn more"
+msgstr "เรียนรู้เพิ่มเติม"
+
+#: ./templates/Pages/home.php:89
+msgid "Web Application development"
+msgstr "การพัฒนาแอพพลิเคชั่นบนเว็บ"
+
+#: ./templates/Pages/home.php:91
+msgid "Web application development services for hire according to your requirements in various business groups and industries"
+msgstr "บริการพัฒนาเว็บแอพพลิเคชั่นให้เช่าตามความต้องการของคุณในกลุ่มธุรกิจและอุตสาหกรรมต่างๆ"
+
+#: ./templates/Pages/home.php:96
+msgid "CakePHP Framework"
+msgstr "CakePHP Framework"
+
+#: ./templates/Pages/home.php:97
+msgid "Small and Medium size application"
+msgstr "แอปพลิเคชั่นขนาดเล็กและขนาดกลาง"
+
+#: ./templates/Pages/home.php:98
+msgid "Ship faster. Reduce costly mistakes"
+msgstr "ส่งมอบงานได้เร็วขึ้น ลดข้อผิดพลาดที่มีค่าใช้จ่ายสูง"
+
+#: ./templates/Pages/home.php:132
+msgid "Developing all things website and ecommerce for business"
+msgstr "พัฒนาเว็บไซต์และอีคอมเมิร์ซทุกสิ่งสำหรับธุรกิจ"
+
+#: ./templates/Pages/home.php:136
+msgid "Products information"
+msgstr "ข้อมูลผลิตภัณฑ์"
+
+#: ./templates/Pages/home.php:137
+msgid "Corporate website."
+msgstr "เว็บไซต์ของบริษัท"
+
+#: ./templates/Pages/home.php:138
+msgid "Secure."
+msgstr "ปลอดภัย."
+
+#: ./templates/Pages/web_applications.php:11
+msgid "Often we try to find a ready-made system instead. But in the end You had to stop using it. Finally, you have to hire a programmer. Because the system will be exactly what you want."
+msgstr "บ่อยครั้งเราพยายามหาระบบสำเร็จรูปมาแทน แต่สุดท้ายคุณก็ต้องหยุดใช้มัน สุดท้ายคุณต้องจ้างโปรแกรมเมอร์ เพราะระบบจะตรงตามที่คุณต้องการ"
+
+#: ./templates/Pages/web_applications.php:45
+msgid "Web application development service according to demand"
+msgstr "บริการพัฒนาเว็บแอพพลิเคชั่นตามความต้องการ"
+
+#: ./templates/Pages/web_applications.php:46
+msgid "I provide application development services according to customer needs. It is committed to delivering high quality programs. to help solve problems Reduce working time, reduce costs and increase work efficiency. To meet the needs of use for SMEs"
+msgstr "ผมให้บริการพัฒนาแอพพลิเคชั่นตามความต้องการของลูกค้า มุ่งมั่นที่จะนำเสนอโปรแกรมคุณภาพสูง เพื่อช่วยแก้ปัญหา ลดเวลาการทำงาน ลดต้นทุน และเพิ่มประสิทธิภาพในการทำงาน เพื่อตอบสนองความต้องการใช้งานของ SMEs"
+
+#: ./templates/Pages/web_applications.php:56
+msgid "Applications"
+msgstr "แอปพลิเคชั่น"
+
+#: ./templates/Pages/web_applications.php:60
+msgid "Content management system"
+msgstr "ระบบการจัดการเนื้อหา"
+
+#: ./templates/Pages/web_applications.php:61
+msgid "Product information management system"
+msgstr "ระบบการจัดการข้อมูลผลิตภัณฑ์"
+
+#: ./templates/Pages/web_applications.php:62
+msgid "Inventory management system"
+msgstr "ระบบการจัดการสินค้าคงคลัง"
+
+#: ./templates/Pages/web_applications.php:63
+msgid "Customer information management system"
+msgstr "ระบบการจัดการข้อมูลลูกค้า"
+
+#: ./templates/Pages/web_applications.php:64
+msgid "Financial management system"
+msgstr "ระบบการจัดการทางการเงิน"
+
+#: ./templates/Pages/web_applications.php:65
+msgid "Employee management system"
+msgstr "ระบบการจัดการพนักงาน"
+
+#: ./templates/Pages/web_applications.php:66
+msgid "Order management system"
+msgstr "ระบบการจัดการคำสั่งซื้อ"
+
+#: ./templates/Pages/web_applications.php:67
+msgid "Booking management system"
+msgstr "ระบบการจัดการการจอง"
+
+#: ./templates/Pages/web_applications.php:68
+msgid "More..."
+msgstr "อีกมาก..."
+
+#: ./templates/Pages/web_applications.php:73
+msgid "Industries"
+msgstr "อุตสาหกรรม"
+
+#: ./templates/Pages/web_applications.php:77
+msgid "Food and beverage"
+msgstr "อาหารและเครื่องดื่ม"
+
+#: ./templates/Pages/web_applications.php:78
+msgid "Retailing"
+msgstr "การค้าปลีก"
+
+#: ./templates/Pages/web_applications.php:79
+msgid "Hotel"
+msgstr "โรงแรม"
+
+#: ./templates/Pages/web_applications.php:85
+msgid "Entertainment"
+msgstr "ความบันเทิง"
+
+#: ./templates/Pages/web_applications.php:86
+msgid "Servicing"
+msgstr "การบริการ"
+
+#: ./templates/Pages/web_applications.php:87
+msgid "Manufacturing"
+msgstr "การผลิต"
+
+#: ./templates/Pages/web_applications.php:107
+msgid "Work Process"
+msgstr "กระบวนการทำงาน"
+
+#: ./templates/Pages/web_applications.php:116
+msgid "Step 1"
+msgstr "ขั้นตอนที่ 1"
+
+#: ./templates/Pages/web_applications.php:117
+msgid "Requirement and Planing"
+msgstr "ความต้องการและการวางแผน"
+
+#: ./templates/Pages/web_applications.php:118
+msgid "This is the first meeting and we will start collecting information about needs. and plan system development"
+msgstr "นี่เป็นการประชุมครั้งแรกและเราจะเริ่มรวบรวมข้อมูลเกี่ยวกับความต้องการ และวางแผนการพัฒนาระบบ"
+
+#: ./templates/Pages/web_applications.php:121
+#: ./templates/Pages/web_applications.php:150
+#: ./templates/Pages/web_applications.php:179
+msgid "TODO"
+msgstr "สิ่งที่ต้องทำ"
+
+#: ./templates/Pages/web_applications.php:123
+msgid "Meeting online with me by Google meet."
+msgstr "ประชุมออนไลน์กับผมโดย Google Meet"
+
+#: ./templates/Pages/web_applications.php:124
+msgid "Summarize needs into topics."
+msgstr "สรุปความต้องการเป็นหัวข้อต่างๆ"
+
+#: ./templates/Pages/web_applications.php:125
+msgid "Plan the work to be done."
+msgstr "วางแผนงานที่จะทำ"
+
+#: ./templates/Pages/web_applications.php:145
+msgid "Step 2"
+msgstr "ขั้นตอนที่ 2"
+
+#: ./templates/Pages/web_applications.php:146
+msgid "Build and Testing"
+msgstr "สร้างและทดสอบ"
+
+#: ./templates/Pages/web_applications.php:147
+msgid "I will start designing and developing the system. where you can follow the progress"
+msgstr "ผมจะเริ่มออกแบบและพัฒนาระบบ ซึ่งคุณสามารถติดตามความคืบหน้าได้"
+
+#: ./templates/Pages/web_applications.php:152
+msgid "Start to coding following plan tasks"
+msgstr "เริ่มเขียนโค้ดตามงานแผน"
+
+#: ./templates/Pages/web_applications.php:153
+msgid "Test and Fix. Repeat."
+msgstr "ทดสอบและแก้ไข ทำซ้ำ."
+
+#: ./templates/Pages/web_applications.php:154
+msgid "Project progress report"
+msgstr "รายงานความคืบหน้าโครงการ"
+
+#: ./templates/Pages/web_applications.php:174
+msgid "Step 3"
+msgstr "ขั้นตอนที่ 3"
+
+#: ./templates/Pages/web_applications.php:175
+msgid "Delivery and Maintenance"
+msgstr "การจัดส่งและการบำรุงรักษา"
+
+#: ./templates/Pages/web_applications.php:176
+msgid "Deliver excellent projects and documentation and make an appointment for training in use"
+msgstr "ส่งมอบโครงการและเอกสารที่ดีเยี่ยมและนัดหมายการฝึกอบรมการใช้งาน"
+
+#: ./templates/Pages/web_applications.php:181
+msgid "Delivering the project"
+msgstr "ส่งมอบโครงการ"
+
+#: ./templates/Pages/web_applications.php:182
+msgid "User manual and training"
+msgstr "คู่มือการใช้งานและการฝึกอบรม"
+
+#: ./templates/Pages/web_applications.php:183
+msgid "Maintenance"
+msgstr "การซ่อมบำรุง"
+
+#: ./templates/Pages/website_ecommerce.php:5
+msgid "Open business opportunities with a"
+msgstr "เปิดโอกาสทางธุรกิจด้วย"
+
+#: ./templates/Pages/website_ecommerce.php:5
+msgid "Website"
+msgstr "เว็บไซต์"
+
+#: ./templates/Pages/website_ecommerce.php:10
+msgid "A website can act as a company portfolio. And this can also catalog the products and services in your business. that is open all the time"
+msgstr "เว็บไซต์สามารถทำหน้าที่เป็นพอร์ตโฟลิโอของบริษัทได้ และยังสามารถจัดทำแค็ตตาล็อกผลิตภัณฑ์และบริการในธุรกิจของคุณได้อีกด้วย โดยที่เปิดตลอดเวลา"
+
+#: ./templates/Pages/website_ecommerce.php:40
+msgid "Our solutions"
+msgstr "โซลูชั่นของเรา"
+
+#: ./templates/Pages/website_ecommerce.php:49
+msgid "Company website"
+msgstr "เว็บไซต์ของบริษัท"
+
+#: ./templates/Pages/website_ecommerce.php:50
+msgid "Show company and service information"
+msgstr "แสดงข้อมูลบริษัทและบริการ"
+
+#: ./templates/Pages/website_ecommerce.php:58
+msgid "THB"
+msgstr "บาท"
+
+#: ./templates/Pages/website_ecommerce.php:65
+#: ./templates/Pages/website_ecommerce.php:114
+msgid "Company information"
+msgstr "ข้อมูลบริษัท"
+
+#: ./templates/Pages/website_ecommerce.php:66
+#: ./templates/Pages/website_ecommerce.php:116
+msgid "Services information"
+msgstr "ข้อมูลการบริการ"
+
+#: ./templates/Pages/website_ecommerce.php:67
+#: ./templates/Pages/website_ecommerce.php:117
+msgid "Blogs"
+msgstr "Blogs"
+
+#: ./templates/Pages/website_ecommerce.php:72
+#: ./templates/Pages/website_ecommerce.php:122
+msgid "SEO implement"
+msgstr "การทำ SEO"
+
+#: ./templates/Pages/website_ecommerce.php:74
+#: ./templates/Pages/website_ecommerce.php:124
+msgid "Localization"
+msgstr "รองรับหลายภาษา"
+
+#: ./templates/Pages/website_ecommerce.php:75
+#: ./templates/Pages/website_ecommerce.php:125
+msgid "SSL"
+msgstr "SSL"
+
+#: ./templates/Pages/website_ecommerce.php:87
+#: ./templates/Pages/website_ecommerce.php:137
+msgid "Contact me"
+msgstr "ติดต่อผม"
+
+#: ./templates/Pages/website_ecommerce.php:98
+msgid "Products Information website"
+msgstr "เว็บไซต์ข้อมูลผลิตภัณฑ์"
+
+#: ./templates/Pages/website_ecommerce.php:99
+msgid "Online catalog information"
+msgstr "ข้อมูลแคตตาล็อกออนไลน์"
+
+#: ./templates/Pages/website_ecommerce.php:104
+msgid "Start"
+msgstr "เริ่มต้น"
+
+#: ./templates/Pages/website_ecommerce.php:115
+msgid "Products information"
+msgstr "ข้อมูลผลิตภัณฑ์"
+
+#: ./templates/Pages/website_ecommerce.php:155
+msgid "The above price does not include Value Added Tax (VAT) 7% and server service fees and other service fees."
+msgstr "ราคาข้างต้นไม่รวมภาษีมูลค่าเพิ่ม (VAT) 7% และค่าบริการเซิร์ฟเวอร์และค่าบริการอื่นๆ"
+
+#: ./templates/layout/default.php:42
+#: ./templates/layout/default.php:49
+msgid "Services"
+msgstr "บริการ"
+
+#: ./templates/layout/default.php:51
+msgid "We have other services that suits your business"
+msgstr "เรามีบริการอื่นๆ ที่เหมาะกับธุรกิจของคุณ"
+
+#: ./templates/layout/default.php:60
+msgid "Consulting and Development"
+msgstr "การให้คำปรึกษาและพัฒนา"
+
+#: ./templates/layout/default.php:64
+msgid "Small & Medium Web Application"
+msgstr "เว็บแอปพลิเคชันขนาดเล็กและขนาดกลาง"
+
+#: ./templates/layout/default.php:67
+msgid "Website and eCommerce"
+msgstr "เว็บไซต์และอีคอมเมิร์ซ"
+
+#: ./templates/layout/default.php:77
+#: ./templates/layout/default.php:83
+msgid "Products"
+msgstr "ผลิตภัณฑ์"
+
+#: ./templates/layout/default.php:85
+msgid "Products built for SME Easy to use and inexpensive"
+msgstr "สินค้าที่สร้างมาเพื่อ SME ใช้งานง่ายและราคาไม่แพง"
+
+#: ./templates/layout/default.php:92
+msgid "Web apps"
+msgstr "Web apps"
+
+#: ./templates/layout/web_applications.php:50
+msgid "If interested or have questions, you can contact me."
+msgstr "หากสนใจหรือมีข้อสงสัยสามารถติดต่อได้เลยนะครับ"
+
+#: ./templates/layout/web_applications.php:57
+msgid "Answer every need"
+msgstr "ตอบโจทย์ทุกความต้องการ"
+
+#: ./templates/layout/home.php:7
+msgid "Opportunities with Technology Applications"
+msgstr "โอกาสกับการประยุกต์ใช้เทคโนโลยี"
+
+#: ./templates/Pages/website_ecommerce.php:155
+msgid "For use in running the system"
+msgstr "เพื่อใช้ในการดำเนินระบบ"
+
+#: ./templates/Pages/website_ecommerce.php:166
+msgid "Domain name price not more than 1,300 baht"
+msgstr "Domain name ราคาไม่เกิน 1,300 บาท"
+
+#: ./templates/Pages/website_ecommerce.php:175
+msgid "VPS information"
+msgstr "รายละเอียด VPS"
+
+msgid "About Me"
+msgstr "เกี่ยวกับผม"
+
+msgid "Address"
+msgstr "ที่อยู่"
+
+msgid "If you have any questions about anything, feel free to email me at"
+msgstr "หากคุณมีคำถามเกี่ยวกับสิ่งใดๆ โปรดอย่าลังเลที่จะส่งอีเมลถึงผมที่"

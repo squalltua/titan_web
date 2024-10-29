@@ -54,11 +54,10 @@ return function (RouteBuilder $routes): void {
     $routes->setRouteClass(DashedRoute::class);
 
     $routes->scope('/', function (RouteBuilder $builder): void {
-        /*
-         * Here, we are connecting '/' (base path) to a controller called 'Pages',
-         * its action called 'display', and we pass a param to select the view file
-         * to use (in this case, templates/Pages/home.php)...
-         */
+        $builder->connect('/', 'Pages::home');
+    });
+
+    $routes->scope('/{lang}', function (RouteBuilder $builder): void {
         $builder->connect('/', 'Pages::home');
         $builder->connect('/about', 'Pages::about');
         $builder->connect('/contact', 'Pages::contact');
@@ -80,7 +79,6 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/products/categories/{slug}', 'Products::categories')->setPass(['slug']);
 
         $builder->connect('/*', 'Pages::pageNotFoundError');
-        // $builder->fallbacks();
     });
 
     $routes->prefix('Client', function (RouteBuilder $builder): void {

@@ -115,7 +115,9 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      * @return void
      * @link https://book.cakephp.org/4/en/development/dependency-injection.html#dependency-injection
      */
-    public function services(ContainerInterface $container): void {}
+    public function services(ContainerInterface $container): void
+    {
+    }
 
     /**
      * Returns a service provider instance.

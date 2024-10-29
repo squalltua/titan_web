@@ -1,7 +1,7 @@
 {
-    "name": "cakephp/app",
-    "description": "CakePHP skeleton app",
-    "homepage": "https://cakephp.org",
+    "name": "titansweb/app",
+    "description": "TitanWEB skeleton app",
+    "homepage": "https://titanscript.com",
     "type": "project",
     "license": "MIT",
     "require": {

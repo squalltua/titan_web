@@ -1,17 +1,44 @@
-<?= $this->Form->create() ?>
-    <h3 class="text-center"><?= __('TitanWEB') ?></h3>
-    <div class="mb-3">
-        <h5 class="text-center"><?= __('Please login first.') ?></h5>
-        <?= $this->Flash->render() ?>
+<div class="row align-items-center g-4">
+    <div class="col-lg">
+        <div class="container-tight">
+            <div class="text-center mb-4">
+                <a href="." class="navbar-brand navbar-brand-autodark">
+                    <?= $this->Html->image('logo.webp', ['height' => 36, 'alt' => 'titanweb logo']) ?>
+                </a>
+            </div>
+            <div class="card card-md">
+                <div class="card-body">
+                    <h2 class="h2 text-center mb-4"><?= __('Login to your account') ?></h2>
+                    <?= $this->Form->create(null, ['autocomplete' => 'off', 'onvalidate' => true]) ?>
+                    <div class="mb-3">
+                        <label for="email" class="form-label"><?= __('Email address') ?></label>
+                        <input name="email" id="email" type="email" class="form-control" placeholder="your@email.com"
+                               autocomplete="off">
+                    </div>
+                    <div class="mb-2">
+                        <label for="password" class="form-label">
+                            <?= __('Password') ?>
+                        </label>
+                        <div class="input-group input-group-flat">
+                            <input name="password" id="password" type="password" class="form-control"
+                                   placeholder="Your password"
+                                   autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-primary w-100"><?= __('Sign in') ?></button>
+                    </div>
+                    <?= $this->Form->end() ?>
+                    <div class="row">
+                        <div class="col">
+                            <?= $this->Flash->render() ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="form-floating">
-        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="Please enter you email.">
-        <label for="floatingInput"><?= __('Email') ?></label>
+    <div class="col-lg d-none d-lg-block">
+        <?= $this->Html->image('/vendor/tabler-v1.0.0-beta20/static/illustrations/undraw_secure_login_pdn4.svg', ['height' => 300, 'class' => 'd-block mx-auto', 'alt' => '']) ?>
     </div>
-    <div class="form-floating">
-        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Please enter you password.">
-        <label for="floatingPassword"><?= __('Password') ?></label>
-    </div>
-    <button class="btn btn-primary w-100 py-2" type="submit"><?= __('Sign-in') ?></button>
-<?= $this->Form->end() ?>
+</div>

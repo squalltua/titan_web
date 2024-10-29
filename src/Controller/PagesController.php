@@ -21,6 +21,8 @@ use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
+use Cake\I18n\I18n;
+use Cake\Utility\Text;
 use Cake\Utility\Hash;
 use Cake\View\Exception\MissingTemplateException;
 
@@ -33,35 +35,38 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class PagesController extends AppController
 {
-    public function beforeRender(\Cake\Event\EventInterface $event)
+    public function beforeRender(\Cake\Event\EventInterface $event): void
     {
         $this->viewBuilder()->setTheme('DefaultTheme');
-//        $siteSettingData = $this->fetchTable('SiteSettings')->find('all');
-//        $siteSetting = Hash::combine($siteSettingData->toArray(), '{n}.key_field', '{n}.value_field');
 
-        $siteSetting = [
-            'site_name' => 'Site name',
-            'telephone' => ' ',
-            'address' => ' ',
-            'contact_email' => ' ',
-            'support_email' => ' ',
-            'sns_facebook_name' => ' ',
-            'sns_facebook_url' => ' ',
-            'sns_twitter_name' => ' ',
-            'sns_twitter_url' => ' ',
-            'sns_instagram_name' => ' ',
-            'sns_instagram_url' => ' ',
-            'sns_tiktok_name' => ' ',
-            'sns_tiktok_url' => ' ',
-        ];
+        $lang = $this->request->getParam('lang');
+        if (!$lang) {
+            $lang = strtolower(Text::slug(Configure::read('App.defaultLocale')));
+            $this->changeLanguage($lang);
+        } else {
+            I18n::setLocale($lang);
+        }
+        $this->set('lang', $lang);
+    }
+
+    public function initialize(): void
+    {
+        parent::initialize();
+
+        $siteSettingData = $this->fetchTable('SiteSettings')->find('all');
+        $siteSetting = Hash::combine($siteSettingData->toArray(), '{n}.key_field', '{n}.value_field');
 
         $this->set(compact('siteSetting'));
     }
 
+    public function changeLanguage(string $lang = 'en_US'): Response
+    {
+        I18n::setLocale($lang);
+        return $this->redirect("/{$lang}");
+    }
+
     public function home(): Response
     {
-        // load content here.
-
         return $this->render();
     }
 
