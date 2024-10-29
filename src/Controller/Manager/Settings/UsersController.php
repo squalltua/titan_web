@@ -178,7 +178,6 @@ class UsersController extends AppController
 
         $userAdmin = $this->fetchTable('Adminusers')->find()->where(['username' => 'admin'])->first();
         if (!$userAdmin) {
-
             // create setting data
             $settings = $this->fetchTable('SiteSettings')->newEntities([
                 ['key_field' => 'site_name', 'value_field' => 'Site name'],
@@ -205,16 +204,18 @@ class UsersController extends AppController
                 [
                     'title' => 'Admin',
                     'slug' => 'admin',
+                    'status' => 'active',
                 ],
                 [
                     'title' => 'Staff',
                     'slug' => 'staff',
+                    'status' => 'active',
                 ]
             ]);
             if ($this->fetchTable('Roles')->saveMany($roles)) {
                 echo '<p>Create role done.</p>';
             }
-            $adminRole = $this->fetchTable('Roles')->getBySlug('admin')->first();
+            $adminRole = $this->fetchTable('Roles')->findBySlug('admin')->first();
             // end create role data
 
             // $password = Security::randomString(8);
