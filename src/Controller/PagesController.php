@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -37,13 +38,19 @@ class PagesController extends AppController
 {
     public function beforeRender(\Cake\Event\EventInterface $event): void
     {
-        $this->viewBuilder()->setTheme('DefaultTheme');
+        $this->viewBuilder()->setTheme('TitanscriptMainWebsite');
 
         $lang = $this->request->getParam('lang');
         if (!$lang) {
             $lang = strtolower(Text::slug(Configure::read('App.defaultLocale')));
+            if (!in_array($lang, ['th', 'en', 'jp'])) {
+                $lang = 'th';
+            }
             $this->changeLanguage($lang);
         } else {
+            if (!in_array($lang, ['th', 'en', 'jp'])) {
+                $this->changeLanguage('th');
+            }
             I18n::setLocale($lang);
         }
         $this->set('lang', $lang);
@@ -59,7 +66,7 @@ class PagesController extends AppController
         $this->set(compact('siteSetting'));
     }
 
-    public function changeLanguage(string $lang = 'en_US'): Response
+    public function changeLanguage(string $lang = 'th'): Response
     {
         I18n::setLocale($lang);
         return $this->redirect("/{$lang}");
@@ -75,39 +82,53 @@ class PagesController extends AppController
         return $this->render();
     }
 
+    public function services(string $pageName): Response
+    {
+        $pageName = strtolower(Text::slug($pageName, '_'));
+
+        return $this->render("services/{$pageName}");
+    }
+
+    public function industries(string $pageName): Response
+    {
+        $pageName = strtolower(Text::slug($pageName, '_'));
+
+        return $this->render("industries/{$pageName}");
+    }
+
+    public function products(string $pageName): Response
+    {
+        $pageName = strtolower(Text::slug($pageName, '_'));
+
+        return $this->render("products/{$pageName}");
+    }
+
     public function contact(): Response
     {
         return $this->render();
     }
 
-    public function blogs(): Response
+    public function policy(string $pageName)
     {
-//        $blogs = $this->fetchTable('Posts')->find()
-//            ->where([
-//                'status' => 'published',
-//            ])
-//            ->contain(['PostsPostGroups', 'MetaPosts'])
-//            ->orderByDesc('published');
-//        $this->set(compact('blogs'));
+        $pageName = strtolower(Text::slug($pageName, '_'));
 
+        return $this->render("policy/{$pageName}");
+    }
+
+    public function privacyPolicy(): Response
+    {
         return $this->render();
     }
 
-    public function blog(string $slug): Response
+    public function cookiesPolicy(): Response
     {
-//        $post = $this->fetchTable('Posts')->getPost($slug);
-//        $this->set(compact('post'));
-
         return $this->render();
     }
 
-    /**
-     * Sandbox Error 404 here
-     * @return Response
-     */
-    public function pageNotFoundError(): Response
+    public function pageNotFound(): Response
     {
         $this->viewBuilder()->setLayout('error');
+
         return $this->render();
     }
 }

@@ -6,8 +6,10 @@ namespace App\Controller\Manager\Settings;
 
 use App\Controller\Manager\AppController;
 use Cake\Datasource\ConnectionManager;
+use Cake\Database\Connection;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Http\Response;
+use Cake\Utility\Security;
 
 /**
  * Users controller
@@ -173,53 +175,32 @@ class UsersController extends AppController
 
     public function initializeData(): ?Response
     {
-        $connection = ConnectionManager::get('default');
+        $config = ConnectionManager::getConfig('default');
+        $connection = new Connection($config);
         $connection->begin();
 
-        $userAdmin = $this->fetchTable('Adminusers')->find()->where(['username' => 'admin'])->first();
-        if (!$userAdmin) {
+        if (!$this->fetchTable('Adminusers')->alreadyHaveAdmin()) {
             // create setting data
-            $settings = $this->fetchTable('SiteSettings')->newEntities([
-                ['key_field' => 'site_name', 'value_field' => 'Site name'],
-                ['key_field' => 'telephone', 'value_field' => " "],
-                ['key_field' => 'address', 'value_field' => " "],
-                ['key_field' => 'contact_email', 'value_field' => " "],
-                ['key_field' => 'support_email', 'value_field' => " "],
-                ['key_field' => 'sns_facebook_name', 'value_field' => " "],
-                ['key_field' => 'sns_facebook_url', 'value_field' => " "],
-                ['key_field' => 'sns_twitter_name', 'value_field' => " "],
-                ['key_field' => 'sns_twitter_url', 'value_field' => " "],
-                ['key_field' => 'sns_instagram_name', 'value_field' => " "],
-                ['key_field' => 'sns_instagram_url', 'value_field' => " "],
-                ['key_field' => 'sns_tiktok_name', 'value_field' => " "],
-                ['key_field' => 'sns_tiktok_url', 'value_field' => " "],
-            ]);
-            if ($this->fetchTable('SiteSettings')->saveMany($settings)) {
-                echo '<p>Create setting done.</p>';
+            if (!$this->fetchTable('SiteSettings')->initSiteSettingData()) {
+                echo '<p>Could not initial site setting data.</p>';
+                $connection->rollback();
+                exit;
             }
             // end create setting data
 
             // create role data
-            $roles = $this->fetchTable('Roles')->newEntities([
-                [
-                    'title' => 'Admin',
-                    'slug' => 'admin',
-                    'status' => 'active',
-                ],
-                [
-                    'title' => 'Staff',
-                    'slug' => 'staff',
-                    'status' => 'active',
-                ]
-            ]);
-            if ($this->fetchTable('Roles')->saveMany($roles)) {
-                echo '<p>Create role done.</p>';
+            if (!$this->fetchTable('Roles')->initRolesData()) {
+                echo '<p>Could not initial role data.</p>';
+                $connection->rollback();
+                exit;
             }
-            $adminRole = $this->fetchTable('Roles')->findBySlug('admin')->first();
             // end create role data
+            
+            // get admin role
+            $adminRole = $this->fetchTable('Roles')->findBySlug('admin')->first();
 
-            // $password = Security::randomString(8);
-            $password = 'admin';
+            // create admin user
+            $password = Security::randomString(8);
             $user = $this->fetchTable('Adminusers')->newEntity([
                 'username' => 'admin',
                 'role_id' => $adminRole->id,

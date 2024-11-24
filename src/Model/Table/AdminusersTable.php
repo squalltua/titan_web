@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\Datasource\ConnectionManager;
+use Cake\Database\Connection;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -116,5 +118,12 @@ class AdminusersTable extends Table
         $rules->add($rules->existsIn(['role_id'], 'Roles'), ['errorField' => 'role_id']);
 
         return $rules;
+    }
+
+    public function alreadyHaveAdmin()
+    {
+        $userAdmin = $this->find()->where(['username' => 'admin'])->first();
+        
+        return !is_null($userAdmin);
     }
 }

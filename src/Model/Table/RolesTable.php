@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Table;
@@ -87,5 +88,27 @@ class RolesTable extends Table
             ->allowEmptyString('content');
 
         return $validator;
+    }
+
+    public function initRolesData()
+    {
+        $roles = $this->newEntities([
+            [
+                'title' => 'Admin',
+                'slug' => 'admin',
+                'status' => 'active',
+            ],
+            [
+                'title' => 'Staff',
+                'slug' => 'staff',
+                'status' => 'active',
+            ],
+        ]);
+
+        if ($this->saveMany($roles)) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -1,8 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\Database\Connection;
 use Cake\Datasource\ConnectionManager;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
@@ -80,8 +82,9 @@ class SiteSettingsTable extends Table
      */
     public function saveSiteSetting(array $data): bool
     {
-        $conn = ConnectionManager::get('default');
-        $conn->begin();
+        $config = ConnectionManager::getConfig('default');
+        $conn = new Connection($config);
+
         foreach ($data as $key => $value) {
             $setting = $this->find()->where(['key_field' => $key])->first();
             if ($setting) {
@@ -103,6 +106,32 @@ class SiteSettingsTable extends Table
         }
 
         $conn->commit();
+
         return true;
+    }
+
+    public function initSiteSettingData()
+    {
+        $settings = $this->newEntities([
+            ['key_field' => 'site_name', 'value_field' => 'Site name'],
+            ['key_field' => 'telephone', 'value_field' => " "],
+            ['key_field' => 'address', 'value_field' => " "],
+            ['key_field' => 'contact_email', 'value_field' => " "],
+            ['key_field' => 'support_email', 'value_field' => " "],
+            ['key_field' => 'sns_facebook_name', 'value_field' => " "],
+            ['key_field' => 'sns_facebook_url', 'value_field' => " "],
+            ['key_field' => 'sns_twitter_name', 'value_field' => " "],
+            ['key_field' => 'sns_twitter_url', 'value_field' => " "],
+            ['key_field' => 'sns_instagram_name', 'value_field' => " "],
+            ['key_field' => 'sns_instagram_url', 'value_field' => " "],
+            ['key_field' => 'sns_tiktok_name', 'value_field' => " "],
+            ['key_field' => 'sns_tiktok_url', 'value_field' => " "],
+        ]);
+
+        if ($this->saveMany($settings)) {
+            return true;
+        }
+
+        return false;
     }
 }
