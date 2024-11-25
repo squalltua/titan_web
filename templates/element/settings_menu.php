@@ -1,14 +1,30 @@
-<nav class="container-fluid bg-white shadow-sm mb-3 border-top">
-    <ul class="nav nav-underline">
-        <li class="nav-item"><i class="bi bi-arrow-return-right nav-link px-3 disabled"></i></li>
-        <li class="nav-item">
-            <?= $this->Html->link(__('Users'), '/manager/settings/users', ['class' => $subMenuActive === 'users' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
-        </li>
-        <li class="name-item">
-            <?= $this->Html->link(__('Roles'), '/manager/settings/roles', ['class' => $subMenuActive === 'roles' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
-        </li>
-        <li class="nav-item">
-            <?= $this->Html->link(__('System'), '/manager/settings/system', ['class' => $subMenuActive === 'configurations' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
-        </li>
-    </ul>
-</nav>
+<header class="navbar-expand-md">
+    <div class="collapse navbar-collapse" id="navbar-menu">
+        <div class="navbar">
+            <div class="container-xl">
+                <ul class="navbar-nav">
+                    <li class="<?= $subMenuActive === 'system' ? 'nav-item active' : 'nav-item' ?>">
+                        <a class="nav-link" href="/manager/settings/system">
+                            <span class="nav-link-title"><?= __('System') ?></span>
+                        </a>
+                    </li>
+                    <li class="<?= $subMenuActive === 'admin-users' ? 'nav-item active' : 'nav-item' ?>">
+                        <a class="nav-link" href="/manager/settings/admin-users">
+                            <span class="nav-link-title"><?= __('Admin users') ?></span>
+                        </a>
+                    </li>
+                    <li class="<?= $subMenuActive === 'client_users' ? 'nav-item active' : 'nav-item' ?>">
+                        <a class="nav-link" href="/manager/settings/client-users">
+                            <span class="nav-link-title"><?= __('Client users') ?></span>
+                        </a>
+                    </li>
+                    <li class="<?= $subMenuActive === 'roles' ? 'nav-item active' : 'nav-item' ?>">
+                        <a class="nav-link" href="/manager/settings/roles">
+                            <span class="nav-link-title"><?= __('Roles') ?></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

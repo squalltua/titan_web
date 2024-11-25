@@ -38,7 +38,7 @@ class PagesController extends AppController
 {
     public function beforeRender(\Cake\Event\EventInterface $event): void
     {
-        $this->viewBuilder()->setTheme('TitanscriptMainWebsite');
+        $this->viewBuilder()->setTheme('DefaultTheme');
 
         $lang = $this->request->getParam('lang');
         if (!$lang) {

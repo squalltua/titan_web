@@ -10,7 +10,9 @@ class SystemSettingsController extends AppController
     {
         parent::initialize();
 
-        $this->set('menuActive', 'system');
+        $this->set('subMenu', 'settings_menu');
+        $this->set('applicationName', __('Site setting and System'));
+
     }
 
     /**
@@ -31,6 +33,7 @@ class SystemSettingsController extends AppController
         }
 
         $this->set(compact('setting'));
+        $this->set('subMenuActive', 'system');
 
         return $this->render();
     }

@@ -148,10 +148,16 @@ return function (RouteBuilder $routes): void {
         });
 
         $builder->prefix('Settings', function (RouteBuilder $builder): void {
-            $builder->connect('/system', 'SystemSettings::system');
+            $builder->connect('/system', ['prefix' => 'Manager/Settings', 'controller' => 'SystemSettings', 'action' => 'system']);
 
             $builder->connect('/users', ['prefix' => 'Manager/Settings', 'controller' => 'Users', 'action' => 'index']);
             $builder->connect('/users/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'Users']);
+
+            $builder->connect('/admin-users', ['prefix' => 'Manager/Settings', 'controller' => 'AdminUsers', 'action' => 'index']);
+            $builder->connect('/admin-users/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'AdminUsers']);
+
+            $builder->connect('/client-users', ['prefix' => 'Manager/Settings', 'controller' => 'ClientUsers', 'action' => 'index']);
+            $builder->connect('/client-users/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'ClientUsers']);
 
             $builder->connect('/roles', ['prefix' => 'Manager/Settings', 'controller' => 'Roles', 'action' => 'index']);
             $builder->connect('/roles/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'Roles']);
