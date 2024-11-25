@@ -63,6 +63,9 @@
                             <a class="dropdown-item" href="/manager/cdm/customers">
                                 <?= __('Customer data manangment') ?>
                             </a>
+                            <a class="dropdown-item" href="/manager/settings/system">
+                                <?= __('Site setting and System') ?>
+                            </a>
                         </div>
                     </li>
                 </ul>
