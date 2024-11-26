@@ -7,15 +7,6 @@
     width: 100%;
 }
 
-/* password input */
-.show-password {
-    float: right;
-    margin-left: -25px;
-    margin-top: -27px;
-    position: relative;
-    z-index: 2;
-}
-
 .checklist{
     list-style: none;
 }

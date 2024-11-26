@@ -15,15 +15,15 @@
         'main.css',
     ]) ?>
     <style>
-        @import url('https://rsms.me/inter/inter.css');
+    @import url('https://rsms.me/inter/inter.css');
 
-        :root {
-            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
-        }
+    :root {
+        --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+    }
 
-        body {
-            font-feature-settings: "cv03", "cv04", "cv11";
-        }
+    body {
+        font-feature-settings: "cv03", "cv04", "cv11";
+    }
     </style>
 
     <?= $this->fetch('meta') ?>
@@ -32,47 +32,47 @@
 </head>
 
 <body class="layout-fluid">
-<div class="page">
-    <div class="sticky-top">
-        <?= $this->element('header') ?>
-        <?= $this->element($subMenu ?? 'submenu_default') ?>
-    </div>
-    <div class="page-wrapper">
-        <?= $this->Flash->render() ?>
-        <?= $this->fetch('content') ?>
-        <footer class="footer footer-transparent d-print-none">
-            <div class="container-xl">
-                <div class="row text-center align-items-center flex-row-reverse">
-                    <div class="col-lg-auto ms-lg-auto">
-                        <ul class="list-inline list-inline-dots mb-0">
-                            <li class="list-inline-item"><a href="#" target="_blank" class="link-secondary"
-                                                            rel="noopener">Documentation</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-12 col-lg-auto mt-3 mt-lg-0">
-                        <ul class="list-inline list-inline-dots mb-0">
-                            <li class="list-inline-item">
-                                Copyright &copy; <?= date('Y') ?>
-                                <a href="https://www.titanscript.com" class="link-secondary">Titanscript business
-                                    consult col.,ltd</a>.
-                                All rights reserved.
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="./changelog.html" class="link-secondary" rel="noopener">
-                                    Version 1.0
-                                </a>
-                            </li>
-                        </ul>
+    <div class="page">
+        <div class="sticky-top">
+            <?= $this->element('header') ?>
+            <?= $this->element($subMenu ?? 'submenu_default') ?>
+        </div>
+        <div class="page-wrapper">
+            <?= $this->Flash->render() ?>
+            <?= $this->fetch('content') ?>
+            <footer class="footer footer-transparent d-print-none">
+                <div class="container-xl">
+                    <div class="row text-center align-items-center flex-row-reverse">
+                        <div class="col-lg-auto ms-lg-auto">
+                            <ul class="list-inline list-inline-dots mb-0">
+                                <li class="list-inline-item"><a href="#" target="_blank" class="link-secondary"
+                                        rel="noopener">Documentation</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                            <ul class="list-inline list-inline-dots mb-0">
+                                <li class="list-inline-item">
+                                    Copyright &copy; <?= date('Y') ?>
+                                    <a href="https://www.titanscript.com" class="link-secondary">Titanscript business
+                                        consult col.,ltd</a>.
+                                    All rights reserved.
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="./changelog.html" class="link-secondary" rel="noopener">
+                                        Version 1.0
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
     </div>
-</div>
 
-<!-- Libs JS -->
-<?= $this->Html->script([
+    <!-- Libs JS -->
+    <?= $this->Html->script([
     // Tabler Core
     '/vendor/tabler-v1.0.0-beta20/dist/js/tabler.min.js',
 

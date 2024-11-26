@@ -120,6 +120,15 @@ class AdminusersTable extends Table
         return $rules;
     }
 
+    public function getUser(string $id)
+    {
+        return $this->find()
+        ->select(['AdminUsers.id', 'AdminUsers.username', 'AdminUsers.full_name', 'AdminUsers.role_id', 'AdminUsers.status', 'AdminUsers.email', 'AdminUsers.created', 'AdminUsers.modified'])
+        ->where(['AdminUsers.id' => $id])
+        ->contain(['Roles'])
+        ->first();
+    }
+
     public function alreadyHaveAdmin()
     {
         $userAdmin = $this->find()->where(['username' => 'admin'])->first();

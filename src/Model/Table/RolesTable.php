@@ -111,4 +111,9 @@ class RolesTable extends Table
 
         return false;
     }
+
+    public function getList()
+    {
+        return $this->find('list')->where(['status' => 'active']);
+    }
 }
