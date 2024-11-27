@@ -8,7 +8,7 @@
                             <span class="nav-link-title"><?= __('System') ?></span>
                         </a>
                     </li>
-                    <li class="<?= $subMenuActive === 'admin-users' ? 'nav-item active' : 'nav-item' ?>">
+                    <li class="<?= $subMenuActive === 'admin_users' ? 'nav-item active' : 'nav-item' ?>">
                         <a class="nav-link" href="/manager/settings/admin-users">
                             <span class="nav-link-title"><?= __('Admin users') ?></span>
                         </a>

@@ -114,4 +114,12 @@ class ClientusersTable extends Table
 
         return $rules;
     }
+
+    public function getUser(string $id)
+    {
+        return $this->find()
+            ->select(['ClientUsers.id', 'ClientUsers.username', 'ClientUsers.full_name', 'ClientUsers.status', 'ClientUsers.email', 'ClientUsers.created', 'ClientUsers.modified'])
+            ->where(['ClientUsers.id' => $id])
+            ->first();
+    }
 }

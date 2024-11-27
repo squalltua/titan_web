@@ -7,9 +7,9 @@ namespace App\Controller\Manager\Settings;
 use App\Controller\Manager\AppController;
 
 /**
- * @property \App\Model\Table\AdminusersTable $AdminUsers
+ * @property \App\Model\Table\ClientusersTable $ClientUsers
  */
-class AdminUsersController extends AppController
+class ClientUsersController extends AppController
 {
     public function initialize(): void
     {
@@ -17,24 +17,21 @@ class AdminUsersController extends AppController
 
         $this->set('subMenu', 'settings_menu');
         $this->set('applicationName', __('Site setting and System'));
-        $this->set('subMenuActive', 'admin_users');
+        $this->set('subMenuActive', 'client_users');
     }
 
     public function index()
     {
-        $query = $this->AdminUsers->find()
+        $query = $this->ClientUsers->find()
             ->select([
-                'AdminUsers.id',
-                'AdminUsers.username',
-                'AdminUsers.full_name',
-                'AdminUsers.role_id',
-                'AdminUsers.status',
-                'AdminUsers.email',
-                'AdminUsers.created',
-                'AdminUsers.modified',
-                'Roles.title',
-            ])
-            ->contain(['Roles']);
+                'ClientUsers.id',
+                'ClientUsers.username',
+                'ClientUsers.full_name',
+                'ClientUsers.status',
+                'ClientUsers.email',
+                'ClientUsers.created',
+                'ClientUsers.modified',
+            ]);
 
         $users = $this->paginate($query);
 
@@ -43,76 +40,72 @@ class AdminUsersController extends AppController
 
     public function view(string $id)
     {
-        $user = $this->AdminUsers->get($id, ['contain' => ['Roles']]);
+        $user = $this->ClientUsers->get($id);
 
         $this->set('user', $user);
     }
 
     public function add()
     {
-        $user = $this->AdminUsers->newEmptyEntity();
+        $user = $this->ClientUsers->newEmptyEntity();
         if ($this->request->is('post')) {
-            $user = $this->AdminUsers->patchEntity($user, $this->request->getData());
+            $user = $this->ClientUsers->patchEntity($user, $this->request->getData());
             $user->status = 'active';
-            if ($this->AdminUsers->save($user)) {
+            if ($this->ClientUsers->save($user)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/settings/admin-users");
+                return $this->redirect("/manager/settings/client-users");
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $roles = $this->AdminUsers->Roles->getList();
-
-        $this->set(compact('user', 'roles'));
+        $this->set(compact('user'));
     }
 
     public function edit(string $id)
     {
-        $user = $this->AdminUsers->getUser($id);
+        $user = $this->ClientUsers->getUser($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
-            $user = $this->AdminUsers->patchEntity($user, $this->request->getData());
-            if ($this->AdminUsers->save($user)) {
+            $user = $this->ClientUsers->patchEntity($user, $this->request->getData());
+            if ($this->ClientUsers->save($user)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/settings/admin-users");
+                return $this->redirect("/manager/settings/client-users");
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $roles = $this->AdminUsers->Roles->getList();
-
-        $this->set(compact('user', 'roles'));
+        $this->set(compact('user'));
     }
 
     public function delete(string $id)
     {
         $this->request->allowMethod(['delete', 'post']);
-        $user = $this->AdminUsers->getUser($id);
+        $user = $this->ClientUsers->getUser($id);
         $user->status = 'deleted';
-        if ($this->AdminUsers->save($user)) {
+        if ($this->ClientUsers->save($user)) {
             $this->Flash->success(__('The data has been deleted.'));
         } else {
             $this->Flash->error(__('The data could not be deleted. Please try again.'));
         }
 
-        return $this->redirect('/manager/settings/admin-users');
+        return $this->redirect('/manager/settings/client-users');
     }
 
     public function changePassword(string $id)
     {
-        $user = $this->AdminUsers->getUser($id);
+        $user = $this->ClientUsers->getUser($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $user->password = $this->request->getData('password');
-            if ($this->AdminUsers->save($user)) {
+            if ($this->ClientUsers->save($user)) {
                 $this->Flash->success(__('The password has been updated.'));
             } else {
                 $this->Flash->error(__('The password could not be updated. Please try again.'));
             }
 
-            return $this->redirect("/manager/settings/admin-users/edit/{$id}");
+            return $this->redirect("/manager/settings/client-users/edit/{$id}");
         }
 
         $this->set('user', $user);
