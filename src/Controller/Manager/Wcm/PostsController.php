@@ -77,7 +77,7 @@ class PostsController extends AppController
             unset($data['meta_posts']);
 
             $post = $this->Posts->patchEntity($post, $data);
-            $post->user_id = $this->Authentication->getIdentity()->getIdentifier();
+            $post->adminuser_id = $this->Authentication->getIdentity()->getIdentifier();
             $post->slug = Text::slug($post->title);
             if ($this->Posts->save($post)) {
                 // save meta data

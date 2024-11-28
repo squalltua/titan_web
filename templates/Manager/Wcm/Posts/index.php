@@ -50,7 +50,7 @@
                                 <td class="text-end">
                                     <?= $this->Html->link(__('Detail'), "/manager/wcm/posts/view/{$post->id}", ['class' => 'me-3']) ?>
                                     <?= $this->Html->link(__('Edit'), "/manager/wcm/posts/edit/{$post->id}", ['class' => 'me-3']) ?>
-                                    <?= $this->Form->postLink(__('Delete'), "/manager/wcm/posts/delete/{$post->id}", ['class' => 'text-danger']) ?>
+                                    <?= $this->Form->postLink(__('Delete'), "/manager/wcm/posts/delete/{$post->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>
                                 </td>
                             </tr>
                         <?php endforeach ?>

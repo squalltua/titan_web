@@ -47,7 +47,7 @@
                                 <td><?= h($group->content) ?></td>
                                 <td>
                                     <?= $this->Html->link(__('Edit'), "/manager/wcm/groups/edit/{$group->id}", ['class' => 'me-3']) ?>
-                                    <?= $this->Form->postLink(__('Delete'), "/manager/wcm/groups/delete/{$group->id}") ?>
+                                    <?= $this->Form->postLink(__('Delete'), "/manager/wcm/groups/delete/{$group->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>
                                 </td>
                             </tr>
                         <?php endforeach ?>

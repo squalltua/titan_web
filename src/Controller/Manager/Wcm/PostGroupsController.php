@@ -47,7 +47,7 @@ class PostGroupsController extends AppController
             if ($this->PostGroups->save($group)) {
                 $this->Flash->success(__('The group has been saved.'));
 
-                return $this->redirect('/manager/cms/groups');
+                return $this->redirect('/manager/wcm/groups');
             }
 
             $this->Flash->error(__('The group could not be saved. Please, try again.'));
@@ -70,7 +70,7 @@ class PostGroupsController extends AppController
             if ($this->PostGroups->save($group)) {
                 $this->Flash->success(__('The group has been saved.'));
 
-                return $this->redirect('/manager/cms/groups');
+                return $this->redirect('/manager/wcm/groups');
             }
 
             $this->Flash->error(__('The group could not be saved. Please, try again.'));
@@ -91,10 +91,10 @@ class PostGroupsController extends AppController
         $group = $this->PostGroups->get($id);
         if ($this->PostGroups->delete($group)) {
             $this->Flash->success(__('The group has been deleted.'));
-            return $this->redirect('/manager/cms/groups');
+            return $this->redirect('/manager/wcm/groups');
         }
 
         $this->Flash->error(__('The group could not be deleted. Please, try again.'));
-        return $this->redirect("/manager/cms/groups/edit/{$id}");
+        return $this->redirect("/manager/wcm/groups/edit/{$id}");
     }
 }
