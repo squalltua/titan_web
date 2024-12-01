@@ -3,7 +3,7 @@
         <div class="container-tight">
             <div class="text-center mb-4">
                 <a href="." class="navbar-brand navbar-brand-autodark">
-                    <?= $this->Html->image('logo.webp', ['height' => 36, 'alt' => 'titanweb logo']) ?>
+                    TITAN/WEB
                 </a>
             </div>
             <div class="card card-md">

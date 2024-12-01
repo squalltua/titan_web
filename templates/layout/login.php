@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sing-in to TitanWEB</title>
+    <title>Sing-in to TITAN/WEB</title>
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css([

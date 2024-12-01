@@ -6,7 +6,7 @@
         </button>
         <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
             <a href="/manager">
-                <?= $this->Html->image('logo.webp', ['class' => 'navbar-brand-image', 'alt' => 'TitanWEB', 'width' => 110, 'height' => 32]) ?>
+                TITAN/WEB                
             </a>
         </h1>
         <div class="navbar-nav flex-row order-md-last">
