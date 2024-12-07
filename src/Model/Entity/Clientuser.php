@@ -21,6 +21,7 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\ClientAddress[] $client_addresses
  * @property \App\Model\Entity\ClientPayment[] $client_payments
+ * @property \App\Model\Entity\PostComment[] $post_comments
  */
 class Clientuser extends Entity
 {
@@ -44,6 +45,7 @@ class Clientuser extends Entity
         'modified' => true,
         'client_addresses' => true,
         'client_payments' => true,
+        'post_comments' => true,
     ];
 
     /**
@@ -54,7 +56,6 @@ class Clientuser extends Entity
     protected array $_hidden = [
         'password',
     ];
-
     protected function _setPassword(string $password) : ?string
     {
         if (strlen($password) > 0) {

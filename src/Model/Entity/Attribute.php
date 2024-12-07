@@ -10,9 +10,10 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $name
- * @property string|null $content
+ * @property \Cake\I18n\DateTime|null $created
+ * @property \Cake\I18n\DateTime|null $modified
  *
- * @property \App\Model\Entity\Product[] $products
+ * @property \App\Model\Entity\AttributeOption[] $attribute_options
  */
 class Attribute extends Entity
 {
@@ -27,7 +28,8 @@ class Attribute extends Entity
      */
     protected array $_accessible = [
         'name' => true,
-        'content' => true,
-        'products' => true,
+        'created' => true,
+        'modified' => true,
+        'attribute_options' => true,
     ];
 }

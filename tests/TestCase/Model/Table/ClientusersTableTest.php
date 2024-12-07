@@ -27,6 +27,7 @@ class ClientusersTableTest extends TestCase
         'app.Clientusers',
         'app.ClientAddresses',
         'app.ClientPayments',
+        'app.PostComments',
     ];
 
     /**

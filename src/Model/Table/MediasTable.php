@@ -12,7 +12,8 @@ use Cake\Utility\Text;
 /**
  * Medias Model
  *
- * @property \App\Model\Table\MetaMediasTable&\Cake\ORM\Association\HasMany $MetaMedias
+ * @property \App\Model\Table\ProductsTable&\Cake\ORM\Association\BelongsToMany $Products
+ * @property \App\Model\Table\VariantsTable&\Cake\ORM\Association\BelongsToMany $Variants
  *
  * @method \App\Model\Entity\Media newEmptyEntity()
  * @method \App\Model\Entity\Media newEntity(array $data, array $options = [])
@@ -48,13 +49,15 @@ class MediasTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->hasMany('MetaMedias', [
-            'foreignKey' => 'media_id',
-        ]);
         $this->belongsToMany('Products', [
             'foreignKey' => 'media_id',
             'targetForeignKey' => 'product_id',
             'joinTable' => 'products_medias',
+        ]);
+        $this->belongsToMany('Variants', [
+            'foreignKey' => 'media_id',
+            'targetForeignKey' => 'variant_id',
+            'joinTable' => 'variants_medias',
         ]);
     }
 

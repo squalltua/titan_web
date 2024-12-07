@@ -26,7 +26,7 @@ class ProductReviewsFixture extends TestFixture
                 'parent_id' => 1,
                 'product_id' => 1,
                 'status' => 'Lorem ipsum dolor ',
-                'created' => '2024-09-05 11:53:16',
+                'created' => '2024-12-07 04:10:13',
             ],
         ];
         parent::init();

@@ -11,8 +11,8 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $title
  * @property string $slug
- * @property string|null $intro
- * @property string|null $content
+ * @property string $intro
+ * @property string $content
  * @property string|null $type
  * @property string $status
  * @property \Cake\I18n\DateTime|null $publish_date
@@ -20,9 +20,9 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\DateTime|null $modified
  * @property int $adminuser_id
  *
- * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Adminuser $adminuser
  * @property \App\Model\Entity\MetaPost[] $meta_posts
- * @property \App\Model\Entity\PostGroup[] $post_groups
+ * @property \App\Model\Entity\Group[] $groups
  */
 class Post extends Entity
 {
@@ -46,8 +46,8 @@ class Post extends Entity
         'created' => true,
         'modified' => true,
         'adminuser_id' => true,
-        'user' => true,
+        'adminuser' => true,
         'meta_posts' => true,
-        'post_groups' => true,
+        'groups' => true,
     ];
 }

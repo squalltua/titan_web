@@ -16,6 +16,7 @@ use Cake\ORM\Entity;
  * @property string $amount_tax
  * @property string $amount_discount
  * @property string $amount_net
+ * @property string|null $status
  * @property int|null $create_uid
  * @property int|null $modified_uid
  * @property \Cake\I18n\DateTime|null $created
@@ -42,6 +43,7 @@ class PurchaseOrder extends Entity
         'amount_tax' => true,
         'amount_discount' => true,
         'amount_net' => true,
+        'status' => true,
         'create_uid' => true,
         'modified_uid' => true,
         'created' => true,

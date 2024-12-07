@@ -6,9 +6,9 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * PostsPostGroupsFixture
+ * PostsGroupsFixture
  */
-class PostsPostGroupsFixture extends TestFixture
+class PostsGroupsFixture extends TestFixture
 {
     /**
      * Init method
@@ -19,9 +19,8 @@ class PostsPostGroupsFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => 1,
                 'post_id' => 1,
-                'post_group_id' => 1,
+                'group_id' => 1,
             ],
         ];
         parent::init();

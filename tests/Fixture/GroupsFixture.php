@@ -6,9 +6,9 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * PostGroupsFixture
+ * GroupsFixture
  */
-class PostGroupsFixture extends TestFixture
+class GroupsFixture extends TestFixture
 {
     /**
      * Init method
@@ -22,11 +22,12 @@ class PostGroupsFixture extends TestFixture
                 'id' => 1,
                 'name' => 'Lorem ipsum dolor sit amet',
                 'slug' => 'Lorem ipsum dolor sit amet',
-                'type' => 'Lorem ipsum dolor ',
                 'parent_id' => 1,
                 'lft' => 1,
                 'rght' => 1,
                 'level' => 1,
+                'created' => '2024-12-07 04:10:11',
+                'modified' => '2024-12-07 04:10:11',
             ],
         ];
         parent::init();

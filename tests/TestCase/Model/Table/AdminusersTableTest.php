@@ -26,7 +26,6 @@ class AdminusersTableTest extends TestCase
     protected array $fixtures = [
         'app.Adminusers',
         'app.Roles',
-        'app.MetaAdminusers',
         'app.Posts',
     ];
 

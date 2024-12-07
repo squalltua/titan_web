@@ -11,13 +11,11 @@ use Cake\Validation\Validator;
 /**
  * Products Model
  *
- * @property \App\Model\Table\AdminusersTable&\Cake\ORM\Association\BelongsTo $Adminusers
- * @property \App\Model\Table\ProductFamiliesTable&\Cake\ORM\Association\BelongsTo $ProductFamilies
- * @property \App\Model\Table\InventoriesTable&\Cake\ORM\Association\HasMany $Inventories
  * @property \App\Model\Table\MetaProductsTable&\Cake\ORM\Association\HasMany $MetaProducts
  * @property \App\Model\Table\ProductReviewsTable&\Cake\ORM\Association\HasMany $ProductReviews
- * @property \App\Model\Table\AttributesTable&\Cake\ORM\Association\BelongsToMany $Attributes
- * @property \App\Model\Table\TaxonomiesTable&\Cake\ORM\Association\BelongsToMany $Taxonomies
+ * @property \App\Model\Table\VariantsTable&\Cake\ORM\Association\HasMany $Variants
+ * @property \App\Model\Table\CategoriesTable&\Cake\ORM\Association\BelongsToMany $Categories
+ * @property \App\Model\Table\MediasTable&\Cake\ORM\Association\BelongsToMany $Medias
  *
  * @method \App\Model\Entity\Product newEmptyEntity()
  * @method \App\Model\Entity\Product newEntity(array $data, array $options = [])
@@ -53,36 +51,24 @@ class ProductsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Adminusers', [
-            'foreignKey' => 'adminuser_id',
-            'joinType' => 'INNER',
-        ]);
-        $this->belongsTo('ProductFamilies', [
-            'foreignKey' => 'product_family_id',
-        ]);
-        $this->hasMany('Inventories', [
-            'foreignKey' => 'product_id',
-        ]);
         $this->hasMany('MetaProducts', [
             'foreignKey' => 'product_id',
         ]);
         $this->hasMany('ProductReviews', [
             'foreignKey' => 'product_id',
         ]);
-        $this->belongsToMany('Attributes', [
+        $this->hasMany('Variants', [
             'foreignKey' => 'product_id',
-            'targetForeignKey' => 'attribute_id',
-            'joinTable' => 'products_attributes',
+        ]);
+        $this->belongsToMany('Categories', [
+            'foreignKey' => 'product_id',
+            'targetForeignKey' => 'category_id',
+            'joinTable' => 'products_categories',
         ]);
         $this->belongsToMany('Medias', [
             'foreignKey' => 'product_id',
             'targetForeignKey' => 'media_id',
             'joinTable' => 'products_medias',
-        ]);
-        $this->belongsToMany('Taxonomies', [
-            'foreignKey' => 'product_id',
-            'targetForeignKey' => 'taxonomy_id',
-            'joinTable' => 'products_taxonomies',
         ]);
     }
 
@@ -156,47 +142,14 @@ class ProductsTable extends Table
             ->dateTime('end_at')
             ->allowEmptyDateTime('end_at');
 
-        $validator
-            ->integer('adminuser_id')
-            ->notEmptyString('adminuser_id');
-
-        $validator
-            ->integer('product_family_id')
-            ->allowEmptyString('product_family_id');
-
         return $validator;
-    }
-
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules): RulesChecker
-    {
-        $rules->add($rules->existsIn(['adminuser_id'], 'Adminusers'), ['errorField' => 'adminuser_id']);
-        $rules->add($rules->existsIn(['product_family_id'], 'ProductFamilies'), ['errorField' => 'product_family_id']);
-
-        return $rules;
     }
 
     public function getAllProducts()
     {
-        $products = $this->find()->contain(['ProductFamilies', 'Taxonomies']);
+        $products = $this->find()->contain(['Categories']);
         foreach ($products as $product) {
-            $product->type = null;
-            $product->category = null;
-            foreach ($product->taxonomies as $taxonomy) {
-                if ($taxonomy->type === 'types') {
-                    $product->type = $taxonomy;
-                }
 
-                if ($taxonomy->type === 'categories') {
-                    $product->category = $taxonomy;
-                }
-            }
         }
 
         return $products;
@@ -204,18 +157,8 @@ class ProductsTable extends Table
 
     public function getInformation(string $id)
     {
-        $product = $this->get($id, ['contain' => ['ProductFamilies', 'Taxonomies']]);
-        $product->type = null;
-        $product->category = null;
-        foreach ($product->taxonomies as $taxonomy) {
-            if ($taxonomy->type === 'types') {
-                $product->type = $taxonomy;
-            }
-
-            if ($taxonomy->type === 'categories') {
-                $product->category = $taxonomy;
-            }
-        }
+        $product = $this->get($id, ['contain' => ['Categories']]);
+    
 
         return $product;
     }

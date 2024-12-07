@@ -17,9 +17,9 @@ use Cake\ORM\Entity;
  * @property string|null $status
  * @property \Cake\I18n\DateTime|null $created
  *
- * @property \App\Model\Entity\ParentProductReview $parent_product_review
+ * @property \App\Model\Entity\ProductReview $parent_product_review
  * @property \App\Model\Entity\Product $product
- * @property \App\Model\Entity\ChildProductReview[] $child_product_reviews
+ * @property \App\Model\Entity\ProductReview[] $child_product_reviews
  */
 class ProductReview extends Entity
 {

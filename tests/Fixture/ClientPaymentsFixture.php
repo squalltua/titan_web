@@ -24,9 +24,9 @@ class ClientPaymentsFixture extends TestFixture
                 'payment_type' => 'Lorem ipsum dolor sit amet',
                 'provider' => 'Lorem ipsum dolor sit amet',
                 'account_number' => 'Lorem ipsum dolor sit amet',
-                'expire_date' => '2024-09-16',
-                'created' => '2024-09-16 10:02:18',
-                'modified' => '2024-09-16 10:02:18',
+                'expire_date' => '2024-12-07',
+                'created' => '2024-12-07 04:10:09',
+                'modified' => '2024-12-07 04:10:09',
             ],
         ];
         parent::init();

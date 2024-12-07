@@ -11,8 +11,9 @@ use Cake\Validation\Validator;
 /**
  * Posts Model
  *
+ * @property \App\Model\Table\AdminusersTable&\Cake\ORM\Association\BelongsTo $Adminusers
  * @property \App\Model\Table\MetaPostsTable&\Cake\ORM\Association\HasMany $MetaPosts
- * @property \App\Model\Table\PostGroupsTable&\Cake\ORM\Association\BelongsToMany $PostGroups
+ * @property \App\Model\Table\GroupsTable&\Cake\ORM\Association\BelongsToMany $Groups
  *
  * @method \App\Model\Entity\Post newEmptyEntity()
  * @method \App\Model\Entity\Post newEntity(array $data, array $options = [])
@@ -36,7 +37,7 @@ class PostsTable extends Table
         'feature_image',
         'og_tag_image',
     ];
-    
+
     /**
      * Initialize method
      *
@@ -60,10 +61,10 @@ class PostsTable extends Table
         $this->hasMany('MetaPosts', [
             'foreignKey' => 'post_id',
         ]);
-        $this->belongsToMany('PostGroups', [
+        $this->belongsToMany('Groups', [
             'foreignKey' => 'post_id',
-            'targetForeignKey' => 'post_group_id',
-            'joinTable' => 'posts_post_groups',
+            'targetForeignKey' => 'group_id',
+            'joinTable' => 'posts_groups',
         ]);
     }
 
@@ -89,11 +90,13 @@ class PostsTable extends Table
 
         $validator
             ->scalar('intro')
-            ->allowEmptyString('intro');
+            ->requirePresence('intro', 'create')
+            ->notEmptyString('intro');
 
         $validator
             ->scalar('content')
-            ->allowEmptyString('content');
+            ->requirePresence('content', 'create')
+            ->notEmptyString('content');
 
         $validator
             ->scalar('type')

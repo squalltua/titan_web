@@ -96,6 +96,11 @@ class PurchaseOrdersTable extends Table
             ->notEmptyString('amount_net');
 
         $validator
+            ->scalar('status')
+            ->maxLength('status', 45)
+            ->allowEmptyString('status');
+
+        $validator
             ->integer('create_uid')
             ->allowEmptyString('create_uid');
 

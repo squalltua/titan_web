@@ -20,7 +20,6 @@ use Cake\ORM\Entity;
  * @property int $role_id
  *
  * @property \App\Model\Entity\Role $role
- * @property \App\Model\Entity\MetaAdminuser[] $meta_adminusers
  * @property \App\Model\Entity\Post[] $posts
  */
 class Adminuser extends Entity
@@ -44,7 +43,6 @@ class Adminuser extends Entity
         'modified' => true,
         'role_id' => true,
         'role' => true,
-        'meta_adminusers' => true,
         'posts' => true,
     ];
 

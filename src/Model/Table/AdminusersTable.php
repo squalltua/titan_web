@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\Datasource\ConnectionManager;
-use Cake\Database\Connection;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -14,7 +12,6 @@ use Cake\Validation\Validator;
  * Adminusers Model
  *
  * @property \App\Model\Table\RolesTable&\Cake\ORM\Association\BelongsTo $Roles
- * @property \App\Model\Table\MetaAdminusersTable&\Cake\ORM\Association\HasMany $MetaAdminusers
  * @property \App\Model\Table\PostsTable&\Cake\ORM\Association\HasMany $Posts
  *
  * @method \App\Model\Entity\Adminuser newEmptyEntity()
@@ -54,9 +51,6 @@ class AdminusersTable extends Table
         $this->belongsTo('Roles', [
             'foreignKey' => 'role_id',
             'joinType' => 'INNER',
-        ]);
-        $this->hasMany('MetaAdminusers', [
-            'foreignKey' => 'adminuser_id',
         ]);
         $this->hasMany('Posts', [
             'foreignKey' => 'adminuser_id',

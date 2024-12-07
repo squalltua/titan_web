@@ -27,10 +27,11 @@ class PurchaseOrdersFixture extends TestFixture
                 'amount_tax' => 1.5,
                 'amount_discount' => 1.5,
                 'amount_net' => 1.5,
+                'status' => 'Lorem ipsum dolor sit amet',
                 'create_uid' => 1,
                 'modified_uid' => 1,
-                'created' => '2024-10-07 11:48:10',
-                'modified' => '2024-10-07 11:48:10',
+                'created' => '2024-12-07 04:10:13',
+                'modified' => '2024-12-07 04:10:13',
             ],
         ];
         parent::init();

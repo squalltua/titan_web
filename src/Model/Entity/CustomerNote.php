@@ -20,8 +20,8 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\DateTime|null $modified
  *
  * @property \App\Model\Entity\Customer $customer
- * @property \App\Model\Entity\ParentCustomerNote $parent_customer_note
- * @property \App\Model\Entity\ChildCustomerNote[] $child_customer_notes
+ * @property \App\Model\Entity\CustomerNote $parent_customer_note
+ * @property \App\Model\Entity\CustomerNote[] $child_customer_notes
  */
 class CustomerNote extends Entity
 {

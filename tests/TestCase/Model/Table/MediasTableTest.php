@@ -25,7 +25,8 @@ class MediasTableTest extends TestCase
      */
     protected array $fixtures = [
         'app.Medias',
-        'app.MetaMedias',
+        'app.Products',
+        'app.Variants',
     ];
 
     /**
@@ -59,39 +60,6 @@ class MediasTableTest extends TestCase
      * @uses \App\Model\Table\MediasTable::validationDefault()
      */
     public function testValidationDefault(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test uploadImage method
-     *
-     * @return void
-     * @uses \App\Model\Table\MediasTable::uploadImage()
-     */
-    public function testUploadImage(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test removeFileBySlug method
-     *
-     * @return void
-     * @uses \App\Model\Table\MediasTable::removeFileBySlug()
-     */
-    public function testRemoveFileBySlug(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test removeFileById method
-     *
-     * @return void
-     * @uses \App\Model\Table\MediasTable::removeFileById()
-     */
-    public function testRemoveFileById(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

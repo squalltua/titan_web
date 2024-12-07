@@ -6,9 +6,9 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * TaxonomiesFixture
+ * CategoriesFixture
  */
-class TaxonomiesFixture extends TestFixture
+class CategoriesFixture extends TestFixture
 {
     /**
      * Init method
@@ -22,12 +22,12 @@ class TaxonomiesFixture extends TestFixture
                 'id' => 1,
                 'name' => 'Lorem ipsum dolor sit amet',
                 'slug' => 'Lorem ipsum dolor sit amet',
-                'type' => 'Lorem ipsum dolor sit amet',
                 'parent_id' => 1,
                 'lft' => 1,
                 'rght' => 1,
                 'level' => 1,
-                'taxonomiescol' => 'Lorem ipsum dolor sit amet',
+                'created' => '2024-12-07 04:10:09',
+                'modified' => '2024-12-07 04:10:09',
             ],
         ];
         parent::init();

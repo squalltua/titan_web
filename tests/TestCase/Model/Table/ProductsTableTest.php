@@ -25,13 +25,11 @@ class ProductsTableTest extends TestCase
      */
     protected array $fixtures = [
         'app.Products',
-        'app.Adminusers',
-        'app.ProductFamilies',
-        'app.Inventories',
         'app.MetaProducts',
         'app.ProductReviews',
-        'app.Attributes',
-        'app.Taxonomies',
+        'app.Variants',
+        'app.Categories',
+        'app.Medias',
     ];
 
     /**
@@ -65,17 +63,6 @@ class ProductsTableTest extends TestCase
      * @uses \App\Model\Table\ProductsTable::validationDefault()
      */
     public function testValidationDefault(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     * @uses \App\Model\Table\ProductsTable::buildRules()
-     */
-    public function testBuildRules(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

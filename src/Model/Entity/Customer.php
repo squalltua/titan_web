@@ -31,6 +31,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Contact[] $contacts
  * @property \App\Model\Entity\CustomerNote[] $customer_notes
  * @property \App\Model\Entity\MetaCustomer[] $meta_customers
+ * @property \App\Model\Entity\PurchaseOrder[] $purchase_orders
  */
 class Customer extends Entity
 {
@@ -65,5 +66,6 @@ class Customer extends Entity
         'contacts' => true,
         'customer_notes' => true,
         'meta_customers' => true,
+        'purchase_orders' => true,
     ];
 }

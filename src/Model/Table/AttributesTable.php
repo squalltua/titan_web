@@ -11,7 +11,7 @@ use Cake\Validation\Validator;
 /**
  * Attributes Model
  *
- * @property \App\Model\Table\ProductsTable&\Cake\ORM\Association\BelongsToMany $Products
+ * @property \App\Model\Table\AttributeOptionsTable&\Cake\ORM\Association\HasMany $AttributeOptions
  *
  * @method \App\Model\Entity\Attribute newEmptyEntity()
  * @method \App\Model\Entity\Attribute newEntity(array $data, array $options = [])
@@ -26,6 +26,8 @@ use Cake\Validation\Validator;
  * @method iterable<\App\Model\Entity\Attribute>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Attribute> saveManyOrFail(iterable $entities, array $options = [])
  * @method iterable<\App\Model\Entity\Attribute>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Attribute>|false deleteMany(iterable $entities, array $options = [])
  * @method iterable<\App\Model\Entity\Attribute>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Attribute> deleteManyOrFail(iterable $entities, array $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class AttributesTable extends Table
 {
@@ -43,10 +45,10 @@ class AttributesTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
-        $this->belongsToMany('Products', [
+        $this->addBehavior('Timestamp');
+
+        $this->hasMany('AttributeOptions', [
             'foreignKey' => 'attribute_id',
-            'targetForeignKey' => 'product_id',
-            'joinTable' => 'products_attributes',
         ]);
     }
 
@@ -60,12 +62,9 @@ class AttributesTable extends Table
     {
         $validator
             ->scalar('name')
+            ->maxLength('name', 255)
             ->requirePresence('name', 'create')
             ->notEmptyString('name');
-
-        $validator
-            ->scalar('content')
-            ->allowEmptyString('content');
 
         return $validator;
     }

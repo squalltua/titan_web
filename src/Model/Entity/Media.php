@@ -24,7 +24,8 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\DateTime|null $created
  * @property \Cake\I18n\DateTime|null $modified
  *
- * @property \App\Model\Entity\MetaMedia[] $meta_medias
+ * @property \App\Model\Entity\Product[] $products
+ * @property \App\Model\Entity\Variant[] $variants
  */
 class Media extends Entity
 {
@@ -52,6 +53,7 @@ class Media extends Entity
         'uuid' => true,
         'created' => true,
         'modified' => true,
-        'meta_medias' => true,
+        'products' => true,
+        'variants' => true,
     ];
 }

@@ -13,6 +13,7 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\ClientAddressesTable&\Cake\ORM\Association\HasMany $ClientAddresses
  * @property \App\Model\Table\ClientPaymentsTable&\Cake\ORM\Association\HasMany $ClientPayments
+ * @property \App\Model\Table\PostCommentsTable&\Cake\ORM\Association\HasMany $PostComments
  *
  * @method \App\Model\Entity\Clientuser newEmptyEntity()
  * @method \App\Model\Entity\Clientuser newEntity(array $data, array $options = [])
@@ -52,6 +53,9 @@ class ClientusersTable extends Table
             'foreignKey' => 'clientuser_id',
         ]);
         $this->hasMany('ClientPayments', [
+            'foreignKey' => 'clientuser_id',
+        ]);
+        $this->hasMany('PostComments', [
             'foreignKey' => 'clientuser_id',
         ]);
     }

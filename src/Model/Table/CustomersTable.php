@@ -14,6 +14,7 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\ContactsTable&\Cake\ORM\Association\HasMany $Contacts
  * @property \App\Model\Table\CustomerNotesTable&\Cake\ORM\Association\HasMany $CustomerNotes
  * @property \App\Model\Table\MetaCustomersTable&\Cake\ORM\Association\HasMany $MetaCustomers
+ * @property \App\Model\Table\PurchaseOrdersTable&\Cake\ORM\Association\HasMany $PurchaseOrders
  *
  * @method \App\Model\Entity\Customer newEmptyEntity()
  * @method \App\Model\Entity\Customer newEntity(array $data, array $options = [])

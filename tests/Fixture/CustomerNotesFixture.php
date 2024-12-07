@@ -27,8 +27,8 @@ class CustomerNotesFixture extends TestFixture
                 'type' => 'Lorem ipsum dolor sit amet',
                 'is_private' => 1,
                 'status' => 'Lorem ipsum dolor sit amet',
-                'created' => '2024-10-05 05:11:17',
-                'modified' => '2024-10-05 05:11:17',
+                'created' => '2024-12-07 04:10:10',
+                'modified' => '2024-12-07 04:10:10',
             ],
         ];
         parent::init();

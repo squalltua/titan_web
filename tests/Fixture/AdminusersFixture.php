@@ -25,8 +25,8 @@ class AdminusersFixture extends TestFixture
                 'password' => 'Lorem ipsum dolor sit amet',
                 'email' => 'Lorem ipsum dolor sit amet',
                 'status' => 'Lorem ipsum dolor sit amet',
-                'created' => '2024-09-18 05:40:01',
-                'modified' => '2024-09-18 05:40:01',
+                'created' => '2024-12-07 04:10:08',
+                'modified' => '2024-12-07 04:10:08',
                 'role_id' => 1,
             ],
         ];

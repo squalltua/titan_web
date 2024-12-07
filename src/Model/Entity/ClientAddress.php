@@ -10,8 +10,8 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $clientuser_id
- * @property string|null $address_line1
- * @property string|null $address_line2
+ * @property string|null $address_line_1
+ * @property string|null $address_line_2
  * @property string|null $city
  * @property string|null $province
  * @property string|null $postcode
@@ -36,8 +36,8 @@ class ClientAddress extends Entity
      */
     protected array $_accessible = [
         'clientuser_id' => true,
-        'address_line1' => true,
-        'address_line2' => true,
+        'address_line_1' => true,
+        'address_line_2' => true,
         'city' => true,
         'province' => true,
         'postcode' => true,

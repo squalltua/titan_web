@@ -31,9 +31,9 @@ class MediasFixture extends TestFixture
                 'alt' => 'Lorem ipsum dolor sit amet',
                 'order_index' => 1,
                 'link_url' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-                'uuid' => '95773e93-abc6-4781-be60-c06b64f1b5b5',
-                'created' => '2024-09-28 12:38:20',
-                'modified' => '2024-09-28 12:38:20',
+                'uuid' => 'd6287e90-fb85-4ab2-a5bb-59b0d3ca9ba4',
+                'created' => '2024-12-07 04:10:11',
+                'modified' => '2024-12-07 04:10:11',
             ],
         ];
         parent::init();

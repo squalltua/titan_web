@@ -25,7 +25,7 @@ class AttributesTableTest extends TestCase
      */
     protected array $fixtures = [
         'app.Attributes',
-        'app.Products',
+        'app.AttributeOptions',
     ];
 
     /**

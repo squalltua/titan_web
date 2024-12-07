@@ -66,12 +66,12 @@ class ClientAddressesTable extends Table
             ->notEmptyString('clientuser_id');
 
         $validator
-            ->scalar('address_line1')
-            ->allowEmptyString('address_line1');
+            ->scalar('address_line_1')
+            ->allowEmptyString('address_line_1');
 
         $validator
-            ->scalar('address_line2')
-            ->allowEmptyString('address_line2');
+            ->scalar('address_line_2')
+            ->allowEmptyString('address_line_2');
 
         $validator
             ->scalar('city')

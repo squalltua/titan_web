@@ -25,9 +25,9 @@ class PostsTableTest extends TestCase
      */
     protected array $fixtures = [
         'app.Posts',
-        'app.Users',
+        'app.Adminusers',
         'app.MetaPosts',
-        'app.PostGroups',
+        'app.Groups',
     ];
 
     /**
@@ -72,28 +72,6 @@ class PostsTableTest extends TestCase
      * @uses \App\Model\Table\PostsTable::buildRules()
      */
     public function testBuildRules(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test getAllPosts method
-     *
-     * @return void
-     * @uses \App\Model\Table\PostsTable::getAllPosts()
-     */
-    public function testGetAllPosts(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test getPost method
-     *
-     * @return void
-     * @uses \App\Model\Table\PostsTable::getPost()
-     */
-    public function testGetPost(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
