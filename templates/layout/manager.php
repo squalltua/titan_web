@@ -59,7 +59,7 @@
                                     All rights reserved.
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="./changelog.html" class="link-secondary" rel="noopener">
+                                    <a href="/changelog.html" class="link-secondary" rel="noopener">
                                         Version 1.0
                                     </a>
                                 </li>

@@ -58,8 +58,24 @@
                     <div class="datagrid-item">
                         <div class="datagrid-title"><?= __('Status') ?></div>
                         <div class="datagrid-content">
-                            <span class="status status-secondary">
+                            <span class="status <?= $product->status === 'active' ? 'status-success' : 'status-secondary' ?>">
                                 <?= $product->status ?>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="datagrid-itme">
+                        <div class="datagrid-title"><?= __('On sell') ?></div>
+                        <div class="datagrid-content">
+                            <span class="status <?= $product->on_sell ? 'status-success' : 'status-secondary' ?>">
+                                <?= $product->on_sell ? __('Yes') : __('No') ?>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="datagrid-item">
+                        <div class="datagrid-title"><?= __('Has variant') ?></div>
+                        <div class="datagrid-content">
+                            <span class="status <?= $product->has_variant ? 'status-success' : 'status-secondary' ?>">
+                                <?= $product->has_variant ? __('Yes') : __('No') ?>
                             </span>
                         </div>
                     </div>

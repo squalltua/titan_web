@@ -65,11 +65,11 @@ class ProductsController extends AppController
      * @param string $id
      * @return Response
      */
-    public function attributes(string $id): \Cake\Http\Response
+    public function meta(string $id): \Cake\Http\Response
     {
-        $product = $this->Products->get($id, ['contain' => 'Attributes']);
+        $product = $this->Products->get($id, ['contain' => 'MetaProducts']);
 
-        $this->set('objectMenuActive', 'attributes');
+        $this->set('objectMenuActive', 'meta');
         $this->set(compact('product'));
 
         return $this->render();
@@ -79,52 +79,53 @@ class ProductsController extends AppController
      * @param string $productId
      * @return Response
      */
-    public function attributeAdd(string $productId): Response
+    public function metaAdd(string $productId): Response
     {
         $product = $this->Products->get($productId);
-        $attribute = $this->Products->Attributes->newEmptyEntity();
+        $meta = $this->Products->MetaProducts->newEmptyEntity();
         if ($this->request->is('post')) {
-            $attribute = $this->Products->Attributes->patchEntity($attribute, $this->request->getData());
+            $meta = $this->Products->MetaProducts->patchEntity($meta, $this->request->getData());
+            $meta->product_id = $productId;
             if (
-                $this->Products->Attributes->save($attribute) &&
-                $this->Products->Attributes->link($product, [$attribute])
+                $this->Products->MetaProducts->save($meta) &&
+                $this->Products->MetaProducts->link($product, [$meta])
             ) {
-                $this->Flash->success(__('The attribute has been saved.'));
+                $this->Flash->success(__('The meta attribute has been saved.'));
 
-                return $this->redirect("/manager/pim/products/attributes/{$productId}");
+                return $this->redirect("/manager/pim/products/meta/{$productId}");
             }
 
-            $this->Flash->error(__('The attribute could not be saved. Please try again.'));
+            $this->Flash->error(__('The meta attribute could not be saved. Please try again.'));
         }
 
-        $this->set('objectMenuActive', 'attributes');
-        $this->set(compact('product', 'attribute'));
+        $this->set('objectMenuActive', 'meta');
+        $this->set(compact('product', 'meta'));
 
         return $this->render();
     }
 
     /**
      * @param string $productId
-     * @param string $attributeId
+     * @param string $metaId
      * @return Response
      */
-    public function attributeEdit(string $productId, string $attributeId): Response
+    public function metaEdit(string $productId, string $metaId): Response
     {
         $product = $this->Products->get($productId);
-        $attribute = $this->Products->Attributes->get($attributeId);
+        $meta = $this->Products->MetaProducts->get($metaId);
         if ($this->request->is(['post', 'put', 'patch'])) {
-            $attribute = $this->Products->Attributes->patchEntity($attribute, $this->request->getData());
-            if ($this->Products->Attributes->save($attribute)) {
-                $this->Flash->success(__('The data has been saved.'));
+            $meta = $this->Products->MetaProducts->patchEntity($meta, $this->request->getData());
+            if ($this->Products->MetaProducts->save($meta)) {
+                $this->Flash->success(__('The meta attribute has been saved.'));
 
-                return $this->redirect("/manager/pim/products/attributes/{$productId}");
+                return $this->redirect("/manager/pim/products/meta/{$productId}");
             }
 
-            $this->Flash->error(__('The attribute could not be saved. Please try again.'));
+            $this->Flash->error(__('The meta attribute could not be saved. Please try again.'));
         }
 
-        $this->set('objectMenuActive', 'attributes');
-        $this->set(compact('product', 'attribute'));
+        $this->set('objectMenuActive', 'meta');
+        $this->set(compact('product', 'meta'));
 
         return $this->render();
     }

@@ -31,28 +31,28 @@
             <?= $this->element('object_info_product') ?>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6">
-                        <?= $this->Form->create($attribute) ?>
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <?= $this->Form->create($meta) ?>
                         <div class="card">
-                            <div class="card-header"><?= __('Attribute :: add') ?></div>
+                            <div class="card-header"><?= __('Meta :: add') ?></div>
                             <div class="card-body">
                                 <div class="mb-3 row">
-                                    <label for="name" class="col-3 col-form-label required"><?= __('Name') ?></label>
+                                    <label for="name" class="col-3 col-form-label required"><?= __('Key') ?></label>
                                     <div class="col">
-                                        <?= $this->Form->text('name', ['class' => 'form-control', 'required' => true]) ?>
+                                        <?= $this->Form->text('meta_key', ['class' => 'form-control', 'required' => true]) ?>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="content"
-                                           class="col-3 col-form-label required"><?= __('Content') ?></label>
+                                           class="col-3 col-form-label required"><?= __('Value') ?></label>
                                     <div class="col">
-                                        <?= $this->Form->textarea('content', ['class' => 'form-control']) ?>
+                                        <?= $this->Form->textarea('meta_value', ['class' => 'form-control']) ?>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer text-end">
                                 <div class="d-flex">
-                                    <?= $this->Html->link(__('Cancel'), "/manager/pim/products/attributes/{$product->id}", ['class' => 'btn btn-link']) ?>
+                                    <?= $this->Html->link(__('Cancel'), "/manager/pim/products/meta/{$product->id}", ['class' => 'btn btn-link']) ?>
                                     <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary ms-auto']) ?>
                                 </div>
                             </div>
