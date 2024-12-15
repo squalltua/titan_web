@@ -42,9 +42,9 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label form="summary" class="col-3 col-form-label"><?= __('Summary') ?></label>
+                            <label form="summary" class="col-3 col-form-label required"><?= __('Summary') ?></label>
                             <div class="col">
-                                <?= $this->Form->textarea('summary', ['class' => 'form-control', 'id' => 'summary']) ?>
+                                <?= $this->Form->textarea('summary', ['class' => 'form-control', 'id' => 'summary', 'required' => true]) ?>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -54,63 +54,45 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="sku" class="col-3 col-form-label required"><?= __('SKUs') ?></label>
+                            <label for="category-id" class="col-3 col-form-label"><?= __('Category') ?></label>
                             <div class="col">
-                                <?= $this->Form->text('sku', ['class' => 'form-control', 'id' => 'sku', 'required' => true]) ?>
+                                <?= $this->Form->select('category_id', $categories, ['class' => 'form-control', 'id' => 'category-id']) ?>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="model-name" class="col-3 col-form-label"><?= __('Model name') ?></label>
+                            <label class="col-3 col-form-label"><?= __('Has variant') ?></label>
                             <div class="col">
-                                <?= $this->Form->text('model_name', ['class' => 'form-control', 'id' => 'model-name']) ?>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="series-number" class="col-3 col-form-label"><?= __('Series number') ?></label>
-                            <div class="col">
-                                <?= $this->Form->text('series_number', ['class' => 'form-control', 'id' => 'series-number']) ?>
+                                <label class="form-check pt-2">
+                                    <?= $this->Form->checkbox('has_variant', ['class' => 'form-check-input', 'id' => 'has-variant']) ?>
+                                    <span class="form-check-label"><?= __('This product has variant') ?></span>
+                                </label>
                             </div>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="mb-3 row">
-                            <label for="product-family-id"
-                                   class="col-3 col-form-label"><?= __('Family') ?></label>
+                            <label for="sku" class="col-3 col-form-label">SKU</label>
                             <div class="col">
-                                <?= $this->Form->select('product_family_id', $families, ['class' => 'form-select', 'empty' => __('Optional'), 'id' => 'product-family-id']) ?>
+                                <?= $this->Form->text('sku', ['class'=> 'form-control', 'id' => 'sku']) ?>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="taxonomies-type-id"
-                                   class="col-3 col-form-label"><?= __('Type') ?></label>
+                            <label class="col-3 col-form-label"><?= __('On sell') ?></label>
                             <div class="col">
-                                <?= $this->Form->select('taxonomies._ids[]', $types, ['class' => 'form-select', 'empty' => __('Optional'), 'id' => 'taxonomies-type-id']) ?>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="taxonomies-category-id"
-                                   class="col-3 col-form-label"><?= __('Category') ?></label>
-                            <div class="col">
-                                <?= $this->Form->select('taxonomies._ids[]', $categories, ['class' => 'form-select', 'empty' => __('Optional'), 'id' => 'taxonomies-category-id']) ?>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-3 col-form-label pt-0"><?= __('On sale') ?></label>
-                            <div class="col">
-                                <label class="form-check">
+                                <label class="form-check pt-2">
                                     <?= $this->Form->checkbox('on_sale', ['class' => 'form-check-input', 'id' => 'on-sale']) ?>
-                                    <span class="form-check-label"><?= __('On sale') ?></span>
+                                    <span class="form-check-label"><?= __('This product is on sell') ?></span>
                                 </label>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="base-price" class="col-3 col-form-label"><?= __('Base price') ?></label>
+                            <label for="supplier-price" class="col-3 col-form-label"><?= __('Supplier price') ?></label>
                             <div class="col">
-                                <?= $this->Form->number('base_price', ['class' => 'form-control', 'id' => 'base-price']) ?>
+                                <?= $this->Form->number('supplier_price', ['class' => 'form-control', 'id' => 'supplier-price']) ?>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="sell-price" class="col-3 col-form-label"><?= __('Base price') ?></label>
+                            <label for="sell-price" class="col-3 col-form-label"><?= __('Sell price') ?></label>
                             <div class="col">
                                 <?= $this->Form->number('sell_price', ['class' => 'form-control', 'id' => 'sell-price']) ?>
                             </div>
@@ -144,7 +126,7 @@
             </div>
             <div class="card-footer text-end">
                 <div class="d-flex">
-                    <?= $this->Html->link(__('Cancel'), '/manager/pim/products', ['class' => 'btn btn-link']) ?>
+                    <?= $this->Html->link(__('Cancel'), "/manager/pim/products/detail/{$product->id}", ['class' => 'btn btn-link']) ?>
                     <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary ms-auto']) ?>
                 </div>
             </div>

@@ -156,7 +156,6 @@ class ProductsController extends AppController
         if ($this->request->is('post')) {
             $product = $this->Products->patchEntity($product, $this->request->getData());
             $product->status = 'active';
-            $product->adminuser_id = $this->Authentication->getIdentity()->get('id');
             $product->slug = Text::slug($product->title);
             if ($this->Products->save($product)) {
                 $this->Flash->success(__('The data has been saved.'));
@@ -167,11 +166,9 @@ class ProductsController extends AppController
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $categories = $this->Products->Taxonomies->getCategoriesList();
-        $types = $this->Products->Taxonomies->getTypesList();
-        $families = $this->Products->ProductFamilies->find('list');
+        $categories = $this->Products->Categories->getCategoriesList();
 
-        $this->set(compact('product', 'categories', 'types', 'families'));
+        $this->set(compact('product', 'categories'));
 
         return $this->render();
     }
@@ -194,11 +191,9 @@ class ProductsController extends AppController
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $categories = $this->Products->Taxonomies->getCategoriesList();
-        $types = $this->Products->Taxonomies->getTypesList();
-        $families = $this->Products->ProductFamilies->find('list');
+        $categories = $this->Products->Categories->getCategoriesList();
 
-        $this->set(compact('product', 'categories', 'types', 'families'));
+        $this->set(compact('product', 'categories'));
 
         return $this->render();
     }
@@ -227,7 +222,7 @@ class ProductsController extends AppController
      */
     public function images(string $productId): Response
     {
-        $product = $this->Products->get($productId, ['contain' => ['Attributes', 'Medias']]);
+        $product = $this->Products->get($productId, ['contain' => ['MetaProducts', 'Medias']]);
         if ($this->request->is('post')) {
             // upload feature image only
             if ($this->request->getData('feature_image')) {

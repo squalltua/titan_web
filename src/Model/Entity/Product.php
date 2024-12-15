@@ -11,18 +11,17 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $title
  * @property string $slug
- * @property string|null $summary
- * @property string|null $content
- * @property string|null $base_price
- * @property string|null $sell_price
- * @property string|null $discount_price
+ * @property string $summary
+ * @property string $content
+ * @property string $supplier_price
+ * @property string $sell_price
+ * @property string $discount_price
  * @property string|null $sku
- * @property string|null $model_name
- * @property string|null $series_number
- * @property int|null $on_sale
- * @property string|null $status
  * @property \Cake\I18n\DateTime|null $start_at
  * @property \Cake\I18n\DateTime|null $end_at
+ * @property int $on_sell
+ * @property string $status
+ * @property int $has_variants
  * @property \Cake\I18n\DateTime|null $created
  * @property \Cake\I18n\DateTime|null $modified
  *
@@ -48,16 +47,15 @@ class Product extends Entity
         'slug' => true,
         'summary' => true,
         'content' => true,
-        'base_price' => true,
+        'supplier_price' => true,
         'sell_price' => true,
         'discount_price' => true,
         'sku' => true,
-        'model_name' => true,
-        'series_number' => true,
-        'on_sale' => true,
-        'status' => true,
         'start_at' => true,
         'end_at' => true,
+        'on_sell' => true,
+        'status' => true,
+        'has_variants' => true,
         'created' => true,
         'modified' => true,
         'meta_products' => true,

@@ -40,28 +40,12 @@
                         <div class="datagrid-content"><?= $product->sku ?></div>
                     </div>
                     <div class="datagrid-item">
-                        <div class="datagrid-title"><?= __('Model') ?></div>
-                        <div class="datagrid-content"><?= $product->model_name ?></div>
-                    </div>
-                    <div class="datagrid-item">
-                        <div class="datagrid-title"><?= __('Series') ?></div>
-                        <div class="datagrid-content"><?= $product->series_number ?></div>
-                    </div>
-                    <div class="datagrid-item">
-                        <div class="datagrid-title"><?= __('Product family') ?></div>
-                        <div class="datagrid-content"><?= $product->product_family->name ?? '-' ?></div>
-                    </div>
-                    <div class="datagrid-item">
                         <div class="datagrid-title"><?= __('Category') ?></div>
                         <div class="datagrid-content"><?= $product->category->name ?? '-' ?></div>
                     </div>
                     <div class="datagrid-item">
-                        <div class="datagrid-title"><?= __('Type') ?></div>
-                        <div class="datagrid-content"><?= $product->type->name ?? '-' ?></div>
-                    </div>
-                    <div class="datagrid-item">
-                        <div class="datagrid-title"><?= __('Base price') ?></div>
-                        <div class="datagrid-content"><?= $product->base_price ?></div>
+                        <div class="datagrid-title"><?= __('Supplier price') ?></div>
+                        <div class="datagrid-content"><?= $product->supplier_price ?></div>
                     </div>
                     <div class="datagrid-item">
                         <div class="datagrid-title"><?= __('Sell price') ?></div>
@@ -81,7 +65,7 @@
                     </div>
                 </div>
 
-                <div class="row mt-3">
+                <div class="row pt-3 mt-3 border-top">
                     <div class="col">
                         <small class="text-secondary">long description</small>
                         <h3 class="lh-1"><?= __('Content') ?></h3>

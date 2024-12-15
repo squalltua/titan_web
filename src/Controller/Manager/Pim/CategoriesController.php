@@ -8,7 +8,7 @@ use App\Controller\Manager\AppController;
 use Cake\Http\Response;
 use Cake\Utility\Text;
 
-class ProductCategoriesController extends AppController
+class CategoriesController extends AppController
 {
     /**
      * @return void
@@ -28,7 +28,7 @@ class ProductCategoriesController extends AppController
      */
     public function index(): Response
     {
-        $categories = $this->paginate($this->fetchTable('Taxonomies')->getCategories());
+        $categories = $this->paginate($this->Categories);
 
         $this->set(compact('categories'));
 
@@ -40,21 +40,21 @@ class ProductCategoriesController extends AppController
      */
     public function add(): Response
     {
-        $category = $this->fetchTable('Taxonomies')->newEmptyEntity();
+        $category = $this->Categories->newEmptyEntity();
         if ($this->request->is('post')) {
-            $category = $this->fetchTable('Taxonomies')->patchEntity($category, $this->request->getData());
+            $category = $this->Categories->patchEntity($category, $this->request->getData());
             $category->slug = Text::slug($category->name);
             $category->type = 'categories';
-            if ($this->fetchTable('Taxonomies')->save($category)) {
+            if ($this->Categories->save($category)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect('/manager/pim/product-categories');
+                return $this->redirect('/manager/pim/categories');
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $parents = $this->fetchTable('Taxonomies')->find('treeList')->where(['type' => 'categories']);
+        $parents = $this->Categories->find('treeList');
 
         $this->set(compact('category', 'parents'));
 
@@ -67,20 +67,20 @@ class ProductCategoriesController extends AppController
      */
     public function edit(string $id): Response
     {
-        $category = $this->fetchTable('Taxonomies')->getCategory($id);
+        $category = $this->Categories->get($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
-            $category = $this->fetchTable('Taxonomies')->patchEntity($category, $this->request->getData());
+            $category = $this->Categories->patchEntity($category, $this->request->getData());
             $category->slug = Text::slug($category->name);
-            if ($this->fetchTable('Taxonomies')->save($category)) {
+            if ($this->Categories->save($category)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/pim/product-categories");
+                return $this->redirect("/manager/pim/categories");
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $parents = $this->fetchTable('Taxonomies')->find('treeList')->where(['type' => 'categories']);
+        $parents = $this->Categories->find('treeList');
 
         $this->set(compact('category', 'parents'));
 
@@ -94,14 +94,14 @@ class ProductCategoriesController extends AppController
     public function delete(string $id): ?Response
     {
         $this->request->allowMethod(['delete', 'post']);
-        $category = $this->fetchTable('Taxonomies')->getCategory($id);
-        if ($this->fetchTable('Taxonomies')->delete($category)) {
+        $category = $this->Categories->getCategory($id);
+        if ($this->Categories->delete($category)) {
             $this->Flash->success(__('The data has been deleted.'));
         } else {
             $this->Flash->error(__('The data could not be deleted. Please try again.'));
         }
 
-        return $this->redirect('/manager/pim/product-categories');
+        return $this->redirect('/manager/pim/categories');
     }
 
     /**
@@ -109,9 +109,9 @@ class ProductCategoriesController extends AppController
      */
     public function recovery(): ?Response
     {
-        $this->fetchTable('Taxonomies')->recover();
+        $this->Categories->recover();
         $this->Flash->success(__('Recovery data'));
 
-        return $this->redirect('/manager/pim/product-categories');
+        return $this->redirect('/manager/pim/categories');
     }
 }

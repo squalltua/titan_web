@@ -66,4 +66,26 @@ class ProductsTableTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    /**
+     * Test getAllProducts method
+     *
+     * @return void
+     * @uses \App\Model\Table\ProductsTable::getAllProducts()
+     */
+    public function testGetAllProducts(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getInformation method
+     *
+     * @return void
+     * @uses \App\Model\Table\ProductsTable::getInformation()
+     */
+    public function testGetInformation(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
 }

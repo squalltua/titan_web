@@ -8,19 +8,14 @@
                             <span class="nav-link-title"><?= __('Products') ?></span>
                         </a>
                     </li>
-                    <li class="<?= $subMenuActive === 'families' ? 'nav-item active' : 'nav-item' ?>">
-                        <a href="/manager/pim/product-families" class="nav-link">
-                            <span class="nav-link-title"><?= __('Families') ?></span>
-                        </a>
-                    </li>
                     <li class="<?= $subMenuActive === 'categories' ? 'nav-item active' : 'nav-item' ?>">
-                        <a href="/manager/pim/product-categories" class="nav-link">
+                        <a href="/manager/pim/categories" class="nav-link">
                             <span class="nav-link-title"><?= __('Categories') ?></span>
                         </a>
                     </li>
-                    <li class="<?= $subMenuActive === 'types' ? 'nav-item active' : 'nav-item' ?>">
-                        <a href="/manager/pim/product-types" class="nav-link">
-                            <span class="nav-link-title"><?= __('Types') ?></span>
+                    <li class="<?= $subMenuActive === 'variants' ? 'nav-item active' : 'nav-item' ?>">
+                        <a href="/manager/pim/variants" class="nav-link">
+                            <span class="nav-link-title"><?= __('Variant options') ?></span>
                         </a>
                     </li>
                 </ul>

@@ -49,7 +49,9 @@ class CategoriesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('Tree');
+        $this->addBehavior('Tree', [
+            'level' => 'level'
+        ]);
 
         $this->belongsTo('ParentCategories', [
             'className' => 'Categories',
@@ -109,5 +111,10 @@ class CategoriesTable extends Table
         $rules->add($rules->existsIn(['parent_id'], 'ParentCategories'), ['errorField' => 'parent_id']);
 
         return $rules;
+    }
+
+    public function getCategoriesList()
+    {
+        return $this->find('treeList');
     }
 }

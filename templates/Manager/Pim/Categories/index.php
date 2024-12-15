@@ -6,11 +6,11 @@
                     <?= __('Index table') ?>
                 </div>
                 <h2 class="page-title">
-                    <?= __('Product Categories') ?>
+                    <?= __('Categories') ?>
                 </h2>
             </div>
             <div class="col-auto ms-auto">
-                <a href="/manager/pim/product-categories/add" class="btn btn-primary d-none d-sm-inline-block">
+                <a href="/manager/pim/categories/add" class="btn btn-primary d-none d-sm-inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -20,7 +20,7 @@
                     </svg>
                     <?= __('Create new') ?>
                 </a>
-                <?= $this->Html->link(__('Recovery data'), '/manager/pim/product-categories/recovery', ['class' => 'btn btn-info d-none d-sm-inline-block']) ?>
+                <?= $this->Html->link(__('Recovery data'), '/manager/pim/categories/recovery', ['class' => 'btn btn-info d-none d-sm-inline-block']) ?>
             </div>
         </div>
     </div>
@@ -47,8 +47,8 @@
                                 </span>
                             </td>
                             <td class="text-end">
-                                <?= $this->Html->link(__('Edit'), "/manager/pim/product-categories/edit/{$category->id}", ['class' => 'me-3']) ?>
-                                <?= $this->Form->postLink(__('Delete'), "/manager/pim/product-categories/delete/{$category->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>
+                                <?= $this->Html->link(__('Edit'), "/manager/pim/categories/edit/{$category->id}", ['class' => 'me-3']) ?>
+                                <?= $this->Form->postLink(__('Delete'), "/manager/pim/categories/delete/{$category->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>
                             </td>
                         </tr>
                         <?php endforeach ?>
@@ -76,7 +76,7 @@
                 <?= __("Try adjusting your search or filter to find what you're looking for.") ?>
             </p>
             <div class="empty-action">
-                <a href="/manager/pim/product-categories/add" class="btn btn-primary">
+                <a href="/manager/pim/categories/add" class="btn btn-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                         stroke-linejoin="round">

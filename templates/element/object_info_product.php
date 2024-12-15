@@ -30,7 +30,10 @@
             <?= $this->Html->link(__('Basic information'), "/manager/pim/products/detail/{$product->id}", ['class' => $objectMenuActive === 'detail' ? 'nav-link active' : 'nav-link']) ?>
         </li>
         <li class="nav-item">
-            <?= $this->Html->link(__('Attributes'), "/manager/pim/products/attributes/{$product->id}", ['class' => $objectMenuActive === 'attributes' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
+            <?= $this->Html->link(__('Meta data'), "/manager/pim/products/meta-products/{$product->id}", ['class' => $objectMenuActive === 'attributes' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
+        </li>
+        <li class="nav-item">
+            <?= $this->Html->link(__('Variants'), "/manager/pim/products/variants/{$product->id}", ['class' => $objectMenuActive === 'variants' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
         </li>
         <li class="nav-item">
             <?= $this->Html->link(__('Images'), "/manager/pim/products/images/{$product->id}", ['class' => $objectMenuActive === 'images' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>

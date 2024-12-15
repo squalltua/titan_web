@@ -94,45 +94,30 @@ class ProductsTable extends Table
 
         $validator
             ->scalar('summary')
-            ->allowEmptyString('summary');
+            ->requirePresence('summary', 'create')
+            ->notEmptyString('summary');
 
         $validator
             ->scalar('content')
-            ->allowEmptyString('content');
+            ->requirePresence('content', 'create')
+            ->notEmptyString('content');
 
         $validator
-            ->decimal('base_price')
-            ->allowEmptyString('base_price');
+            ->decimal('supplier_price')
+            ->notEmptyString('supplier_price');
 
         $validator
             ->decimal('sell_price')
-            ->allowEmptyString('sell_price');
+            ->notEmptyString('sell_price');
 
         $validator
             ->decimal('discount_price')
-            ->allowEmptyString('discount_price');
+            ->notEmptyString('discount_price');
 
         $validator
             ->scalar('sku')
             ->maxLength('sku', 100)
             ->allowEmptyString('sku');
-
-        $validator
-            ->scalar('model_name')
-            ->maxLength('model_name', 45)
-            ->allowEmptyString('model_name');
-
-        $validator
-            ->scalar('series_number')
-            ->maxLength('series_number', 45)
-            ->allowEmptyString('series_number');
-
-        $validator
-            ->allowEmptyString('on_sale');
-
-        $validator
-            ->scalar('status')
-            ->allowEmptyString('status');
 
         $validator
             ->dateTime('start_at')
@@ -142,15 +127,22 @@ class ProductsTable extends Table
             ->dateTime('end_at')
             ->allowEmptyDateTime('end_at');
 
+        $validator
+            ->notEmptyString('on_sell');
+
+        $validator
+            ->scalar('status')
+            ->notEmptyString('status');
+
+        $validator
+            ->notEmptyString('has_variants');
+
         return $validator;
     }
 
     public function getAllProducts()
     {
         $products = $this->find()->contain(['Categories']);
-        foreach ($products as $product) {
-
-        }
 
         return $products;
     }

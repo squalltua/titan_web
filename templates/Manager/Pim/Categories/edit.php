@@ -6,11 +6,11 @@
                     <?= __('Edit information') ?>
                 </div>
                 <h2 class="page-title">
-                    <?= __('Product Types') ?>
+                    <?= __('Categories') ?>
                 </h2>
             </div>
             <div class="col-auto ms-auto">
-                <a href="/manager/pim/product-types/add" class="btn btn-primary d-none d-sm-inline-block">
+                <a href="/manager/pim/categories/add" class="btn btn-primary d-none d-sm-inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                          stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                          stroke-linejoin="round">
@@ -27,16 +27,16 @@
 
 <div class="page-body">
     <div class="container-xl">
-        <?= $this->Form->create($type) ?>
+        <?= $this->Form->create($category) ?>
         <div class="row">
             <div class="col-6">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"><?= __('Product type information') ?></h3>
+                        <h3 class="card-title"><?= __('Category information') ?></h3>
                     </div>
                     <div class="card-body">
                         <div class="mb-3 row">
-                            <label for="name" class="col-3 col-form-label required"><?= __('Type name') ?></label>
+                            <label for="name" class="col-3 col-form-label required"><?= __('Category name') ?></label>
                             <div class="col">
                                 <?= $this->Form->text('name', ['class' => 'form-control', 'id' => 'name', 'required' => true]) ?>
                             </div>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="card-footer text-end">
                         <div class="d-flex">
-                            <?= $this->Html->link(__('Cancel'), '/manager/pim/product-types', ['class' => 'btn btn-link']) ?>
+                            <?= $this->Html->link(__('Cancel'), '/manager/pim/categories', ['class' => 'btn btn-link']) ?>
                             <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary ms-auto']) ?>
                         </div>
                     </div>

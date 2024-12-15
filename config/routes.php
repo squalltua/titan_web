@@ -114,14 +114,12 @@ return function (RouteBuilder $routes): void {
             $builder->connect('/products', ['prefix' => 'Manager/Pim', 'controller' => 'Products', 'action' => 'index']);
             $builder->connect('/products/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'Products']);
 
-            $builder->connect('/product-categories', ['prefix' => 'Manager/Pim', 'controller' => 'ProductCategories', 'action' => 'index']);
-            $builder->connect('/product-categories/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'ProductCategories']);
+            $builder->connect('/categories', ['prefix' => 'Manager/Pim', 'controller' => 'Categories', 'action' => 'index']);
+            $builder->connect('/categories/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'Categories']);
 
-            $builder->connect('/product-types', ['prefix' => 'Manager/Pim', 'controller' => 'ProductTypes', 'action' => 'index']);
-            $builder->connect('/product-types/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'ProductTypes']);
+            $builder->connect('/attributes', ['prefix' => 'Manager/Pim', 'controller' => 'Attributes', 'action' => 'index']);
+            $builder->connect('/attributes/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'Attributes']);
 
-            $builder->connect('/product-families', ['prefix' => 'Manager/Pim', 'controller' => 'ProductFamilies', 'actoin' => 'index']);
-            $builder->connect('/product-families/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'ProductFamilies']);
         });
 
         $builder->prefix('Dam', function (RouteBuilder $builder): void {
