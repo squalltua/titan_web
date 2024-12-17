@@ -12,11 +12,11 @@
             <div class="col-auto ms-auto">
                 <a href="/manager/pim/products/add" class="btn btn-primary d-none d-sm-inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                         stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <line x1="12" y1="5" x2="12" y2="19"/>
-                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
                     </svg>
                     <?= __('Create new') ?>
                 </a>
@@ -60,47 +60,12 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="col-3 col-form-label"><?= __('Has variant') ?></label>
-                            <div class="col">
-                                <label class="form-check pt-2">
-                                    <?= $this->Form->checkbox('has_variant', ['class' => 'form-check-input', 'id' => 'has-variant']) ?>
-                                    <span class="form-check-label"><?= __('This product has variant') ?></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="mb-3 row">
-                            <label for="sku" class="col-3 col-form-label">SKU</label>
-                            <div class="col">
-                                <?= $this->Form->text('sku', ['class'=> 'form-control', 'id' => 'sku']) ?>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
                             <label class="col-3 col-form-label"><?= __('On sell') ?></label>
                             <div class="col">
                                 <label class="form-check pt-2">
-                                    <?= $this->Form->checkbox('on_sale', ['class' => 'form-check-input', 'id' => 'on-sale']) ?>
+                                    <?= $this->Form->checkbox('on_sell', ['class' => 'form-check-input', 'id' => 'on-sale']) ?>
                                     <span class="form-check-label"><?= __('This product is on sell') ?></span>
                                 </label>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="supplier-price" class="col-3 col-form-label"><?= __('Supplier price') ?></label>
-                            <div class="col">
-                                <?= $this->Form->number('supplier_price', ['class' => 'form-control', 'id' => 'supplier-price']) ?>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="sell-price" class="col-3 col-form-label"><?= __('Sell price') ?></label>
-                            <div class="col">
-                                <?= $this->Form->number('sell_price', ['class' => 'form-control', 'id' => 'sell-price']) ?>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="discount-price" class="col-3 col-form-label"><?= __('Discount price') ?></label>
-                            <div class="col">
-                                <?= $this->Form->number('discount_price', ['class' => 'form-control', 'id' => 'discount-price']) ?>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -121,6 +86,48 @@
                                 <?= $this->Form->select('status', ['active' => __('Active'), 'inactive' => __('Inactive')], ['class' => 'form-select', 'empty' => false]) ?>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3 row">
+                            <label class="col-3 col-form-label"><?= __('Has variants') ?></label>
+                            <div class="col">
+                                <label class="form-check pt-2">
+                                    <?= $this->Form->checkbox('has_variants', ['class' => 'form-check-input', 'id' => 'has-variant']) ?>
+                                    <span class="form-check-label"><?= __('This product has variant') ?></span>
+                                </label>
+                            </div>
+                        </div>
+                        <?php if (!$product->has_variants): ?>
+                        <fieldset class="form-fieldset">
+                            <legend class="fs-5"><?= __('Product additional information for no variant') ?></legend>
+                            <div class="mb-3 row">
+                                <label for="sku" class="col-3 col-form-label">SKU</label>
+                                <div class="col">
+                                    <?= $this->Form->text('sku', ['class'=> 'form-control', 'id' => 'sku']) ?>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="supplier-price"
+                                    class="col-3 col-form-label"><?= __('Supplier price') ?></label>
+                                <div class="col">
+                                    <?= $this->Form->number('supplier_price', ['class' => 'form-control', 'id' => 'supplier-price']) ?>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="sell-price" class="col-3 col-form-label"><?= __('Sell price') ?></label>
+                                <div class="col">
+                                    <?= $this->Form->number('sell_price', ['class' => 'form-control', 'id' => 'sell-price']) ?>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="discount-price"
+                                    class="col-3 col-form-label"><?= __('Discount price') ?></label>
+                                <div class="col">
+                                    <?= $this->Form->number('discount_price', ['class' => 'form-control', 'id' => 'discount-price']) ?>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>

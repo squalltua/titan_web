@@ -117,9 +117,8 @@ return function (RouteBuilder $routes): void {
             $builder->connect('/categories', ['prefix' => 'Manager/Pim', 'controller' => 'Categories', 'action' => 'index']);
             $builder->connect('/categories/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'Categories']);
 
-            $builder->connect('/attributes', ['prefix' => 'Manager/Pim', 'controller' => 'Attributes', 'action' => 'index']);
-            $builder->connect('/attributes/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'Attributes']);
-
+            $builder->connect('/variant-options', ['prefix' => 'Manager/Pim', 'controller' => 'VariantOptions', 'action' => 'index']);
+            $builder->connect('/variant-options/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'VariantOptions']);
         });
 
         $builder->prefix('Dam', function (RouteBuilder $builder): void {
@@ -174,7 +173,7 @@ return function (RouteBuilder $routes): void {
             $builder->resources('Medias', ['prefix' => 'Api/V1']);
         });
 
-        $builder->connect('/*', 'Pages::pageNotFoundError');
+        $builder->connect('/*', 'Manager/Pages::pageNotFoundError');
         // $builder->fallbacks();
     });
 

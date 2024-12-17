@@ -8,8 +8,6 @@ use App\Controller\Manager\AppController;
 use Cake\Http\Response;
 use Cake\Utility\Text;
 use Cake\I18n\Number;
-use Cake\Utility\Hash;
-use Cake\Chronos\Chronos;
 
 /**
  * @property \App\Model\Table\ProductsTable $Products
@@ -294,5 +292,13 @@ class ProductsController extends AppController
         }
 
         return $this->redirect("/manager/pim/products/images/{$productId}");
+    }
+
+    public function variants(string $productId)
+    {
+        $product = $this->Products->get($productId);
+
+        $this->set('objectMenuActive', 'variants');
+        $this->set(compact('product'));
     }
 }

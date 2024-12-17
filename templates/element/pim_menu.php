@@ -14,7 +14,7 @@
                         </a>
                     </li>
                     <li class="<?= $subMenuActive === 'variants' ? 'nav-item active' : 'nav-item' ?>">
-                        <a href="/manager/pim/variants" class="nav-link">
+                        <a href="/manager/pim/variant-options" class="nav-link">
                             <span class="nav-link-title"><?= __('Variant options') ?></span>
                         </a>
                     </li>

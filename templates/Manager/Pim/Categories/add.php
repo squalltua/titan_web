@@ -29,7 +29,7 @@
     <div class="container-xl">
         <?= $this->Form->create($category) ?>
         <div class="row">
-            <div class="col-6">
+            <div class="col-12 col-md-8 col-lg-6">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title"><?= __('Category information') ?></h3>

@@ -6,7 +6,7 @@
             </div>
             <div class="col">
                 <div class="card-title"><?= $product->title ?></div>
-                <div class="card-subtitle"><?= $product->sku ?></div>
+                <div class="card-subtitle"><?= __('SKU: {0}', $product->sku) ?></div>
             </div>
         </div>
     </div>
