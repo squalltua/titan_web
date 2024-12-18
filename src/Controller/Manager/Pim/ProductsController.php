@@ -129,24 +129,6 @@ class ProductsController extends AppController
     }
 
     /**
-     * @param string $productId
-     * @param string $attributeId
-     * @return Response
-     */
-    public function attributeDelete(string $productId, string $attributeId): Response
-    {
-        $this->request->allowMethod(['delete', 'post']);
-        $attribute = $this->Products->Attributes->get($attributeId);
-        if ($this->Products->Attributes->delete($attribute)) {
-            $this->Flash->success(__('The attribute has been deleted.'));
-        } else {
-            $this->Flash->error(__('The attribute could not be deleted. Please try again.'));
-        }
-
-        return $this->redirect("/manager/pim/products/attributes/{$productId}");
-    }
-
-    /**
      * @return \Cake\Http\Response
      */
     public function add(): Response
@@ -300,5 +282,20 @@ class ProductsController extends AppController
 
         $this->set('objectMenuActive', 'variants');
         $this->set(compact('product'));
+    }
+
+    public function variantAdd(string $id)
+    {
+
+    }
+
+    public function variantEdit(string $id, string $variantId)
+    {
+
+    }
+
+    public function variantDelete(string $id, string $variantId) 
+    {
+        
     }
 }

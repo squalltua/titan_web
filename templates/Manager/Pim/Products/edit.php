@@ -63,7 +63,7 @@
                             <label class="col-3 col-form-label"><?= __('On sell') ?></label>
                             <div class="col">
                                 <label class="form-check pt-2">
-                                    <?= $this->Form->checkbox('on_sell', ['class' => 'form-check-input', 'id' => 'on-sale']) ?>
+                                    <?= $this->Form->checkbox('on_sell', ['class' => 'form-check-input', 'id' => 'on-sale', 'hiddenField' => true, 'required' => false]) ?>
                                     <span class="form-check-label"><?= __('This product is on sell') ?></span>
                                 </label>
                             </div>
@@ -92,7 +92,7 @@
                             <label class="col-3 col-form-label"><?= __('Has variants') ?></label>
                             <div class="col">
                                 <label class="form-check pt-2">
-                                    <?= $this->Form->checkbox('has_variants', ['class' => 'form-check-input', 'id' => 'has-variant']) ?>
+                                    <?= $this->Form->checkbox('has_variants', ['class' => 'form-check-input', 'id' => 'has-variant', 'hiddenField' => true, 'required' => false]) ?>
                                     <span class="form-check-label"><?= __('This product has variant') ?></span>
                                 </label>
                             </div>
