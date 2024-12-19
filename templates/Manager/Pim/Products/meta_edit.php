@@ -34,7 +34,9 @@
                     <div class="col-12 col-md-8 col-lg-6">
                         <?= $this->Form->create($meta) ?>
                         <div class="card">
-                            <div class="card-header"><?= __('Meta :: edit') ?></div>
+                            <div class="card-header">
+                                <h3 class="card-title"><?= __('Meta :: edit') ?></h3>
+                            </div>
                             <div class="card-body">
                                 <div class="mb-3 row">
                                     <label for="name" class="col-3 col-form-label required"><?= __('Key') ?></label>

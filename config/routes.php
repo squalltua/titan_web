@@ -169,6 +169,7 @@ return function (RouteBuilder $routes): void {
             $builder->connect('/posts', 'Manager/Api/v1/Posts::index');
             $builder->connect('/post-tags', 'Manager/Api/v1/PostTags::index');
             $builder->connect('/post-categories', 'Manager/Api/v1/PostCategories::index');
+            $builder->connect('/variant-attributes/get-option-list', 'Manager/Api/v1/VariantAttributes::getOptionList');
 
             $builder->resources('Medias', ['prefix' => 'Api/V1']);
         });

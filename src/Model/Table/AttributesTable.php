@@ -68,4 +68,9 @@ class AttributesTable extends Table
 
         return $validator;
     }
+
+    public function getOptionsList()
+    {
+        return $this->find('list');
+    }
 }

@@ -3,7 +3,7 @@
         <div class="row g-2 align-items-center">
             <div class="col">
                 <div class="page-pretitle">
-                    <?= __('Information') ?>
+                    <?= __('Variants') ?>
                 </div>
                 <h2 class="page-title">
                     <?= __('Products') ?>
