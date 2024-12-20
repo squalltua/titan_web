@@ -150,7 +150,6 @@ class ProductsTable extends Table
     public function getInformation(string $id)
     {
         $product = $this->get($id, ['contain' => ['Categories']]);
-    
 
         return $product;
     }

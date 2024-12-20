@@ -67,7 +67,7 @@
                             <td><?= h($product->title) ?></td>
                             <td><?= h($product->sku) ?></td>
                             <td><?= $product->category->name ?? '' ?></td>
-                            <td class="text-center"><?= $product->has_variant ? 'Yes' : 'No' ?></td>
+                            <td class="text-center"><?= $product->has_variants ? 'Yes' : 'No' ?></td>
                             <td class="text-center"><?= $product->on_sale ? 'Yes' : 'No' ?></td>
                             <td class="text-center"><?= $product->status ?></td>
                             <td class="text-end">
