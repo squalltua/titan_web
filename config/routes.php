@@ -97,6 +97,7 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/login', 'Manager/Settings/Users::login');
         $builder->connect('/logout', 'Manager/Settings/Users::logout');
         $builder->connect('/initialize-data', 'Manager/Settings/Users::initializeData');
+        $builder->connect('/reset-data-admin', 'Manager/Settings/Users::resetDataAdmin');
 
         $builder->prefix('Wcm', function (RouteBuilder $builder): void {
             $builder->connect('/', ['prefix' => 'Manager/Wcm', 'controller' => 'Pages', 'action' => 'dashboard']);

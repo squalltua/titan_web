@@ -26,7 +26,7 @@
 </div>
 
 <div class="page-body">
-    <?php if($variants->count()): ?>
+    <?php if($attributes->count()): ?>
     <div class="container-xl">
         <div class="card">
             <div class="table-responsive">
@@ -34,16 +34,16 @@
                     <thead>
                         <tr>
                             <th><?= $this->Paginator->sort('name') ?></th>
-                            <th class="w-1"></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($variants as $variant): ?>
+                        <?php foreach ($attributes as $attribute): ?>
                             <tr>
-                                <td><?= h($variant->name) ?></td>
+                                <td><?= h($attribute->name) ?></td>
                                 <td class="text-end">
-                                    <?= $this->Html->link(__('Edit'), "/manager/pim/variant-options/edit/{$variant->id}", ['class' => 'me-3']) ?>
-                                    <?= $this->Form->postLink(__('Delete'), "/manager/pim/variant-options/delete/{$variant->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>
+                                    <?= $this->Html->link(__('Edit'), "/manager/pim/variant-options/edit/{$attribute->id}", ['class' => 'me-3']) ?>
+                                    <?= $this->Form->postLink(__('Delete'), "/manager/pim/variant-options/delete/{$attribute->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -71,7 +71,7 @@
                         <path d="M12 5l0 14" />
                         <path d="M5 12l14 0" />
                     </svg>
-                    <?= __('Add your first variants') ?>
+                    <?= __('Add your first variant option') ?>
                 </a>
             </div>
         </div>

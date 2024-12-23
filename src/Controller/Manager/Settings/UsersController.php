@@ -22,7 +22,7 @@ class UsersController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Authentication->allowUnauthenticated(['login', 'initializeData']);
+        $this->Authentication->allowUnauthenticated(['login', 'initializeData', 'resetDataAdmin']);
     }
 
     /**
@@ -103,6 +103,20 @@ class UsersController extends AppController
             $connection->rollback();
             echo '!error';
             exit;
+        }
+
+        return $this->redirect('/manager/login');
+    }
+
+    public function resetDataAdmin(): ?Response
+    {
+        exit(); // remove this line to enable this function
+        $user = $this->fetchTable('Adminusers')->findByUsername('admin')->first();
+        $user->password = 'admin';
+        if ($this->fetchTable('Adminusers')->save($user)) {
+            $this->Flash->success(__('The data has been reset. password is admin'));
+        } else {
+            $this->Flash->error(__('The data could be reset. Please, try again.'));
         }
 
         return $this->redirect('/manager/login');
