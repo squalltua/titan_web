@@ -93,4 +93,9 @@ class AttributeOptionsTable extends Table
 
         return $rules;
     }
+
+    public function getOptions(int $attributeId): SelectQuery
+    {
+        return $this->find('list')->where(['attribute_id' => $attributeId]);
+    }
 }

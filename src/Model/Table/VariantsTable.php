@@ -78,14 +78,42 @@ class VariantsTable extends Table
             ->notEmptyString('product_id');
 
         $validator
+            ->scalar('title')
+            ->maxLength('title', 255)
+            ->requirePresence('title', 'create')
+            ->notEmptyString('title');
+
+        $validator
+            ->scalar('slug')
+            ->maxLength('slug', 255)
+            ->requirePresence('slug', 'create')
+            ->notEmptyString('slug');
+
+        $validator
             ->scalar('sku')
             ->maxLength('sku', 100)
             ->requirePresence('sku', 'create')
             ->notEmptyString('sku');
 
         $validator
-            ->decimal('price')
-            ->allowEmptyString('price');
+            ->decimal('supplier_price')
+            ->notEmptyString('supplier_price');
+
+        $validator
+            ->decimal('sell_price')
+            ->notEmptyString('sell_price');
+
+        $validator
+            ->decimal('discount_price')
+            ->allowEmptyString('discount_price');
+
+        $validator
+            ->integer('stock_quantity')
+            ->allowEmptyString('stock_quantity');
+
+        $validator
+            ->scalar('status')
+            ->notEmptyString('status');
 
         return $validator;
     }

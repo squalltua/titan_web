@@ -19,9 +19,10 @@ use Cake\ORM\Entity;
  * @property string|null $sku
  * @property \Cake\I18n\DateTime|null $start_at
  * @property \Cake\I18n\DateTime|null $end_at
- * @property int $on_sell
- * @property string $status
  * @property int $has_variants
+ * @property int $on_sell
+ * @property int|null $stock_quantity
+ * @property string $status
  * @property \Cake\I18n\DateTime|null $created
  * @property \Cake\I18n\DateTime|null $modified
  *
@@ -53,9 +54,10 @@ class Product extends Entity
         'sku' => true,
         'start_at' => true,
         'end_at' => true,
-        'on_sell' => true,
-        'status' => true,
         'has_variants' => true,
+        'on_sell' => true,
+        'stock_quantity' => true,
+        'status' => true,
         'created' => true,
         'modified' => true,
         'meta_products' => true,

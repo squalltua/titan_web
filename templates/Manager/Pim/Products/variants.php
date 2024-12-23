@@ -31,7 +31,43 @@
             <?= $this->element('object_info_product') ?>
             <?php if (!empty($product->variants)): ?>
             <div class="card-body">
-                xxx
+                <a href="/manager/pim/products/variant-add/<?= $product->id ?>" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    <?= __('New variant') ?>
+                </a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-vcenter card-table table-nowrap datatable">
+                    <thead>
+                        <tr>
+                            <th><?= __('Title') ?></th>
+                            <th><?= __('SKU') ?></th>
+                            <th><?= __('Price') ?></th>
+                            <th><?= __('Stock') ?></th>
+                            <th class="w-1"><?= __('Action') ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($product->variants as $variant): ?>
+                        <tr>
+                            <td><?= h($variant->title) ?></td>
+                            <td><?= h($variant->sku) ?></td>
+                            <td><?= h($variant->sell_price) ?></td>
+                            <td><?= h($variant->stock_quantity) ?></td>
+                            <td class="text-end">
+                                <?= $this->Html->link(__('Edit'), "/manager/pim/products/variant-edit/{$product->id}/{$variant->id}", ['class' => 'me-3']) ?>
+                                <?= $this->Html->link(__('Delete'), "/manager/pim/products/variant-delete/{$product->id}/{$variant->id}", ['class' => 'text-danger']) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
             </div>
             <?php elseif (!$product->has_variants): ?>
             <div class="container-xl d-flex flex-column justify-content-center">

@@ -60,10 +60,10 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="has-content" class="col-3 col-form-label required"><?= __('Has variant') ?></label>
+                            <label class="col-3 col-form-label"><?= __('Has variants') ?></label>
                             <div class="col">
                                 <label class="form-check pt-2">
-                                    <?= $this->Form->checkbox('has_variant', ['class' => 'form-check-input']) ?>
+                                    <?= $this->Form->checkbox('has_variants', ['class' => 'form-check-input', 'id' => 'has-variant', 'hiddenField' => true, 'required' => false]) ?>
                                     <span class="form-check-label"><?= __('This product has variant') ?></span>
                                 </label>
                             </div>

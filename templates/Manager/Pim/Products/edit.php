@@ -126,6 +126,13 @@
                                     <?= $this->Form->number('discount_price', ['class' => 'form-control', 'id' => 'discount-price']) ?>
                                 </div>
                             </div>
+                            <div class="mb-3 row">
+                                <label for="strock-quantity"
+                                    class="col-3 col-form-label"><?= __('Stock quantity') ?></label>
+                                <div class="col">
+                                    <?= $this->Form->number('stock_quantity', ['class' => 'form-control', 'id' => 'stock-quantity']) ?>
+                                </div>
+                            </div>
                         </fieldset>
                         <?php endif ?>
                     </div>

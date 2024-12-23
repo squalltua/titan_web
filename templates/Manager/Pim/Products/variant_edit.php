@@ -30,6 +30,7 @@
         <div class="card">
             <?= $this->element('object_info_product') ?>
             <div class="card-body">
+                <?= $this->Form->create($variant) ?>
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
@@ -51,6 +52,7 @@
                                                 'empty' => __('Please select'), 
                                                 'id' => 'attribute-id',
                                                 'onchange' => 'loadOptions()',
+                                                'value' => $variant->attribute_option->attribute_id ?? null,
                                             ]
                                         ) ?>
                                     </div>
@@ -59,7 +61,7 @@
                                     <label for="attribute-option-id"
                                         class="col-3 col-form-label required"><?= __('Option') ?></label>
                                     <div class="col">
-                                        <?= $this->Form->select('attribute_option_id', [], ['class' => 'form-select', 'empty' => __('Please select'), 'id' => 'attribute-option-id']) ?>
+                                        <?= $this->Form->select('attribute_option_id', $attributeOptions, ['class' => 'form-select', 'empty' => __('Please select'), 'id' => 'attribute-option-id']) ?>
                                     </div>
                                 </div>
                             </div>
@@ -97,6 +99,12 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
+                                    <label for="strock-quantity" class="col-3 col-form-label"><?= __('Stock quantity') ?></label>
+                                    <div class="col">
+                                        <?= $this->Form->number('stock_quantity', ['class' => 'form-control', 'id' => 'stock-quantity']) ?>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
                                     <label for="status" class="col-3 col-form-label"><?= __('Status') ?></label>
                                     <div class="col">
                                         <?= $this->Form->select('status', ['active' => __('Active'), 'inactive' => __('Inactive')], ['class' => 'form-select', 'id' => 'status']) ?>
@@ -112,6 +120,7 @@
                         </div>
                     </div>
                 </div>
+                <?= $this->Form->end() ?>
             </div>
         </div>
     </div>

@@ -128,14 +128,18 @@ class ProductsTable extends Table
             ->allowEmptyDateTime('end_at');
 
         $validator
+            ->notEmptyString('has_variants');
+
+        $validator
             ->notEmptyString('on_sell');
+
+        $validator
+            ->integer('stock_quantity')
+            ->allowEmptyString('stock_quantity');
 
         $validator
             ->scalar('status')
             ->notEmptyString('status');
-
-        $validator
-            ->notEmptyString('has_variants');
 
         return $validator;
     }

@@ -278,9 +278,9 @@ class ProductsController extends AppController
 
     public function variants(string $id)
     {
-        $product = $this->Products->get($id);
+        $product = $this->Products->get($id, ['contain' => ['Variants', 'Variants.AttributeOptions']]);
 
-        $this->set('objectMenuActive', 'variants');
+        $this->set('objectMenuActive');
         $this->set(compact('product'));
     }
 
@@ -291,8 +291,11 @@ class ProductsController extends AppController
         if ($this->request->is('post')) {
             $variant = $this->fetchTable('Variants')->patchEntity($variant, $this->request->getData());
             $variant->product_id = $id;
-            $variant->slug = Text::slug($variant->title);
+            $variant->slug = Text::slug(strtolower($variant->title));
             if ($this->fetchTable('Variants')->save($variant)) {
+                $attributeOption = $this->fetchTable('AttributeOptions')->get($this->request->getData('attribute_option_id'));
+                $this->fetchTable('Variants')->AttributeOptions->link($variant, [$attributeOption]);
+
                 $this->Flash->success(__('The data has been saved.'));
 
                 return $this->redirect("/manager/pim/products/variants/{$id}");
@@ -310,11 +313,15 @@ class ProductsController extends AppController
     public function variantEdit(string $id, string $variantId)
     {
         $product = $this->Products->get($id);
-        $variant = $this->fetchTable('Variants')->get($variantId);
+        $variant = $this->fetchTable('Variants')->get($variantId, ['contain' => ['AttributeOptions']]);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $variant = $this->fetchTable('Variants')->patchEntity($variant, $this->request->getData());
             $variant->slug = Text::slug($variant->title);
+            
             if ($this->fetchTable('Variants')->save($variant)) {
+                $attributeOption = $this->fetchTable('AttributeOptions')->get($this->request->getData('attribute_option_id'));
+                $this->fetchTable('Variants')->AttributeOptions->link($variant, [$attributeOption]);
+
                 $this->Flash->success(__('The data has been saved.'));
 
                 return $this->redirect("/manager/pim/products/variants/{$id}");
@@ -323,8 +330,15 @@ class ProductsController extends AppController
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
+        $variantOptions = $this->fetchTable('Attributes')->find('list')->all()->toArray();
+        if ($variant->attribute_option) {
+            $attributeOptions = $this->fetchTable('AttributeOptions')->getOptions($variant->attribute_option->attribute_id);
+        } else {
+            $attributeOptions = [];
+        }
+        
         $this->set('objectMenuActive', 'variants');
-        $this->set(compact('product', 'variant'));
+        $this->set(compact('product', 'variant', 'variantOptions', 'attributeOptions'));
     }
 
     public function variantDelete(string $id, string $variantId) 

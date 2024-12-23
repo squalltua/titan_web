@@ -10,8 +10,14 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $product_id
+ * @property string $title
+ * @property string $slug
  * @property string $sku
- * @property string|null $price
+ * @property string $supplier_price
+ * @property string $sell_price
+ * @property string|null $discount_price
+ * @property int|null $stock_quantity
+ * @property string $status
  * @property \Cake\I18n\DateTime|null $created
  * @property \Cake\I18n\DateTime|null $modified
  *
@@ -32,8 +38,14 @@ class Variant extends Entity
      */
     protected array $_accessible = [
         'product_id' => true,
+        'title' => true,
+        'slug' => true,
         'sku' => true,
-        'price' => true,
+        'supplier_price' => true,
+        'sell_price' => true,
+        'discount_price' => true,
+        'stock_quantity' => true,
+        'status' => true,
         'created' => true,
         'modified' => true,
         'product' => true,
