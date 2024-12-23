@@ -56,7 +56,7 @@
                         <div class="mb-3 row">
                             <label for="category-id" class="col-3 col-form-label"><?= __('Category') ?></label>
                             <div class="col">
-                                <?= $this->Form->select('category_id', $categories, ['class' => 'form-control', 'id' => 'category-id']) ?>
+                                <?= $this->Form->select('category_id', $categories, ['class' => 'form-select', 'id' => 'category-id']) ?>
                             </div>
                         </div>
                         <div class="mb-3 row">
