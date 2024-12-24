@@ -41,32 +41,6 @@
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3 row">
-                                    <label for="attribute-id"
-                                        class="col-3 col-form-label required"><?= __('Variant') ?></label>
-                                    <div class="col">
-                                        <?= $this->Form->select(
-                                            'attribute_id', 
-                                            $variantOptions, 
-                                            [
-                                                'class' => 'form-select', 
-                                                'empty' => __('Please select'), 
-                                                'id' => 'attribute-id',
-                                                'onchange' => 'loadOptions()',
-                                                'value' => $variant->attribute_option->attribute_id ?? null,
-                                            ]
-                                        ) ?>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label for="attribute-option-id"
-                                        class="col-3 col-form-label required"><?= __('Option') ?></label>
-                                    <div class="col">
-                                        <?= $this->Form->select('attribute_option_id', $attributeOptions, ['class' => 'form-select', 'empty' => __('Please select'), 'id' => 'attribute-option-id']) ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="mb-3 row">
                                     <label for="title" class="col-3 col-form-label required"><?= __('Title') ?></label>
                                     <div class="col">
                                         <?= $this->Form->text('title', ['class' => 'form-control', 'required' => true, 'id' => 'title']) ?>
@@ -99,7 +73,8 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label for="strock-quantity" class="col-3 col-form-label"><?= __('Stock quantity') ?></label>
+                                    <label for="strock-quantity"
+                                        class="col-3 col-form-label"><?= __('Stock quantity') ?></label>
                                     <div class="col">
                                         <?= $this->Form->number('stock_quantity', ['class' => 'form-control', 'id' => 'stock-quantity']) ?>
                                     </div>
@@ -108,6 +83,43 @@
                                     <label for="status" class="col-3 col-form-label"><?= __('Status') ?></label>
                                     <div class="col">
                                         <?= $this->Form->select('status', ['active' => __('Active'), 'inactive' => __('Inactive')], ['class' => 'form-select', 'id' => 'status']) ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <a href="/manager/pim/products/variant-option-add/<?= $product->id ?>/<?= $variant->id ?>"
+                                            class="btn btn-sm btn-primary">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <line x1="12" y1="5" x2="12" y2="19" />
+                                                <line x1="5" y1="12" x2="19" y2="12" />
+                                            </svg>
+                                            <?= __('New option') ?>
+                                        </a>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-vcenter card-table table-nowrap datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th><?= __('Value') ?></th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($variant->attribute_options as $option): ?>
+                                                <tr>
+                                                    <td><?= h($option->value) ?></td>
+                                                    <td class="text-end">
+                                                        <?= $this->Form->postLink(__('Delete'), "/manager/pim/products/variant-option-delete/{$product->id}/{$variant->id}/{$option->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>
+                                                    </td>
+                                                </tr>
+                                                <?php endforeach ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -145,13 +157,13 @@ async function loadOptions() {
         resetSelect(attributeOptions);
         const options = response.json();
         options.then((obj) => {
-           obj.forEach(element => {
+            obj.forEach(element => {
                 console.log(element.value);
                 let optionTag = document.createElement('option');
                 optionTag.innerHTML = element.value;
                 optionTag.value = element.id;
                 attributeOptions.appendChild(optionTag);
-           });
+            });
         });
     } catch (error) {
         console.error(error.message);

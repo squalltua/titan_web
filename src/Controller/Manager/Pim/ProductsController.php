@@ -298,7 +298,7 @@ class ProductsController extends AppController
 
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/pim/products/variants/{$id}");
+                return $this->redirect("/manager/pim/products/variant-edit/{$id}/{$variant->id}");
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
@@ -319,26 +319,51 @@ class ProductsController extends AppController
             $variant->slug = Text::slug($variant->title);
             
             if ($this->fetchTable('Variants')->save($variant)) {
-                $attributeOption = $this->fetchTable('AttributeOptions')->get($this->request->getData('attribute_option_id'));
-                $this->fetchTable('Variants')->AttributeOptions->link($variant, [$attributeOption]);
-
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/pim/products/variants/{$id}");
+                return $this->redirect("/manager/pim/products/variant-edit/{$id}/{$variantId}");
+            }
+
+            $this->Flash->error(__('The data could not be saved. Please try again.'));
+        }
+        
+        $this->set('objectMenuActive', 'variants');
+        $this->set(compact('product', 'variant'));
+    }
+
+    public function variantOptionAdd(string $id, string $variantId)
+    {
+        $product = $this->Products->get($id);
+        $variant = $this->fetchTable('Variants')->get($variantId);
+        if ($this->request->is('post')) {
+            $attributeOption = $this->fetchTable('AttributeOptions')->get($this->request->getData('attribute_option_id'));
+            if ($this->fetchTable('Variants')->AttributeOptions->link($variant, [$attributeOption])) {
+                $this->Flash->success(__('The data has been saved.'));
+
+                return $this->redirect("/manager/pim/products/variant-edit/{$id}/{$variantId}");
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
         $variantOptions = $this->fetchTable('Attributes')->find('list')->all()->toArray();
-        if ($variant->attribute_option) {
-            $attributeOptions = $this->fetchTable('AttributeOptions')->getOptions($variant->attribute_option->attribute_id);
-        } else {
-            $attributeOptions = [];
-        }
-        
+
         $this->set('objectMenuActive', 'variants');
-        $this->set(compact('product', 'variant', 'variantOptions', 'attributeOptions'));
+        $this->set(compact('product', 'variant', 'variantOptions'));
+    }
+
+    public function variantOptionDelete(string $id, string $variantId, string $optionId)
+    {
+        $this->request->allowMethod(['delete', 'post']);
+        $variant = $this->fetchTable('Variants')->get($variantId);
+        $attributeOption = $this->fetchTable('AttributeOptions')->get($optionId);
+        if ($this->fetchTable('Variants')->AttributeOptions->unlink($variant, [$attributeOption])) {
+            $this->Flash->success(__('The data has been deleted.'));
+        } else {
+            $this->Flash->error(__('The data could not be deleted. Please try again.'));
+        }
+
+        return $this->redirect("/manager/pim/products/variant-edit/{$id}/{$variantId}");
     }
 
     public function variantDelete(string $id, string $variantId) 
