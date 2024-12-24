@@ -215,8 +215,6 @@ class ProductsController extends AppController
                     } else {
                         $this->Flash->error(__('The product feature image could not link with prodcut data. Please try again.'));
                     }
-                } else {
-                    $this->Flash->error(__('The feature image could not be uploaded. Please try again.'));
                 }
             }
 
@@ -230,8 +228,6 @@ class ProductsController extends AppController
                     } else {
                         $this->Flash->error(__('The product image could not link with product data. Please try again.'));
                     }
-                } else {
-                    $this->Flash->error(__('The product image could not be uploaded. Please try again.'));
                 }
             }
 

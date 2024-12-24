@@ -30,6 +30,7 @@
         <div class="card">
             <?= $this->element('object_info_product') ?>
             <div class="card-body">
+                <?= $this->Form->create(null, ['type' => 'file']) ?>
                 <div class="row">
                     <div class="col-4">
                         <h4><?= __('Feature image') ?></h4>
@@ -74,6 +75,7 @@
                         <?= $this->Form->button(__('Upload'), ['class' => 'btn btn-primary']) ?>
                     </div>
                 </div>
+                <?= $this->Form->end() ?>
             </div>
         </div>
     </div>
