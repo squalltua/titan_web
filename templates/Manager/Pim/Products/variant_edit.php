@@ -127,7 +127,7 @@
                     </div>
                     <div class="card-footer text-end">
                         <div class="d-flex">
-                            <?= $this->Html->link(__('Cancel'), "/manager/pim/products/vaiants/{$product->id}", ['class' => 'btn btn-link']) ?>
+                            <?= $this->Html->link(__('Cancel'), "/manager/pim/products/variants/{$product->id}", ['class' => 'btn btn-link']) ?>
                             <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary ms-auto']) ?>
                         </div>
                     </div>
@@ -137,43 +137,3 @@
         </div>
     </div>
 </div>
-
-<script>
-async function loadOptions() {
-    let attributeOptions = document.getElementById('attribute-option-id');
-    const attributeId = document.getElementById('attribute-id').value;
-    if (!attributeId) {
-        resetSelect(attributeOptions);
-        return;
-    }
-
-    const url = '/manager/api/v1/variant-attributes/get-option-list.json?id=' + attributeId;
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-
-        resetSelect(attributeOptions);
-        const options = response.json();
-        options.then((obj) => {
-            obj.forEach(element => {
-                console.log(element.value);
-                let optionTag = document.createElement('option');
-                optionTag.innerHTML = element.value;
-                optionTag.value = element.id;
-                attributeOptions.appendChild(optionTag);
-            });
-        });
-    } catch (error) {
-        console.error(error.message);
-    }
-}
-
-function resetSelect(selectInput) {
-    selectInput.innerHTML = '';
-    const emptyOption = document.createElement('option');
-    emptyOption.innerHTML = 'Please select';
-    selectInput.appendChild(emptyOption);
-}
-</script>

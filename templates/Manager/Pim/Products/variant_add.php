@@ -89,7 +89,7 @@
                     </div>
                     <div class="card-footer text-end">
                         <div class="d-flex">
-                            <?= $this->Html->link(__('Cancel'), "/manager/pim/products/vaiants/{$product->id}", ['class' => 'btn btn-link']) ?>
+                            <?= $this->Html->link(__('Cancel'), "/manager/pim/products/variants/{$product->id}", ['class' => 'btn btn-link']) ?>
                             <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary ms-auto']) ?>
                         </div>
                     </div>
