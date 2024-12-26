@@ -7,7 +7,7 @@ namespace App\Controller\Manager\Wcm;
 use App\Controller\Manager\AppController;
 use Cake\Http\Exception\NotFoundException;
 
-class PostGroupsController extends AppController
+class GroupsController extends AppController
 {
     public function initialize(): void
     {
@@ -21,30 +21,28 @@ class PostGroupsController extends AppController
     /**
      * @return \Cake\Http\Response
      */
-    public function index(): \Cake\Http\Response
+    public function index()
     {
         try {
-            $groups = $this->paginate($this->PostGroups);
+            $groups = $this->paginate($this->Groups);
         } catch (NotFoundException $e) {
             // Do something here like redirecting to first or last page.
             // $e->getPrevious()->getAttributes('pagingParams') will give you required info.
         }
 
         $this->set(compact('groups'));
-
-        return $this->render();
     }
 
     /**
      * @return \Cake\Http\Response
      */
-    public function add(): \Cake\Http\Response
+    public function add()
     {
-        $group = $this->PostGroups->newEmptyEntity();
+        $group = $this->Groups->newEmptyEntity();
         if ($this->request->is('post')) {
-            $group = $this->PostGroups->patchEntity($group, $this->request->getData());
+            $group = $this->Groups->patchEntity($group, $this->request->getData());
             $group->type = 'groups';
-            if ($this->PostGroups->save($group)) {
+            if ($this->Groups->save($group)) {
                 $this->Flash->success(__('The group has been saved.'));
 
                 return $this->redirect('/manager/wcm/groups');
@@ -54,20 +52,18 @@ class PostGroupsController extends AppController
         }
 
         $this->set(compact('group'));
-
-        return $this->render();
     }
 
     /**
-     * @param string $id
+     * @param string $id - Group ID
      * @return \Cake\Http\Response
      */
-    public function edit(string $id): \Cake\Http\Response
+    public function edit(string $id)
     {
-        $group = $this->PostGroups->get($id);
-        if ($this->request->is(['post', 'put', 'patch'])) {
-            $group = $this->PostGroups->patchEntity($group, $this->request->getData());
-            if ($this->PostGroups->save($group)) {
+        $group = $this->Groups->get($id);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $group = $this->Groups->patchEntity($group, $this->request->getData());
+            if ($this->Groups->save($group)) {
                 $this->Flash->success(__('The group has been saved.'));
 
                 return $this->redirect('/manager/wcm/groups');
@@ -77,24 +73,22 @@ class PostGroupsController extends AppController
         }
 
         $this->set(compact('group'));
-
-        return $this->render();
     }
 
     /**
-     * @param string $id
+     * @param string $id - Group ID
      * @return \Cake\Http\Response
      */
-    public function delete(string $id): \Cake\Http\Response
+    public function delete(string $id)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $group = $this->PostGroups->get($id);
-        if ($this->PostGroups->delete($group)) {
+        $group = $this->Groups->get($id);
+        if ($this->Groups->delete($group)) {
             $this->Flash->success(__('The group has been deleted.'));
-            return $this->redirect('/manager/wcm/groups');
+        } else {
+            $this->Flash->error(__('The group could not be deleted. Please, try again.'));
         }
 
-        $this->Flash->error(__('The group could not be deleted. Please, try again.'));
-        return $this->redirect("/manager/wcm/groups/edit/{$id}");
+        return $this->redirect('/manager/wcm/groups');
     }
 }

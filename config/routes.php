@@ -105,8 +105,8 @@ return function (RouteBuilder $routes): void {
             $builder->connect('/posts', ['prefix' => 'Manager/Wcm', 'controller' => 'Posts', 'action' => 'index']);
             $builder->connect('/posts/{action}/*', ['prefix' => 'Manager/Wcm', 'controller' => 'Posts']);
 
-            $builder->connect('/groups', ['prefix' => 'Manager/Wcm', 'controller' => 'PostGroups', 'action' => 'index']);
-            $builder->connect('/groups/{action}/*', ['prefix' => 'Manager/Wcm', 'controller' => 'PostGroups']);
+            $builder->connect('/groups', ['prefix' => 'Manager/Wcm', 'controller' => 'Groups', 'action' => 'index']);
+            $builder->connect('/groups/{action}/*', ['prefix' => 'Manager/Wcm', 'controller' => 'Groups']);
         });
 
         $builder->prefix('Pim', function (RouteBuilder $builder): void {

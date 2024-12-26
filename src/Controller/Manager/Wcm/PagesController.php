@@ -17,5 +17,8 @@ class PagesController extends AppController
         $this->set('applicationName', __('Web content management'));
     }
 
-    public function dashboard() {}
+    public function dashboard()
+    {
+        // just a page. no code here.
+    }
 }
