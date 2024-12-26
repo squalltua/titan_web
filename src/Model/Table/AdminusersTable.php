@@ -117,8 +117,8 @@ class AdminusersTable extends Table
     public function getUser(string $id)
     {
         return $this->find()
-        ->select(['AdminUsers.id', 'AdminUsers.username', 'AdminUsers.full_name', 'AdminUsers.role_id', 'AdminUsers.status', 'AdminUsers.email', 'AdminUsers.created', 'AdminUsers.modified'])
-        ->where(['AdminUsers.id' => $id])
+        ->select(['Adminusers.id', 'Adminusers.username', 'Adminusers.full_name', 'Adminusers.role_id', 'Adminusers.status', 'Adminusers.email', 'Adminusers.created', 'Adminusers.modified'])
+        ->where(['Adminusers.id' => $id])
         ->contain(['Roles'])
         ->first();
     }

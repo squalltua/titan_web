@@ -7,7 +7,7 @@ namespace App\Controller\Manager\Settings;
 use App\Controller\Manager\AppController;
 
 /**
- * @property \App\Model\Table\AdminusersTable $AdminUsers
+ * @property \App\Model\Table\AdminusersTable $Adminusers
  */
 class AdminUsersController extends AppController
 {
@@ -22,16 +22,16 @@ class AdminUsersController extends AppController
 
     public function index()
     {
-        $query = $this->AdminUsers->find()
+        $query = $this->fetchTable('Adminusers')->find()
             ->select([
-                'AdminUsers.id',
-                'AdminUsers.username',
-                'AdminUsers.full_name',
-                'AdminUsers.role_id',
-                'AdminUsers.status',
-                'AdminUsers.email',
-                'AdminUsers.created',
-                'AdminUsers.modified',
+                'Adminusers.id',
+                'Adminusers.username',
+                'Adminusers.full_name',
+                'Adminusers.role_id',
+                'Adminusers.status',
+                'Adminusers.email',
+                'Adminusers.created',
+                'Adminusers.modified',
                 'Roles.title',
             ])
             ->contain(['Roles']);
@@ -43,18 +43,18 @@ class AdminUsersController extends AppController
 
     public function view(string $id)
     {
-        $user = $this->AdminUsers->get($id, ['contain' => ['Roles']]);
+        $user = $this->fetchTable('Adminusers')->get($id, ['contain' => ['Roles']]);
 
         $this->set('user', $user);
     }
 
     public function add()
     {
-        $user = $this->AdminUsers->newEmptyEntity();
+        $user = $this->fetchTable('Adminusers')->newEmptyEntity();
         if ($this->request->is('post')) {
-            $user = $this->AdminUsers->patchEntity($user, $this->request->getData());
+            $user = $this->fetchTable('Adminusers')->patchEntity($user, $this->request->getData());
             $user->status = 'active';
-            if ($this->AdminUsers->save($user)) {
+            if ($this->fetchTable('Adminusers')->save($user)) {
                 $this->Flash->success(__('The data has been saved.'));
 
                 return $this->redirect("/manager/settings/admin-users");
@@ -70,10 +70,10 @@ class AdminUsersController extends AppController
 
     public function edit(string $id)
     {
-        $user = $this->AdminUsers->getUser($id);
+        $user = $this->fetchTable('Adminusers')->getUser($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
-            $user = $this->AdminUsers->patchEntity($user, $this->request->getData());
-            if ($this->AdminUsers->save($user)) {
+            $user = $this->fetchTable('Adminusers')->patchEntity($user, $this->request->getData());
+            if ($this->fetchTable('Adminusers')->save($user)) {
                 $this->Flash->success(__('The data has been saved.'));
 
                 return $this->redirect("/manager/settings/admin-users");
@@ -82,7 +82,7 @@ class AdminUsersController extends AppController
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $roles = $this->AdminUsers->Roles->getList();
+        $roles = $this->fetchTable('Adminusers')->Roles->getList();
 
         $this->set(compact('user', 'roles'));
     }
@@ -90,9 +90,9 @@ class AdminUsersController extends AppController
     public function delete(string $id)
     {
         $this->request->allowMethod(['delete', 'post']);
-        $user = $this->AdminUsers->getUser($id);
+        $user = $this->fetchTable('Adminusers')->getUser($id);
         $user->status = 'deleted';
-        if ($this->AdminUsers->save($user)) {
+        if ($this->fetchTable('Adminusers')->save($user)) {
             $this->Flash->success(__('The data has been deleted.'));
         } else {
             $this->Flash->error(__('The data could not be deleted. Please try again.'));
@@ -103,10 +103,10 @@ class AdminUsersController extends AppController
 
     public function changePassword(string $id)
     {
-        $user = $this->AdminUsers->getUser($id);
+        $user = $this->fetchTable('Adminusers')->getUser($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $user->password = $this->request->getData('password');
-            if ($this->AdminUsers->save($user)) {
+            if ($this->fetchTable('Adminusers')->save($user)) {
                 $this->Flash->success(__('The password has been updated.'));
             } else {
                 $this->Flash->error(__('The password could not be updated. Please try again.'));

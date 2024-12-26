@@ -289,9 +289,6 @@ class ProductsController extends AppController
             $variant->product_id = $id;
             $variant->slug = Text::slug(strtolower($variant->title));
             if ($this->fetchTable('Variants')->save($variant)) {
-                $attributeOption = $this->fetchTable('AttributeOptions')->get($this->request->getData('attribute_option_id'));
-                $this->fetchTable('Variants')->AttributeOptions->link($variant, [$attributeOption]);
-
                 $this->Flash->success(__('The data has been saved.'));
 
                 return $this->redirect("/manager/pim/products/variant-edit/{$id}/{$variant->id}");
