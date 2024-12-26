@@ -281,7 +281,7 @@ class ProductsController extends AppController
             $variant->attribute_options_display = implode(', ', $attributeOptions);
         }
 
-        $this->set('objectMenuActive');
+        $this->set('objectMenuActive', 'variants');
         $this->set(compact('product'));
     }
 
