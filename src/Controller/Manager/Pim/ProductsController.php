@@ -66,7 +66,7 @@ class ProductsController extends AppController
      */
     public function meta(string $id): \Cake\Http\Response
     {
-        $product = $this->Products->get($id, ['contain' => 'MetaProducts']);
+        $product = $this->Products->getInformation($id);
 
         $this->set('objectMenuActive', 'meta');
         $this->set(compact('product'));
@@ -80,7 +80,7 @@ class ProductsController extends AppController
      */
     public function metaAdd(string $productId): Response
     {
-        $product = $this->Products->get($productId);
+        $product = $this->Products->getInformation($productId);
         $meta = $this->Products->MetaProducts->newEmptyEntity();
         if ($this->request->is('post')) {
             $meta = $this->Products->MetaProducts->patchEntity($meta, $this->request->getData());
@@ -110,7 +110,7 @@ class ProductsController extends AppController
      */
     public function metaEdit(string $productId, string $metaId): Response
     {
-        $product = $this->Products->get($productId);
+        $product = $this->Products->getInformation($productId);
         $meta = $this->Products->MetaProducts->get($metaId);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $meta = $this->Products->MetaProducts->patchEntity($meta, $this->request->getData());
@@ -204,7 +204,7 @@ class ProductsController extends AppController
      */
     public function images(string $productId): Response
     {
-        $product = $this->Products->get($productId, ['contain' => ['MetaProducts', 'Medias']]);
+        $product = $this->Products->getInformation($productId);
         if ($this->request->is('post')) {
             // upload feature image only
             if ($this->request->getData('feature_image')) {
@@ -281,7 +281,7 @@ class ProductsController extends AppController
      */
     public function variants(string $id)
     {
-        $product = $this->Products->get($id, ['contain' => ['Variants', 'Variants.AttributeOptions']]);
+        $product = $this->Products->getInformation($id);
         foreach ($product->variants as &$variant) {
             $attributeOptions = Hash::extract($variant->attribute_options, '{n}.value');
             $variant->attribute_options_display = implode(', ', $attributeOptions);
@@ -299,7 +299,7 @@ class ProductsController extends AppController
      */
     public function variantAdd(string $id)
     {
-        $product = $this->Products->get($id);
+        $product = $this->Products->getInformation($id);
         $variant = $this->fetchTable('Variants')->newEmptyEntity();
         if ($this->request->is('post')) {
             $variant = $this->fetchTable('Variants')->patchEntity($variant, $this->request->getData());
@@ -329,7 +329,7 @@ class ProductsController extends AppController
      */
     public function variantEdit(string $id, string $variantId)
     {
-        $product = $this->Products->get($id);
+        $product = $this->Products->getInformation($id);
         $variant = $this->fetchTable('Variants')->get($variantId, ['contain' => ['AttributeOptions']]);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $variant = $this->fetchTable('Variants')->patchEntity($variant, $this->request->getData());
@@ -357,7 +357,7 @@ class ProductsController extends AppController
      */
     public function variantOptionAdd(string $id, string $variantId)
     {
-        $product = $this->Products->get($id);
+        $product = $this->Products->getInformation($id);
         $variant = $this->fetchTable('Variants')->get($variantId);
         if ($this->request->is('post')) {
             $attributeOption = $this->fetchTable('AttributeOptions')->get($this->request->getData('attribute_option_id'));

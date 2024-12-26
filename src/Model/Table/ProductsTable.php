@@ -153,7 +153,16 @@ class ProductsTable extends Table
 
     public function getInformation(string $id)
     {
-        $product = $this->get($id, ['contain' => ['Categories']]);
+        // $product = $this->get($id, ['contain' => ['Categories', 'Variants', 'Variants.AttributeOptions', 'Medias']]);
+        $product = $this->find()
+            ->where(['Products.id' => $id])
+            ->contain(['Categories', 'Variants', 'Variants.AttributeOptions'])
+            ->contain('Medias', function (SelectQuery $q) {
+                return $q->where(['Medias.using_type' => 'feature_image'])  ;
+            })
+            ->first();
+
+        $product->medias = $product->medias[0];
 
         return $product;
     }
