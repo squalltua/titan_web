@@ -8,6 +8,7 @@ use App\Controller\Manager\AppController;
 use Cake\Http\Response;
 use Cake\Utility\Text;
 use Cake\I18n\Number;
+use Cake\Utility\Hash;
 
 /**
  * @property \App\Model\Table\ProductsTable $Products
@@ -275,6 +276,10 @@ class ProductsController extends AppController
     public function variants(string $id)
     {
         $product = $this->Products->get($id, ['contain' => ['Variants', 'Variants.AttributeOptions']]);
+        foreach ($product->variants as &$variant) {
+            $attributeOptions = Hash::extract($variant->attribute_options, '{n}.value');
+            $variant->attribute_options_display = implode(', ', $attributeOptions);
+        }
 
         $this->set('objectMenuActive');
         $this->set(compact('product'));

@@ -48,6 +48,7 @@
                         <tr>
                             <th><?= __('Title') ?></th>
                             <th><?= __('SKU') ?></th>
+                            <th><?= __('Variant') ?></th>
                             <th><?= __('Price') ?></th>
                             <th><?= __('Stock') ?></th>
                             <th class="w-1"><?= __('Action') ?></th>
@@ -58,6 +59,7 @@
                         <tr>
                             <td><?= h($variant->title) ?></td>
                             <td><?= h($variant->sku) ?></td>
+                            <td><?= h($variant->attribute_options_display) ?></td>
                             <td><?= h($variant->sell_price) ?></td>
                             <td><?= h($variant->stock_quantity) ?></td>
                             <td class="text-end">
