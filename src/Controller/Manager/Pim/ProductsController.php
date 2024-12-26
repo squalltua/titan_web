@@ -273,6 +273,12 @@ class ProductsController extends AppController
         return $this->redirect("/manager/pim/products/images/{$productId}");
     }
 
+    /**
+     * variant list method
+     *
+     * @param string $id
+     * @return Response
+     */
     public function variants(string $id)
     {
         $product = $this->Products->get($id, ['contain' => ['Variants', 'Variants.AttributeOptions']]);
@@ -285,6 +291,12 @@ class ProductsController extends AppController
         $this->set(compact('product'));
     }
 
+    /**
+     * variant add method
+     *
+     * @param string $id - Product id
+     * @return Response
+     */
     public function variantAdd(string $id)
     {
         $product = $this->Products->get($id);
@@ -308,6 +320,13 @@ class ProductsController extends AppController
         $this->set(compact('product', 'variant', 'variantOptions'));
     }
 
+    /**
+     * variant edit method
+     *
+     * @param string $id - Product id
+     * @param string $variantId - Variant id
+     * @return Response
+     */
     public function variantEdit(string $id, string $variantId)
     {
         $product = $this->Products->get($id);
@@ -329,6 +348,13 @@ class ProductsController extends AppController
         $this->set(compact('product', 'variant'));
     }
 
+    /**
+     * variant option add method
+     *
+     * @param string $id - Product id
+     * @param string $variantId - Variant id
+     * @return Response
+     */
     public function variantOptionAdd(string $id, string $variantId)
     {
         $product = $this->Products->get($id);
@@ -350,6 +376,14 @@ class ProductsController extends AppController
         $this->set(compact('product', 'variant', 'variantOptions'));
     }
 
+    /**
+     * variant option delete method
+     *
+     * @param string $id - Product id
+     * @param string $variantId - Variant id
+     * @param string $optionId - Option id
+     * @return Response
+     */
     public function variantOptionDelete(string $id, string $variantId, string $optionId)
     {
         $this->request->allowMethod(['delete', 'post']);
@@ -364,6 +398,13 @@ class ProductsController extends AppController
         return $this->redirect("/manager/pim/products/variant-edit/{$id}/{$variantId}");
     }
 
+    /**
+     * variant delete method
+     *
+     * @param string $id - Product id
+     * @param string $variantId - Variant id
+     * @return Response
+     */
     public function variantDelete(string $id, string $variantId) 
     {
         $this->request->allowMethod(['delete', 'post']);
