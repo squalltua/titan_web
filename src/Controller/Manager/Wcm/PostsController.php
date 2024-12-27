@@ -51,13 +51,13 @@ class PostsController extends AppController
      */
     public function view(string $id): ?\Cake\Http\Response
     {
-        $post = $this->Posts->get($id, ['contain' => ['MetaPosts', 'PostGroups']]);
+        $post = $this->Posts->get($id, ['contain' => ['MetaPosts', 'Groups']]);
         $Parsedown = new Parsedown();
         $post->content_display = $Parsedown->text($post->content);
         $post->meta = Hash::combine($post->meta_posts, '{n}.meta_key', '{n}.meta_value');
-        $postGroups = $this->fetchTable('PostGroups')->find('list');
+        $post->groups_display = implode(', ', Hash::extract($post->groups, '{n}.name'));
 
-        $this->set(compact('post', 'postGroups'));
+        $this->set(compact('post'));
         $this->set('objectMenuActive', 'detail');
 
         return $this->render();
@@ -122,9 +122,9 @@ class PostsController extends AppController
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
         }
 
-        $postGroups = $this->fetchTable('PostGroups')->find('list');
+        $groups = $this->fetchTable('Groups')->find('list');
 
-        $this->set(compact('post', 'postGroups'));
+        $this->set(compact('post', 'groups'));
         $this->set('menuActive', 'new-post');
 
         return $this->render();
@@ -137,7 +137,7 @@ class PostsController extends AppController
      */
     public function edit(string $id): ?\Cake\Http\Response
     {
-        $post = $this->Posts->get($id, ['contain' => ['MetaPosts', 'PostGroups']]);
+        $post = $this->Posts->get($id, ['contain' => ['MetaPosts', 'Groups']]);
         $post->meta = Hash::combine($post->meta_posts, '{n}.meta_key', '{n}.meta_value');
         if ($this->request->is(['post', 'put'])) {
             $data = $this->request->getData();
@@ -250,9 +250,9 @@ class PostsController extends AppController
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
         }
 
-        $postGroups = $this->fetchTable('PostGroups')->find('list');
+        $groups = $this->fetchTable('Groups')->find('list');
 
-        $this->set(compact('post', 'postGroups'));
+        $this->set(compact('post', 'groups'));
 
         return $this->render();
     }

@@ -110,13 +110,13 @@
                             <?= $this->Form->textarea('intro', ['class' => 'form-control']) ?>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="post-groups-ids" class="form-label"><?= __('Groups') ?></label>
+                            <label for="groups-ids" class="form-label"><?= __('Groups') ?></label>
                             <?= $this->Form->select(
-                                'post_groups._ids',
-                                $postGroups,
+                                'groups._ids',
+                                $groups,
                                 [
                                     'class' => 'form-select',
-                                    'id' => 'post-groups-ids',
+                                    'id' => 'groups-ids',
                                     'multiple' => true
                                 ]
                             ) ?>

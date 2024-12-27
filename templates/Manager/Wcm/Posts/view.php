@@ -12,11 +12,11 @@
             <div class="col-auto ms-auto">
                 <a href="/manager/wcm/posts/add" class="btn btn-primary d-none d-sm-inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                         stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <line x1="12" y1="5" x2="12" y2="19"/>
-                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
                     </svg>
                     <?= __('Create new') ?>
                 </a>
@@ -32,7 +32,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-9">
-                        <h1 class="display-4"><?= h($post->title) ?></h1>
+                        <h1 class="display-6"><?= h($post->title) ?></h1>
                         <div class="form-group mb-3">
                             <div class="border p-3 conent-display">
                                 <?= $post->content_display ?>
@@ -41,7 +41,7 @@
                         <div class="border p-3 mb-3">
                             <div class="form-group mb-3">
                                 <label for="meta-posts-og-tag-title"
-                                       class="form-label"><?= __('OG Tag Title') ?></label>
+                                    class="form-label"><?= __('OG Tag Title') ?></label>
                                 <?= $this->Form->text(
                                     'meta_posts.og_tag_title',
                                     [
@@ -54,7 +54,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="meta-posts-og-tag-description"
-                                       class="form-label"><?= __('OG Tag description') ?></label>
+                                    class="form-label"><?= __('OG Tag description') ?></label>
                                 <?= $this->Form->textarea(
                                     'meta_posts.og_tag_description',
                                     [
@@ -64,16 +64,16 @@
                                         'value' => $post->meta['og_tag_description'] ?? ''
                                     ]
                                 ) ?>
-                                <div id="emailHelp"
-                                     class="form-text"><?= __('Only text for short description for display another plateform.') ?></div>
+                                <div id="emailHelp" class="form-text">
+                                    <?= __('Only text for short description for display another plateform.') ?></div>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="meta-posts-og-tag-image"
-                                       class="form-label"><?= __('OG Tag image') ?></label>
+                                    class="form-label"><?= __('OG Tag image') ?></label>
                                 <?php if (empty($post->meta['og_tag_image'])): ?>
-                                    <p><?= __('- No image -') ?></p>
+                                <p><?= __('- No image -') ?></p>
                                 <?php else: ?>
-                                    <?= $this->Html->image($post->meta['og_tag_image'], ['class' => 'img-fluid']) ?>
+                                <?= $this->Html->image($post->meta['og_tag_image'], ['class' => 'img-fluid']) ?>
                                 <?php endif ?>
                             </div>
                             <div class="form-group mb-3">
@@ -119,20 +119,26 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="categories-ids" class="form-label"><?= __('Groups') ?></label>
-                            <?= $this->Form->select(
-                                'post_groups._ids',
-                                $postGroups,
-                                ['class' => 'form-select', 'id' => 'categories-ids', 'readonly' => true, 'disabled' => true]
+                            <label for="group-display" class="form-label"><?= __('Groups') ?></label>
+                            <?= $this->Form->text(
+                                'groups_display',
+                                [
+                                    'class' => 'form-select', 
+                                    'id' => 'group-display', 
+                                    'readonly' => true, 
+                                    'disabled' => true, 
+                                    'multiple' => true,
+                                    'value' => $post->groups_display
+                                ]
                             ) ?>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="feature-image" class="form-label"><?= __('Feature image') ?></label>
                             <?php if (empty($post->meta['feature_image'])): ?>
-                                <p><?= __('- No image -') ?></p>
+                            <p><?= __('- No image -') ?></p>
                             <?php else: ?>
-                                <?= $this->Html->image($post->meta['feature_image'], ['class' => 'img-fluid']) ?>
+                            <?= $this->Html->image($post->meta['feature_image'], ['class' => 'img-fluid']) ?>
                             <?php endif ?>
                         </div>
                     </div>
