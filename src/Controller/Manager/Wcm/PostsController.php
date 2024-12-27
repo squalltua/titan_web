@@ -144,101 +144,49 @@ class PostsController extends AppController
             $meta = $data['meta_posts'];
             unset($data['meta_posts']);
             $post = $this->Posts->patchEntity($post, $data);
-            $metaPosts = $this->fetchTable('MetaPosts')->find()->where(['post_id' => $post->id]);
-            if ($metaPosts->count()) {
-                // update data
-                foreach ($metaPosts as $metaPost) {
-                    if (!in_array($metaPost->meta_key, $this->Posts->imageKey) && $meta[$metaPost->meta_key]) {
-                        $metaPost->meta_value = $meta[$metaPost->meta_key];
-                    } else {
-                        foreach ($this->Posts->imageKey as $key) {
-                            if ($metaPost->meta_key === $key && isset($meta[$key]) && !$meta[$key]->getError()) {
-                                $mediaPath = null;
-                                $imageMedia = $this->fetchTable('Medias')->uploadImage($key, $meta[$key]);
-                                if ($imageMedia) {
-                                    $mediaPath = $imageMedia->link_url;
-                                } else {
-                                    $this->Flash->error(__('The {0} image could not be uploaded. Please try again.', $key));
+            
+            foreach ($meta as $key => $value) {
+                if (in_array($key, $this->Posts->imageKey) &&
+                    array_search($key, array_column($post->meta_posts, 'meta_key'))) {
+                    // update image
+                    if (!$value->getError()) {
+                        $imageMedia = $this->fetchTable('Medias')->uploadImage($key, $value);
+                        if (!$imageMedia) {
+                            $this->Flash->error(__('The {0} image could not be uploaded. Please try again.', $key));
 
-                                    return $this->redirect("/manager/wcm/posts/edit/{$id}");
-                                }
-
-                                if (array_search($key, array_column($metaPosts->toArray(), 'meta_key'))) {
-                                    // update
-                                    if ($metaPost->meta_key === $key) {
-                                        $metaPost->meta_value = $mediaPath;
-                                    }
-                                } else {
-                                    // new
-                                    $newMeta = $this->Posts->MetaPosts->newEntity([
-                                        'post_id' => $id,
-                                        'meta_key' => $key,
-                                        'meta_value' => $mediaPath,
-                                    ]);
-                                    if (!$this->Posts->MetaPosts->save($newMeta)) {
-                                        $this->Flash->error(__('The {0} meta could not be saved. Please try again.', $key));
-
-                                        return $this->redirect("/manager/wcm/posts/edit/{$id}");
-                                    }
-                                }
-                            }
+                            return $this->redirect("/manager/wcm/posts/edit/{$id}");
                         }
+
+                        $metaPostIndex = array_search($key, array_column($post->meta_posts, 'meta_key'));
+                        $post->meta_posts[$metaPostIndex]->meta_value = $imageMedia->link_url;
                     }
-                }
-            } else {
-                // create all new data.
-                $metaPostsData = [];
-                foreach ($meta as $key => $value) {
-                    if ($key === 'feature_image') {
-                        $featureImageMediaId = '';
-                        if (!$value->getError()) {
-                            $featureImageMedia = $this->fetchTable('Medias')->uploadImage($value);
-                            if ($featureImageMedia) {
-                                $featureImageMediaId = $featureImageMedia->id;
-                            } else {
-                                $this->Flash->error(__('The feature image could not be uploaded. Please try again.'));
+                } elseif (in_array($key, $this->Posts->imageKey) &&
+                    !array_search($key, array_column($post->meta_posts, 'meta_key'))) {
+                    // new image
+                    if (!$value->getError()) {
+                        $imageMedia = $this->fetchTable('Medias')->uploadImage($key, $value);
+                        if (!$imageMedia) {
+                            $this->Flash->error(__('The {0} image could not be uploaded. Please try again.', $key));
 
-                                return $this->redirect("/manager/wcm/posts/edit/{$id}");
-                            }
+                            return $this->redirect("/manager/wcm/posts/edit/{$id}");
                         }
 
-                        $metaPostsData[] = [
-                            'post_id' => $post->id,
-                            'meta_key' => 'feature_image',
-                            'meta_vakue' => $featureImageMedia->link_url,
-                        ];
-                    } elseif ($key === 'og_tag_image') {
-                        $ogTagImageMediaId = '';
-                        if (!$value->getError()) {
-                            $ogTagImageMedia = $this->fetchTable('Meaids')->uploadImage($value);
-                            if ($ogTagImageMedia) {
-                                $ogTagImageMediaId = $ogTagImageMedia->id;
-                            } else {
-                                $this->Flash->error(__('The og tag image could not be uploaded. Please try again.'));
-
-                                return $this->redirect("/manager/wcm/posts/edit/{$id}");
-                            }
-                        }
-
-                        $metaPostsData[] = [
-                            'post_id' => $post->id,
-                            'meta_key' => 'og_tag_image',
-                            'meta_vakue' => $ogTagImageMedia->link_url,
-                        ];
-                    } else {
-                        $metaPostsData[] = [
-                            'post_id' => $post->id,
+                        $newMeta = $this->Posts->MetaPosts->newEntity([
+                            'post_id' => $id,
                             'meta_key' => $key,
-                            'meta_value' => $value,
-                        ];
+                            'meta_value' => $imageMedia->link_url,
+                        ]);
+                        if (!$this->Posts->MetaPosts->save($newMeta)) {
+                            $this->Flash->error(__('The {0} meta could not be saved. Please try again.', $key));
+
+                            return $this->redirect("/manager/wcm/posts/edit/{$id}");
+                        }
                     }
+                } else {
+                    // update meta
+                    $metaPostIndex = array_search($key, array_column($post->meta_posts, 'meta_key'));
+                    $post->meta_posts[$metaPostIndex]->meta_value = $value;
                 }
-
-                $metaPosts = $this->fetchTable('MetaPosts')->newEntities($metaPostsData);
-            }
-
-            if (!$this->fetchTable('MetaPosts')->saveMany($metaPosts)) {
-                $this->Flash->error(__('The meta data could not be saved.'));
             }
 
             if ($this->Posts->save($post)) {
