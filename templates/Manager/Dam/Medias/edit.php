@@ -45,6 +45,18 @@
                                 <div class="datagrid-title"><?= __('Size') ?></div>
                                 <div class="datagride-content"><?= $this->Number->toReadableSize($media->size) ?></div>
                             </div>
+                            <div class="datagrid-itme">
+                                <div class="datagrid-title"><?= __('Using type') ?></div>
+                                <div class="datagrid-content"><?= $media->using_type ?></div>
+                            </div>
+                            <div class="datagrid-item">
+                                <div class="datagrid-title"><?= __('Created') ?></div>
+                                <div class="datagrid-content"><?= $media->created->i18nFormat('dd/mm/yyyy hh:mm:ss') ?></div>
+                            </div>
+                            <div class="datagrid-item">
+                                <div class="datagrid-title"><?= __('Modified') ?></div>
+                                <div class="datagrid-content"><?= $media->modified->i18nFormat('dd/mm/yyyy hh:mm:ss') ?></div>
+                            </div>
                         </div>
                     </div>
                     <div class="col">

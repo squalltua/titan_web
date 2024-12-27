@@ -95,7 +95,12 @@ class MediasController extends AppController
     {
         $this->request->allowMethod(['delete', 'post']);
         $media = $this->Medias->get($id);
-        if (unlink($media->path) && $this->Medias->delete($media)) {
+        
+        if (file_exists($media->path) && !is_dir($media->path)) {
+            unlink($media->path);
+        }
+
+        if ($this->Medias->delete($media)) {
             $this->Flash->success(__('The image has been deleted.'));
         } else {
             $this->Flash->error(__('The image could not be deleted. Please try again.'));

@@ -78,7 +78,7 @@
                                 <div>
                                     <?= $this->Html->link(
                                         __('Remove image'),
-                                        "/manager/cms/posts/remove-image/{$post->id}/og_tag_image",
+                                        "/manager/wcm/posts/remove-image/{$post->id}/og_tag_image",
                                         [
                                             'class' => 'text-danger',
                                             'confirm' => __('Do you want to delete this image?')
@@ -130,7 +130,7 @@
                                 <div>
                                     <?= $this->Html->link(
                                         __('Remove image'),
-                                        "/manager/cms/posts/remove-image/{$post->id}/feature_image",
+                                        "/manager/wcm/posts/remove-image/{$post->id}/feature_image",
                                         [
                                             'class' => 'text-danger',
                                             'confirm' => __('Do you want to delete this image?')
