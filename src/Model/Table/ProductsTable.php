@@ -162,7 +162,7 @@ class ProductsTable extends Table
             })
             ->first();
 
-        $product->medias = $product->medias[0];
+        $product->medias_icon_url = $product->medias[0]->link_url;
 
         return $product;
     }

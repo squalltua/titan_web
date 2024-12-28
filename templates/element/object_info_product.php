@@ -2,7 +2,7 @@
     <div>
         <div class="row align-items-center">
             <div class="col-auto">
-                <span class="avatar" style="background-image: url(<?= $product->medias->link_url ?>)"></span>
+                <span class="avatar" style="background-image: url(<?= $product->medias_icon_url ?>)"></span>
             </div>
             <div class="col">
                 <div class="card-title"><?= $product->title ?></div>
