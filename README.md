@@ -1,7 +1,6 @@
 # Titan WEB #
 
-This is Web framework made by CakePHP
-by Titanscript business consult co.,ltd.
+This is Web framework powered by CakePHP
 
 #### Features
 
