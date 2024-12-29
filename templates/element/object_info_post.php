@@ -1,9 +1,6 @@
 <div class="card-header">
     <div>
         <div class="row align-items-center">
-            <div class="col-auto">
-                <span class="avatar" style="background-image: url(./static/avatars/000m.jpg)"></span>
-            </div>
             <div class="col">
                 <div class="card-title"><?= $post->title ?></div>
                 <div class="card-subtitle"><?= $post->slug ?></div>
@@ -31,3 +28,4 @@
         </li>
     </ul>
 </div>
+
