@@ -34,7 +34,7 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12 col-lg-6">
                         <div class="form-group mb-3">
                             <label for="type" class="form-label"><?= __('Type') ?></label>
                             <?= $this->Form->select(
@@ -87,32 +87,6 @@
                             <label for="service-type" class="form-label"><?= __('Service type') ?></label>
                             <?= $this->Form->select('service_type', $serviceTypes, ['class' => 'form-select']) ?>
                         </div>
-                    </div>
-                    <div class="col-6">
-                        <label class="form-label"><?= __('Contact person information') ?></label>
-                        <fieldset class="form-fieldset">
-                            <div class="form-group mb-3">
-                                <label for="contact-first-name" class="form-label"><?= __('First name') ?></label>
-                                <?= $this->Form->text('contacts.0.first_name', ['class' => 'form-control', 'id' => 'contact-first-name']) ?>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="contact-last-name" class="form-label"><?= __('Last name') ?></label>
-                                <?= $this->Form->text('contacts.0.last_name', ['class' => 'form-control', 'id' => 'contact-last-name']) ?>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="contact-phone" class="form-label"><?= __('Contact phone') ?></label>
-                                <?= $this->Form->text('contacts.0.phone', ['class' => "form-control", 'id' => 'contact-phone']) ?>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="contact-email" class="form-label"><?= __('Contact email') ?></label>
-                                <?= $this->Form->email('contacts.0.email', ['class' => 'form-control', 'id' => 'contact-email']) ?>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="contact-position"
-                                       class="form-label"><?= __('Contact position') ?></label>
-                                <?= $this->Form->text('contacts.0.position', ['class' => 'form-control', 'id' => 'contact-position']) ?>
-                            </div>
-                        </fieldset>
                     </div>
                 </div>
             </div>
