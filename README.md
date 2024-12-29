@@ -9,3 +9,4 @@ This is Web framework powered by CakePHP
 3. WCM - Web content manangment
 4. DAM - Digital assets managment
 5. Simple Template
+    
