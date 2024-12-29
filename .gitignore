@@ -57,3 +57,4 @@ yarn-error.log
 /docker-compose.yml
 /webroot/storage
 .php-cs-fixer.cache
+/.github/
