@@ -58,7 +58,9 @@ class PurchaseOrdersController extends AppController
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $this->set(compact('customer', 'order'));
+        $statuses = $this->PurchaseOrders->getStatuses();
+
+        $this->set(compact('customer', 'order', 'statuses'));
 
         return $this->render();
     }
@@ -85,7 +87,9 @@ class PurchaseOrdersController extends AppController
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $this->set(compact('customer', 'order'));
+        $statuses = $this->PurchaseOrders->getStatuses();
+
+        $this->set(compact('customer', 'order', 'statuses'));
 
         return $this->render();
     }

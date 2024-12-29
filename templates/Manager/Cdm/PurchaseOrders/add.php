@@ -39,7 +39,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row mb-3">
-                                    <label for="title" class="col-3 col-form-label"><?= __('Title') ?></label>
+                                    <label for="title" class="col-3 col-form-label required"><?= __('Title') ?></label>
                                     <div class="col">
                                         <?= $this->Form->text('title', ['class' => 'form-control', 'id' => 'title', 'required' => true]) ?>
                                     </div>
@@ -52,28 +52,28 @@
                                 </div>
                                 <div class="row mb-3">
                                     <label for="amount-total"
-                                           class="col-3 col-form-label"><?= __('Amount total') ?></label>
+                                           class="col-3 col-form-label required"><?= __('Amount total') ?></label>
                                     <div class="col">
-                                        <?= $this->Form->number('amount_total', ['class' => 'form-control']) ?>
+                                        <?= $this->Form->number('amount_total', ['class' => 'form-control', 'required' => true]) ?>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="amount-discount"
-                                           class="col-3 col-form-label"><?= __('Amount discount') ?></label>
+                                           class="col-3 col-form-label required"><?= __('Amount discount') ?></label>
                                     <div class="col">
-                                        <?= $this->Form->number('amount_discount', ['class' => 'form-control']) ?>
+                                        <?= $this->Form->number('amount_discount', ['class' => 'form-control', 'required' => true]) ?>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="amount-tax" class="col-3 col-form-label"><?= __('Amount TAX') ?></label>
+                                    <label for="amount-tax" class="col-3 col-form-label required"><?= __('Amount TAX') ?></label>
                                     <div class="col">
-                                        <?= $this->Form->number('amount_tax', ['class' => 'form-control']) ?>
+                                        <?= $this->Form->number('amount_tax', ['class' => 'form-control', 'required' => true]) ?>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="amount-net" class="col-3 col-form-label"><?= __('Amount NET') ?></label>
+                                    <label for="amount-net" class="col-3 col-form-label required"><?= __('Amount NET') ?></label>
                                     <div class="col">
-                                        <?= $this->Form->number('amount_net', ['class' => 'form-control']) ?>
+                                        <?= $this->Form->number('amount_net', ['class' => 'form-control', 'required' => true]) ?>
                                     </div>
                                 </div>
                             </div>

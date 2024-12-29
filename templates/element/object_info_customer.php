@@ -1,9 +1,6 @@
 <div class="card-header">
     <div>
         <div class="row align-items-center">
-            <div class="col-auto">
-                <span class="avatar" style="background-image: url()"></span>
-            </div>
             <div class="col">
                 <div class="card-title"><?= $customer->title ?></div>
                 <div class="card-subtitle"><?= __('Email: {0} Phone: {1}', $customer->email, $customer->phone) ?></div>

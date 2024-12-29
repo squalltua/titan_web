@@ -124,4 +124,14 @@ class PurchaseOrdersTable extends Table
 
         return $rules;
     }
+
+    public function getStatuses(): array
+    {
+        return [
+            'draft' => __('Draft'),
+            'confirmed' => __('Confirmed'),
+            'done' => __('Done'),
+            'cancel' => __('Cancel'),
+        ];
+    }
 }
