@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\Database\Query;
+use Cake\Database\Query\SelectQuery as QuerySelectQuery;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -144,16 +146,25 @@ class ProductsTable extends Table
         return $validator;
     }
 
-    public function getAllProducts()
-    {
-        $products = $this->find()->contain(['Categories']);
+    
 
-        return $products;
+    /**
+     * @param array<string, mixed> $conditions
+     * @return \Cake\ORM\SelectQuery
+     */
+    public function getAllProducts(array $conditions = []): SelectQuery
+    {
+        return $this->find()
+            ->where($conditions)
+            ->contain(['Categories']);
     }
 
+    /**
+     * @param string $id
+     * @return \App\Model\Entity\Product
+     */
     public function getInformation(string $id)
     {
-        // $product = $this->get($id, ['contain' => ['Categories', 'Variants', 'Variants.AttributeOptions', 'Medias']]);
         $product = $this->find()
             ->where(['Products.id' => $id])
             ->contain(['Categories', 'Variants', 'Variants.AttributeOptions'])

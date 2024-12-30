@@ -27,6 +27,47 @@
 </div>
 
 <div class="page-body">
+    <div class="container-xl mb-3">
+        <?= $this->Form->create(null, ['type' => 'get', 'id' => 'search-tool']) ?>
+        <div class="d-flex">
+            <div class="text-secondary">
+                <?= __('Show') ?>
+                <div class="mx-2 d-inline-block">
+                    <?= $this->Form->select(
+                        'show_entries', 
+                        [25 => 25, 50 => 50, 100 => 100], 
+                        [
+                            'value' => $this->request->getQuery('show_entries'), 
+                            'class' => 'form-select', 'onchange' => 'this.form.submit()'
+                        ]
+                    ) ?>
+                </div>
+                <?= __('entries') ?>
+            </div>
+            <div class="ms-auto text-secondary">
+                <?= __('Search') ?>:
+                <div class="ms-2 d-inline-block">
+                    <div class="input-group input-group-flat">
+                        <input type="text" class="form-control" name="keyword" id="keyword"
+                            value="<?= $this->request->getQuery('keyword') ?>" onchange="this.form.submit()">
+                        <span class="input-group-text">
+                            <a href="#!" class="link-secondary" title="Clear search" data-bs-toggle="tooltip"
+                                onclick="document.getElementById('keyword').value = '';">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <line x1="18" y1="6" x2="6" y2="18" />
+                                    <line x1="6" y1="6" x2="18" y2="18" />
+                                </svg>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?= $this->Form->end() ?>
+    </div>
     <?php if ($categories->count()): ?>
     <div class="container-xl">
         <div class="card">

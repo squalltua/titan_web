@@ -113,8 +113,22 @@ class CategoriesTable extends Table
         return $rules;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getCategoriesList()
     {
         return $this->find('treeList');
+    }
+
+    /**
+     * @param array<string, mixed> $conditions
+     * @return \Cake\ORM\Query
+     */
+    public function getAllCategories(array $conditions = []): SelectQuery
+    {
+        return $this->find()
+            ->where($conditions)
+            ->orderByAsc('lft');
     }
 }

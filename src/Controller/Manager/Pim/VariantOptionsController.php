@@ -19,8 +19,9 @@ class VariantOptionsController extends AppController
 
     public function index()
     {
-        $query = $this->fetchTable('Attributes')->find();
-        $attributes = $this->paginate($query);
+        $limit = $this->request->getQuery('show_entries', 25);
+        $conditions = $this->request->getQuery('keyword') ? ['name LIKE' => '%' . $this->request->getQuery('keyword') . '%'] : [];
+        $attributes = $this->paginate($this->fetchTable('Attributes')->getAllAtributes($conditions), ['limit' => $limit]);
 
         $this->set(compact('attributes'));
     }

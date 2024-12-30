@@ -11,7 +11,10 @@ use Cake\I18n\Number;
 use Cake\Utility\Hash;
 
 /**
+ * Products Controller
+ *
  * @property \App\Model\Table\ProductsTable $Products
+ * @method \App\Model\Entity\Product[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class ProductsController extends AppController
 {
@@ -35,8 +38,9 @@ class ProductsController extends AppController
      */
     public function index(): \Cake\Http\Response
     {
-        $query = $this->Products->getAllProducts();
-        $products = $this->paginate($query);
+        $limit = (int)$this->request->getQuery('show_entries', 25);
+        $conditions = $this->request->getQuery('keyword') ? ['title LIKE' => "%{$this->request->getQuery('keyword')}%"] : [];
+        $products = $this->paginate($this->Products->getAllProducts($conditions), ['limit' => $limit]);
 
         $this->set(compact('products'));
 

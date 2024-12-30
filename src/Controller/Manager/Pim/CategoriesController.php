@@ -8,6 +8,12 @@ use App\Controller\Manager\AppController;
 use Cake\Http\Response;
 use Cake\Utility\Text;
 
+/**
+ * Categories Controller
+ *
+ * @property \App\Model\Table\CategoriesTable $Categories
+ * @method \App\Model\Entity\Category[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ */
 class CategoriesController extends AppController
 {
     /**
@@ -28,7 +34,9 @@ class CategoriesController extends AppController
      */
     public function index(): Response
     {
-        $categories = $this->paginate($this->Categories);
+        $limit = $this->request->getQuery('show_entries', 25);
+        $conditions = $this->request->getQuery('keyword') ? ['name LIKE' => '%' . $this->request->getQuery('keyword') . '%'] : [];
+        $categories = $this->paginate($this->Categories->getAllCategories($conditions), ['limit' => $limit]);
 
         $this->set(compact('categories'));
 

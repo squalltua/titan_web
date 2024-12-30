@@ -73,4 +73,9 @@ class AttributesTable extends Table
     {
         return $this->find('list');
     }
+
+    public function getAllAtributes(array $conditions = []): SelectQuery
+    {
+        return $this->find()->where($conditions);
+    }
 }
