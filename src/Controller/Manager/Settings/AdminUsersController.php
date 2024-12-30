@@ -22,21 +22,9 @@ class AdminUsersController extends AppController
 
     public function index()
     {
-        $query = $this->fetchTable('Adminusers')->find()
-            ->select([
-                'Adminusers.id',
-                'Adminusers.username',
-                'Adminusers.full_name',
-                'Adminusers.role_id',
-                'Adminusers.status',
-                'Adminusers.email',
-                'Adminusers.created',
-                'Adminusers.modified',
-                'Roles.title',
-            ])
-            ->contain(['Roles']);
-
-        $users = $this->paginate($query);
+        $limit = (int) $this->request->getQuery('show_entries', default: 25);
+        $query = $this->fetchTable('Adminusers')->getAllUsers($this->request->getQuery('keyword'));
+        $users = $this->paginate($query, ['limit' => $limit]);
 
         $this->set('users', $users);
     }

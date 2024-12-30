@@ -25,19 +25,19 @@ class RolesController extends AppController
     /**
      * @return Response|null
      */
-    public function index(): ?\Cake\Http\Response
+    public function index()
     {
-        $roles = $this->paginate($this->Roles);
-
+        $limit = (int) $this->request->getQuery('show_entries', 25);
+        $conditions = $this->request->getQuery('keyword') ? ['title LIKE' => "%{$this->request->getQuery('keyword')}%"] : [];
+        $roles = $this->paginate($this->Roles->getAllRoles($conditions), ['limit' => $limit]);
+        
         $this->set('roles', $roles);
-
-        return $this->render();
     }
 
     /**
      * @return Response|null
      */
-    public function add(): ?\Cake\Http\Response
+    public function add()
     {
         $role = $this->Roles->newEmptyEntity();
         if ($this->request->is('post')) {

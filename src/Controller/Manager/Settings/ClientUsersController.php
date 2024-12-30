@@ -7,7 +7,7 @@ namespace App\Controller\Manager\Settings;
 use App\Controller\Manager\AppController;
 
 /**
- * @property \App\Model\Table\ClientusersTable $ClientUsers
+ * @property \App\Model\Table\ClientusersTable $Clientusers
  */
 class ClientUsersController extends AppController
 {
@@ -22,36 +22,27 @@ class ClientUsersController extends AppController
 
     public function index()
     {
-        $query = $this->ClientUsers->find()
-            ->select([
-                'ClientUsers.id',
-                'ClientUsers.username',
-                'ClientUsers.full_name',
-                'ClientUsers.status',
-                'ClientUsers.email',
-                'ClientUsers.created',
-                'ClientUsers.modified',
-            ]);
-
-        $users = $this->paginate($query);
+        $limit = (int) $this->request->getQuery('show_entries', 25);
+        $query = $this->fetchTable('Clientusers')->getAllUsers($this->request->getQuery('keyword'));
+        $users = $this->paginate($query, ['limit' => $limit]);
 
         $this->set('users', $users);
     }
 
     public function view(string $id)
     {
-        $user = $this->ClientUsers->get($id);
+        $user = $this->fetchTable('Clientusers')->get($id);
 
         $this->set('user', $user);
     }
 
     public function add()
     {
-        $user = $this->ClientUsers->newEmptyEntity();
+        $user = $this->fetchTable('Clientusers')->newEmptyEntity();
         if ($this->request->is('post')) {
-            $user = $this->ClientUsers->patchEntity($user, $this->request->getData());
+            $user = $this->fetchTable('Clientusers')->patchEntity($user, $this->request->getData());
             $user->status = 'active';
-            if ($this->ClientUsers->save($user)) {
+            if ($this->fetchTable('Clientusers')->save($user)) {
                 $this->Flash->success(__('The data has been saved.'));
 
                 return $this->redirect("/manager/settings/client-users");
@@ -65,10 +56,10 @@ class ClientUsersController extends AppController
 
     public function edit(string $id)
     {
-        $user = $this->ClientUsers->getUser($id);
+        $user = $this->fetchTable('Clientusers')->getUser($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
-            $user = $this->ClientUsers->patchEntity($user, $this->request->getData());
-            if ($this->ClientUsers->save($user)) {
+            $user = $this->fetchTable('Clientusers')->patchEntity($user, $this->request->getData());
+            if ($this->fetchTable('Clientusers')->save($user)) {
                 $this->Flash->success(__('The data has been saved.'));
 
                 return $this->redirect("/manager/settings/client-users");
@@ -83,9 +74,9 @@ class ClientUsersController extends AppController
     public function delete(string $id)
     {
         $this->request->allowMethod(['delete', 'post']);
-        $user = $this->ClientUsers->getUser($id);
+        $user = $this->fetchTable('Clientusers')->getUser($id);
         $user->status = 'deleted';
-        if ($this->ClientUsers->save($user)) {
+        if ($this->fetchTable('Clientusers')->save($user)) {
             $this->Flash->success(__('The data has been deleted.'));
         } else {
             $this->Flash->error(__('The data could not be deleted. Please try again.'));
@@ -96,10 +87,10 @@ class ClientUsersController extends AppController
 
     public function changePassword(string $id)
     {
-        $user = $this->ClientUsers->getUser($id);
+        $user = $this->fetchTable('Clientusers')->getUser($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $user->password = $this->request->getData('password');
-            if ($this->ClientUsers->save($user)) {
+            if ($this->fetchTable('Clientusers')->save($user)) {
                 $this->Flash->success(__('The password has been updated.'));
             } else {
                 $this->Flash->error(__('The password could not be updated. Please try again.'));

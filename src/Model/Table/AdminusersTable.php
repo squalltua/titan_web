@@ -117,16 +117,64 @@ class AdminusersTable extends Table
     public function getUser(string $id)
     {
         return $this->find()
-        ->select(['Adminusers.id', 'Adminusers.username', 'Adminusers.full_name', 'Adminusers.role_id', 'Adminusers.status', 'Adminusers.email', 'Adminusers.created', 'Adminusers.modified'])
-        ->where(['Adminusers.id' => $id])
-        ->contain(['Roles'])
-        ->first();
+            ->select([
+                'Adminusers.id',
+                'Adminusers.username',
+                'Adminusers.full_name',
+                'Adminusers.role_id',
+                'Adminusers.status',
+                'Adminusers.email',
+                'Adminusers.created',
+                'Adminusers.modified'
+            ])
+            ->where(['Adminusers.id' => $id])
+            ->contain(['Roles'])
+            ->first();
     }
 
+    /**
+     * Summary of alreadyHaveAdmin
+     * @return bool
+     */
     public function alreadyHaveAdmin()
     {
         $userAdmin = $this->find()->where(['username' => 'admin'])->first();
-        
+
         return !is_null($userAdmin);
+    }
+
+    /**
+     * @param string $keyword
+     * @return \Cake\ORM\SelectQuery
+     */
+    public function getAllUsers(?string $keyword): SelectQuery
+    {
+        if (empty($keyword)) {
+            $conditions = [];
+        } else {
+            $conditions = [
+                'or' => [
+                    'Adminusers.full_name LIKE' => "%{$keyword}%",
+                    'Adminusers.username' => "%{$keyword}%",
+                    'Adminusers.email' => "%{$keyword}%",
+                    'Roles.title' => "%{$keyword}%",
+                ]
+            ];
+        }
+        
+        return $this->find()
+            ->select([
+                'Adminusers.id',
+                'Adminusers.username',
+                'Adminusers.full_name',
+                'Adminusers.role_id',
+                'Adminusers.status',
+                'Adminusers.email',
+                'Adminusers.created',
+                'Adminusers.modified',
+                'Roles.title',
+            ])
+            ->where($conditions)
+            ->contain(['Roles']);
     }
 }

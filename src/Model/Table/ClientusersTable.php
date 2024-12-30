@@ -119,11 +119,52 @@ class ClientusersTable extends Table
         return $rules;
     }
 
+    /**
+     * get one user from id
+     * 
+     * @param string $id
+     * @return mixed
+     */
     public function getUser(string $id)
     {
         return $this->find()
-            ->select(['ClientUsers.id', 'ClientUsers.username', 'ClientUsers.full_name', 'ClientUsers.status', 'ClientUsers.email', 'ClientUsers.created', 'ClientUsers.modified'])
-            ->where(['ClientUsers.id' => $id])
+            ->select([
+                'Clientusers.id',
+                'Clientusers.username',
+                'Clientusers.full_name',
+                'Clientusers.status',
+                'Clientusers.email',
+                'Clientusers.created',
+                'Clientusers.modified'
+            ])
+            ->where(['Clientusers.id' => $id])
             ->first();
+    }
+
+    public function getAllUsers(?string $keyword): SelectQuery
+    {
+        if (empty($keyword)) {
+            $conditions = [];
+        } else {
+            $conditions = [
+                'or' => [
+                    'Clientusers.full_name LIKE' => "%{$keyword}%",
+                    'Clientusers.username LIKE' => "%{$keyword}%",
+                    'Clientusers.email LIKE' => "%{$keyword}%",
+                ]
+            ];
+        }
+
+        return $this->find()
+            ->select([
+                'Clientusers.id',
+                'Clientusers.username',
+                'Clientusers.full_name',
+                'Clientusers.status',
+                'Clientusers.email',
+                'Clientusers.created',
+                'Clientusers.modified'
+            ])
+            ->where($conditions);
     }
 }

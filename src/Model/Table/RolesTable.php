@@ -115,4 +115,10 @@ class RolesTable extends Table
     {
         return $this->find('list')->where(['status' => 'active']);
     }
+
+    public function getAllRoles(array $conditions = []): SelectQuery
+    {
+        return $this->find()
+            ->where($conditions);
+    }
 }
