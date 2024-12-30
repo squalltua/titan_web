@@ -2309,16 +2309,16 @@
         },
         {
             "name": "cakephp/cakephp-codesniffer",
-            "version": "5.1.3",
+            "version": "5.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp-codesniffer.git",
-                "reference": "04860c9746810d22d02d014deeb57bc80bf57804"
+                "reference": "6d0168a18c9fb6802103b41579abdcfba7021790"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp-codesniffer/zipball/04860c9746810d22d02d014deeb57bc80bf57804",
-                "reference": "04860c9746810d22d02d014deeb57bc80bf57804",
+                "url": "https://api.github.com/repos/cakephp/cakephp-codesniffer/zipball/6d0168a18c9fb6802103b41579abdcfba7021790",
+                "reference": "6d0168a18c9fb6802103b41579abdcfba7021790",
                 "shasum": ""
             },
             "require": {
@@ -2358,7 +2358,7 @@
                 "issues": "https://github.com/cakephp/cakephp-codesniffer/issues",
                 "source": "https://github.com/cakephp/cakephp-codesniffer"
             },
-            "time": "2024-08-13T10:21:08+00:00"
+            "time": "2024-12-18T21:15:44+00:00"
         },
         {
             "name": "cakephp/debug_kit",
