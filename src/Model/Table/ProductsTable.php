@@ -167,7 +167,7 @@ class ProductsTable extends Table
     {
         $product = $this->find()
             ->where(['Products.id' => $id])
-            ->contain(['Categories', 'Variants', 'Variants.AttributeOptions'])
+            ->contain(['Categories', 'Variants', 'Variants.AttributeOptions', 'MetaProducts'])
             ->contain('Medias', function (SelectQuery $q) {
                 return $q->where(['Medias.using_type' => 'feature_image'])  ;
             })

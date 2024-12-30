@@ -38,7 +38,7 @@ class ProductsController extends AppController
      */
     public function index(): \Cake\Http\Response
     {
-        $limit = (int)$this->request->getQuery('show_entries', 25);
+        $limit = (int) $this->request->getQuery('show_entries', 25);
         $conditions = $this->request->getQuery('keyword') ? ['title LIKE' => "%{$this->request->getQuery('keyword')}%"] : [];
         $products = $this->paginate($this->Products->getAllProducts($conditions), ['limit' => $limit]);
 
@@ -65,7 +65,7 @@ class ProductsController extends AppController
     }
 
     /**
-     * @param string $id
+     * @param string $id - product id
      * @return Response
      */
     public function meta(string $id): \Cake\Http\Response
@@ -79,7 +79,9 @@ class ProductsController extends AppController
     }
 
     /**
-     * @param string $productId
+     * meta add method
+     * 
+     * @param string $productId - product id
      * @return Response
      */
     public function metaAdd(string $productId): Response
@@ -108,8 +110,10 @@ class ProductsController extends AppController
     }
 
     /**
-     * @param string $productId
-     * @param string $metaId
+     * meta edit method
+     * 
+     * @param string $productId - product id
+     * @param string $metaId - meta id
      * @return Response
      */
     public function metaEdit(string $productId, string $metaId): Response
@@ -131,6 +135,26 @@ class ProductsController extends AppController
         $this->set(compact('product', 'meta'));
 
         return $this->render();
+    }
+
+    /**
+     * meta delete method
+     * 
+     * @param string $productId - product id
+     * @param string $metaId - meta id
+     * @return \Cake\Http\Response
+     */
+    public function metaDelete(string $productId, string $metaId): Response
+    {
+        $this->request->allowMethod(['delete', 'post']);
+        $meta = $this->Products->MetaProducts->get($metaId);
+        if ($this->Products->MetaProducts->delete($meta)) {
+            $this->Flash->success(__('The meta attribute has been deleted.'));
+        } else {
+            $this->Flash->error(__('The meta attribute could not be deleted. Please try again.'));
+        }
+
+        return $this->redirect("/manager/pim/products/meta/{$productId}");
     }
 
     /**
@@ -338,7 +362,7 @@ class ProductsController extends AppController
         if ($this->request->is(['post', 'put', 'patch'])) {
             $variant = $this->fetchTable('Variants')->patchEntity($variant, $this->request->getData());
             $variant->slug = Text::slug($variant->title);
-            
+
             if ($this->fetchTable('Variants')->save($variant)) {
                 $this->Flash->success(__('The data has been saved.'));
 
@@ -347,7 +371,7 @@ class ProductsController extends AppController
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
-        
+
         $this->set('objectMenuActive', 'variants');
         $this->set(compact('product', 'variant'));
     }
@@ -409,7 +433,7 @@ class ProductsController extends AppController
      * @param string $variantId - Variant id
      * @return Response
      */
-    public function variantDelete(string $id, string $variantId) 
+    public function variantDelete(string $id, string $variantId)
     {
         $this->request->allowMethod(['delete', 'post']);
         $variant = $this->fetchTable('Variants')->get($variantId);
