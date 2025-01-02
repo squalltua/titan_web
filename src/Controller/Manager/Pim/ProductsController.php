@@ -32,26 +32,26 @@ class ProductsController extends AppController
     }
 
     /**
-     * Index function
+     * Index method
      *
      * @return \Cake\Http\Response
      */
-    public function index(): \Cake\Http\Response
+    public function index()
     {
         $limit = (int) $this->request->getQuery('show_entries', 25);
         $conditions = $this->request->getQuery('keyword') ? ['title LIKE' => "%{$this->request->getQuery('keyword')}%"] : [];
         $products = $this->paginate($this->Products->getAllProducts($conditions), ['limit' => $limit]);
 
         $this->set(compact('products'));
-
-        return $this->render();
     }
 
     /**
-     * @param string $id - product id
-     * @return \Cake\Http\Response
+     * product detail method
+     * 
+     * @param string $id
+     * @return Response
      */
-    public function detail(string $id): \Cake\Http\Response
+    public function detail(string $id)
     {
         $product = $this->Products->getInformation($id);
         $product->base_price = Number::precision($product->base_price ?? 0.00, 2);
@@ -60,22 +60,20 @@ class ProductsController extends AppController
 
         $this->set('objectMenuActive', 'detail');
         $this->set(compact('product'));
-
-        return $this->render();
     }
 
     /**
-     * @param string $id - product id
+     * meta index method
+     * 
+     * @param string $id
      * @return Response
      */
-    public function meta(string $id): \Cake\Http\Response
+    public function meta(string $id)
     {
         $product = $this->Products->getInformation($id);
 
         $this->set('objectMenuActive', 'meta');
         $this->set(compact('product'));
-
-        return $this->render();
     }
 
     /**
@@ -84,7 +82,7 @@ class ProductsController extends AppController
      * @param string $productId - product id
      * @return Response
      */
-    public function metaAdd(string $productId): Response
+    public function metaAdd(string $productId)
     {
         $product = $this->Products->getInformation($productId);
         $meta = $this->Products->MetaProducts->newEmptyEntity();
@@ -105,8 +103,6 @@ class ProductsController extends AppController
 
         $this->set('objectMenuActive', 'meta');
         $this->set(compact('product', 'meta'));
-
-        return $this->render();
     }
 
     /**
@@ -116,7 +112,7 @@ class ProductsController extends AppController
      * @param string $metaId - meta id
      * @return Response
      */
-    public function metaEdit(string $productId, string $metaId): Response
+    public function metaEdit(string $productId, string $metaId)
     {
         $product = $this->Products->getInformation($productId);
         $meta = $this->Products->MetaProducts->get($metaId);
@@ -133,8 +129,6 @@ class ProductsController extends AppController
 
         $this->set('objectMenuActive', 'meta');
         $this->set(compact('product', 'meta'));
-
-        return $this->render();
     }
 
     /**
@@ -144,7 +138,7 @@ class ProductsController extends AppController
      * @param string $metaId - meta id
      * @return \Cake\Http\Response
      */
-    public function metaDelete(string $productId, string $metaId): Response
+    public function metaDelete(string $productId, string $metaId)
     {
         $this->request->allowMethod(['delete', 'post']);
         $meta = $this->Products->MetaProducts->get($metaId);
@@ -158,9 +152,11 @@ class ProductsController extends AppController
     }
 
     /**
-     * @return \Cake\Http\Response
+     * product add method
+     * 
+     * @return Response|null
      */
-    public function add(): Response
+    public function add()
     {
         $product = $this->Products->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -179,15 +175,15 @@ class ProductsController extends AppController
         $categories = $this->Products->Categories->getCategoriesList();
 
         $this->set(compact('product', 'categories'));
-
-        return $this->render();
     }
 
     /**
+     * product edit method
+     * 
      * @param string $id - product id
      * @return \Cake\Http\Response
      */
-    public function edit(string $id): Response
+    public function edit(string $id)
     {
         $product = $this->Products->getInformation($id);
         if ($this->request->is(['post', 'put', 'patch'])) {
@@ -204,8 +200,6 @@ class ProductsController extends AppController
         $categories = $this->Products->Categories->getCategoriesList();
 
         $this->set(compact('product', 'categories'));
-
-        return $this->render();
     }
 
     /**
@@ -227,10 +221,12 @@ class ProductsController extends AppController
     }
 
     /**
+     * images method
+     *
      * @param string $productId - product id
      * @return \Cake\Http\Response
      */
-    public function images(string $productId): Response
+    public function images(string $productId)
     {
         $product = $this->Products->getInformation($productId);
         if ($this->request->is('post')) {
@@ -277,8 +273,6 @@ class ProductsController extends AppController
 
         $this->set('objectMenuActive', 'images');
         $this->set(compact('product', 'medias'));
-
-        return $this->render();
     }
 
     /**
@@ -302,9 +296,9 @@ class ProductsController extends AppController
     }
 
     /**
-     * variant list method
+     * variants method
      *
-     * @param string $id
+     * @param string $id - Product id
      * @return Response
      */
     public function variants(string $id)
