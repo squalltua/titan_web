@@ -91,8 +91,8 @@
                             <td><?= h($user->status) ?></td>
                             <td><?= $this->Time->format($user->modified, "dd/MM/YYYY") ?>
                             <td>
-                                <?= $this->Html->link(__('Edit'), "/manager/settings/admin-users/edit/{$user->id}", ['class' => 'me-3']) ?>
-                                <?= $this->Form->postLink(__('Delete'), "/manager/settings/admin-users/delete/{$user->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this account?')]) ?>
+                                <?= $this->Html->link(__('Edit'), "/manager/settings/client-users/edit/{$user->id}", ['class' => 'me-3']) ?>
+                                <?= $this->Form->postLink(__('Delete'), "/manager/settings/client-users/delete/{$user->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this account?')]) ?>
                             </td>
                         </tr>
                         <?php endforeach ?>

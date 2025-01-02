@@ -32,7 +32,7 @@
             <div class="col-12 col-md-8 col-lg-6">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"><?= __('Admin user information') ?></h3>
+                        <h3 class="card-title"><?= __('Client user information') ?></h3>
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
@@ -54,8 +54,8 @@
                     </div>
                     <div class="card-footer text-end">
                         <div class="d-flex">
-                            <?= $this->Html->link(__('Cancel'), '/manager/settings/admin-users', ['class' => 'btn btn-link me-3']) ?>
-                            <?= $this->Html->link(__('Change password'), "/manager/settings/admin-users/change-password/{$user->id}", ['class' => 'btn btn-secondary']) ?>
+                            <?= $this->Html->link(__('Cancel'), '/manager/settings/client-users', ['class' => 'btn btn-link me-3']) ?>
+                            <?= $this->Html->link(__('Change password'), "/manager/settings/client-users/change-password/{$user->id}", ['class' => 'btn btn-secondary']) ?>
                             <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary ms-auto']) ?>
                         </div>
                     </div>
