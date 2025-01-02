@@ -27,62 +27,43 @@
                         <div class="mb-3 row">
                             <label for="site-name" class="col-3 col-form-label"><?= __('Site name') ?></label>
                             <div class="col">
-                                <?= $this->Form->text('site_name', ['class' => 'form-control', 'id' => 'site-name', 'value' => $setting['site_name']]) ?>
+                                <?= $this->Form->text('site_name', ['class' => 'form-control', 'id' => 'site-name', 'value' => $setting['site_name'] ?? null]) ?>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="telephone" class="col-3 col-form-label"><?= __('Telephone number') ?></label>
                             <div class="col">
-                                <?= $this->Form->text('telephone', ['class' => 'form-control', 'id' => 'telephone', 'value' => $setting['telephone']]) ?>
+                                <?= $this->Form->text('telephone', ['class' => 'form-control', 'id' => 'telephone', 'value' => $setting['telephone'] ?? null]) ?>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="address" class="col-3 col-form-label"><?= __('Address') ?></label>
                             <div class="col">
-                                <?= $this->Form->textarea('address', ['class' => 'form-control', 'id' => 'address', 'value' => $setting['address']]) ?>
+                                <?= $this->Form->textarea('address', ['class' => 'form-control', 'id' => 'address', 'value' => $setting['address'] ?? null]) ?>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="contact-email" class="col-3 col-form-label"><?= __('Contact E-mail') ?></label>
                             <div class="col">
-                                <?= $this->Form->email('contact_email', ['class' => 'form-control', 'id' => 'contact-email', 'value' => $setting['contact_email']]) ?>
+                                <?= $this->Form->email('contact_email', ['class' => 'form-control', 'id' => 'contact-email', 'value' => $setting['contact_email'] ?? null]) ?>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="support_email" class="col-3 col-form-label"><?= __('Support E-mail') ?></label>
                             <div class="col">
-                                <?= $this->Form->email('support_email', ['class' => 'form-control', 'id' => 'support-email', 'value' => $setting['support_email']]) ?>
+                                <?= $this->Form->email('support_email', ['class' => 'form-control', 'id' => 'support-email', 'value' => $setting['support_email'] ?? null]) ?>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="sns-facabook-name" class="col-3 col-form-label"><?= __('Facebook') ?></label>
+                            <label for="social-accounts" class="col-3 col-form-label"><?= __('Social accounts') ?></label>
                             <div class="col">
-                                <?= $this->Form->text('sns_facebook_name', ['class' => 'form-control mb-3', 'id' => 'sns-facebook-name', 'value' => $setting['sns_facebook_name']]) ?>
-                                <?= $this->Form->text('sns_facebook_url', ['class' => 'form-control', 'id' => 'sns-facebook-url', 'value' => $setting['sns_facebook_url']]) ?>
+                                <?= $this->Form->text('social_accounts_1_url', ['class' => 'form-control mb-3', 'id' => 'social-accounts', 'value' => $setting['social_accounts_1_url'] ?? null]) ?>
+                                <?= $this->Form->text('social_accounts_2_url', ['class' => 'form-control mb-3', 'id' => 'social-accounts', 'value' => $setting['social_accounts_2_url'] ?? null]) ?>
+                                <?= $this->Form->text('social_accounts_3_url', ['class' => 'form-control mb-3', 'id' => 'social-accounts', 'value' => $setting['social_accounts_3_url'] ?? null]) ?>
+                                <?= $this->Form->text('social_accounts_4_url', ['class' => 'form-control mb-3', 'id' => 'social-accounts', 'value' => $setting['social_accounts_4_url'] ?? null]) ?>
+                                <?= $this->Form->text('social_accounts_5_url', ['class' => 'form-control mb-3', 'id' => 'social-accounts', 'value' => $setting['social_accounts_5_url'] ?? null]) ?>
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label for="sns-x" class="col-3 col-form-label"><?= __('Twitter/X.com') ?></label>
-                            <div class="col">
-                                <?= $this->Form->text('sns_twitter_name', ['class' => 'form-control mb-3', 'id' => 'sns-twitter-name', 'value' => $setting['sns_twitter_name']]) ?>
-                                <?= $this->Form->text('sns_twitter_url', ['class' => 'form-control', 'id' => 'sns-twitter-url', 'value' => $setting['sns_twitter_url']]) ?>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="instagram" class="col-3 col-form-label"><?= __('Instagram') ?></label>
-                            <div class="col">
-                                <?= $this->Form->text('sns_instagram_name', ['class' => 'form-control mb-3', 'id' => 'sns-instagram-name', 'value' => $setting['sns_instagram_name']]) ?>
-                                <?= $this->Form->text('sns_instagram_url', ['class' => 'form-control', 'id' => 'sns-instagram-url', 'value' => $setting['sns_instagram_url']]) ?>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="tiktok" class="col-3 col-form-label"><?= __('Tiktok') ?></label>
-                            <div class="col">
-                                <?= $this->Form->text('sns_tiktok_name', ['class' => 'form-control mb-3', 'id' => 'sns-tiktiok-name', 'value' => $setting['sns_tiktok_name']]) ?>
-                                <?= $this->Form->text('sns_tiktok_url', ['class' => 'form-control', 'id' => 'sns-tiktok-url', 'value' => $setting['sns_tiktok_url']]) ?>
-                            </div>
-                        </div>
-
                     </div>
                     <div class="card-footer text-end">
                         <div class="d-flex">

@@ -4,6 +4,12 @@ namespace App\Controller\Manager\Settings;
 
 use App\Controller\Manager\AppController;
 
+/**
+ * SystemSettings Controller
+ *
+ * @property \App\Model\Table\SiteSettingsTable $SiteSettings
+ * @method \App\Model\Entity\SiteSetting[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ */
 class SystemSettingsController extends AppController
 {
     public function initialize(): void

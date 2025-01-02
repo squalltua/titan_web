@@ -92,6 +92,9 @@ class SiteSettingsTable extends Table
                 $setting->value_field = $value;
             } else {
                 // new data
+                if (empty($value)) {
+                    continue;
+                }
                 $setting = $this->newEntity([
                     'key_field' => $key,
                     'value_field' => $value
@@ -110,6 +113,9 @@ class SiteSettingsTable extends Table
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public function initSiteSettingData()
     {
         $settings = $this->newEntities([
@@ -118,14 +124,6 @@ class SiteSettingsTable extends Table
             ['key_field' => 'address', 'value_field' => " "],
             ['key_field' => 'contact_email', 'value_field' => " "],
             ['key_field' => 'support_email', 'value_field' => " "],
-            ['key_field' => 'sns_facebook_name', 'value_field' => " "],
-            ['key_field' => 'sns_facebook_url', 'value_field' => " "],
-            ['key_field' => 'sns_twitter_name', 'value_field' => " "],
-            ['key_field' => 'sns_twitter_url', 'value_field' => " "],
-            ['key_field' => 'sns_instagram_name', 'value_field' => " "],
-            ['key_field' => 'sns_instagram_url', 'value_field' => " "],
-            ['key_field' => 'sns_tiktok_name', 'value_field' => " "],
-            ['key_field' => 'sns_tiktok_url', 'value_field' => " "],
         ]);
 
         if ($this->saveMany($settings)) {
