@@ -125,7 +125,7 @@ class PagesController extends AppController
         return $this->render();
     }
 
-    public function pageNotFound(): Response
+    public function pageNotFoundError(): Response
     {
         $this->viewBuilder()->setLayout('error');
 
