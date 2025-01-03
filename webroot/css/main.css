@@ -3,9 +3,9 @@
     src: url("../font/THSarabunNew/THSarabunNew.ttf");
 }
 
-.conent-display > p > img {
+/* .conent-display > p > img {
     width: 100%;
-}
+} */
 
 .checklist{
     list-style: none;
