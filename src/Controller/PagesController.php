@@ -44,12 +44,12 @@ class PagesController extends AppController
         if (!$lang) {
             $lang = strtolower(Text::slug(Configure::read('App.defaultLocale')));
             if (!in_array($lang, ['th', 'en', 'jp'])) {
-                $lang = 'th';
+                $lang = Configure::read('App.defaultLocale');
             }
             $this->changeLanguage($lang);
         } else {
             if (!in_array($lang, ['th', 'en', 'jp'])) {
-                $this->changeLanguage('th');
+                $this->changeLanguage(Configure::read('App.defaultLocale'));
             }
             I18n::setLocale($lang);
         }
@@ -66,8 +66,9 @@ class PagesController extends AppController
         $this->set(compact('siteSetting'));
     }
 
-    public function changeLanguage(string $lang = 'th'): Response
+    public function changeLanguage(?string $lang): Response
     {
+        $lang = $lang ?: Configure::read('App.defaultLocale');
         I18n::setLocale($lang);
         return $this->redirect("/{$lang}");
     }

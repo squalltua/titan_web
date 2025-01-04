@@ -27,30 +27,7 @@ declare(strict_types=1);
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 
-/*
- * This file is loaded in the context of the `Application` class.
-  * So you can use  `$this` to reference the application class instance
-  * if required.
- */
-
 return function (RouteBuilder $routes): void {
-    /*
-     * The default class to use for all routes
-     *
-     * The following route classes are supplied with CakePHP and are appropriate
-     * to set as the default:
-     *
-     * - Route
-     * - InflectedRoute
-     * - DashedRoute
-     *
-     * If no call is made to `Router::defaultRouteClass()`, the class used is
-     * `Route` (`Cake\Routing\Route\Route`)
-     *
-     * Note that `Route` does not do any inflections on URLs which will result in
-     * inconsistently cased URLs when used with `{plugin}`, `{controller}` and
-     * `{action}` markers.
-     */
     $routes->setRouteClass(DashedRoute::class);
 
     $routes->scope('/', function (RouteBuilder $builder): void {
@@ -58,26 +35,24 @@ return function (RouteBuilder $routes): void {
     });
 
     $routes->scope('/{lang}', function (RouteBuilder $builder): void {
+        // general routes
         $builder->connect('/', 'Pages::home');
         $builder->connect('/about', 'Pages::about');
         $builder->connect('/contact', 'Pages::contact');
         $builder->connect('/privacy-policy', 'Pages::privacyPolicy');
         $builder->connect('/cookies-policy', 'Pages::cookiesPolicy');
 
-        // blogs module
+        // blogs routes
         $builder->connect('/blogs', 'Blogs::index');
         $builder->connect('/blogs/{slug}', 'Blogs::view')->setPass(['slug']);
         $builder->connect('/blogs/categories/{slug}', 'Blogs::categories')->setPass(['slug']);
 
-        /**
-         * products/services module
-         * change products to services if dont want product word
-         * or create new service routes
-         */
+        // products routes
         $builder->connect('/products', 'Products::index');
         $builder->connect('/products/{slug}', 'Products::view')->setPass(['slug']);
         $builder->connect('/products/categories/{slug}', 'Products::categories')->setPass(['slug']);
 
+        // sandbox routes for preventing 404 error
         $builder->connect('/*', 'Pages::pageNotFoundError');
     });
 
@@ -107,6 +82,12 @@ return function (RouteBuilder $routes): void {
 
             $builder->connect('/groups', ['prefix' => 'Manager/Wcm', 'controller' => 'Groups', 'action' => 'index']);
             $builder->connect('/groups/{action}/*', ['prefix' => 'Manager/Wcm', 'controller' => 'Groups']);
+
+            $builder->connect('/languages', ['prefix' => 'Manager/Wcm', 'controller' => 'Languages', 'action' => 'index']);
+            $builder->connect('/languages/{action}/*', ['prefix' => 'Manager/Wcm', 'controller' => 'Languages']);
+
+            $builder->connect('/published', ['prefix' => 'Manager/Wcm', 'controller' => 'Published', 'action' => 'index']);
+            $builder->connect('/published/{action}/*', ['prefix' => 'Manager/Wcm', 'controller' => 'Published']);
         });
 
         $builder->prefix('Pim', function (RouteBuilder $builder): void {
@@ -176,7 +157,6 @@ return function (RouteBuilder $routes): void {
         });
 
         $builder->connect('/*', 'Manager/Pages::pageNotFoundError');
-        // $builder->fallbacks();
     });
 
     $routes->scope('/api/v1', function (RouteBuilder $builder): void {

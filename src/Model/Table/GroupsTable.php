@@ -110,4 +110,9 @@ class GroupsTable extends Table
 
         return $rules;
     }
+
+    public function getAllGroups(): SelectQuery
+    {
+        return $this->find('all');
+    }
 }

@@ -37,19 +37,17 @@ class PostsController extends AppController
     /**
      * @return Response|null
      */
-    public function index(): ?\Cake\Http\Response
+    public function index()
     {
         $posts = $this->paginate($this->Posts);
         $this->set(compact('posts'));
-
-        return $this->render();
     }
 
     /**
      * @param string $id
      * @return Response|null
      */
-    public function view(string $id): ?\Cake\Http\Response
+    public function view(string $id)
     {
         $post = $this->Posts->get($id, ['contain' => ['MetaPosts', 'Groups']]);
         $Parsedown = new Parsedown();
@@ -59,15 +57,13 @@ class PostsController extends AppController
 
         $this->set(compact('post'));
         $this->set('objectMenuActive', 'detail');
-
-        return $this->render();
     }
 
     /**
      * @return Response|null
      * @throws \Exception
      */
-    public function add(): ?\Cake\Http\Response
+    public function add()
     {
         $post = $this->Posts->newEmptyEntity();
 
@@ -78,7 +74,7 @@ class PostsController extends AppController
 
             $post = $this->Posts->patchEntity($post, $data);
             $post->adminuser_id = $this->Authentication->getIdentity()->getIdentifier();
-            $post->slug = Text::slug($post->title);
+            $post->slug = Text::slug(strtolower($post->title));
             if ($this->Posts->save($post)) {
                 // save meta data
                 $metaPostsData = [];
@@ -126,8 +122,6 @@ class PostsController extends AppController
 
         $this->set(compact('post', 'groups'));
         $this->set('menuActive', 'new-post');
-
-        return $this->render();
     }
 
     /**
@@ -135,15 +129,16 @@ class PostsController extends AppController
      * @return Response|null
      * @throws \Exception
      */
-    public function edit(string $id): ?\Cake\Http\Response
+    public function edit(string $id)
     {
         $post = $this->Posts->get($id, ['contain' => ['MetaPosts', 'Groups']]);
         $post->meta = Hash::combine($post->meta_posts, '{n}.meta_key', '{n}.meta_value');
-        if ($this->request->is(['post', 'put'])) {
+        if ($this->request->is(['post', 'put', 'patch'])) {
             $data = $this->request->getData();
             $meta = $data['meta_posts'];
             unset($data['meta_posts']);
             $post = $this->Posts->patchEntity($post, $data);
+            $post->slug = Text::slug(strtolower($post->title));
             
             foreach ($meta as $key => $value) {
                 if (in_array($key, $this->Posts->imageKey) &&
@@ -201,8 +196,6 @@ class PostsController extends AppController
         $groups = $this->fetchTable('Groups')->find('list');
 
         $this->set(compact('post', 'groups'));
-
-        return $this->render();
     }
 
     /**
@@ -222,7 +215,12 @@ class PostsController extends AppController
         return $this->redirect("/manager/wcm/posts");
     }
 
-    public function removeImage(string $id, string $key)
+    /**
+     * @param string $id - Post id
+     * @param string $key
+     * @return \Cake\Http\Response
+     */
+    public function removeImage(string $id, string $key): \Cake\Http\Response
     {
         $meta = $this->Posts->MetaPosts->find()->where(['post_id' => $id, 'meta_key' => $key])->first();
         $meta->meta_value = null;
@@ -233,14 +231,5 @@ class PostsController extends AppController
         }
 
         return $this->redirect("/manager/wcm/posts/edit/{$id}");
-    }
-
-    public function publishedPosts()
-    {
-        /** ----------------------------------------
-         * published post to json file or radis database.
-         * ----------------------------------------- */
-
-        return $this->redirect('/manager/wcm/posts');
     }
 }
