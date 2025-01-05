@@ -47,6 +47,12 @@
                                 <?= $this->Form->text('unicode', ['class' => 'form-control', 'id' => 'unicode', 'required' => true]) ?>
                             </div>
                         </div>
+                        <div class="mb-3 row">
+                            <label for="is-default" class="col-3 col-form-label"><?= __('This language is default') ?></label>
+                            <div class="col">
+                                <?= $this->Form->checkbox('is_default', ['class' => 'form-select', 'id' => 'is-default']) ?>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer text-end">
                         <div class="d-flex">

@@ -35,6 +35,7 @@
                             <tr>
                                 <th><?= $this->Paginator->sort('title') ?></th>
                                 <th><?= $this->Paginator->sort('unicode') ?></th>
+                                <th><?= __('Default') ?></th>
                                 <th><?= __('Action') ?></th>
                             </tr>
                         </thead>
@@ -43,6 +44,7 @@
                                 <tr>
                                     <td><?= h($language->title) ?></td>
                                     <td><?= h($language->unicode) ?></td>
+                                    <td><?= $language->is_default ? '&#x2713;' : '' ?></td>
                                     <td>
                                         <?= $this->Html->link(__('Edit'), "/manager/wcm/languages/edit/{$language->id}", ['class' => 'me-3']) ?>
                                         <?= $this->Form->postLink(__('Delete'), "/manager/wcm/languages/delete/{$language->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>

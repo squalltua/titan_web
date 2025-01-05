@@ -22,6 +22,7 @@ class LanguagesFixture extends TestFixture
                 'id' => 1,
                 'title' => 'Lorem ipsum dolor sit amet',
                 'unicode' => 'Lor',
+                'is_default' => 1,
             ],
         ];
         parent::init();

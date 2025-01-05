@@ -11,6 +11,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $title
  * @property string $unicode
+ * @property int|null $is_default
  */
 class Language extends Entity
 {
@@ -26,5 +27,6 @@ class Language extends Entity
     protected array $_accessible = [
         'title' => true,
         'unicode' => true,
+        'is_default' => true,
     ];
 }

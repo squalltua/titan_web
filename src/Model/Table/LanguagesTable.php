@@ -62,6 +62,9 @@ class LanguagesTable extends Table
             ->requirePresence('unicode', 'create')
             ->notEmptyString('unicode');
 
+        $validator
+            ->allowEmptyString('is_default');
+
         return $validator;
     }
 }

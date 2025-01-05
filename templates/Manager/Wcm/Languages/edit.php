@@ -36,15 +36,26 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3 row">
-                            <label for="title" class="col-3 col-form-label required"><?= __('Title') ?></label>
+                            <label for="title" class="col-4 col-form-label required"><?= __('Title') ?></label>
                             <div class="col">
                                 <?= $this->Form->text('title', ['class' => 'form-control', 'id' => 'title', 'required' => true]) ?>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="unicode" class="col-3 col-form-label required"><?= __('Code') ?></label>
+                            <label for="unicode" class="col-4 col-form-label required"><?= __('Code') ?></label>
                             <div class="col">
                                 <?= $this->Form->text('unicode', ['class' => 'form-control', 'id' => 'unicode', 'required' => true]) ?>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="is-default" class="col-4 col-form-label">
+                                <?= __('This language is default') ?>
+                            </label>
+                            <div class="col">
+                                <label class="form-check pt-2">
+                                    <?= $this->Form->checkbox('is_default', ['class' => 'form-check-input', 'id' => 'is-default']) ?>
+                                    <span class="form-check-label"><?= __('Default language ') ?></span>
+                                </label>
                             </div>
                         </div>
                     </div>
