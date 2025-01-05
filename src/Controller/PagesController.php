@@ -40,15 +40,16 @@ class PagesController extends AppController
     {
         $this->viewBuilder()->setTheme('DefaultTheme');
 
+        $langSets = $this->fetchTable('Languages')->find('list', keyField: 'unicode', valueField: 'title')->toArray();
+        $langSets = $langSets ?: ['en' => 'English'];
         $lang = $this->request->getParam('lang');
         if (!$lang) {
-            $lang = strtolower(Text::slug(Configure::read('App.defaultLocale')));
-            if (!in_array($lang, ['th', 'en', 'jp'])) {
-                $lang = Configure::read('App.defaultLocale');
-            }
+            // Setup default language and reload page
+            $lang = $this->fetchTable('Languages')->getDefaultLanguage() ?: Configure::read('App.defaultLocale');
             $this->changeLanguage($lang);
         } else {
-            if (!in_array($lang, ['th', 'en', 'jp'])) {
+            // Setup language
+            if (!isset($langSets[$lang])) {
                 $this->changeLanguage(Configure::read('App.defaultLocale'));
             }
             I18n::setLocale($lang);

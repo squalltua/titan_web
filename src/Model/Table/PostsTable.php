@@ -53,6 +53,11 @@ class PostsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Translate', [
+            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
+            'fields' => ['title', 'intro', 'content'],
+            'defaultLocale' => 'en',
+        ]);
 
         $this->belongsTo('Adminusers', [
             'foreignKey' => 'adminuser_id',
