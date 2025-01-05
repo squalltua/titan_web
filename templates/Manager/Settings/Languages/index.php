@@ -10,7 +10,7 @@
                 </h2>
             </div>
             <div class="col-auto ms-auto">
-                <a href="/manager/wcm/languages/add" class="btn btn-primary d-none d-sm-inline-block">
+                <a href="/manager/settings/languages/add" class="btn btn-primary d-none d-sm-inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -46,8 +46,8 @@
                                     <td><?= h($language->unicode) ?></td>
                                     <td><?= $language->is_default ? '&#x2713;' : '' ?></td>
                                     <td>
-                                        <?= $this->Html->link(__('Edit'), "/manager/wcm/languages/edit/{$language->id}", ['class' => 'me-3']) ?>
-                                        <?= $this->Form->postLink(__('Delete'), "/manager/wcm/languages/delete/{$language->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>
+                                        <?= $this->Html->link(__('Edit'), "/manager/settings/languages/edit/{$language->id}", ['class' => 'me-3']) ?>
+                                        <?= $this->Form->postLink(__('Delete'), "/manager/settings/languages/delete/{$language->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>
                                     </td>
                                 </tr>
                             <?php endforeach ?>

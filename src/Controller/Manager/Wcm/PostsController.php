@@ -8,6 +8,7 @@ use App\Controller\Manager\AppController;
 use Authentication\Controller\Component\AuthenticationComponent;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
+use Cake\I18n\I18n;
 use Cake\Utility\Hash;
 use Cake\Utility\Text;
 use Parsedown;
@@ -49,13 +50,17 @@ class PostsController extends AppController
      */
     public function view(string $id)
     {
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+        I18n::setLocale($selectLanguage);
+
         $post = $this->Posts->get($id, ['contain' => ['MetaPosts', 'Groups']]);
         $Parsedown = new Parsedown();
         $post->content_display = $Parsedown->text($post->content);
         $post->meta = Hash::combine($post->meta_posts, '{n}.meta_key', '{n}.meta_value');
         $post->groups_display = implode(', ', Hash::extract($post->groups, '{n}.name'));
+        $languages = $this->fetchTable('Languages')->getTabList();
 
-        $this->set(compact('post'));
+        $this->set(compact('post', 'selectLanguage', 'languages'));
         $this->set('objectMenuActive', 'detail');
     }
 
@@ -131,6 +136,9 @@ class PostsController extends AppController
      */
     public function edit(string $id)
     {
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+        I18n::setLocale($selectLanguage);
+
         $post = $this->Posts->get($id, ['contain' => ['MetaPosts', 'Groups']]);
         $post->meta = Hash::combine($post->meta_posts, '{n}.meta_key', '{n}.meta_value');
         if ($this->request->is(['post', 'put', 'patch'])) {
@@ -149,7 +157,7 @@ class PostsController extends AppController
                         if (!$imageMedia) {
                             $this->Flash->error(__('The {0} image could not be uploaded. Please try again.', $key));
 
-                            return $this->redirect("/manager/wcm/posts/edit/{$id}");
+                            return $this->redirect("/manager/wcm/posts/edit/{$id}/?lang={$selectLanguage}");
                         }
 
                         $metaPostIndex = array_search($key, array_column($post->meta_posts, 'meta_key'));
@@ -163,7 +171,7 @@ class PostsController extends AppController
                         if (!$imageMedia) {
                             $this->Flash->error(__('The {0} image could not be uploaded. Please try again.', $key));
 
-                            return $this->redirect("/manager/wcm/posts/edit/{$id}");
+                            return $this->redirect("/manager/wcm/posts/edit/{$id}/?lang={$selectLanguage}");
                         }
 
                         $newMeta = $this->Posts->MetaPosts->newEntity([
@@ -174,7 +182,7 @@ class PostsController extends AppController
                         if (!$this->Posts->MetaPosts->save($newMeta)) {
                             $this->Flash->error(__('The {0} meta could not be saved. Please try again.', $key));
 
-                            return $this->redirect("/manager/wcm/posts/edit/{$id}");
+                            return $this->redirect("/manager/wcm/posts/edit/{$id}/?lang={$selectLanguage}");
                         }
                     }
                 } else {
@@ -194,8 +202,9 @@ class PostsController extends AppController
         }
 
         $groups = $this->fetchTable('Groups')->find('list');
+        $languages = $this->fetchTable('Languages')->getTabList();
 
-        $this->set(compact('post', 'groups'));
+        $this->set(compact('post', 'groups', 'languages', 'selectLanguage'));
     }
 
     /**

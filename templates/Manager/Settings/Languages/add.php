@@ -10,7 +10,7 @@
                 </h2>
             </div>
             <div class="col-auto ms-auto">
-                <a href="/manager/wcm/languages/add" class="btn btn-primary d-none d-sm-inline-block">
+                <a href="/manager/settings/languages/add" class="btn btn-primary d-none d-sm-inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -61,7 +61,7 @@
                     </div>
                     <div class="card-footer text-end">
                         <div class="d-flex">
-                            <?= $this->Html->link(__('Cancel'), '/manager/wcm/posts', ['class' => 'btn btn-link']) ?>
+                            <?= $this->Html->link(__('Cancel'), '/manager/settings/languages', ['class' => 'btn btn-link']) ?>
                             <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary ms-auto']) ?>
                         </div>
                     </div>

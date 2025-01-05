@@ -19,7 +19,7 @@ class RolesController extends AppController
 
         $this->set('subMenu', 'settings_menu');
         $this->set('subMenuActive', 'roles');
-        $this->set('applicationName', __('Settings management'));
+        $this->set('applicationName', __('Site setting and System'));
     }
 
     /**

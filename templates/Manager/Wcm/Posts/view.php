@@ -32,7 +32,21 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-9">
-                        <h1 class="display-6"><?= h($post->title) ?></h1>
+                        <div class="card">
+                            <div class="card-header">
+                                <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs">
+                                    <?php foreach ($languages as $key => $language): ?>
+                                    <li class="nav-item">
+                                        <a href="?lang=<?= $key ?>"
+                                            class="nav-link <?= $key === $selectLanguage ? 'active' : '' ?>">
+                                            <?= $language ?>
+                                        </a>
+                                    </li>
+                                    <?php endforeach ?>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                            <h1 class="display-6"><?= h($post->title) ?></h1>
                         <div class="form-group mb-3">
                             <div class="border p-3 conent-display">
                                 <?= $post->content_display ?>
@@ -87,6 +101,8 @@
                                         'value' => $post->meta['og_tag_url'] ?? '',
                                     ]
                                 ) ?>
+                            </div>
+                        </div>
                             </div>
                         </div>
                     </div>

@@ -72,4 +72,9 @@ class LanguagesTable extends Table
     {
         return $this->findByIsDefault(1)->first()->unicode;
     }
+
+    public function getTabList()
+    {
+        return $this->find('list', keyField: 'unicode', valueField: 'title')->orderByDesc('is_default');
+    }
 }

@@ -83,9 +83,6 @@ return function (RouteBuilder $routes): void {
             $builder->connect('/groups', ['prefix' => 'Manager/Wcm', 'controller' => 'Groups', 'action' => 'index']);
             $builder->connect('/groups/{action}/*', ['prefix' => 'Manager/Wcm', 'controller' => 'Groups']);
 
-            $builder->connect('/languages', ['prefix' => 'Manager/Wcm', 'controller' => 'Languages', 'action' => 'index']);
-            $builder->connect('/languages/{action}/*', ['prefix' => 'Manager/Wcm', 'controller' => 'Languages']);
-
             $builder->connect('/published', ['prefix' => 'Manager/Wcm', 'controller' => 'Published', 'action' => 'index']);
             $builder->connect('/published/{action}/*', ['prefix' => 'Manager/Wcm', 'controller' => 'Published']);
         });
@@ -137,6 +134,9 @@ return function (RouteBuilder $routes): void {
 
             $builder->connect('/roles', ['prefix' => 'Manager/Settings', 'controller' => 'Roles', 'action' => 'index']);
             $builder->connect('/roles/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'Roles']);
+
+            $builder->connect('/languages', ['prefix' => 'Manager/Settings', 'controller' => 'Languages', 'action' => 'index']);
+            $builder->connect('/languages/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'Languages']);
         });
 
         /**

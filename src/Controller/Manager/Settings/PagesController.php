@@ -14,7 +14,7 @@ class PagesController extends AppController
 
         $this->set('subMenu', 'settings_menu');
         $this->set('subMenuActive', 'dashboard');
-        $this->set('applicationName', __('Settings management'));
+        $this->set('applicationName', __('Site setting and System'));
     }
 
     public function dashboard() {}

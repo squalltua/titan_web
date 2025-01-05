@@ -13,11 +13,6 @@
                             <span class="nav-link-title"><?= __('Groups') ?></span>
                         </a>
                     </li>
-                    <li class="<?= $subMenuActive === 'languages' ? 'nav-item active' : 'nav-item' ?>">
-                        <a href="/manager/wcm/languages" class="nav-link">
-                            <span class="nav-link-title"><?= __('Languages') ?></span>
-                        </a>
-                    </li>
                     <li class="<?= $subMenuActive === 'published' ? 'nav-item active' : 'nav-item' ?>">
                         <a href="/manager/wcm/published" class="nav-link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

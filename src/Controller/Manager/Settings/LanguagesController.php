@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Manager\Wcm;
+namespace App\Controller\Manager\Settings;
 
 use App\Controller\Manager\AppController;
 
@@ -12,9 +12,9 @@ class LanguagesController extends AppController
     {
         parent::initialize();
 
-        $this->set('subMenu', 'wcm_menu');
+        $this->set('subMenu', 'settings_menu');
         $this->set('subMenuActive', 'languages');
-        $this->set('applicationName', __('Web content management'));
+        $this->set('applicationName', __('Site setting and System'));
     }
 
     /**
@@ -41,7 +41,7 @@ class LanguagesController extends AppController
             if ($this->Languages->save($language)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/wcm/languages");
+                return $this->redirect("/manager/settings/languages");
             }
 
             $this->Flash->error(__('The data could not be saved. Please, try again.'));
@@ -64,7 +64,7 @@ class LanguagesController extends AppController
             if ($this->Languages->save($language)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/wcm/languages");
+                return $this->redirect("/manager/settings/languages");
             }
 
             $this->Flash->error(__('The data could not be saved. Please, try again.'));
@@ -89,6 +89,6 @@ class LanguagesController extends AppController
             $this->Flash->error(__('The data could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect("/manager/wcm/languages");
+        return $this->redirect("/manager/settings/languages");
     }
 }

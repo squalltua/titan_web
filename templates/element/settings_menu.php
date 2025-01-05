@@ -23,6 +23,11 @@
                             <span class="nav-link-title"><?= __('Roles') ?></span>
                         </a>
                     </li>
+                    <li class="<?= $subMenuActive === 'languages' ? 'nav-item active' : 'nav-item' ?>">
+                        <a href="/manager/settings/languages" class="nav-link">
+                            <span class="nav-link-title"><?= __('Languages') ?></span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
