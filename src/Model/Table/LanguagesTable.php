@@ -67,4 +67,9 @@ class LanguagesTable extends Table
 
         return $validator;
     }
+
+    public function getDefaultLanguageUnicode()
+    {
+        return $this->findByIsDefault(1)->first()->unicode;
+    }
 }

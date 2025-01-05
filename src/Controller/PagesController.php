@@ -45,7 +45,7 @@ class PagesController extends AppController
         $lang = $this->request->getParam('lang');
         if (!$lang) {
             // Setup default language and reload page
-            $lang = $this->fetchTable('Languages')->getDefaultLanguage() ?: Configure::read('App.defaultLocale');
+            $lang = $this->fetchTable('Languages')->getDefaultLanguageUnicode() ?: Configure::read('App.defaultLocale');
             $this->changeLanguage($lang);
         } else {
             // Setup language
