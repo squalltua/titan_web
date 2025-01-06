@@ -21,7 +21,19 @@
             <div class="col-12 col-md-8 col-lg-7">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title"><?= __('System informaiton') ?></div>
+                        <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs">
+                            <li class="nav-item me-auto">
+                                <div class="card-title" data-bs-toggle="tab"><?= __('System information') ?></div>
+                            </li>
+                            <?php foreach ($languages as $key => $language): ?>
+                            <li class="nav-item">
+                                <a href="?lang=<?= $key ?>"
+                                    class="nav-link <?= $key === $selectLanguage ? 'active' : '' ?>">
+                                    <?= $language ?>
+                                </a>
+                            </li>
+                            <?php endforeach; ?>
+                        </ul>
                     </div>
                     <div class="card-body">
                         <div class="mb-3 row">
@@ -55,7 +67,8 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="social-accounts" class="col-3 col-form-label"><?= __('Social accounts') ?></label>
+                            <label for="social-accounts"
+                                class="col-3 col-form-label"><?= __('Social accounts') ?></label>
                             <div class="col">
                                 <?= $this->Form->text('social_accounts_1_url', ['class' => 'form-control mb-3', 'id' => 'social-accounts', 'value' => $setting['social_accounts_1_url'] ?? null]) ?>
                                 <?= $this->Form->text('social_accounts_2_url', ['class' => 'form-control mb-3', 'id' => 'social-accounts', 'value' => $setting['social_accounts_2_url'] ?? null]) ?>

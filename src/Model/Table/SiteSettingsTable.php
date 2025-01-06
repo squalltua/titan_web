@@ -41,6 +41,12 @@ class SiteSettingsTable extends Table
     {
         parent::initialize($config);
 
+        $this->addBehavior('Translate', [
+            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
+            'fields' => ['value_field'],
+            'defaultLocale' => 'en',
+        ]);
+
         $this->setTable('site_settings');
         $this->setDisplayField('key_field');
         $this->setPrimaryKey('id');
@@ -70,9 +76,14 @@ class SiteSettingsTable extends Table
     /**
      * @return array
      */
-    public function getSiteSetting(): array
+    public function getSiteSetting(?string $lang): array
     {
-        $settingData = $this->find('all');
+        if ($lang) {
+            $settingData = $this->find('all', locale: $lang);
+        } else {
+            $settingData = $this->find('all');
+        }
+        
         return Hash::combine($settingData->toArray(), '{n}.key_field', '{n}.value_field');
     }
 
@@ -80,13 +91,18 @@ class SiteSettingsTable extends Table
      * @param array $data
      * @return bool
      */
-    public function saveSiteSetting(array $data): bool
+    public function saveSiteSetting(array $data, ?string $lang): bool
     {
         $config = ConnectionManager::getConfig('default');
         $conn = new Connection($config);
 
         foreach ($data as $key => $value) {
-            $setting = $this->find()->where(['key_field' => $key])->first();
+            if ($lang) {
+                $setting = $this->find('all', locale: $lang)->where(['key_field' => $key])->first();
+            } else {
+                $setting = $this->find('all')->where(['key_field' => $key])->first();
+            }
+
             if ($setting) {
                 // update data
                 $setting->value_field = $value;

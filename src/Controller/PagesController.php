@@ -38,7 +38,12 @@ class PagesController extends AppController
 {
     public function beforeRender(\Cake\Event\EventInterface $event): void
     {
-        $this->viewBuilder()->setTheme('DefaultTheme');
+        $this->viewBuilder()->setTheme('DefaultTheme');        
+    }
+
+    public function initialize(): void
+    {
+        parent::initialize();
 
         $langSets = $this->fetchTable('Languages')->find('list', keyField: 'unicode', valueField: 'title')->toArray();
         $langSets = $langSets ?: ['en' => 'English'];
@@ -55,11 +60,6 @@ class PagesController extends AppController
             I18n::setLocale($lang);
         }
         $this->set('lang', $lang);
-    }
-
-    public function initialize(): void
-    {
-        parent::initialize();
 
         $siteSettingData = $this->fetchTable('SiteSettings')->find('all');
         $siteSetting = Hash::combine($siteSettingData->toArray(), '{n}.key_field', '{n}.value_field');
@@ -70,7 +70,6 @@ class PagesController extends AppController
     public function changeLanguage(?string $lang): Response
     {
         $lang = $lang ?: Configure::read('App.defaultLocale');
-        I18n::setLocale($lang);
         return $this->redirect("/{$lang}");
     }
 

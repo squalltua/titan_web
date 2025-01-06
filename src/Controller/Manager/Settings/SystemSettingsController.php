@@ -3,6 +3,7 @@
 namespace App\Controller\Manager\Settings;
 
 use App\Controller\Manager\AppController;
+use Cake\I18n\I18n;
 
 /**
  * SystemSettings Controller
@@ -26,19 +27,23 @@ class SystemSettingsController extends AppController
      */
     public function system(): \Cake\Http\Response
     {
-        $setting = $this->fetchTable('SiteSettings')->getSiteSetting();
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+        // I18n::setLocale($selectLanguage);
+
+        $setting = $this->fetchTable('SiteSettings')->getSiteSetting($selectLanguage);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $data = $this->request->getData();
-            if ($this->fetchTable('SiteSettings')->saveSiteSetting($data)) {
+            if ($this->fetchTable('SiteSettings')->saveSiteSetting($data, $selectLanguage)) {
                 $this->Flash->success(__('The data has been updated.'));
             } else {
                 $this->Flash->error(__('The data could not be updated. Please, try again.'));
             }
 
-            return $this->redirect('/manager/settings/system');
+            return $this->redirect('/manager/settings/system?lang=' . $selectLanguage);
         }
 
-        $this->set(compact('setting'));
+        $languages = $this->fetchTable('Languages')->getTabList();
+        $this->set(compact('setting', 'languages', 'selectLanguage'));
         
         return $this->render();
     }
