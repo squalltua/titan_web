@@ -39,12 +39,12 @@
                             <div class="card-header">
                                 <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs">
                                     <?php foreach ($languages as $key => $language): ?>
-                                    <li class="nav-item">
-                                        <a href="?lang=<?= $key ?>"
-                                            class="nav-link <?= $key === $selectLanguage ? 'active' : '' ?>">
-                                            <?= $language ?>
-                                        </a>
-                                    </li>
+                                        <li class="nav-item">
+                                            <a href="?lang=<?= $key ?>"
+                                                class="nav-link <?= $key === $selectLanguage ? 'active' : '' ?>">
+                                                <?= $language ?>
+                                            </a>
+                                        </li>
                                     <?php endforeach ?>
                                 </ul>
                             </div>
@@ -73,13 +73,27 @@
                                 <div class="mb-3">
                                     <label for="meta-posts-og-tag-title"
                                         class="form-label"><?= __('OG Tag Title') ?></label>
-                                    <?= $this->Form->text('meta_posts.og_tag_title', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-title']) ?>
+                                    <?= $this->Form->text(
+                                        'meta_posts.og_tag_title',
+                                        [
+                                            'class' => 'form-control',
+                                            'id' => 'meta-posts-og-tag-title',
+                                            'value' => $post->meta['og_tag_title'] ?: null
+                                        ]
+                                    ) ?>
                                 </div>
                                 <div class="mb-3">
                                     <label for="meta-posts-og-tag-description" class="form-label">
                                         <?= __('OG Tag description') ?>
                                     </label>
-                                    <?= $this->Form->textarea('meta_posts.og_tag_description', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-description']) ?>
+                                    <?= $this->Form->textarea(
+                                        'meta_posts.og_tag_description',
+                                        [
+                                            'class' => 'form-control',
+                                            'id' => 'meta-posts-og-tag-description',
+                                            'value' => $post->meta['og_tag_description']
+                                        ]
+                                    ) ?>
                                     <div id="emailHelp" class="form-text">
                                         <?= __('Only text for short description for display another plateform.') ?>
                                     </div>
@@ -88,11 +102,11 @@
                                     <label for="meta-posts-og-tag-image"
                                         class="form-label"><?= __('OG Tag image') ?></label>
                                     <?php if (empty($post->meta['og_tag_image'])): ?>
-                                    <?= $this->Form->file('meta_posts.og_tag_image', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-image']) ?>
+                                        <?= $this->Form->file('meta_posts.og_tag_image', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-image']) ?>
                                     <?php else: ?>
-                                    <?= $this->Html->image($post->meta['og_tag_image'], ['class' => 'img-fluid']) ?>
-                                    <div>
-                                        <?= $this->Html->link(
+                                        <?= $this->Html->image($post->meta['og_tag_image'], ['class' => 'img-fluid']) ?>
+                                        <div>
+                                            <?= $this->Html->link(
                                                 __('Remove image'),
                                                 "/manager/wcm/posts/remove-image/{$post->id}/og_tag_image",
                                                 [
@@ -100,7 +114,7 @@
                                                     'confirm' => __('Do you want to delete this image?')
                                                 ]
                                             ) ?>
-                                    </div>
+                                        </div>
                                     <?php endif ?>
                                 </div>
                                 <div class="mb-3">
@@ -143,11 +157,11 @@
                         <div class="form-group mb-3">
                             <label for="feature-image" class="form-label"><?= __('Feature image') ?></label>
                             <?php if (empty($post->meta['feature_image'])): ?>
-                            <?= $this->Form->file('meta_posts.feature_image', ['class' => 'form-control', 'id' => 'feature-image']) ?>
+                                <?= $this->Form->file('meta_posts.feature_image', ['class' => 'form-control', 'id' => 'feature-image']) ?>
                             <?php else: ?>
-                            <?= $this->Html->image($post->meta['feature_image'], ['class' => 'img-fluid']) ?>
-                            <div>
-                                <?= $this->Html->link(
+                                <?= $this->Html->image($post->meta['feature_image'], ['class' => 'img-fluid']) ?>
+                                <div>
+                                    <?= $this->Html->link(
                                         __('Remove image'),
                                         "/manager/wcm/posts/remove-image/{$post->id}/feature_image",
                                         [
@@ -155,7 +169,7 @@
                                             'confirm' => __('Do you want to delete this image?')
                                         ]
                                     ) ?>
-                            </div>
+                                </div>
                             <?php endif ?>
                         </div>
                     </div>

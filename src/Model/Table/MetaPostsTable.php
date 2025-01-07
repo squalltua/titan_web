@@ -43,6 +43,12 @@ class MetaPostsTable extends Table
         $this->setDisplayField('meta_key');
         $this->setPrimaryKey('id');
 
+        $this->addBehavior('Translate', [
+            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
+            'fields' => ['meta_value'],
+            'defaultLocale' => 'en',
+        ]);
+
         $this->belongsTo('Posts', [
             'foreignKey' => 'post_id',
             'joinType' => 'INNER',

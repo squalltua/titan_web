@@ -55,7 +55,7 @@ class PostsTable extends Table
         $this->addBehavior('Timestamp');
         $this->addBehavior('Translate', [
             'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
-            'fields' => ['title', 'intro', 'content'],
+            'fields' => ['title', 'slug', 'intro', 'content'],
             'defaultLocale' => 'en',
         ]);
 
@@ -142,17 +142,35 @@ class PostsTable extends Table
     /**
      * @return SelectQuery
      */
-    public function getAllPosts(): SelectQuery
+    public function getAllPosts(?string $lang): SelectQuery
     {
-        return $this->find('all')->orderByDesc('created');
+        if ($lang) {
+            $posts = $this->find('all', locale: $lang)->orderByDesc('created');
+        } else {
+            $posts = $this->find('all')->orderByDesc('created');
+        }
+
+        return $posts;
     }
 
     /**
+     * NOTE: May not be used
      * @param string $slug
      * @return mixed
      */
-    public function getPost(string $slug)
+    public function getPostWithSlug(string $slug)
     {
         return $this->find()->where(['slug' => $slug])->contain(['MetaPosts'])->first();
+    }
+
+    public function getPostData(string $id, ?string $lang)
+    {
+        if ($lang) {
+            $post = $this->find('all', locale: $lang)->where(['Posts.id' => $id])->contain(['MetaPosts', 'Groups'])->first();
+        } else {
+            $post = $this->find('all')->where(['Posts.id' => $id])->contain(['MetaPosts', 'Groups'])->first();
+        }
+
+        return $post;
     }
 }

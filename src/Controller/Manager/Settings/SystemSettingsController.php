@@ -28,9 +28,8 @@ class SystemSettingsController extends AppController
     public function system(): \Cake\Http\Response
     {
         $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
-        // I18n::setLocale($selectLanguage);
-
         $setting = $this->fetchTable('SiteSettings')->getSiteSetting($selectLanguage);
+        
         if ($this->request->is(['post', 'put', 'patch'])) {
             $data = $this->request->getData();
             if ($this->fetchTable('SiteSettings')->saveSiteSetting($data, $selectLanguage)) {

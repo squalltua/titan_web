@@ -51,9 +51,9 @@ class PostsController extends AppController
     public function view(string $id)
     {
         $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
-        I18n::setLocale($selectLanguage);
+        // I18n::setLocale($selectLanguage);
 
-        $post = $this->Posts->get($id, ['contain' => ['MetaPosts', 'Groups']]);
+        $post = $this->Posts->getPostData($id, $selectLanguage);
         $Parsedown = new Parsedown();
         $post->content_display = $Parsedown->text($post->content);
         $post->meta = Hash::combine($post->meta_posts, '{n}.meta_key', '{n}.meta_value');
@@ -137,9 +137,8 @@ class PostsController extends AppController
     public function edit(string $id)
     {
         $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
-        I18n::setLocale($selectLanguage);
 
-        $post = $this->Posts->get($id, ['contain' => ['MetaPosts', 'Groups']]);
+        $post = $this->Posts->getPostData($id, $selectLanguage);
         $post->meta = Hash::combine($post->meta_posts, '{n}.meta_key', '{n}.meta_value');
         if ($this->request->is(['post', 'put', 'patch'])) {
             $data = $this->request->getData();
@@ -147,7 +146,7 @@ class PostsController extends AppController
             unset($data['meta_posts']);
             $post = $this->Posts->patchEntity($post, $data);
             $post->slug = Text::slug(strtolower($post->title));
-            
+
             foreach ($meta as $key => $value) {
                 if (in_array($key, $this->Posts->imageKey) &&
                     array_search($key, array_column($post->meta_posts, 'meta_key'))) {
@@ -157,10 +156,11 @@ class PostsController extends AppController
                         if (!$imageMedia) {
                             $this->Flash->error(__('The {0} image could not be uploaded. Please try again.', $key));
 
-                            return $this->redirect("/manager/wcm/posts/edit/{$id}/?lang={$selectLanguage}");
+                            return $this->redirect("/manager/wcm/posts/edit/{$id}?lang={$selectLanguage}");
                         }
 
                         $metaPostIndex = array_search($key, array_column($post->meta_posts, 'meta_key'));
+
                         $post->meta_posts[$metaPostIndex]->meta_value = $imageMedia->link_url;
                     }
                 } elseif (in_array($key, $this->Posts->imageKey) &&
@@ -171,7 +171,7 @@ class PostsController extends AppController
                         if (!$imageMedia) {
                             $this->Flash->error(__('The {0} image could not be uploaded. Please try again.', $key));
 
-                            return $this->redirect("/manager/wcm/posts/edit/{$id}/?lang={$selectLanguage}");
+                            return $this->redirect("/manager/wcm/posts/edit/{$id}?lang={$selectLanguage}");
                         }
 
                         $newMeta = $this->Posts->MetaPosts->newEntity([
@@ -182,7 +182,7 @@ class PostsController extends AppController
                         if (!$this->Posts->MetaPosts->save($newMeta)) {
                             $this->Flash->error(__('The {0} meta could not be saved. Please try again.', $key));
 
-                            return $this->redirect("/manager/wcm/posts/edit/{$id}/?lang={$selectLanguage}");
+                            return $this->redirect("/manager/wcm/posts/edit/{$id}?lang={$selectLanguage}");
                         }
                     }
                 } else {
@@ -192,10 +192,10 @@ class PostsController extends AppController
                 }
             }
 
-            if ($this->Posts->save($post)) {
+            if ($this->Posts->save($post) && $this->Posts->MetaPosts->saveMany($post->meta_posts)) {
                 $this->Flash->success(__('The post has been saved.'));
 
-                return $this->redirect("/manager/wcm/posts/edit/{$post->id}");
+                return $this->redirect("/manager/wcm/posts/edit/{$post->id}?lang={$selectLanguage}");
             }
 
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
