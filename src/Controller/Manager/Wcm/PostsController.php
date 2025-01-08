@@ -51,7 +51,6 @@ class PostsController extends AppController
     public function view(string $id)
     {
         $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
-        // I18n::setLocale($selectLanguage);
 
         $post = $this->Posts->getPostData($id, $selectLanguage);
         $Parsedown = new Parsedown();
@@ -141,6 +140,7 @@ class PostsController extends AppController
         $post = $this->Posts->getPostData($id, $selectLanguage);
         $post->meta = Hash::combine($post->meta_posts, '{n}.meta_key', '{n}.meta_value');
         if ($this->request->is(['post', 'put', 'patch'])) {
+            // I18n::setLocale($selectLanguage);
             $data = $this->request->getData();
             $meta = $data['meta_posts'];
             unset($data['meta_posts']);
@@ -192,6 +192,7 @@ class PostsController extends AppController
                 }
             }
 
+            $this->Posts->MetaPosts->setLocale($selectLanguage);
             if ($this->Posts->save($post) && $this->Posts->MetaPosts->saveMany($post->meta_posts)) {
                 $this->Flash->success(__('The post has been saved.'));
 

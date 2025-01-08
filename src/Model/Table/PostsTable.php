@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\I18n\I18n;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -144,11 +145,8 @@ class PostsTable extends Table
      */
     public function getAllPosts(?string $lang): SelectQuery
     {
-        if ($lang) {
-            $posts = $this->find('all', locale: $lang)->orderByDesc('created');
-        } else {
-            $posts = $this->find('all')->orderByDesc('created');
-        }
+        I18n::setLocale($lang);
+        $posts = $this->find('all')->orderByDesc('created');
 
         return $posts;
     }
@@ -165,11 +163,8 @@ class PostsTable extends Table
 
     public function getPostData(string $id, ?string $lang)
     {
-        if ($lang) {
-            $post = $this->find('all', locale: $lang)->where(['Posts.id' => $id])->contain(['MetaPosts', 'Groups'])->first();
-        } else {
-            $post = $this->find('all')->where(['Posts.id' => $id])->contain(['MetaPosts', 'Groups'])->first();
-        }
+        I18n::setLocale($lang);
+        $post = $this->find('all')->where(['Posts.id' => $id])->contain(['MetaPosts', 'Groups'])->first();
 
         return $post;
     }
