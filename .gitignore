@@ -51,7 +51,9 @@ nbproject/*
 # yarn
 yarn-debug.log
 yarn-error.log
-# ddev
+# DDEV
 /.ddev/
+# TitanWEB
+/webroot/storage/*
 
 .php-cs-fixer.cache
