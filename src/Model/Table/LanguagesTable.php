@@ -77,4 +77,24 @@ class LanguagesTable extends Table
     {
         return $this->find('list', keyField: 'unicode', valueField: 'title')->orderByDesc('is_default');
     }
+
+    public function initLanguagesData()
+    {
+        $data = [
+            [
+                'title' => 'English',
+                'unicode' => 'en',
+                'is_default' => 1,
+            ], 
+            [
+                'title' => 'Thail',
+                'unicode' => 'th',
+                'is_default' => 0,
+            ],
+        ];
+
+        $entities = $this->newEntities($data);
+
+        return $this->saveMany($entities);
+    }
 }

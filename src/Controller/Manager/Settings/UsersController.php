@@ -77,6 +77,14 @@ class UsersController extends AppController
                 exit;
             }
             // end create role data
+
+            // create language data
+            if (!$this->fetchTable('Languages')->initLanguagesData()) {
+                echo '<p>Could not initial language data.</p>';
+                $connection->rollback();
+                exit;
+            }
+            // end create language data
             
             // get admin role
             $adminRole = $this->fetchTable('Roles')->findBySlug('admin')->first();
