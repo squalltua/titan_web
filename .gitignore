@@ -52,8 +52,6 @@ nbproject/*
 yarn-debug.log
 yarn-error.log
 /.ddev/
-/Docker_folder/
-/.env
-/docker-compose.yml
+# TitanWEB
 /webroot/storage
 .php-cs-fixer.cache
