@@ -99,21 +99,23 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="meta-posts-og-tag-image"
-                                        class="form-label"><?= __('OG Tag image') ?></label>
-                                    <?php if (empty($post->meta['og_tag_image'])): ?>
-                                        <?= $this->Form->file('meta_posts.og_tag_image', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-image']) ?>
-                                    <?php else: ?>
-                                        <?= $this->Html->image($post->meta['og_tag_image'], ['class' => 'img-fluid']) ?>
-                                        <div>
-                                            <?= $this->Html->link(
-                                                __('Remove image'),
-                                                "/manager/wcm/posts/remove-image/{$post->id}/og_tag_image",
-                                                [
-                                                    'class' => 'text-danger',
-                                                    'confirm' => __('Do you want to delete this image?')
-                                                ]
-                                            ) ?>
+                                    <label for="meta-posts-og-tag-image" class="form-label">
+                                        <?= __('OG Tag image') ?>
+                                    </label>
+                                    <?= $this->Form->file('meta_posts.og_tag_image', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-image']) ?>
+                                    <?php if (!empty($post->meta['og_tag_image'])): ?>
+                                        <div class="mt-3">
+                                            <?= $this->Html->image($post->meta['og_tag_image'], ['class' => 'img-fluid']) ?>
+                                            <div class="mb-3">
+                                                <?= $this->Html->link(
+                                                    __('Remove image'),
+                                                    "/manager/wcm/posts/remove-image/{$post->id}/og_tag_image/{$selectLanguage}",
+                                                    [
+                                                        'class' => 'btn btn-sm btn-danger mt-2',
+                                                        'confirm' => __('Do you want to delete this image?')
+                                                    ]
+                                                ) ?>
+                                            </div>
                                         </div>
                                     <?php endif ?>
                                 </div>
@@ -156,19 +158,20 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="feature-image" class="form-label"><?= __('Feature image') ?></label>
-                            <?php if (empty($post->meta['feature_image'])): ?>
-                                <?= $this->Form->file('meta_posts.feature_image', ['class' => 'form-control', 'id' => 'feature-image']) ?>
-                            <?php else: ?>
-                                <?= $this->Html->image($post->meta['feature_image'], ['class' => 'img-fluid']) ?>
-                                <div>
-                                    <?= $this->Html->link(
-                                        __('Remove image'),
-                                        "/manager/wcm/posts/remove-image/{$post->id}/feature_image",
-                                        [
-                                            'class' => 'text-danger',
-                                            'confirm' => __('Do you want to delete this image?')
-                                        ]
-                                    ) ?>
+                            <?= $this->Form->file('meta_posts.feature_image', ['class' => 'form-control', 'id' => 'feature-image']) ?>
+                            <?php if (!empty($post->meta['feature_image'])): ?>
+                                <div class="mt-3">
+                                    <?= $this->Html->image($post->meta['feature_image'], ['class' => 'img-fluid']) ?>
+                                    <div class="mt-2">
+                                        <?= $this->Html->link(
+                                            __('Remove image'),
+                                            "/manager/wcm/posts/remove-image/{$post->id}/feature_image/{$selectLanguage}",
+                                            [
+                                                'class' => 'btn btn-sm btn-danger',
+                                                'confirm' => __('Do you want to delete this image?')
+                                            ]
+                                        ) ?>
+                                    </div>
                                 </div>
                             <?php endif ?>
                         </div>

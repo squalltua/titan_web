@@ -204,8 +204,9 @@ class PostsController extends AppController
 
         $groups = $this->fetchTable('Groups')->find('list');
         $languages = $this->fetchTable('Languages')->getTabList();
+        $defaultLanguage = $this->fetchTable('Languages')->getDefaultLanguageUnicode();
 
-        $this->set(compact('post', 'groups', 'languages', 'selectLanguage'));
+        $this->set(compact('post', 'groups', 'languages', 'selectLanguage', 'defaultLanguage'));
     }
 
     /**
@@ -230,16 +231,17 @@ class PostsController extends AppController
      * @param string $key
      * @return \Cake\Http\Response
      */
-    public function removeImage(string $id, string $key): \Cake\Http\Response
+    public function removeImage(string $id, string $key, string $locale): \Cake\Http\Response
     {
         $meta = $this->Posts->MetaPosts->find()->where(['post_id' => $id, 'meta_key' => $key])->first();
         $meta->meta_value = null;
+        $this->Posts->MetaPosts->setLocale($locale);
         if ($this->Posts->MetaPosts->save($meta)) {
             $this->Flash->success(__('The image has been removed.'));
         } else {
             $this->Flash->error(__('The image could not be removed. Please try again'));
         }
 
-        return $this->redirect("/manager/wcm/posts/edit/{$id}");
+        return $this->redirect("/manager/wcm/posts/edit/{$id}?lang={$locale}");
     }
 }
