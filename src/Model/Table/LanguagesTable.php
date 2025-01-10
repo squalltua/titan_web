@@ -75,7 +75,7 @@ class LanguagesTable extends Table
 
     public function getTabList()
     {
-        return $this->find('list', keyField: 'unicode', valueField: 'title')->orderByDesc('is_default');
+        return $this->find('list', keyField: 'unicode', valueField: 'title')->orderByDesc('is_default')->toArray();
     }
 
     public function initLanguagesData()

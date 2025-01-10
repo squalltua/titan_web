@@ -18,6 +18,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
@@ -124,6 +125,23 @@ class PagesController extends AppController
     public function cookiesPolicy(): Response
     {
         return $this->render();
+    }
+
+    public function allBlogs()
+    {
+        $lang = $this->request->getParam('lang');
+        $blogs = Cache::read("{$lang}_published_posts_indexes");
+
+        $this->set(compact('blogs'));
+    }
+
+    public function blog(string $slug)
+    {
+        $lang = $this->request->getParam('lang');
+        $cacheName = "{$lang}-{$slug}";
+        $blog = Cache::read($cacheName);
+
+        $this->set(compact('blog'));
     }
 
     public function pageNotFoundError(): Response

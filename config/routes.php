@@ -43,9 +43,9 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/cookies-policy', 'Pages::cookiesPolicy');
 
         // blogs routes
-        $builder->connect('/blogs', 'Blogs::index');
-        $builder->connect('/blogs/{slug}', 'Blogs::view')->setPass(['slug']);
-        $builder->connect('/blogs/categories/{slug}', 'Blogs::categories')->setPass(['slug']);
+        $builder->connect('/blogs', 'Pages::allBlogs');
+        $builder->connect('/blogs/{slug}', 'Pages::blog')->setPass(['slug']);
+        $builder->connect('/blogs/categories/{slug}', 'Pages::categories')->setPass(['slug']);
 
         // products routes
         $builder->connect('/products', 'Products::index');
