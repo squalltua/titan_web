@@ -77,6 +77,7 @@
                 <p>
                     <?= $blog['intro'] ?>
                 </p>
+                <?= $this->Html->link(__('Read'), $blog['link_url'], ['class' => 'btn btn-link']) ?>
             </article>
             <?php endforeach ?>
 
