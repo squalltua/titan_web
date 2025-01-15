@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: db
 -- ------------------------------------------------------
@@ -371,6 +371,61 @@ INSERT INTO `groups` VALUES (1,'News','news',NULL,1,2,NULL,'2024-12-26 11:00:39'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `i18n`
+--
+
+DROP TABLE IF EXISTS `i18n`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `i18n` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `locale` varchar(6) NOT NULL,
+  `model` varchar(255) NOT NULL,
+  `foreign_key` int(10) NOT NULL,
+  `field` varchar(255) NOT NULL,
+  `content` text DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `I18N_LOCALE_FIELD` (`locale`,`model`,`foreign_key`,`field`),
+  KEY `I18N_FIELD` (`model`,`foreign_key`,`field`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `i18n`
+--
+
+LOCK TABLES `i18n` WRITE;
+/*!40000 ALTER TABLE `i18n` DISABLE KEYS */;
+/*!40000 ALTER TABLE `i18n` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `languages`
+--
+
+DROP TABLE IF EXISTS `languages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `languages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) NOT NULL,
+  `unicode` varchar(5) NOT NULL,
+  `is_default` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `languages`
+--
+
+LOCK TABLES `languages` WRITE;
+/*!40000 ALTER TABLE `languages` DISABLE KEYS */;
+INSERT INTO `languages` VALUES (1,'English','en',1);
+/*!40000 ALTER TABLE `languages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `medias`
 --
 
@@ -403,7 +458,6 @@ CREATE TABLE `medias` (
 
 LOCK TABLES `medias` WRITE;
 /*!40000 ALTER TABLE `medias` DISABLE KEYS */;
-INSERT INTO `medias` VALUES (1,'iphone-16-model-unselect-gallery-2-202409-webp','/var/www/html/webroot/storage/482cbdba-4f0d-41ee-b636-3f48aee02b49.webp',62372,'image/webp',NULL,'feature_image','iphone-16-model-unselect-gallery-2-202409-webp',NULL,'iphone-16-model-unselect-gallery-2-202409-webp',0,'https://titan-web.ddev.site/api/v1/medias/images/iphone-16-model-unselect-gallery-2-202409-webp','482cbdba-4f0d-41ee-b636-3f48aee02b49','2024-12-26 08:46:42','2024-12-26 08:46:42'),(2,'placeholder-661','/var/www/html/webroot/storage/176a0ea9-460d-4cad-b5ef-72a7720e3351.png',3522,'image/png',NULL,'feature_image','placeholder-661',NULL,'placeholder-661',0,'https://titan-web.ddev.site/api/v1/medias/images/placeholder-661','176a0ea9-460d-4cad-b5ef-72a7720e3351','2024-12-27 07:08:23','2024-12-27 07:08:23');
 /*!40000 ALTER TABLE `medias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -458,7 +512,6 @@ CREATE TABLE `meta_posts` (
 
 LOCK TABLES `meta_posts` WRITE;
 /*!40000 ALTER TABLE `meta_posts` DISABLE KEYS */;
-INSERT INTO `meta_posts` VALUES (1,1,'og_tag_title',''),(2,1,'og_tag_description',''),(3,1,'og_tag_url',''),(4,1,'feature_image','https://titan-web.ddev.site/api/v1/medias/images/placeholder-661'),(5,1,'og_tag_image',NULL);
 /*!40000 ALTER TABLE `meta_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -554,7 +607,6 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (1,'Hello World','Hello-World','Sample content intro','#Hello World\r\n\r\n![testimage](https://placehold.co/600x400/000000/FFFFFF.webp)',NULL,'draft',NULL,'2024-12-27 05:31:37','2024-12-27 07:49:28',1);
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -582,7 +634,6 @@ CREATE TABLE `posts_groups` (
 
 LOCK TABLES `posts_groups` WRITE;
 /*!40000 ALTER TABLE `posts_groups` DISABLE KEYS */;
-INSERT INTO `posts_groups` VALUES (1,1),(1,2);
 /*!40000 ALTER TABLE `posts_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -712,7 +763,6 @@ CREATE TABLE `products_medias` (
 
 LOCK TABLES `products_medias` WRITE;
 /*!40000 ALTER TABLE `products_medias` DISABLE KEYS */;
-INSERT INTO `products_medias` VALUES (1,1);
 /*!40000 ALTER TABLE `products_medias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -907,4 +957,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-29 11:48:34
+-- Dump completed on 2025-01-15 15:07:30
