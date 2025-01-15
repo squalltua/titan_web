@@ -40,7 +40,9 @@ class PostsController extends AppController
      */
     public function index()
     {
-        $posts = $this->paginate($this->Posts);
+        $limit = (int) $this->request->getQuery('show_entries', 25);
+        $conditions = $this->request->getQuery('keywork') ? ['title LIKE' => "%{$this->request->getQuery('keyword')}%"] : [];
+        $posts = $this->paginate($this->Posts->getAllPosts($conditions), ['limit' => $limit]);
         $this->set(compact('posts'));
     }
 

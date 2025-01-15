@@ -5,6 +5,7 @@ namespace App\Model\Table;
 
 use Cake\Database\Query;
 use Cake\Database\Query\SelectQuery as QuerySelectQuery;
+use Cake\I18n\I18n;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -52,6 +53,19 @@ class ProductsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Translate', [
+            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
+            'fields' => [
+                'title', 
+                'slug', 
+                'summary', 
+                'content',
+                'supplier_price',
+                'sell_price',
+                'discount_price',
+            ],
+            'defaultLocale' => 'en',
+        ]);
 
         $this->hasMany('MetaProducts', [
             'foreignKey' => 'product_id',
@@ -160,11 +174,14 @@ class ProductsTable extends Table
     }
 
     /**
-     * @param string $id
+     * @param string $id - Product id
+     * @param string $locale - select language
      * @return \App\Model\Entity\Product
      */
-    public function getInformation(string $id)
+    public function getInformation(string $id, string $locale)
     {
+        I18n::setLocale($locale);
+
         $product = $this->find()
             ->where(['Products.id' => $id])
             ->contain(['Categories', 'Variants', 'Variants.AttributeOptions', 'MetaProducts'])
@@ -173,7 +190,7 @@ class ProductsTable extends Table
             })
             ->first();
 
-        $product->medias_icon_url = $product->medias[0]->link_url;
+        $product->medias_icon_url = $product->medias[0]->link_url ?? null;
 
         return $product;
     }

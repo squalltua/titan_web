@@ -30,7 +30,21 @@
         <?= $this->Form->create($product) ?>
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"><?= __('Product information') ?></h3>
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active text-dark disabled" href="#" tabindex="-1" aria-disabled="true">
+                            <?= __('Product information') ?>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('Edit in {0} language', $languages[$selectLanguage]) ?></a>
+                        <div class="dropdown-menu">
+                            <?php foreach ($languages as $unicode => $language): ?>
+                                <?= $this->Html->link($language, "/lang={$unicode}", ['class' => 'dropdown-item']) ?>
+                            <?php endforeach ?>
+                        </div>
+                    </li>
+                </ul>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -98,42 +112,42 @@
                             </div>
                         </div>
                         <?php if (!$product->has_variants): ?>
-                        <fieldset class="form-fieldset">
-                            <legend class="fs-5"><?= __('Product additional information for no variant') ?></legend>
-                            <div class="mb-3 row">
-                                <label for="sku" class="col-3 col-form-label">SKU</label>
-                                <div class="col">
-                                    <?= $this->Form->text('sku', ['class'=> 'form-control', 'id' => 'sku']) ?>
+                            <fieldset class="form-fieldset">
+                                <legend class="fs-5"><?= __('Product additional information for no variant') ?></legend>
+                                <div class="mb-3 row">
+                                    <label for="sku" class="col-3 col-form-label">SKU</label>
+                                    <div class="col">
+                                        <?= $this->Form->text('sku', ['class' => 'form-control', 'id' => 'sku']) ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="supplier-price"
-                                    class="col-3 col-form-label"><?= __('Supplier price') ?></label>
-                                <div class="col">
-                                    <?= $this->Form->number('supplier_price', ['class' => 'form-control', 'id' => 'supplier-price']) ?>
+                                <div class="mb-3 row">
+                                    <label for="supplier-price"
+                                        class="col-3 col-form-label"><?= __('Supplier price') ?></label>
+                                    <div class="col">
+                                        <?= $this->Form->number('supplier_price', ['class' => 'form-control', 'id' => 'supplier-price']) ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="sell-price" class="col-3 col-form-label"><?= __('Sell price') ?></label>
-                                <div class="col">
-                                    <?= $this->Form->number('sell_price', ['class' => 'form-control', 'id' => 'sell-price']) ?>
+                                <div class="mb-3 row">
+                                    <label for="sell-price" class="col-3 col-form-label"><?= __('Sell price') ?></label>
+                                    <div class="col">
+                                        <?= $this->Form->number('sell_price', ['class' => 'form-control', 'id' => 'sell-price']) ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="discount-price"
-                                    class="col-3 col-form-label"><?= __('Discount price') ?></label>
-                                <div class="col">
-                                    <?= $this->Form->number('discount_price', ['class' => 'form-control', 'id' => 'discount-price']) ?>
+                                <div class="mb-3 row">
+                                    <label for="discount-price"
+                                        class="col-3 col-form-label"><?= __('Discount price') ?></label>
+                                    <div class="col">
+                                        <?= $this->Form->number('discount_price', ['class' => 'form-control', 'id' => 'discount-price']) ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="strock-quantity"
-                                    class="col-3 col-form-label"><?= __('Stock quantity') ?></label>
-                                <div class="col">
-                                    <?= $this->Form->number('stock_quantity', ['class' => 'form-control', 'id' => 'stock-quantity']) ?>
+                                <div class="mb-3 row">
+                                    <label for="strock-quantity"
+                                        class="col-3 col-form-label"><?= __('Stock quantity') ?></label>
+                                    <div class="col">
+                                        <?= $this->Form->number('stock_quantity', ['class' => 'form-control', 'id' => 'stock-quantity']) ?>
+                                    </div>
                                 </div>
-                            </div>
-                        </fieldset>
+                            </fieldset>
                         <?php endif ?>
                     </div>
                 </div>

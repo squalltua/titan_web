@@ -47,13 +47,15 @@ class ProductsController extends AppController
 
     /**
      * product detail method
-     * 
+     *
      * @param string $id
      * @return Response
      */
     public function detail(string $id)
     {
-        $product = $this->Products->getInformation($id);
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+
+        $product = $this->Products->getInformation($id, $selectLanguage);
         $product->base_price = Number::precision($product->base_price ?? 0.00, 2);
         $product->sell_price = Number::precision($product->sell_price ?? 0.00, 2);
         $product->discount_price = Number::precision($product->discount_price ?? 0.00, 2);
@@ -64,13 +66,14 @@ class ProductsController extends AppController
 
     /**
      * meta index method
-     * 
+     *
      * @param string $id
      * @return Response
      */
     public function meta(string $id)
     {
-        $product = $this->Products->getInformation($id);
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+        $product = $this->Products->getInformation($id, $selectLanguage);
 
         $this->set('objectMenuActive', 'meta');
         $this->set(compact('product'));
@@ -78,13 +81,14 @@ class ProductsController extends AppController
 
     /**
      * meta add method
-     * 
+     *
      * @param string $productId - product id
      * @return Response
      */
     public function metaAdd(string $productId)
     {
-        $product = $this->Products->getInformation($productId);
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+        $product = $this->Products->getInformation($productId, $selectLanguage);
         $meta = $this->Products->MetaProducts->newEmptyEntity();
         if ($this->request->is('post')) {
             $meta = $this->Products->MetaProducts->patchEntity($meta, $this->request->getData());
@@ -107,14 +111,16 @@ class ProductsController extends AppController
 
     /**
      * meta edit method
-     * 
+     *
      * @param string $productId - product id
      * @param string $metaId - meta id
      * @return Response
      */
     public function metaEdit(string $productId, string $metaId)
     {
-        $product = $this->Products->getInformation($productId);
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+
+        $product = $this->Products->getInformation($productId, $selectLanguage);
         $meta = $this->Products->MetaProducts->get($metaId);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $meta = $this->Products->MetaProducts->patchEntity($meta, $this->request->getData());
@@ -133,7 +139,7 @@ class ProductsController extends AppController
 
     /**
      * meta delete method
-     * 
+     *
      * @param string $productId - product id
      * @param string $metaId - meta id
      * @return \Cake\Http\Response
@@ -153,7 +159,7 @@ class ProductsController extends AppController
 
     /**
      * product add method
-     * 
+     *
      * @return Response|null
      */
     public function add()
@@ -179,13 +185,15 @@ class ProductsController extends AppController
 
     /**
      * product edit method
-     * 
+     *
      * @param string $id - product id
      * @return \Cake\Http\Response
      */
     public function edit(string $id)
     {
-        $product = $this->Products->getInformation($id);
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+        $product = $this->Products->getInformation($id, $selectLanguage);
+        
         if ($this->request->is(['post', 'put', 'patch'])) {
             $product = $this->Products->patchEntity($product, $this->request->getData());
             if ($this->Products->save($product)) {
@@ -198,8 +206,9 @@ class ProductsController extends AppController
         }
 
         $categories = $this->Products->Categories->getCategoriesList();
+        $languages = $this->fetchTable('Languages')->getTabList();
 
-        $this->set(compact('product', 'categories'));
+        $this->set(compact('product', 'categories', 'selectLanguage', 'languages'));
     }
 
     /**
@@ -228,7 +237,9 @@ class ProductsController extends AppController
      */
     public function images(string $productId)
     {
-        $product = $this->Products->getInformation($productId);
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+
+        $product = $this->Products->getInformation($productId, $selectLanguage);
         if ($this->request->is('post')) {
             // upload feature image only
             if ($this->request->getData('feature_image')) {
@@ -303,7 +314,9 @@ class ProductsController extends AppController
      */
     public function variants(string $id)
     {
-        $product = $this->Products->getInformation($id);
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+
+        $product = $this->Products->getInformation($id, $selectLanguage);
         foreach ($product->variants as &$variant) {
             $attributeOptions = Hash::extract($variant->attribute_options, '{n}.value');
             $variant->attribute_options_display = implode(', ', $attributeOptions);
@@ -321,7 +334,9 @@ class ProductsController extends AppController
      */
     public function variantAdd(string $id)
     {
-        $product = $this->Products->getInformation($id);
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+
+        $product = $this->Products->getInformation($id, $selectLanguage);
         $variant = $this->fetchTable('Variants')->newEmptyEntity();
         if ($this->request->is('post')) {
             $variant = $this->fetchTable('Variants')->patchEntity($variant, $this->request->getData());
@@ -351,7 +366,9 @@ class ProductsController extends AppController
      */
     public function variantEdit(string $id, string $variantId)
     {
-        $product = $this->Products->getInformation($id);
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+
+        $product = $this->Products->getInformation($id, $selectLanguage);
         $variant = $this->fetchTable('Variants')->get($variantId, ['contain' => ['AttributeOptions']]);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $variant = $this->fetchTable('Variants')->patchEntity($variant, $this->request->getData());
@@ -379,7 +396,9 @@ class ProductsController extends AppController
      */
     public function variantOptionAdd(string $id, string $variantId)
     {
-        $product = $this->Products->getInformation($id);
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+
+        $product = $this->Products->getInformation($id, $selectLanguage);
         $variant = $this->fetchTable('Variants')->get($variantId);
         if ($this->request->is('post')) {
             $attributeOption = $this->fetchTable('AttributeOptions')->get($this->request->getData('attribute_option_id'));

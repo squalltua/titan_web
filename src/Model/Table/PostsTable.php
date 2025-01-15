@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Table;
@@ -66,6 +67,8 @@ class PostsTable extends Table
         ]);
         $this->hasMany('MetaPosts', [
             'foreignKey' => 'post_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
         $this->belongsToMany('Groups', [
             'foreignKey' => 'post_id',
@@ -141,14 +144,16 @@ class PostsTable extends Table
     }
 
     /**
+     * get all posts for datatable
+     *
+     * @param array|empty $conditions
      * @return SelectQuery
      */
-    public function getAllPosts(?string $lang): SelectQuery
+    public function getAllPosts(array $conditions = []): SelectQuery
     {
-        I18n::setLocale($lang);
-        $posts = $this->find('all')->orderByDesc('created');
-
-        return $posts;
+        return $this->find('all')
+            ->where($conditions)
+            ->orderByDesc('created');
     }
 
     /**
