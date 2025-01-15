@@ -139,8 +139,10 @@ class ProductsController extends AppController
             $this->Flash->error(__('The meta attribute could not be saved. Please try again.'));
         }
 
+        $languages = $this->fetchTable('Languages')->getTabList();
+
         $this->set('objectMenuActive', 'meta');
-        $this->set(compact('product', 'meta'));
+        $this->set(compact('product', 'meta', 'selectLanguage', 'languages'));
     }
 
     /**
@@ -336,8 +338,10 @@ class ProductsController extends AppController
             $variant->attribute_options_display = implode(', ', $attributeOptions);
         }
 
+        $languages = $this->fetchTable('Languages')->getTabList();
+
         $this->set('objectMenuActive', 'variants');
-        $this->set(compact('product'));
+        $this->set(compact('product', 'selectLanguage', 'languages'));
     }
 
     /**
@@ -367,9 +371,10 @@ class ProductsController extends AppController
         }
 
         $variantOptions = $this->fetchTable('Attributes')->find('list')->all()->toArray();
+        $languages = $this->fetchTable('Languages')->getTabList();
 
         $this->set('objectMenuActive', 'variants');
-        $this->set(compact('product', 'variant', 'variantOptions'));
+        $this->set(compact('product', 'variant', 'variantOptions', 'selectLanguage', 'languages'));
     }
 
     /**
