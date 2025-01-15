@@ -39,17 +39,11 @@
             <?= $this->Html->link(__('Images'), "/manager/pim/products/images/{$product->id}", ['class' => $objectMenuActive === 'images' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
         </li>
         <li class="nav-item dropdown ms-auto">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('Edit in {0} language', 'English') ?></a>
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('Edit in {0} language', $languages[$selectLanguage]) ?></a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="?lang=en">
-                    English
-                </a>
-                <a class="dropdown-item" href="?lang=th">
-                    Thai
-                </a>
-                <a class="dropdown-item" href="?lang=jp">
-                    Japan
-                </a>
+                <?php foreach ($languages as $unicode => $language): ?>
+                    <?= $this->Html->link($language, "?lang={$unicode}", ['class' => 'dropdown-item']) ?>
+                <?php endforeach ?>
             </div>
         </li>
     </ul>

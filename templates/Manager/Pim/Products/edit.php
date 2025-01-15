@@ -40,7 +40,7 @@
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('Edit in {0} language', $languages[$selectLanguage]) ?></a>
                         <div class="dropdown-menu">
                             <?php foreach ($languages as $unicode => $language): ?>
-                                <?= $this->Html->link($language, "/lang={$unicode}", ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link($language, "?lang={$unicode}", ['class' => 'dropdown-item']) ?>
                             <?php endforeach ?>
                         </div>
                     </li>

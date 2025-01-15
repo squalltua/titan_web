@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Table;
@@ -42,6 +43,14 @@ class MetaProductsTable extends Table
         $this->setTable('meta_products');
         $this->setDisplayField('meta_key');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Translate', [
+            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
+            'fields' => [
+                'meta_key',
+                'meta_value',
+            ],
+        ]);
 
         $this->belongsTo('Products', [
             'foreignKey' => 'product_id',

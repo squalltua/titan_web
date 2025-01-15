@@ -14,11 +14,12 @@ use Cake\Utility\Hash;
  * Products Controller
  *
  * @property \App\Model\Table\ProductsTable $Products
- * @method \App\Model\Entity\Product[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class ProductsController extends AppController
 {
     /**
+     * Initialize method
+     *
      * @return void
      * @throws \Exception
      */
@@ -46,14 +47,16 @@ class ProductsController extends AppController
     }
 
     /**
-     * product detail method
+     * Product detail method
      *
-     * @param string $id
+     * @param string $id - Product id
+     *
      * @return Response
      */
     public function detail(string $id)
     {
         $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+        $languages = $this->fetchTable('Languages')->getTabList();
 
         $product = $this->Products->getInformation($id, $selectLanguage);
         $product->base_price = Number::precision($product->base_price ?? 0.00, 2);
@@ -61,28 +64,31 @@ class ProductsController extends AppController
         $product->discount_price = Number::precision($product->discount_price ?? 0.00, 2);
 
         $this->set('objectMenuActive', 'detail');
-        $this->set(compact('product'));
+        $this->set(compact('product', 'selectLanguage', 'languages'));
     }
 
     /**
-     * meta index method
+     * Meta index method
      *
-     * @param string $id
+     * @param string $id - Product Id
+     *
      * @return Response
      */
     public function meta(string $id)
     {
         $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
         $product = $this->Products->getInformation($id, $selectLanguage);
+        $languages = $this->fetchTable('Languages')->getTabList();
 
         $this->set('objectMenuActive', 'meta');
-        $this->set(compact('product'));
+        $this->set(compact('product', 'selectLanguage', 'languages'));
     }
 
     /**
-     * meta add method
+     * Meta add method
      *
      * @param string $productId - product id
+     *
      * @return Response
      */
     public function metaAdd(string $productId)
@@ -93,9 +99,8 @@ class ProductsController extends AppController
         if ($this->request->is('post')) {
             $meta = $this->Products->MetaProducts->patchEntity($meta, $this->request->getData());
             $meta->product_id = $productId;
-            if (
-                $this->Products->MetaProducts->save($meta) &&
-                $this->Products->MetaProducts->link($product, [$meta])
+            if ($this->Products->MetaProducts->save($meta)
+                && $this->Products->MetaProducts->link($product, [$meta])
             ) {
                 $this->Flash->success(__('The meta attribute has been saved.'));
 
@@ -110,10 +115,11 @@ class ProductsController extends AppController
     }
 
     /**
-     * meta edit method
+     * Meta edit method
      *
      * @param string $productId - product id
-     * @param string $metaId - meta id
+     * @param string $metaId    - meta id
+     *
      * @return Response
      */
     public function metaEdit(string $productId, string $metaId)
@@ -138,10 +144,11 @@ class ProductsController extends AppController
     }
 
     /**
-     * meta delete method
+     * Meta delete method
      *
      * @param string $productId - product id
-     * @param string $metaId - meta id
+     * @param string $metaId    - meta id
+     *
      * @return \Cake\Http\Response
      */
     public function metaDelete(string $productId, string $metaId)
@@ -158,7 +165,7 @@ class ProductsController extends AppController
     }
 
     /**
-     * product add method
+     * Product add method
      *
      * @return Response|null
      */
@@ -184,22 +191,23 @@ class ProductsController extends AppController
     }
 
     /**
-     * product edit method
+     * Product edit method
      *
      * @param string $id - product id
+     *
      * @return \Cake\Http\Response
      */
     public function edit(string $id)
     {
         $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
         $product = $this->Products->getInformation($id, $selectLanguage);
-        
+
         if ($this->request->is(['post', 'put', 'patch'])) {
             $product = $this->Products->patchEntity($product, $this->request->getData());
             if ($this->Products->save($product)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/pim/products/edit/{$product->id}");
+                return $this->redirect("/manager/pim/products/edit/{$product->id}?lang={$selectLanguage}");
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
@@ -212,7 +220,10 @@ class ProductsController extends AppController
     }
 
     /**
+     * Delete product method
+     *
      * @param string $id - product id
+     *
      * @return \Cake\Http\Response
      */
     public function delete(string $id): Response
@@ -230,9 +241,10 @@ class ProductsController extends AppController
     }
 
     /**
-     * images method
+     * Images method
      *
      * @param string $productId - product id
+     *
      * @return \Cake\Http\Response
      */
     public function images(string $productId)
@@ -287,10 +299,11 @@ class ProductsController extends AppController
     }
 
     /**
-     * remove image of product.
+     * Remove image of product.
      *
-     * @param string $productId
-     * @param string $mediaId
+     * @param string $productId - Product id
+     * @param string $mediaId   - Media id
+     *
      * @return Response|null
      */
     public function removeImage(string $productId, string $mediaId): ?Response
@@ -307,9 +320,10 @@ class ProductsController extends AppController
     }
 
     /**
-     * variants method
+     * Variants method
      *
      * @param string $id - Product id
+     *
      * @return Response
      */
     public function variants(string $id)
@@ -327,9 +341,10 @@ class ProductsController extends AppController
     }
 
     /**
-     * variant add method
+     * Variant add method
      *
      * @param string $id - Product id
+     *
      * @return Response
      */
     public function variantAdd(string $id)
@@ -358,10 +373,11 @@ class ProductsController extends AppController
     }
 
     /**
-     * variant edit method
+     * Variant edit method
      *
-     * @param string $id - Product id
+     * @param string $id        - Product id
      * @param string $variantId - Variant id
+     *
      * @return Response
      */
     public function variantEdit(string $id, string $variantId)
@@ -388,10 +404,11 @@ class ProductsController extends AppController
     }
 
     /**
-     * variant option add method
+     * Variant option add method
      *
-     * @param string $id - Product id
+     * @param string $id        - Product id
      * @param string $variantId - Variant id
+     *
      * @return Response
      */
     public function variantOptionAdd(string $id, string $variantId)
@@ -418,11 +435,12 @@ class ProductsController extends AppController
     }
 
     /**
-     * variant option delete method
+     * Variant option delete method
      *
-     * @param string $id - Product id
+     * @param string $id        - Product id
      * @param string $variantId - Variant id
-     * @param string $optionId - Option id
+     * @param string $optionId  - Option id
+     *
      * @return Response
      */
     public function variantOptionDelete(string $id, string $variantId, string $optionId)
@@ -440,10 +458,11 @@ class ProductsController extends AppController
     }
 
     /**
-     * variant delete method
+     * Variant delete method
      *
-     * @param string $id - Product id
+     * @param string $id        - Product id
      * @param string $variantId - Variant id
+     *
      * @return Response
      */
     public function variantDelete(string $id, string $variantId)
