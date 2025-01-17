@@ -6,6 +6,7 @@ namespace App\Controller\Manager\Wcm;
 
 use App\Controller\Manager\AppController;
 use Cake\Http\Exception\NotFoundException;
+use Cake\Utility\Text;
 
 class GroupsController extends AppController
 {
@@ -23,12 +24,7 @@ class GroupsController extends AppController
      */
     public function index()
     {
-        try {
-            $groups = $this->paginate($this->Groups);
-        } catch (NotFoundException $e) {
-            // Do something here like redirecting to first or last page.
-            // $e->getPrevious()->getAttributes('pagingParams') will give you required info.
-        }
+        $groups = $this->paginate($this->Groups);
 
         $this->set(compact('groups'));
     }
@@ -42,6 +38,7 @@ class GroupsController extends AppController
         if ($this->request->is('post')) {
             $group = $this->Groups->patchEntity($group, $this->request->getData());
             $group->type = 'groups';
+            $group->slug = Text::slug(strtolower($group->name));
             if ($this->Groups->save($group)) {
                 $this->Flash->success(__('The group has been saved.'));
 
@@ -60,9 +57,11 @@ class GroupsController extends AppController
      */
     public function edit(string $id)
     {
-        $group = $this->Groups->get($id);
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+        $group = $this->Groups->getGroup($id, $selectLanguage);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $group = $this->Groups->patchEntity($group, $this->request->getData());
+            $group->slug = Text::slug(strtolower($group->name));
             if ($this->Groups->save($group)) {
                 $this->Flash->success(__('The group has been saved.'));
 
@@ -72,7 +71,9 @@ class GroupsController extends AppController
             $this->Flash->error(__('The group could not be saved. Please, try again.'));
         }
 
-        $this->set(compact('group'));
+        $languages = $this->fetchTable('Languages')->getTabList();
+
+        $this->set(compact('group', 'selectLanguage', 'languages'));
     }
 
     /**

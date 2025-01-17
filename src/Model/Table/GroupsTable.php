@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\I18n\I18n;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -50,6 +51,11 @@ class GroupsTable extends Table
 
         $this->addBehavior('Timestamp');
         $this->addBehavior('Tree');
+        $this->addBehavior('Translate', [
+            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
+            'fields' => ['name', 'slug'],
+            'defaultLocale' => 'en',
+        ]);
 
         $this->belongsTo('ParentGroups', [
             'className' => 'Groups',
@@ -114,5 +120,11 @@ class GroupsTable extends Table
     public function getAllGroups(): SelectQuery
     {
         return $this->find('all');
+    }
+
+    public function getGroup(string $id, string $locale)
+    {
+        I18n::setLocale($locale);
+        return $this->find('all')->where(['Groups.id' => $id])->first();
     }
 }

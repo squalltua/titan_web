@@ -39,21 +39,10 @@
                             <label for="name" class="form-label required"><?= __('Name') ?></label>
                             <?= $this->Form->text('name', ['class' => 'form-control', 'id' => 'name', 'oninput' => 'listingslug(this.value)', 'required' => true]) ?>
                         </div>
-                        <div class="mb-3">
-                            <label for="slug" class="form-label required"><?= __('Slug') ?></label>
-                            <?= $this->Form->text('slug', ['class' => 'form-control', 'id' => 'slug', 'required' => true]) ?>
-                            <div id="emailHelp" class="form-text">
-                                <?= __('slug is the same as name but is all lowercase. For example, Post-groups will be post-groups.') ?>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="content" class="form-label"><?= __('Content') ?></label>
-                            <?= $this->Form->textarea('content', ['class' => 'form-control', 'id' => 'content']) ?>
-                        </div>
                     </div>
                     <div class="card-footer text-end">
                         <div class="d-flex">
-                            <?= $this->Html->link(__('Cancel'), '/manager/wcm/posts', ['class' => 'btn btn-link']) ?>
+                            <?= $this->Html->link(__('Cancel'), '/manager/wcm/groups', ['class' => 'btn btn-link']) ?>
                             <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary ms-auto']) ?>
                         </div>
                     </div>

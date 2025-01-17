@@ -12,11 +12,11 @@
             <div class="col-auto ms-auto">
                 <a href="/manager/wcm/groups/add" class="btn btn-primary d-none d-sm-inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                         stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <line x1="12" y1="5" x2="12" y2="19"/>
-                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
                     </svg>
                     <?= __('Create new') ?>
                 </a>
@@ -32,25 +32,23 @@
                 <div class="table-responsive">
                     <table class="table table-vcenter card-table table-nowrap datatable">
                         <thead>
-                        <tr>
-                            <th><?= $this->Paginator->sort('name') ?></th>
-                            <th><?= $this->Paginator->sort('slug') ?></th>
-                            <th><?= $this->Paginator->sort('content') ?></th>
-                            <th><?= __('Action') ?></th>
-                        </tr>
+                            <tr>
+                                <th><?= $this->Paginator->sort('name') ?></th>
+                                <th><?= $this->Paginator->sort('slug') ?></th>
+                                <th class="w-2"><?= __('Action') ?></th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($groups as $group): ?>
-                            <tr>
-                                <td><?= h($group->name) ?></td>
-                                <td><?= h($group->slug) ?></td>
-                                <td><?= h($group->content) ?></td>
-                                <td>
-                                    <?= $this->Html->link(__('Edit'), "/manager/wcm/groups/edit/{$group->id}", ['class' => 'me-3']) ?>
-                                    <?= $this->Form->postLink(__('Delete'), "/manager/wcm/groups/delete/{$group->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>
-                                </td>
-                            </tr>
-                        <?php endforeach ?>
+                            <?php foreach ($groups as $group): ?>
+                                <tr>
+                                    <td><?= h($group->name) ?></td>
+                                    <td><?= h($group->slug) ?></td>
+                                    <td>
+                                        <?= $this->Html->link(__('Edit'), "/manager/wcm/groups/edit/{$group->id}", ['class' => 'me-3']) ?>
+                                        <?= $this->Form->postLink(__('Delete'), "/manager/wcm/groups/delete/{$group->id}", ['class' => 'text-danger', 'confirm' => __('Do you want delete this data?')]) ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
                         </tbody>
                     </table>
                 </div>
@@ -77,11 +75,11 @@
                 <div class="empty-action">
                     <a href="/manager/wcm/groups/add" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                             stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                             stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M12 5l0 14"/>
-                            <path d="M5 12l14 0"/>
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 5l0 14" />
+                            <path d="M5 12l14 0" />
                         </svg>
                         <?= __('Add your first post group') ?>
                     </a>
