@@ -61,9 +61,3 @@
         <?= $this->Form->end() ?>
     </div>
 </div>
-
-<script>
-    function listingslug(text) {
-        document.getElementById("slug").value = slugify(text);
-    }
-</script>
