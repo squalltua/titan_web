@@ -32,21 +32,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-9">
-                        <div class="card">
-                            <div class="card-header">
-                                <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs">
-                                    <?php foreach ($languages as $key => $language): ?>
-                                    <li class="nav-item">
-                                        <a href="?lang=<?= $key ?>"
-                                            class="nav-link <?= $key === $selectLanguage ? 'active' : '' ?>">
-                                            <?= $language ?>
-                                        </a>
-                                    </li>
-                                    <?php endforeach ?>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                            <h1 class="display-6"><?= h($post->title) ?></h1>
+                        <h1 class="display-6"><?= h($post->title) ?></h1>
                         <div class="form-group mb-3">
                             <div class="border p-3 conent-display">
                                 <?= $post->content_display ?>
@@ -85,9 +71,9 @@
                                 <label for="meta-posts-og-tag-image"
                                     class="form-label"><?= __('OG Tag image') ?></label>
                                 <?php if (empty($post->meta['og_tag_image'])): ?>
-                                <p><?= __('- No image -') ?></p>
+                                    <p><?= __('- No image -') ?></p>
                                 <?php else: ?>
-                                <?= $this->Html->image($post->meta['og_tag_image'], ['class' => 'img-fluid']) ?>
+                                    <?= $this->Html->image($post->meta['og_tag_image'], ['class' => 'img-fluid']) ?>
                                 <?php endif ?>
                             </div>
                             <div class="form-group mb-3">
@@ -101,8 +87,6 @@
                                         'value' => $post->meta['og_tag_url'] ?? '',
                                     ]
                                 ) ?>
-                            </div>
-                        </div>
                             </div>
                         </div>
                     </div>
@@ -139,10 +123,10 @@
                             <?= $this->Form->text(
                                 'groups_display',
                                 [
-                                    'class' => 'form-select', 
-                                    'id' => 'group-display', 
-                                    'readonly' => true, 
-                                    'disabled' => true, 
+                                    'class' => 'form-select',
+                                    'id' => 'group-display',
+                                    'readonly' => true,
+                                    'disabled' => true,
                                     'multiple' => true,
                                     'value' => $post->groups_display
                                 ]
@@ -152,9 +136,9 @@
                         <div class="form-group mb-3">
                             <label for="feature-image" class="form-label"><?= __('Feature image') ?></label>
                             <?php if (empty($post->meta['feature_image'])): ?>
-                            <p><?= __('- No image -') ?></p>
+                                <p><?= __('- No image -') ?></p>
                             <?php else: ?>
-                            <?= $this->Html->image($post->meta['feature_image'], ['class' => 'img-fluid']) ?>
+                                <?= $this->Html->image($post->meta['feature_image'], ['class' => 'img-fluid']) ?>
                             <?php endif ?>
                         </div>
                     </div>

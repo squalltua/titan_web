@@ -31,100 +31,93 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title"><?= __('Post information') ?></h3>
+                <div class="ms-auto me-3"><?= __('Edit in language') ?></div>
+                <div class="dropdown">
+                    <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown"><?= $languages[$selectLanguage] ?></a>
+                    <div class="dropdown-menu">
+                        <?php foreach ($languages as $unicode => $language): ?>
+                            <?= $this->Html->link($language, "?lang={$unicode}", ['class' => 'dropdown-item']) ?>
+                        <?php endforeach ?>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <div class="card">
-                            <div class="card-header">
-                                <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs">
-                                    <?php foreach ($languages as $key => $language): ?>
-                                        <li class="nav-item">
-                                            <a href="?lang=<?= $key ?>"
-                                                class="nav-link <?= $key === $selectLanguage ? 'active' : '' ?>">
-                                                <?= $language ?>
-                                            </a>
-                                        </li>
-                                    <?php endforeach ?>
-                                </ul>
+                        <div class="mb-3">
+                            <label for="title" class="form-label required"><?= __('Title') ?></label>
+                            <?= $this->Form->text('title', ['class' => 'form-control', 'id' => 'title', 'required' => true]) ?>
+                        </div>
+                        <div class="mb-3">
+                            <label for="content" class="form-label">
+                                <?= __('Content (Markdown syntex supported)') ?>
+                            </label>
+                            <?= $this->Form->textarea(
+                                'content',
+                                [
+                                    'class' => 'form-control',
+                                    'id' => 'content',
+                                    'rows' => '10',
+                                    'style' => "width:100%; height:500px",
+                                ]
+                            ) ?>
+                            <div id="emailHelp" class="form-text">
+                                <?= __('The content box is supported Markdown syntext. We recommened use Markdown.') ?>
                             </div>
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <label for="title" class="form-label required"><?= __('Title') ?></label>
-                                    <?= $this->Form->text('title', ['class' => 'form-control', 'id' => 'title', 'required' => true]) ?>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="content" class="form-label">
-                                        <?= __('Content (Markdown syntex supported)') ?>
-                                    </label>
-                                    <?= $this->Form->textarea(
-                                        'content',
-                                        [
-                                            'class' => 'form-control',
-                                            'id' => 'content',
-                                            'rows' => '10',
-                                            'style' => "width:100%; height:500px",
-                                        ]
-                                    ) ?>
-                                    <div id="emailHelp" class="form-text">
-                                        <?= __('The content box is supported Markdown syntext. We recommened use Markdown.') ?>
+                        </div>
+                        <div class="mb-3">
+                            <label for="meta-posts-og-tag-title"
+                                class="form-label"><?= __('OG Tag Title') ?></label>
+                            <?= $this->Form->text(
+                                'meta_posts.og_tag_title',
+                                [
+                                    'class' => 'form-control',
+                                    'id' => 'meta-posts-og-tag-title',
+                                    'value' => $post->meta['og_tag_title'] ?: null
+                                ]
+                            ) ?>
+                        </div>
+                        <div class="mb-3">
+                            <label for="meta-posts-og-tag-description" class="form-label">
+                                <?= __('OG Tag description') ?>
+                            </label>
+                            <?= $this->Form->textarea(
+                                'meta_posts.og_tag_description',
+                                [
+                                    'class' => 'form-control',
+                                    'id' => 'meta-posts-og-tag-description',
+                                    'value' => $post->meta['og_tag_description']
+                                ]
+                            ) ?>
+                            <div id="emailHelp" class="form-text">
+                                <?= __('Only text for short description for display another plateform.') ?>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="meta-posts-og-tag-image" class="form-label">
+                                <?= __('OG Tag image') ?>
+                            </label>
+                            <?= $this->Form->file('meta_posts.og_tag_image', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-image']) ?>
+                            <?php if (!empty($post->meta['og_tag_image'])): ?>
+                                <div class="mt-3">
+                                    <?= $this->Html->image($post->meta['og_tag_image'], ['class' => 'img-fluid']) ?>
+                                    <div class="mb-3">
+                                        <?= $this->Html->link(
+                                            __('Remove image'),
+                                            "/manager/wcm/posts/remove-image/{$post->id}/og_tag_image/{$selectLanguage}",
+                                            [
+                                                'class' => 'btn btn-sm btn-danger mt-2',
+                                                'confirm' => __('Do you want to delete this image?')
+                                            ]
+                                        ) ?>
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="meta-posts-og-tag-title"
-                                        class="form-label"><?= __('OG Tag Title') ?></label>
-                                    <?= $this->Form->text(
-                                        'meta_posts.og_tag_title',
-                                        [
-                                            'class' => 'form-control',
-                                            'id' => 'meta-posts-og-tag-title',
-                                            'value' => $post->meta['og_tag_title'] ?: null
-                                        ]
-                                    ) ?>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="meta-posts-og-tag-description" class="form-label">
-                                        <?= __('OG Tag description') ?>
-                                    </label>
-                                    <?= $this->Form->textarea(
-                                        'meta_posts.og_tag_description',
-                                        [
-                                            'class' => 'form-control',
-                                            'id' => 'meta-posts-og-tag-description',
-                                            'value' => $post->meta['og_tag_description']
-                                        ]
-                                    ) ?>
-                                    <div id="emailHelp" class="form-text">
-                                        <?= __('Only text for short description for display another plateform.') ?>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="meta-posts-og-tag-image" class="form-label">
-                                        <?= __('OG Tag image') ?>
-                                    </label>
-                                    <?= $this->Form->file('meta_posts.og_tag_image', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-image']) ?>
-                                    <?php if (!empty($post->meta['og_tag_image'])): ?>
-                                        <div class="mt-3">
-                                            <?= $this->Html->image($post->meta['og_tag_image'], ['class' => 'img-fluid']) ?>
-                                            <div class="mb-3">
-                                                <?= $this->Html->link(
-                                                    __('Remove image'),
-                                                    "/manager/wcm/posts/remove-image/{$post->id}/og_tag_image/{$selectLanguage}",
-                                                    [
-                                                        'class' => 'btn btn-sm btn-danger mt-2',
-                                                        'confirm' => __('Do you want to delete this image?')
-                                                    ]
-                                                ) ?>
-                                            </div>
-                                        </div>
-                                    <?php endif ?>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="meta-posts-og-tag-url"
-                                        class="form-label"><?= __('OG Tag URL') ?></label>
-                                    <?= $this->Form->text('meta_posts.og_tag_url', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-url']) ?>
-                                </div>
-                            </div>
+                            <?php endif ?>
+                        </div>
+                        <div class="mb-3">
+                            <label for="meta-posts-og-tag-url"
+                                class="form-label"><?= __('OG Tag URL') ?></label>
+                            <?= $this->Form->text('meta_posts.og_tag_url', ['class' => 'form-control', 'id' => 'meta-posts-og-tag-url']) ?>
                         </div>
                     </div>
                     <div class="col-3">

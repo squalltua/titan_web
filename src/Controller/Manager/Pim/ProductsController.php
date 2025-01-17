@@ -296,8 +296,10 @@ class ProductsController extends AppController
             }
         }
 
+        $languages = $this->fetchTable('Languages')->getTabList();
+
         $this->set('objectMenuActive', 'images');
-        $this->set(compact('product', 'medias'));
+        $this->set(compact('product', 'medias', 'selectLanguage', 'languages'));
     }
 
     /**
@@ -404,8 +406,10 @@ class ProductsController extends AppController
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
+        $languages = $this->fetchTable('Languages')->getTabList();
+
         $this->set('objectMenuActive', 'variants');
-        $this->set(compact('product', 'variant'));
+        $this->set(compact('product', 'variant', 'selectLanguage', 'languages'));
     }
 
     /**
@@ -434,9 +438,10 @@ class ProductsController extends AppController
         }
 
         $variantOptions = $this->fetchTable('Attributes')->find('list')->all()->toArray();
+        $languages = $this->fetchTable('Languages')->getTabList();
 
         $this->set('objectMenuActive', 'variants');
-        $this->set(compact('product', 'variant', 'variantOptions'));
+        $this->set(compact('product', 'variant', 'variantOptions', 'languages', 'selectLanguage'));
     }
 
     /**
