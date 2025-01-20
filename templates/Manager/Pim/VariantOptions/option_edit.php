@@ -33,6 +33,15 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title"><?= __('Variant attribute option informaiton') ?></h3>
+                        <div class="ms-auto me-3"><?= __('Edit in language') ?></div>
+                        <div class="dropdown">
+                            <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown"><?= $languages[$selectLanguage] ?></a>
+                            <div class="dropdown-menu">
+                                <?php foreach ($languages as $unicode => $language): ?>
+                                    <?= $this->Html->link($language, "?lang={$unicode}", ['class' => 'dropdown-item']) ?>
+                                <?php endforeach ?>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="mb-3 row">

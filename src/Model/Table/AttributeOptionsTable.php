@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\I18n\I18n;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -102,5 +103,20 @@ class AttributeOptionsTable extends Table
     public function getOptions(int $attributeId): SelectQuery
     {
         return $this->find('list')->where(['attribute_id' => $attributeId]);
+    }
+
+    /**
+     * get attribute option (single)
+     *
+     * @param string $id        attribute id
+     * @param string $locale    option id
+     * @return mixed
+     */
+    public function getOption(string $id, string $locale): mixed
+    {
+        I18n::setLocale($locale);
+        return $this->find()
+            ->where(['AttributeOptions.id' => $id])
+            ->first();
     }
 }

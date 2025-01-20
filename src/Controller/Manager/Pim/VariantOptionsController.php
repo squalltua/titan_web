@@ -93,10 +93,18 @@ class VariantOptionsController extends AppController
         $this->set(compact('attribute', 'option'));
     }
 
+    /**
+     * edit variant attribute option function
+     *
+     * @param string $id        variant id
+     * @param string $optionId  option id
+     * @return null|Response
+     */
     public function optionEdit(string $id, string $optionId)
     {
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
         $attribute = $this->fetchTable('Attributes')->get($id);
-        $option = $this->fetchTable('AttributeOptions')->get($optionId);
+        $option = $this->fetchTable('AttributeOptions')->getOption($optionId, $selectLanguage);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $option = $this->fetchTable('AttributeOptions')->patchEntity($option, $this->request->getData());
             if ($this->fetchTable('AttributeOptions')->save($option)) {
@@ -108,7 +116,9 @@ class VariantOptionsController extends AppController
             return $this->redirect("/manager/pim/variant-options/edit/{$id}");
         }
 
-        $this->set(compact('attribute', 'option'));
+        $languages = $this->fetchTable('Languages')->getTabList();
+
+        $this->set(compact('attribute', 'option', 'selectLanguage', 'languages'));
     }
 
     public function optionDelete(string $id, string $optionId)

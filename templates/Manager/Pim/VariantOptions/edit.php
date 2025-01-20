@@ -31,18 +31,15 @@
         <div class="row">
             <div class="col-12 col-lg-6">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" style="padding-top:12px; padding-bottom: 12px">
                         <h3 class="card-title"><?= __('Variant attribute informaiton') ?></h3>
-                        <div class="card-actions d-flex">
-                            <div class="x"></div>
-                            <div class="me-3"><?= __('Edit in language') ?></div>
-                            <div class="dropdown">
-                                <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown"><?= $languages[$selectLanguage] ?></a>
-                                <div class="dropdown-menu">
-                                    <?php foreach ($languages as $unicode => $language): ?>
-                                        <?= $this->Html->link($language, "?lang={$unicode}", ['class' => 'dropdown-item']) ?>
-                                    <?php endforeach ?>
-                                </div>
+                        <div class="ms-auto me-3"><?= __('Edit in language') ?></div>
+                        <div class="dropdown">
+                            <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown"><?= $languages[$selectLanguage] ?></a>
+                            <div class="dropdown-menu">
+                                <?php foreach ($languages as $unicode => $language): ?>
+                                    <?= $this->Html->link($language, "?lang={$unicode}", ['class' => 'dropdown-item']) ?>
+                                <?php endforeach ?>
                             </div>
                         </div>
                     </div>
