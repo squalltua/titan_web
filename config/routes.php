@@ -98,6 +98,9 @@ return function (RouteBuilder $routes): void {
 
             $builder->connect('/variant-options', ['prefix' => 'Manager/Pim', 'controller' => 'VariantOptions', 'action' => 'index']);
             $builder->connect('/variant-options/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'VariantOptions']);
+
+            $builder->connect('/published', ['prefix' => 'Manager/Pim', 'controller' => 'Published', 'action' => 'index']);
+            $builder->connect('/published/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'Published']);
         });
 
         $builder->prefix('Dam', function (RouteBuilder $builder): void {
