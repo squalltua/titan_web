@@ -75,7 +75,8 @@ class CategoriesController extends AppController
      */
     public function edit(string $id): Response
     {
-        $category = $this->Categories->get($id);
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+        $category = $this->Categories->getCategory($id, $selectLanguage);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $category = $this->Categories->patchEntity($category, $this->request->getData());
             $category->slug = Text::slug($category->name);
@@ -89,8 +90,9 @@ class CategoriesController extends AppController
         }
 
         $parents = $this->Categories->find('treeList');
+        $languages = $this->fetchTable('Languages')->getTabList();
 
-        $this->set(compact('category', 'parents'));
+        $this->set(compact('category', 'parents', 'selectLanguage', 'languages'));
 
         return $this->render();
     }
@@ -102,7 +104,7 @@ class CategoriesController extends AppController
     public function delete(string $id): ?Response
     {
         $this->request->allowMethod(['delete', 'post']);
-        $category = $this->Categories->getCategory($id);
+        $category = $this->Categories->get($id);
         if ($this->Categories->delete($category)) {
             $this->Flash->success(__('The data has been deleted.'));
         } else {

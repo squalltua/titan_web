@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\I18n\I18n;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -51,6 +52,11 @@ class CategoriesTable extends Table
         $this->addBehavior('Timestamp');
         $this->addBehavior('Tree', [
             'level' => 'level'
+        ]);
+        $this->addBehavior('Translate', [
+            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
+            'fields' => ['name', 'slug'],
+            'defaultLocale' => 'en',
         ]);
 
         $this->belongsTo('ParentCategories', [
@@ -111,6 +117,19 @@ class CategoriesTable extends Table
         $rules->add($rules->existsIn(['parent_id'], 'ParentCategories'), ['errorField' => 'parent_id']);
 
         return $rules;
+    }
+
+    /**
+     * get category data (single)
+     *
+     * @param string $id        category id
+     * @param string $locale    locale code, exe. th, en
+     * @return mixed
+     */
+    public function getCategory(string $id, string $locale): mixed
+    {
+        I18n::setLocale($locale);
+        return $this->find()->where(['Categories.id' => $id])->first();
     }
 
     /**
