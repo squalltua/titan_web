@@ -20,20 +20,17 @@
         <div class="row">
             <div class="col-12 col-md-8 col-lg-7">
                 <div class="card">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs">
-                            <li class="nav-item me-auto">
-                                <div class="card-title" data-bs-toggle="tab"><?= __('System information') ?></div>
-                            </li>
-                            <?php foreach ($languages as $key => $language): ?>
-                            <li class="nav-item">
-                                <a href="?lang=<?= $key ?>"
-                                    class="nav-link <?= $key === $selectLanguage ? 'active' : '' ?>">
-                                    <?= $language ?>
-                                </a>
-                            </li>
-                            <?php endforeach; ?>
-                        </ul>
+                    <div class="card-header py-2">
+                        <h3 class="card-title"><?= __('System information') ?></h3>
+                        <div class="ms-auto me-3"><?= __('Edit in language') ?></div>
+                        <div class="dropdown">
+                            <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown"><?= $languages[$selectLanguage] ?></a>
+                            <div class="dropdown-menu">
+                                <?php foreach ($languages as $unicode => $language): ?>
+                                    <?= $this->Html->link($language, "?lang={$unicode}", ['class' => 'dropdown-item']) ?>
+                                <?php endforeach ?>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="mb-3 row">
