@@ -163,7 +163,10 @@ class PostsTable extends Table
      */
     public function getPostWithSlug(string $slug)
     {
-        return $this->find()->where(['slug' => $slug])->contain(['MetaPosts'])->first();
+        return $this->find()
+            ->where(['slug' => $slug])
+            ->contain(['MetaPosts'])
+            ->first();
     }
 
     /**

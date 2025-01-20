@@ -10,6 +10,13 @@ use Cake\Utility\Text;
 
 class GroupsController extends AppController
 {
+    protected array $paginate = [
+        'limit' => 25,
+        'order' => [
+            'Groups.created' => 'desc',
+        ],
+    ];
+    
     public function initialize(): void
     {
         parent::initialize();
@@ -24,7 +31,9 @@ class GroupsController extends AppController
      */
     public function index()
     {
-        $groups = $this->paginate($this->Groups);
+        $limit = (int) $this->request->getQuery('show_entries', 25);
+        $conditions = $this->request->getQuery('keyword') ? ['name LIKE' => "%{$this->request->getQuery('keyword')}%"] : [];
+        $groups = $this->paginate($this->Groups->getAllGroups($conditions), ['limit' => $limit]);
 
         $this->set(compact('groups'));
     }

@@ -117,9 +117,11 @@ class GroupsTable extends Table
         return $rules;
     }
 
-    public function getAllGroups(): SelectQuery
+    public function getAllGroups(array $conditions = []): SelectQuery
     {
-        return $this->find('all');
+        return $this->find()
+            ->where($conditions)
+            ->orderByDesc('created');
     }
 
     public function getGroup(string $id, string $locale)
