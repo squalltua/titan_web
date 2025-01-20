@@ -33,6 +33,18 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title"><?= __('Variant attribute informaiton') ?></h3>
+                        <div class="card-actions d-flex">
+                            <div class="x"></div>
+                            <div class="me-3"><?= __('Edit in language') ?></div>
+                            <div class="dropdown">
+                                <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown"><?= $languages[$selectLanguage] ?></a>
+                                <div class="dropdown-menu">
+                                    <?php foreach ($languages as $unicode => $language): ?>
+                                        <?= $this->Html->link($language, "?lang={$unicode}", ['class' => 'dropdown-item']) ?>
+                                    <?php endforeach ?>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="mb-3 row">
@@ -78,19 +90,19 @@
                             </thead>
                             <tbody>
                                 <?php if ($attribute->attribute_options): ?>
-                                <?php foreach ($attribute->attribute_options as $option): ?>
-                                <tr>
-                                    <td><?= h($option->value) ?></td>
-                                    <td>
-                                        <?= $this->Html->link(__('Edit'), "/manager/pim/variant-options/option-edit/{$attribute->id}/{$option->id}", ['class' => 'me-3']) ?>
-                                        <?= $this->Form->postLink(__('Delete'), "/manager/pim/variant-options/option-delete/{$attribute->id}/{$option->id}", ['class' => 'text-danger', 'confirm' => __('Do you want deleted this data?')]) ?>
-                                    </td>
-                                </tr>
-                                <?php endforeach ?>
+                                    <?php foreach ($attribute->attribute_options as $option): ?>
+                                        <tr>
+                                            <td><?= h($option->value) ?></td>
+                                            <td>
+                                                <?= $this->Html->link(__('Edit'), "/manager/pim/variant-options/option-edit/{$attribute->id}/{$option->id}", ['class' => 'me-3']) ?>
+                                                <?= $this->Form->postLink(__('Delete'), "/manager/pim/variant-options/option-delete/{$attribute->id}/{$option->id}", ['class' => 'text-danger', 'confirm' => __('Do you want deleted this data?')]) ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
                                 <?php else: ?>
-                                <tr>
-                                    <td class="text-center" colspan="2"><?= __('- No data -') ?></td>
-                                </tr>
+                                    <tr>
+                                        <td class="text-center" colspan="2"><?= __('- No data -') ?></td>
+                                    </tr>
                                 <?php endif ?>
                             </tbody>
                         </table>

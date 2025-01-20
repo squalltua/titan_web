@@ -10,7 +10,16 @@
             </div>
         </div>
     </div>
-    <div class="card-actions">
+    <div class="ms-auto me-3"><?= __('View in language') ?></div>
+    <div class="dropdown">
+        <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown"><?= $languages[$selectLanguage] ?></a>
+        <div class="dropdown-menu">
+            <?php foreach ($languages as $unicode => $language): ?>
+                <?= $this->Html->link($language, "?lang={$unicode}", ['class' => 'dropdown-item']) ?>
+            <?php endforeach ?>
+        </div>
+    </div>
+    <div class="ms-3">
         <a href="<?= "/manager/pim/products/edit/{$product->id}" ?>" class="btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -27,24 +36,32 @@
 <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
         <li class="nav-item">
-            <?= $this->Html->link(__('Basic information'), "/manager/pim/products/detail/{$product->id}", ['class' => $objectMenuActive === 'detail' ? 'nav-link active' : 'nav-link']) ?>
+            <?= $this->Html->link(
+                __('Basic information'),
+                "/manager/pim/products/detail/{$product->id}?lang={$selectLanguage}",
+                ['class' => $objectMenuActive === 'detail' ? 'nav-link active' : 'nav-link']
+            ) ?>
         </li>
         <li class="nav-item">
-            <?= $this->Html->link(__('Meta data'), "/manager/pim/products/meta/{$product->id}", ['class' => $objectMenuActive === 'meta' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
+            <?= $this->Html->link(
+                __('Meta data'),
+                "/manager/pim/products/meta/{$product->id}?lang={$selectLanguage}",
+                ['class' => $objectMenuActive === 'meta' ? 'nav-link px-3 active' : 'nav-link px-3']
+            ) ?>
         </li>
         <li class="nav-item">
-            <?= $this->Html->link(__('Variants'), "/manager/pim/products/variants/{$product->id}", ['class' => $objectMenuActive === 'variants' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
+            <?= $this->Html->link(
+                __('Variants'),
+                "/manager/pim/products/variants/{$product->id}?lang={$selectLanguage}",
+                ['class' => $objectMenuActive === 'variants' ? 'nav-link px-3 active' : 'nav-link px-3']
+            ) ?>
         </li>
         <li class="nav-item">
-            <?= $this->Html->link(__('Images'), "/manager/pim/products/images/{$product->id}", ['class' => $objectMenuActive === 'images' ? 'nav-link px-3 active' : 'nav-link px-3']) ?>
-        </li>
-        <li class="nav-item dropdown ms-auto">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('Edit in {0} language', $languages[$selectLanguage]) ?></a>
-            <div class="dropdown-menu">
-                <?php foreach ($languages as $unicode => $language): ?>
-                    <?= $this->Html->link($language, "?lang={$unicode}", ['class' => 'dropdown-item']) ?>
-                <?php endforeach ?>
-            </div>
+            <?= $this->Html->link(
+                __('Images'),
+                "/manager/pim/products/images/{$product->id}?lang={$selectLanguage}",
+                ['class' => $objectMenuActive === 'images' ? 'nav-link px-3 active' : 'nav-link px-3']
+            ) ?>
         </li>
     </ul>
 </div>

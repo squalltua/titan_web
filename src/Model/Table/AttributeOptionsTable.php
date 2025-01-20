@@ -47,6 +47,11 @@ class AttributeOptionsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Translate', [
+            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
+            'fields' => ['value'],
+            'defaultLocale' => 'en',
+        ]);
 
         $this->belongsTo('Attributes', [
             'foreignKey' => 'attribute_id',

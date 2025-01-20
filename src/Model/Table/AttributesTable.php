@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\I18n\I18n;
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -46,6 +47,11 @@ class AttributesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Translate', [
+            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
+            'fields' => ['name'],
+            'defaultLocale' => 'en',
+        ]);
 
         $this->hasMany('AttributeOptions', [
             'foreignKey' => 'attribute_id',
@@ -77,5 +83,12 @@ class AttributesTable extends Table
     public function getAllAtributes(array $conditions = []): SelectQuery
     {
         return $this->find()->where($conditions);
+    }
+
+    public function getAttribute(string $id, string $locale)
+    {
+        I18n::setLocale($locale);
+        
+        return $this->find()->where(['Attributes.id' => $id])->contain(['AttributeOptions'])->first();
     }
 }

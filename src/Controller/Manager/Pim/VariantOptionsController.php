@@ -45,19 +45,22 @@ class VariantOptionsController extends AppController
 
     public function edit(string $id)
     {
-        $attribute = $this->fetchTable('Attributes')->get($id, ['contain' => 'AttributeOptions']);
+        $selectLanguage = $this->request->getQuery('lang') ?: $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+        $attribute = $this->fetchTable('Attributes')->getAttribute($id, $selectLanguage);
         if ($this->request->is(['post', 'put', 'patch'])) {
             $variant = $this->fetchTable('Attributes')->patchEntity($attribute, $this->request->getData());
             if ($this->fetchTable('Attributes')->save($attribute)) {
                 $this->Flash->success(__('The data has been saved.'));
 
-                return $this->redirect("/manager/pim/variant-optons/edit/{$id}");
+                return $this->redirect("/manager/pim/variant-options/edit/{$id}?lang={$selectLanguage}");
             }
 
             $this->Flash->error(__('The data could not be saved. Please try again.'));
         }
 
-        $this->set(compact('attribute'));
+        $languages = $this->fetchTable('Languages')->getTabList();
+
+        $this->set(compact('attribute', 'selectLanguage', 'languages'));
     }
 
     public function delete(string $id)
