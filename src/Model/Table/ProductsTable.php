@@ -164,21 +164,22 @@ class ProductsTable extends Table
 
     /**
      * @param array<string, mixed> $conditions
-     * @return \Cake\ORM\SelectQuery
+     * @return \Cake\ORM\Query\SelectQuery
      */
     public function getAllProducts(array $conditions = []): SelectQuery
     {
         return $this->find()
             ->where($conditions)
-            ->contain(['Categories']);
+            ->contain(['Categories'])
+            ->orderByDesc('Products.created');
     }
 
     /**
-     * @param string $id - Product id
-     * @param string $locale - select language
-     * @return \App\Model\Entity\Product
+     * @param string $id        Product id
+     * @param string $locale    select language
+     * @return mixed
      */
-    public function getInformation(string $id, string $locale)
+    public function getInformation(string $id, string $locale): mixed
     {
         I18n::setLocale($locale);
 
@@ -190,7 +191,9 @@ class ProductsTable extends Table
             })
             ->first();
 
-        $product->medias_icon_url = $product->medias[0]->link_url ?? null;
+        if ($product) {
+            $product->medias_icon_url = $product->medias[0]->link_url ?? null;
+        }
 
         return $product;
     }

@@ -17,6 +17,13 @@ use Cake\Utility\Hash;
  */
 class ProductsController extends AppController
 {
+    protected array $paginate = [
+        'limit' => 25,
+        'order' => [
+            'Products.created' => 'desc',
+        ],
+    ];
+
     /**
      * Initialize method
      *

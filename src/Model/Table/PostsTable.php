@@ -166,7 +166,14 @@ class PostsTable extends Table
         return $this->find()->where(['slug' => $slug])->contain(['MetaPosts'])->first();
     }
 
-    public function getPostData(string $id, ?string $lang)
+    /**
+     * get post data (single)
+     *
+     * @param string $id
+     * @param string|null $lang
+     * @return mixed
+     */
+    public function getPostData(string $id, ?string $lang): mixed
     {
         I18n::setLocale($lang);
         $post = $this->find('all')->where(['Posts.id' => $id])->contain(['MetaPosts', 'Groups'])->first();

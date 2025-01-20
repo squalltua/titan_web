@@ -6,9 +6,7 @@ namespace App\Controller\Manager\Wcm;
 
 use App\Controller\Manager\AppController;
 use Authentication\Controller\Component\AuthenticationComponent;
-use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
-use Cake\I18n\I18n;
 use Cake\Utility\Hash;
 use Cake\Utility\Text;
 use Parsedown;
@@ -41,8 +39,9 @@ class PostsController extends AppController
     public function index()
     {
         $limit = (int) $this->request->getQuery('show_entries', 25);
-        $conditions = $this->request->getQuery('keywork') ? ['title LIKE' => "%{$this->request->getQuery('keyword')}%"] : [];
+        $conditions = $this->request->getQuery('keyword') ? ['title LIKE' => "%{$this->request->getQuery('keyword')}%"] : [];
         $posts = $this->paginate($this->Posts->getAllPosts($conditions), ['limit' => $limit]);
+
         $this->set(compact('posts'));
     }
 
