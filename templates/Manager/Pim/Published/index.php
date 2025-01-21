@@ -28,10 +28,30 @@
 
 <div class="page-body">
     <div class="container-xl">
-        <div class="card">
-            <div class="card-body">
-                xxx
-            </div>
+        <div class="row row-cards">
+            <?php foreach ($counter as $locale => $count): ?>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-sm">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="bg-primary text-white avatar"><!-- Download SVG icon from http://tabler.io/icons/icon/currency-dollar -->
+                                        <?= $locale ?>
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <div class="font-weight-medium">
+                                        <?= __('{0} products', $this->Number->format($count)) ?>
+                                    </div>
+                                    <div class="text-secondary">
+                                        <?= __('Read from cache') ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach ?>
         </div>
     </div>
 </div>

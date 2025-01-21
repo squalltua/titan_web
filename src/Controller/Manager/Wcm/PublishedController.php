@@ -22,7 +22,14 @@ class PublishedController extends AppController
     }
     public function index()
     {
-        // just page
+        $counter = [];
+        $languages = $this->fetchTable('Languages')->getTabList();
+        foreach ($languages as $unicode => $localeText) {
+            $cache = Cache::read("{$unicode}_published_posts_indexes");
+            $counter[$unicode] = $cache ? count($cache) : 0;
+        }
+        
+        $this->set(compact('counter'));
     }
 
     public function generate()
@@ -36,7 +43,6 @@ class PublishedController extends AppController
 
         $this->_cachingPosts($languages, $defaultLanguage);
         $this->_cachingGroups($languages, $defaultLanguage);
-        exit;
 
         $this->Flash->success(__('Published posts and groups have been generated'));
 
@@ -45,9 +51,7 @@ class PublishedController extends AppController
 
     private function _cachingPosts(array $languages, string $defaultLanguage): void
     {
-        // Clear old cached
-        Cache::delete('published_posts_indexes');
-
+        // Cache::clear();
         // Load all Post data.
         $posts = $this->fetchTable('Posts')->find('translations')
             ->where(['status' => 'published'])
@@ -68,7 +72,7 @@ class PublishedController extends AppController
                         'title' => $post->title,
                         'intro' => $post->intro,
                         'link_url' => Router::url("/{$defaultLanguage}/blogs/{$post->slug}", true),
-                        'feature_image_url' => $meta['feature_image']->meta_value,
+                        'feature_image_url' => $meta['feature_image']->meta_value ?? null,
                     ];
 
                     Cache::write("{$unicode}-{$post->slug}", $post);
@@ -79,7 +83,7 @@ class PublishedController extends AppController
                         'title' => $post->_translations[$unicode]->title,
                         'intro' => $post->_translations[$unicode]->intro,
                         'link_url' => Router::url("/{$unicode}/blogs/{$post->_translations[$unicode]->slug}", true),
-                        'feature_image_url' => $meta['feature_image']->_translations[$unicode]->meta_value ?? $meta['feature_image']->meta_value,
+                        'feature_image_url' => $meta['feature_image']->_translations[$unicode]->meta_value ?? $meta['feature_image']->meta_value ?? null,
                     ];
 
                     Cache::write("{$unicode}-{$post->_translations[$unicode]->slug}", $post->_translations[$unicode]);
@@ -87,8 +91,8 @@ class PublishedController extends AppController
             }
         }
 
-        foreach ($indexPosts as $locale => $indexPosts) {
-            Cache::write("{$locale}_published_posts_indexes", $indexPosts);
+        foreach ($indexPosts as $locale => $posts) {
+            Cache::write("{$locale}_published_posts_indexes", $posts);
         }
     }
 

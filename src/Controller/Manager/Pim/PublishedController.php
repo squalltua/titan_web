@@ -22,7 +22,14 @@ class PublishedController extends AppController
     }
     public function index()
     {
-        // just page
+        $counter = [];
+        $languages = $this->fetchTable('Languages')->getTabList();
+        foreach ($languages as $unicode => $localeText) {
+            $cache = Cache::read("{$unicode}_published_products_indexes");
+            $counter[$unicode] = $cache ? count($cache) : 0;
+        }
+
+        $this->set(compact('counter'));
     }
 
     public function generate()

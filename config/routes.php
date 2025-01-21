@@ -75,7 +75,7 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/reset-data-admin', 'Manager/Settings/Users::resetDataAdmin');
 
         $builder->prefix('Wcm', function (RouteBuilder $builder): void {
-            $builder->connect('/', ['prefix' => 'Manager/Wcm', 'controller' => 'Pages', 'action' => 'dashboard']);
+            // $builder->connect('/', ['prefix' => 'Manager/Wcm', 'controller' => 'Pages', 'action' => 'dashboard']);
 
             $builder->connect('/posts', ['prefix' => 'Manager/Wcm', 'controller' => 'Posts', 'action' => 'index']);
             $builder->connect('/posts/{action}/*', ['prefix' => 'Manager/Wcm', 'controller' => 'Posts']);
@@ -88,7 +88,7 @@ return function (RouteBuilder $routes): void {
         });
 
         $builder->prefix('Pim', function (RouteBuilder $builder): void {
-            $builder->connect('/', ['prefix' => 'Manager/Pim', 'controller' => 'Pages', 'action' => 'dashboard']);
+            // $builder->connect('/', ['prefix' => 'Manager/Pim', 'controller' => 'Pages', 'action' => 'dashboard']);
 
             $builder->connect('/products', ['prefix' => 'Manager/Pim', 'controller' => 'Products', 'action' => 'index']);
             $builder->connect('/products/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'Products']);
@@ -104,14 +104,14 @@ return function (RouteBuilder $routes): void {
         });
 
         $builder->prefix('Dam', function (RouteBuilder $builder): void {
-            $builder->connect('/', ['prefix' => 'Manager/Dam', 'controller' => 'Pages', 'action' => 'dashboard']);
+            // $builder->connect('/', ['prefix' => 'Manager/Dam', 'controller' => 'Pages', 'action' => 'dashboard']);
 
             $builder->connect('/medias', ['prefix' => 'Manager/Dam', 'controller' => 'Medias', 'action' => 'index']);
             $builder->connect('/medias/{action}/*', ['prefix' => 'Manager/Dam', 'controller' => 'Medias']);
         });
 
         $builder->prefix('Cdm', function (RouteBuilder $builder): void {
-            $builder->connect('/', ['prefix' => 'Manager/Cdm', 'controller' => 'Pages', 'action' => 'dashboard']);
+            // $builder->connect('/', ['prefix' => 'Manager/Cdm', 'controller' => 'Pages', 'action' => 'dashboard']);
 
             $builder->connect('/customers', ['prefix' => 'Manager/Cdm', 'controller' => 'Customers', 'action' => 'index']);
             $builder->connect('/customers/{action}/*', ['prefix' => 'Manager/Cdm', 'controller' => 'Customers']);
