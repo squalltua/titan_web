@@ -52,11 +52,8 @@ class PublishedController extends AppController
 
     private function _cachingPosts(array $languages, string $defaultLanguage): void
     {
-        // Clear old cached
-        Cache::delete('published_posts_indexes');
-
         // Load all Post data.
-        $posts = $this->fetchTable('Posts')->find('translations')
+        $posts = $this->fetchTable('Products')->find('translations')
             ->where(['status' => 'published'])
             ->contain('MetaPosts', function ($q) {
                 return $q->find('translations');
@@ -101,6 +98,11 @@ class PublishedController extends AppController
 
     private function _cachingGroups(array $languages, string $defaultLanguages)
     {
-        Cache::delete('published_groups_indexes');
+        $groups = $this->fetchTable('Groups')->find('translations')->orderByAsc('Groups.lft');
+        $indexGroups = [];
+        
+        foreach ($groups as $group) {
+            
+        }
     }
 }

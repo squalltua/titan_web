@@ -46,31 +46,30 @@ class PagesController extends AppController
     {
         parent::initialize();
 
-        $langSets = $this->fetchTable('Languages')->find('list', keyField: 'unicode', valueField: 'title')->toArray();
-        $langSets = $langSets ?: ['en' => 'English'];
+        /**
+         * ---------------- NOTE ----------------
+         * การโหลดข้อมูลต่างๆ แนะนำให้โหลดผ่าน Cache
+         * 
+         * ---------------- END  ----------------
+         */
+
+        // load language form cache
+        $languages = Cache::read('languages') ?: ['en' => 'English'];
         $lang = $this->request->getParam('lang');
-        if (!$lang) {
-            // Setup default language and reload page
-            $lang = $this->fetchTable('Languages')->getDefaultLanguageUnicode() ?: Configure::read('App.defaultLocale');
+        if (empty($languages[$lang])) {
+            $lang = Cache::read('language_default') ?: Configure::read('App.defaultLocale');
             $this->changeLanguage($lang);
-        } else {
-            // Setup language
-            if (!isset($langSets[$lang])) {
-                $this->changeLanguage(Configure::read('App.defaultLocale'));
-            }
-            I18n::setLocale($lang);
         }
+
+        I18n::setLocale($lang);
         $this->set('lang', $lang);
-
-        $siteSettingData = $this->fetchTable('SiteSettings')->find('all');
-        $siteSetting = Hash::combine($siteSettingData->toArray(), '{n}.key_field', '{n}.value_field');
-
+        
+        $siteSetting = Cache::read("{$lang}_site_settings");
         $this->set(compact('siteSetting'));
     }
 
-    public function changeLanguage(?string $lang): Response
+    public function changeLanguage(string $lang): Response
     {
-        $lang = $lang ?: Configure::read('App.defaultLocale');
         return $this->redirect("/{$lang}");
     }
 

@@ -87,6 +87,11 @@ class SiteSettingsTable extends Table
         return Hash::combine($settingData->toArray(), '{n}.key_field', '{n}.value_field');
     }
 
+    public function getSiteSettingAllLanguages()
+    {
+        return $this->find('translations'); 
+    }
+
     /**
      * @param array $data
      * @return bool
