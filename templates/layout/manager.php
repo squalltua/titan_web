@@ -14,17 +14,6 @@
         '/vendor/tabler-v1.0.0-beta20/dist/css/tabler-vendors.min.css',
         'main.css',
     ]) ?>
-    <style>
-    @import url('https://rsms.me/inter/inter.css');
-
-    :root {
-        --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
-    }
-
-    body {
-        font-feature-settings: "cv03", "cv04", "cv11";
-    }
-    </style>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -45,16 +34,15 @@
                     <div class="row text-center align-items-center flex-row-reverse">
                         <div class="col-lg-auto ms-lg-auto">
                             <ul class="list-inline list-inline-dots mb-0">
-                                <li class="list-inline-item"><a href="#" target="_blank" class="link-secondary"
-                                        rel="noopener">Documentation</a>
+                                <li class="list-inline-item">
+                                    <a href="#" target="_blank" class="link-secondary" rel="noopener"><?= __('Documentation') ?></a>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-12 col-lg-auto mt-3 mt-lg-0">
                             <ul class="list-inline list-inline-dots mb-0">
                                 <li class="list-inline-item">
-                                    &copy; <?= date('Y') ?>
-                                    Titan/WEB open source. MIT LC.
+                                    &copy; <?= date('Y') ?> Titan/WEB Open source. MIT LC.
                                 </li>
                                 <li class="list-inline-item">
                                     Version 1.0.0 (beta)
@@ -69,13 +57,13 @@
 
     <!-- Libs JS -->
     <?= $this->Html->script([
-    // Tabler Core
-    '/vendor/tabler-v1.0.0-beta20/dist/js/tabler.min.js',
+        // Tabler Core
+        '/vendor/tabler-v1.0.0-beta20/dist/js/tabler.min.js',
 
-    // TitanWEB Core
-    'component.js',
-    'main.js',
-]) ?>
+        // TitanWEB Core
+        'component.js',
+        'main.js',
+    ]) ?>
 </body>
 
 </html>
