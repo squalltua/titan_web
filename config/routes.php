@@ -59,6 +59,9 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/*', 'Pages::pageNotFoundError');
     });
 
+    /**
+     * NOTE: เอาไว้ใช้ในกรณีมีระบบ member และให้ client เข้าใช้งาน
+     */
     $routes->prefix('Client', function (RouteBuilder $builder): void {
         $builder->connect('/', 'Client/Clientusers::index');
         $builder->connect('/login', 'Client/Clientusers::login');
@@ -80,7 +83,8 @@ return function (RouteBuilder $routes): void {
      * ================================================== */
 
     /** ==================================================
-     *  Manger routes
+     * Manger routes
+     * routes สำหรับระบบหลังบ้านทั้งหมด
      * ================================================== */
     $routes->prefix('Manager', function (RouteBuilder $builder): void {
         $builder->connect('/', 'Pages::index');
@@ -89,67 +93,122 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/initialize-data', 'Manager/Settings/Users::initializeData');
         $builder->connect('/reset-data-admin', 'Manager/Settings/Users::resetDataAdmin');
 
+        // สำรหรับระบบ Web content management (WCM)
         $builder->prefix('Wcm', function (RouteBuilder $builder): void {
-            $builder->connect('/posts', ['prefix' => 'Manager/Wcm', 'controller' => 'Posts', 'action' => 'index']);
-            $builder->connect('/posts/{action}/*', ['prefix' => 'Manager/Wcm', 'controller' => 'Posts']);
+            $builder->connect('/posts', 'Manager/Wcm/Posts::index');
+            $builder->connect('/posts/view/{id}', 'Manager/Wcm/Posts::view')->setPass(['id']);
+            $builder->connect('/posts/add', 'Manager/Wcm/Posts::add');
+            $builder->connect('/posts/edit/{id}', 'Manager/Wcm/Posts::edit')->setPass(['id']);
+            $builder->connect('/posts/delete/{id}', 'Manager/Wcm/Posts::delete')->setPass(['id']);
+            $builder->connect('/posts/remove-image/{id}', 'Manager/Wcm/Posts::removeImage')->setPass(['id']);
 
-            $builder->connect('/groups', ['prefix' => 'Manager/Wcm', 'controller' => 'Groups', 'action' => 'index']);
-            $builder->connect('/groups/{action}/*', ['prefix' => 'Manager/Wcm', 'controller' => 'Groups']);
+            $builder->connect('/groups', 'Manager/Wcm/Groups::index');
+            $builder->connect('/groups/add', 'Manager/Wcm/Groups::add');
+            $builder->connect('/groups/edit/{id}', 'Manager/Wcm/Groups::edit')->setPass(['id']);
+            $builder->connect('/groups/delete/{id}', 'Manager/Wcm/Groups::delete')->setPass(['id']);
 
-            $builder->connect('/published', ['prefix' => 'Manager/Wcm', 'controller' => 'Published', 'action' => 'index']);
-            $builder->connect('/published/{action}/*', ['prefix' => 'Manager/Wcm', 'controller' => 'Published']);
+            $builder->connect('/published', 'Manager/Wcm/Published::index');
+            $builder->connect('/published/generate', 'Manager/Wcm/Published::generate');
         });
-
+        
+        // สำหรับ Product information management (PIM)
         $builder->prefix('Pim', function (RouteBuilder $builder): void {
-            $builder->connect('/products', ['prefix' => 'Manager/Pim', 'controller' => 'Products', 'action' => 'index']);
-            $builder->connect('/products/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'Products']);
+            $builder->connect('/products', 'Manager/Pim/Products::index');
+            $builder->connect('/products/add', 'Manager/Pim/Products::add');
+            $builder->connect('/products/detail/{id}', 'Manager/Pim/Products::detail')->setPass(['id']);
+            $builder->connect('/products/edit/{id}', 'Manager/Pim/Products::edit')->setPass(['id']);
+            $builder->connect('/products/delete/{id}', 'Manager/Pim/Products::delete')->setPass(['id']);
+
+            $builder->connect('/products/meta/{id}', 'Manager/Pim/Products::meta')->setPass(['id']);
+            $builder->connect('/products/meta-add/{id}', 'Manager/Pim/Products::metaAdd')->setPass(['id']);
+            $builder->connect('/products/meta-edit/{product_id}/{meta_id}', 'Manager/Pim/Products::metaEdit')->setPass(['product_id', 'meta_id']);
+            $builder->connect('/products/meta-delete/{product_id}/{meta_id}', 'Manager/Pim/Products::metaDelete')->setPass(['product_id', 'meta_id']);
+
+            $builder->connect('/products/images/{id}', 'Manager/Pim/Products::images')->setPass(['id']);
+            $builder->connect('/products/remove-image/{product_id}/{media_id}', 'Manager/Pim/Products::removeImage')->setPass(['product_id', 'media_id']);
+
+            $builder->connect('/products/variants/{id}', 'Manager/Pim/Products::variants')->setPass(['id']);
+            $builder->connect('/products/variant-add/{id}', 'Manager/Pim/Products::variantAdd')->setPass(['id']);
+            $builder->connect('/products/variant-edit/{product_id}/{variant_id}', 'Manager/Pim/Products::variantEdit')->setPass(['product_id', 'variant_id']);
+            $builder->connect('/products/variant-delete/{product_id}/{variant_id}', 'Manager/Pim/Products::variantDelete')->setPass(['product_id', 'variant_id']);
+            $builder->connect('/products/variant-option-add/{product_id}/{variant_id}', 'Manager/Pim/Products::variantOptionAdd')->setPass(['product_id', 'variant_id']);
+            $builder->connect('/products/variant-option-delete/{product_id}/{variant_id}/{option_id}', 'Manager/Pim/Products::variantOptionDelete')->setPass(['product_id', 'variant_id', 'option_id']);
 
             $builder->connect('/categories', ['prefix' => 'Manager/Pim', 'controller' => 'Categories', 'action' => 'index']);
-            $builder->connect('/categories/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'Categories']);
+            $builder->connect('/categories/add', 'Manager/Pim/Categories::add');
+            $builder->connect('/categories/edit/{id}', 'Manager/Pim/Categories::edit')->setPass(['id']);
+            $builder->connect('/categories/delete/{id}', 'Manager/Pim/Categories::delete')->setPass(['id']);
 
             $builder->connect('/variant-options', ['prefix' => 'Manager/Pim', 'controller' => 'VariantOptions', 'action' => 'index']);
-            $builder->connect('/variant-options/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'VariantOptions']);
+            $builder->connect('/variant-options/add', 'Manager/Pim/VariantOptions::add');
+            $builder->connect('/variant-options/edit/{id}', 'Manager/Pim/VariantOptions::edit')->setPass(['id']);
+            $builder->connect('/variant-options/delete/{id}', 'Manager/Pim/VariantOptions::delete')->setPass(['id']);
+            $builder->connect('/variant-options/option-add/{attribute_id}', 'Manager/Pim/VariantOptions::optionAdd')->setPass(['attribute_id']);
+            $builder->connect('/variant-options/option-edit/{attribute_id}/{option_id}', 'Manager/Pim/VariantOptions::optionEdit')->setPass(['attribute_id', 'option_id']);
+            $builder->connect('/variant-options/option-delete/{attribute_id}/{option_id}', 'Manager/Pim/VariantOptions::optionDelete')->setPass(['attribute_id', 'option_id']);
 
-            $builder->connect('/published', ['prefix' => 'Manager/Pim', 'controller' => 'Published', 'action' => 'index']);
-            $builder->connect('/published/{action}/*', ['prefix' => 'Manager/Pim', 'controller' => 'Published']);
+            $builder->connect('/published', 'Manager/Pim/Published::index');
+            $builder->connect('/published/generate', 'Manager/Pim/Published::generate');
         });
 
+        // สำหรับ Digital assets management (DAM)
         $builder->prefix('Dam', function (RouteBuilder $builder): void {
-            $builder->connect('/medias', ['prefix' => 'Manager/Dam', 'controller' => 'Medias', 'action' => 'index']);
-            $builder->connect('/medias/{action}/*', ['prefix' => 'Manager/Dam', 'controller' => 'Medias']);
+            $builder->connect('/medias', 'Manager/Dam/Medias::index');
+            $builder->connect('/medias/add', 'Manager/Dam/Medias::add');
+            $builder->connect('/medias/edit/{id}', 'Manager/Dam/Medias::edit')->setPass(['id']);
+            $builder->connect('/medias/delete/{id}', 'Manager/Dam/Medias::delete')->setPass(['id']);
         });
 
+        // สำหรับ Customer data management (CDM)
         $builder->prefix('Cdm', function (RouteBuilder $builder): void {
-            $builder->connect('/customers', ['prefix' => 'Manager/Cdm', 'controller' => 'Customers', 'action' => 'index']);
-            $builder->connect('/customers/{action}/*', ['prefix' => 'Manager/Cdm', 'controller' => 'Customers']);
+            $builder->connect('/customers', 'Manager/Cdm/Customers::index');
+            $builder->connect('/customers/add', 'Manager/Cdm/Customers::add');
+            $builder->connect('/customers/detail/{id}', 'Manager/Cdm/Customers::detail')->setPass(['id']);
+            $builder->connect('/customers/edit/{id}', 'Manager/Cdm/Customers::edit')->setPass(['id']);
+            $builder->connect('/customers/delete/{id}', 'Manager/Cdm/Customers::delete')->setPass(['id']);
 
-            $builder->connect('/customers/notes/{customer_id}', ['prefix' => 'Manager/Cdm', 'controller' => 'CustomerNotes', 'action' => 'index'])->setPass(['customer_id']);
-            $builder->connect('/customers/notes/{customer_id}/{action}/*', ['prefix' => 'Manager/Cdm', 'controller' => 'CustomerNotes'])->setPass(['customer_id']);
+            $builder->connect('/customers/notes/{customer_id}', 'Manager/Cdm/CustomerNotes::index')->setPass(['customer_id']);
+            $builder->connect('/customers/notes/{customer_id}/add', 'Manager/Cdm/CustomerNotes::add')->setPass(['customer_id']);
+            $builder->connect('/customers/notes/{customer_id}/edit/{id}', 'Manager/Cdm/CustomerNotes::edit')->setPass(['customer_id', 'id']);
+            $builder->connect('/customers/notes/{customer_id}/delete/{id}', 'Manager/Cdm/CustomerNotes::delete')->setPass(['customer_id', 'id']);
 
-            $builder->connect('/customers/orders/{customer_id}', ['prefix' => 'Manager/Cdm', 'controller' => 'PurchaseOrders', 'action' => 'index'])->setPass(['customer_id']);
-            $builder->connect('/customers/orders/{customer_id}/{action}/*', ['prefix' => 'Manager/Cdm', 'controller' => 'PurchaseOrders'])->setPass(['customer_id']);
+            $builder->connect('/customers/orders/{customer_id}', 'Manager/Cdm/PurchaseOrders::index')->setPass(['customer_id']);
+            $builder->connect('/customers/orders/{customer_id}/add', 'Manager/Cdm/PurchaseOrders::add')->setPass(['customer_id']);
+            $builder->connect('/customers/orders/{customer_id}/edit/{id}', 'Manager/Cdm/PurchaseOrders::edit')->setPass(['customer_id', 'id']);
+            $builder->connect('/customers/orders/{customer_id}/delete/{id}', 'Manager/Cdm/PurchaseOrders::delete')->setPass(['customer_id', 'id']);
 
             $builder->connect('/customers/contacts/{customer_id}', ['prefix' => 'Manager/Cdm', 'controller' => 'Contacts', 'action' => 'index'])->setPass(['customer_id']);
-            $builder->connect('/customers/contacts/{customer_id}/{action}/*', ['prefix' => 'Manager/Cdm', 'controller' => 'Contacts'])->setPass(['customer_id']);
+            $builder->connect('/customers/contacts/{customer_id}/add', 'Manager/Cdm/Contacts::add')->setPass(['customer_id']);
+            $builder->connect('/customers/contacts/{cutsomer_id}/edit/{id}', 'Manager/Cdm/Contacts::edit')->setPass(['customer_id', 'id']);
+            $builder->connect('/customers/contacts/{customer_id}/delete/{id}', 'Manager/Cdm/Contacts::delete')->setPass(['customer_id', 'id']);
         });
 
+        // สำหรับ Settings ของระบบ
         $builder->prefix('Settings', function (RouteBuilder $builder): void {
-            $builder->connect('/system', ['prefix' => 'Manager/Settings', 'controller' => 'SystemSettings', 'action' => 'system']);
+            $builder->connect('/system', 'Manager/Settings/SystemSettings::system');
 
-            $builder->connect('/admin-users', ['prefix' => 'Manager/Settings', 'controller' => 'AdminUsers', 'action' => 'index']);
-            $builder->connect('/admin-users/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'AdminUsers']);
+            $builder->connect('/admin-users', 'Manager/Settings/AdminUsers::index');
+            $builder->connect('/admin-users/add', 'Manager/Settings/AdminUsers::add');
+            $builder->connect('/admin-users/edit/{id}', 'Manager/Settings/AdminUsers::edit')->setPass(['id']);
+            $builder->connect('/admin-users/delete/{id}', 'Manager/Settings/AdminUsers::delete')->setPass(['id']);
 
-            $builder->connect('/client-users', ['prefix' => 'Manager/Settings', 'controller' => 'ClientUsers', 'action' => 'index']);
-            $builder->connect('/client-users/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'ClientUsers']);
+            $builder->connect('/client-users', 'Manager/Settings/ClientUsers::index');
+            $builder->connect('/client-users/add', 'Manager/Settings/ClientUsers::add');
+            $builder->connect('/client-users/edit/{id}', 'Manager/Settings/ClientUsers::edit')->setPass(['id']);
+            $builder->connect('/client-users/delete/{id}', 'Manager/Settings/ClientUsers::delete')->setPass(['id']);
 
-            $builder->connect('/roles', ['prefix' => 'Manager/Settings', 'controller' => 'Roles', 'action' => 'index']);
-            $builder->connect('/roles/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'Roles']);
+            $builder->connect('/roles', 'Manager/Settings/Roles::index');
+            $builder->connect('/roles/add', 'Manager/Settings/Roles::add');
+            $builder->connect('/roles/edit/{id}', 'Manager/Settings/Roles::edit')->setPass(['id']);
+            $builder->connect('/roles/delete/{id}', 'Manager/Settings/Roles::delete')->setPass(['id']);
 
-            $builder->connect('/languages', ['prefix' => 'Manager/Settings', 'controller' => 'Languages', 'action' => 'index']);
-            $builder->connect('/languages/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'Languages']);
+            $builder->connect('/languages', 'Manager/Settings/Languages::index');
+            $builder->connect('/languages/add', 'Manager/Settings/Languages::add');
+            $builder->connect('/languages/edit/{id}', 'Manager/Settings/Languages::edit')->setPass(['id']);
+            $builder->connect('/languages/delete/{id}', 'Manager/Settings/Languages::delete')->setPass(['id']);
 
-            $builder->connect('/published', ['prefix' => 'Manager/Settings', 'controller' => 'Published', 'action' => 'index']);
-            $builder->connect('/published/{action}/*', ['prefix' => 'Manager/Settings', 'controller' => 'Published']);
+            $builder->connect('/published', 'Manager/Settings/Published::index');
+            $builder->connect('/published/generate', 'Manager/Settings/Published::generate');
         });
 
         /**
