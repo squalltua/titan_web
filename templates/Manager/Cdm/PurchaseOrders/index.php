@@ -31,7 +31,7 @@
             <?= $this->element('object_info_customer') ?>
             <div class="card-body">
                 <?= $this->Html->link(__('New orders'), "/manager/cdm/customers/orders/{$customer->id}/add", ['class' => 'btn btn-primary mb-3']) ?>
-                <?php if (!empty($orders)): ?>
+                <?php if ($orders->count()): ?>
                     <table class="table table-vcenter table-bordered table-nowrap datatable">
                         <thead>
                         <tr>
@@ -70,11 +70,20 @@
                         </tbody>
                     </table>
                 <?php else: ?>
-                    <div class="p-2 mb-4">
-                        <div class="container-fluid py-5 text-muted text-center">
-                            <h1 class="display-5 text-center"><?= __('No data') ?></h1>
-                            <p class="fs-4 text-center"><?= __('Please insert first') ?></p>
-                            <?= $this->Html->link(__('New'), "/manager/cdm/customers/orders/{$customer->id}/add", ['class' => 'btn btn-secondary btn-lg ms-3']) ?>
+                    <div class="empty">
+                        <p class="empty-title"><?= __('No Data') ?></p>
+                        <p class="empty-subtitle text-secondary">
+                            <?= __("Try adjusting your search or filter to find what you're looking for.") ?>
+                        </p>
+                        <div class="empty-action">
+                            <a href="/manager/cdm/customers/orders/<?= $customer->id ?>/add" class="btn btn-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <line x1="12" y1="5" x2="12" y2="19" />
+                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                </svg>
+                                <?= __('Please insert first') ?>
+                            </a>
                         </div>
                     </div>
                 <?php endif ?>
