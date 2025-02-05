@@ -2,9 +2,7 @@
     <div class="col-lg">
         <div class="container-tight">
             <div class="text-center mb-4">
-                <a href="." class="navbar-brand navbar-brand-autodark">
-                    TITAN/WEB
-                </a>
+                <h1>TITAN/WEB</h1>
             </div>
             <div class="card card-md">
                 <div class="card-body">
