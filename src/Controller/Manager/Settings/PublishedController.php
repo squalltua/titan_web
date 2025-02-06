@@ -30,7 +30,7 @@ class PublishedController extends AppController
             $counter[$unicode] = $cache ? count($cache) : 0;
         }
 
-        $langCount = count(Cache::read('languages'));
+        $langCount = count($counter);
 
         $this->set(compact('counter', 'langCount'));
     }
