@@ -29,43 +29,50 @@
     <div class="container-xl">
         <?= $this->Form->create($product) ?>
         <div class="row">
-            <div class="col-12 col-md-10 col-lg-6">
+            <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header py-3">
                         <h3 class="card-title"><?= __('Product information') ?></h3>
                     </div>
                     <div class="card-body">
-                        <div class="mb-3 row">
-                            <label for="title" class="col-3 col-form-label required"><?= __('Product name') ?></label>
-                            <div class="col">
-                                <?= $this->Form->text('title', ['class' => 'form-control', 'id' => 'title', 'required' => true]) ?>
+                        <div class="row">
+                            <div class="col-6 col-lg-8">
+                                <div class="mb-3">
+                                    <label for="title" class="form-label required"><?= __('Product name') ?></label>
+                                    <?= $this->Form->text('title', ['class' => 'form-control', 'id' => 'title', 'required' => true]) ?>
+                                </div>
+                                <div class="mb-3">
+                                    <label form="summary" class="form-label required"><?= __('Summary') ?></label>
+                                    <?= $this->Form->textarea('summary', ['class' => 'form-control', 'id' => 'summary', 'required' => true]) ?>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="content" class="form-label required"><?= __('Content (Markdown syntex supported)') ?></label>
+                                    <?= $this->Form->textarea(
+                                        'content',
+                                        [
+                                            'class' => 'form-control',
+                                            'id' => 'content',
+                                            'required' => true,
+                                            'rows' => '10',
+                                            'style' => "width:100%; height:500px",
+                                        ]
+                                    ) ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label form="summary" class="col-3 col-form-label required"><?= __('Summary') ?></label>
                             <div class="col">
-                                <?= $this->Form->textarea('summary', ['class' => 'form-control', 'id' => 'summary', 'required' => true]) ?>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="content" class="col-3 col-form-label required"><?= __('Content') ?></label>
-                            <div class="col">
-                                <?= $this->Form->textarea('content', ['class' => 'form-control', 'id' => 'content', 'required' => true]) ?>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="category-id" class="col-3 col-form-label"><?= __('Category') ?></label>
-                            <div class="col">
-                                <?= $this->Form->select('category_id', $categories, ['class' => 'form-select', 'id' => 'category-id']) ?>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-3 col-form-label"><?= __('Has variants') ?></label>
-                            <div class="col">
-                                <label class="form-check pt-2">
-                                    <?= $this->Form->checkbox('has_variants', ['class' => 'form-check-input', 'id' => 'has-variant', 'hiddenField' => true, 'required' => false]) ?>
-                                    <span class="form-check-label"><?= __('This product has variant') ?></span>
-                                </label>
+                                <div class="mb-3">
+                                    <label for="category-id" class="form-label"><?= __('Category') ?></label>
+                                    <?= $this->Form->select('category_id', $categories, ['class' => 'form-select', 'id' => 'category-id']) ?>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-3 col-form-label"><?= __('Has variants') ?></label>
+                                    <div class="col">
+                                        <label class="form-check pt-2">
+                                            <?= $this->Form->checkbox('has_variants', ['class' => 'form-check-input', 'id' => 'has-variant', 'hiddenField' => true, 'required' => false]) ?>
+                                            <span class="form-check-label"><?= __('This product has variant') ?></span>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

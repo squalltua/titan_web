@@ -30,45 +30,44 @@
         <?= $this->Form->create($product) ?>
         <div class="card">
             <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active text-dark disabled" href="#" tabindex="-1" aria-disabled="true">
-                            <?= __('Product information') ?>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('Edit in {0} language', $languages[$selectLanguage]) ?></a>
-                        <div class="dropdown-menu">
-                            <?php foreach ($languages as $unicode => $language): ?>
-                                <?= $this->Html->link($language, "?lang={$unicode}", ['class' => 'dropdown-item']) ?>
-                            <?php endforeach ?>
-                        </div>
-                    </li>
-                </ul>
+                <h3 class="card-title"><?= __('Product information') ?></h3>
+                <div class="ms-auto me-3"><?= __('Edit in language') ?></div>
+                <div class="dropdown">
+                    <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown"><?= $languages[$selectLanguage] ?></a>
+                    <div class="dropdown-menu">
+                        <?php foreach ($languages as $unicode => $language): ?>
+                            <?= $this->Html->link($language, "?lang={$unicode}", ['class' => 'dropdown-item']) ?>
+                        <?php endforeach ?>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6">
-                        <div class="mb-3 row">
-                            <label for="title" class="col-3 col-form-label required"><?= __('Product name') ?></label>
-                            <div class="col">
-                                <?= $this->Form->text('title', ['class' => 'form-control', 'id' => 'title', 'required' => true]) ?>
-                            </div>
+                    <div class="col-12 col-lg-9">
+                        <div class="mb-3">
+                            <label for="title" class="form-label required"><?= __('Product name') ?></label>
+                            <?= $this->Form->text('title', ['class' => 'form-control', 'id' => 'title', 'required' => true]) ?>
                         </div>
-                        <div class="mb-3 row">
-                            <label form="summary" class="col-3 col-form-label required"><?= __('Summary') ?></label>
-                            <div class="col">
-                                <?= $this->Form->textarea('summary', ['class' => 'form-control', 'id' => 'summary', 'required' => true]) ?>
-                            </div>
+                        <div class="mb-3">
+                            <label form="summary" class="form-label"><?= __('Summary') ?></label>
+                            <?= $this->Form->textarea('summary', ['class' => 'form-control', 'id' => 'summary']) ?>
                         </div>
-                        <div class="mb-3 row">
-                            <label for="content" class="col-3 col-form-label required"><?= __('Content') ?></label>
-                            <div class="col">
-                                <?= $this->Form->textarea('content', ['class' => 'form-control', 'id' => 'content', 'required' => true]) ?>
-                            </div>
+                        <div class="mb-3">
+                            <label for="content" class="form-label"><?= __('Content (Markdown syntex supported)') ?></label>
+                            <?= $this->Form->textarea(
+                                'content',
+                                [
+                                    'class' => 'form-control',
+                                    'id' => 'content',
+                                    'rows' => '10',
+                                    'style' => "width:100%; height:500px",
+                                ]
+                            ) ?>
                         </div>
-                        <div class="mb-3 row">
-                            <label for="category-id" class="col-3 col-form-label"><?= __('Category') ?></label>
+                    </div>
+                    <div class="col">
+                    <div class="mb-3 row">
+                            <label for="category-id" class="col-4 col-form-label"><?= __('Category') ?></label>
                             <div class="col">
                                 <?= $this->Form->select('category_id', $categories, ['class' => 'form-select', 'id' => 'category-id', 'empty' => __('Please select')]) ?>
                             </div>
@@ -83,25 +82,23 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="start-at" class="col-3 col-form-label"><?= __('Start at') ?></label>
+                            <label for="start-at" class="col-4 col-form-label"><?= __('Start at') ?></label>
                             <div class="col">
                                 <?= $this->Form->datetime('start_at', ['class' => 'form-control', 'id' => 'start-at']) ?>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="end-at" class="col-3 col-form-label"><?= __('End at') ?></label>
+                            <label for="end-at" class="col-4 col-form-label"><?= __('End at') ?></label>
                             <div class="col">
                                 <?= $this->Form->datetime('end_at', ['class' => 'form-control', 'id' => 'end-at']) ?>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="status" class="col-3 col-form-label"><?= __('Status') ?></label>
+                            <label for="status" class="col-4 col-form-label"><?= __('Status') ?></label>
                             <div class="col">
                                 <?= $this->Form->select('status', ['active' => __('Active'), 'inactive' => __('Inactive')], ['class' => 'form-select', 'empty' => false]) ?>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-6">
                         <div class="mb-3 row">
                             <label class="col-3 col-form-label"><?= __('Has variants') ?></label>
                             <div class="col">
@@ -115,7 +112,7 @@
                             <fieldset class="form-fieldset">
                                 <legend class="fs-5"><?= __('Product additional information for no variant') ?></legend>
                                 <div class="mb-3 row">
-                                    <label for="sku" class="col-3 col-form-label">SKU</label>
+                                    <label for="sku" class="col-4 col-form-label">SKU</label>
                                     <div class="col">
                                         <?= $this->Form->text('sku', ['class' => 'form-control', 'id' => 'sku']) ?>
                                     </div>
@@ -128,21 +125,21 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label for="sell-price" class="col-3 col-form-label"><?= __('Sell price') ?></label>
+                                    <label for="sell-price" class="col-4 col-form-label"><?= __('Sell price') ?></label>
                                     <div class="col">
                                         <?= $this->Form->number('sell_price', ['class' => 'form-control', 'id' => 'sell-price']) ?>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="discount-price"
-                                        class="col-3 col-form-label"><?= __('Discount price') ?></label>
+                                        class="col-4 col-form-label"><?= __('Discount price') ?></label>
                                     <div class="col">
                                         <?= $this->Form->number('discount_price', ['class' => 'form-control', 'id' => 'discount-price']) ?>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="strock-quantity"
-                                        class="col-3 col-form-label"><?= __('Stock quantity') ?></label>
+                                        class="col-4 col-form-label"><?= __('Stock quantity') ?></label>
                                     <div class="col">
                                         <?= $this->Form->number('stock_quantity', ['class' => 'form-control', 'id' => 'stock-quantity']) ?>
                                     </div>
