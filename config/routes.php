@@ -93,6 +93,16 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/initialize-data', 'Manager/Settings/Users::initializeData');
         $builder->connect('/reset-data-admin', 'Manager/Settings/Users::resetDataAdmin');
 
+        // สำหรับ Order management (OM)
+        $builder->prefix('om', function (RouteBuilder $builder): void {
+            $builder->connect('/orders', 'Manager/Om/Orders::index');
+            $builder->connect('/orders/add', 'Manager/Om/Orders::add');
+            $builder->connect('/orders/view/{id}', 'Manager/Om/Orders::view')->setPass(['id']);
+            $builder->connect('/orders/edit/{id}', 'Manager/Om/Orders::edit')->setPass(['id']);
+            $builder->connect('/orders/delete/{id}', 'Manager/Om/Orders::delete')->setPass(['id']);
+            $builder->connect('/orders/invoices/{id}', 'Manager/Om/Orders::invoices')->setPass(['id']);
+        });
+
         // สำรหรับระบบ Web content management (WCM)
         $builder->prefix('Wcm', function (RouteBuilder $builder): void {
             $builder->connect('/posts', 'Manager/Wcm/Posts::index');

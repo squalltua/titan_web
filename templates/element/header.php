@@ -58,6 +58,9 @@
                             <a class="dropdown-item" href="/manager">
                                 <?= __('All') ?>
                             </a>
+                            <a href="/manager/orders" class="dropdown-item">
+                                <?= __('Order management') ?>
+                            </a>
                             <a class="dropdown-item" href="/manager/wcm/posts">
                                 <?= __('Web Content management') ?>
                             </a>
