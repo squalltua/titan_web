@@ -100,6 +100,29 @@ return [
             'path' => CACHE,
             'url' => env('CACHE_DEFAULT_URL', null),
         ],
+        'posts' => [
+            'className' => FileEngine::class,
+            'path' => CACHE . 'posts' . DS,
+            'url' => env('CACHE_POSTS_URL', null),
+            'duration' => '+1 years',
+            'prefix' => 'posts_',
+        ],
+
+        'products' => [
+            'className' => FileEngine::class,
+            'path' => CACHE . 'products' . DS,
+            'url' => env('CACHE_PRODUCTS_URL', null),
+            'duration' => '+1 years',
+            'prefix' => 'products_',
+        ],
+
+        'settings' => [
+            'className' => FileEngine::class,
+            'path' => CACHE . 'settings' . DS,
+            'url' => env('CACHE_SETTINGS_URL', null),
+            'duration' => '+1 years',
+            'prefix' => 'settings_',
+        ],
 
         /*
          * Configure the cache used for general framework caching.

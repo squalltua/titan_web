@@ -52,27 +52,6 @@
                     </div>
                 </div>
             <?php endforeach ?>
-            <div class="col-sm-6 col-lg-3">
-                <div class="card card-sm">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <div class="bg-primary text-white avatar">
-                                    <?= __('LO') ?>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="font-weight-medium">
-                                    <?= __('{0} Languages', $this->Number->format($langCount)) ?>
-                                </div>
-                                <div class="text-secondary">
-                                    <?= __('Read from cache') ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

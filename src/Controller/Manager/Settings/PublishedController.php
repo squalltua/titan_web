@@ -21,18 +21,21 @@ class PublishedController extends AppController
         $this->set('subMenuActive', 'published');
     }
 
+    /**
+     * index functiton
+     *
+     * @return void
+     */
     public function index()
     {
         $counter = [];
         $languages = $this->fetchTable('Languages')->getTabList();
         foreach ($languages as $unicode => $localeText) {
-            $cache = Cache::read("{$unicode}_site_settings");
+            $cache = Cache::read("{$unicode}_site_settings", 'settings');
             $counter[$unicode] = $cache ? count($cache) : 0;
         }
 
-        $langCount = count($counter);
-
-        $this->set(compact('counter', 'langCount'));
+        $this->set(compact('counter'));
     }
 
     /**
@@ -53,7 +56,7 @@ class PublishedController extends AppController
         Cache::write('languages', $languages);
         Cache::write('language_default', $this->fetchTable('Languages')->getDefaultLanguageUnicode());
 
-        $this->_cachingSettingSystem($languages);
+        $this->_cachingSettingSystem();
         // end write cache
 
         $this->Flash->success(__('Published posts and groups have been generated'));
@@ -64,28 +67,24 @@ class PublishedController extends AppController
     /**
      * create system cache
      *
-     * @param array $languages language all data
      * @return void
      */
-    private function _cachingSettingSystem(array $languages): void
+    private function _cachingSettingSystem(): void
     {
-        // load SiteSettings
         $settings = $this->fetchTable('SiteSettings')->getSiteSettingAllLanguages();
-        // debug($settings);
-        $data = [];
-        $first = true;
-        foreach ($languages as $unicode => $title) {
-            if ($first) {
-                Cache::write("{$unicode}_site_settings", Hash::combine($settings->toArray(), '{n}.key_field', '{n}.value_field'));
-            } else {
-                foreach ($settings as $setting) {
-                    $data[] = ['key_field' => $setting->key_field, 'value_field' => $setting->translation($unicode)->value_field];
+        $defaultLocale = $this->fetchTable('Languages')->getDefaultLanguageUnicode();
+        $siteSetting = [];
+        foreach ($settings as $setting) {
+            $siteSetting[$defaultLocale][$setting->key_field] = $setting->value_field;
+            if (!empty($setting->_translations)) {
+                foreach ($setting->_translations as $locale => $data) {
+                    $siteSetting[$locale][$setting->key_field] = $data->value_field;
                 }
-
-                Cache::write("{$unicode}_site_settings", Hash::combine($data, '{n}.key_field', '{n}.value_field'));
             }
+        }
 
-            $first = false;
+        foreach ($siteSetting as $locale => $data) {
+            Cache::write("{$locale}_site_settings", $data, 'settings');
         }
     }
 }
