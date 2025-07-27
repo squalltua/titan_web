@@ -21,9 +21,9 @@ class GroupsController extends AppController
     {
         parent::initialize();
 
+        $this->set('menuActive', 'content');
         $this->set('subMenu', 'wcm_menu');
         $this->set('subMenuActive', 'groups');
-        $this->set('applicationName', __('Web content management'));
     }
 
     /**

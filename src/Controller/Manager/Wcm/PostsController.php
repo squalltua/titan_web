@@ -28,9 +28,9 @@ class PostsController extends AppController
     {
         parent::initialize();
 
+        $this->set('menuActive', 'content');
         $this->set('subMenu', 'wcm_menu');
         $this->set('subMenuActive', 'posts');
-        $this->set('applicationName', __('Web content management'));
     }
 
     /**
