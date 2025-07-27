@@ -24,9 +24,9 @@ class CategoriesController extends AppController
     {
         parent::initialize();
 
+        $this->set('menuActive', 'pim');
         $this->set('subMenu', 'pim_menu');
         $this->set('subMenuActive', 'categories');
-        $this->set('applicationName', __('Product information management'));
     }
 
     /**

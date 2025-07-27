@@ -19,9 +19,9 @@ class MediasController extends AppController
     {
         parent::initialize();
 
+        $this->set('menuActive', 'dam');
         $this->set('subMenu', 'dam_menu');
         $this->set('subMenuActive', 'medias');
-        $this->set('applicationName', __('Digital assets management'));
     }
 
     /**

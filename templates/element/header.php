@@ -9,77 +9,81 @@
                 TITAN/WEB
             </a>
         </h1>
-        <ul class="navbar-nav">
-            <li class="nav-item <?= ($menuActive === "home") ? 'active' : '' ?>">
-                <a class="nav-link" href="/manager">
-                    <span class="nav-link-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-building-hospital">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M3 21l18 0" />
-                            <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" />
-                            <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" />
-                            <path d="M10 9l4 0" />
-                            <path d="M12 7l0 4" />
-                        </svg>
-                    </span>
-                    <span class="nav-link-title"><?= __('Dashboard') ?></span>
-                </a>
-            </li>
-            <li class="nav-item <?= ($menuActive === "content") ? 'active' : '' ?>">
-                <a href="/manager/wcm/posts" class="nav-link">
-                    <span class="nav-link-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-contract">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M8 21h-2a3 3 0 0 1 -3 -3v-1h5.5" />
-                            <path d="M17 8.5v-3.5a2 2 0 1 1 2 2h-2" />
-                            <path d="M19 3h-11a3 3 0 0 0 -3 3v11" />
-                            <path d="M9 7h4" />
-                            <path d="M9 11h4" />
-                            <path d="M18.42 12.61a2.1 2.1 0 0 1 2.97 2.97l-6.39 6.42h-3v-3z" />
-                        </svg>
-                    </span>
-                    <span class="nav-link-title"><?= __('Web content') ?></span>
-                </a>
-            </li>
-            <li class="nav-item <?= ($menuActive === "content") ? 'active' : '' ?>">
-                <a href="/manager/pim/products" class="nav-link">
-                    <span class="nav-link-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-hexagons">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M4 18v-5l4 -2l4 2v5l-4 2z" />
-                            <path d="M8 11v-5l4 -2l4 2v5" />
-                            <path d="M12 13l4 -2l4 2v5l-4 2l-4 -2" />
-                        </svg>
-                    </span>
-                    <span class="nav-link-title"><?= __('PIM') ?></span>
-                </a>
-            </li>
-            <li class="nav-item <?= ($menuActive === "content") ? 'active' : '' ?>">
-                <a href="/manager/pim/products" class="nav-link">
-                    <span class="nav-link-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-hexagons">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M4 18v-5l4 -2l4 2v5l-4 2z" />
-                            <path d="M8 11v-5l4 -2l4 2v5" />
-                            <path d="M12 13l4 -2l4 2v5l-4 2l-4 -2" />
-                        </svg>
-                    </span>
-                    <span class="nav-link-title"><?= __('DAM') ?></span>
-                </a>
-            </li>
-            <li class="nav-item <?= ($menuActive === "settings") ? 'active' : '' ?>">
-                <a class="nav-link" href="/manager/settings/system">
-                    <span class="nav-link-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-settings">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
-                            <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
-                        </svg>
-                    </span>
-                    <span class="nav-link-title"><?= __('Settings') ?></span>
-                </a>
-            </li>
-        </ul>
+        <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
+            <ul class="navbar-nav">
+                <li class="nav-item <?= ($menuActive === "home") ? 'active' : '' ?>">
+                    <a class="nav-link" href="/manager">
+                        <span class="nav-link-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-building-hospital">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M3 21l18 0" />
+                                <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" />
+                                <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" />
+                                <path d="M10 9l4 0" />
+                                <path d="M12 7l0 4" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title"><?= __('Dashboard') ?></span>
+                    </a>
+                </li>
+                <li class="nav-item <?= ($menuActive === "content") ? 'active' : '' ?>">
+                    <a href="/manager/wcm/posts" class="nav-link">
+                        <span class="nav-link-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-contract">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M8 21h-2a3 3 0 0 1 -3 -3v-1h5.5" />
+                                <path d="M17 8.5v-3.5a2 2 0 1 1 2 2h-2" />
+                                <path d="M19 3h-11a3 3 0 0 0 -3 3v11" />
+                                <path d="M9 7h4" />
+                                <path d="M9 11h4" />
+                                <path d="M18.42 12.61a2.1 2.1 0 0 1 2.97 2.97l-6.39 6.42h-3v-3z" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title"><?= __('Web content') ?></span>
+                    </a>
+                </li>
+                <li class="nav-item <?= ($menuActive === "pim") ? 'active' : '' ?>">
+                    <a href="/manager/pim/products" class="nav-link">
+                        <span class="nav-link-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-truck-loading">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M2 3h1a2 2 0 0 1 2 2v10a2 2 0 0 0 2 2h15" />
+                                <path d="M9 6m0 3a3 3 0 0 1 3 -3h4a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-4a3 3 0 0 1 -3 -3z" />
+                                <path d="M9 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                <path d="M18 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title"><?= __('PIM') ?></span>
+                    </a>
+                </li>
+                <li class="nav-item <?= ($menuActive === "dam") ? 'active' : '' ?>">
+                    <a href="/manager/dam/medias" class="nav-link">
+                        <span class="nav-link-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-photo">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M15 8h.01" />
+                                <path d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12z" />
+                                <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5" />
+                                <path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title"><?= __('DAM') ?></span>
+                    </a>
+                </li>
+                <li class="nav-item <?= ($menuActive === "settings") ? 'active' : '' ?>">
+                    <a class="nav-link" href="/manager/settings/system">
+                        <span class="nav-link-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-settings">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
+                                <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title"><?= __('Settings') ?></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
         <div class="navbar-nav flex-row order-md-last">
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
@@ -102,49 +106,6 @@
                 </div>
             </div>
         </div>
-        <div class="collapse navbar-collapse" id="navbar-menu">
-            <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#navbar-third" data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside" role="button" aria-expanded="false">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-baseline-density-small">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M4 3h16" />
-                                    <path d="M4 9h16" />
-                                    <path d="M4 15h16" />
-                                    <path d="M4 21h16" />
-                                </svg>
-                            </span>
-                            <span class="nav-link-title">
-                                <?= $applicationName ?? __('Application') ?>
-                            </span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/manager">
-                                <?= __('All') ?>
-                            </a>
-                            <a class="dropdown-item" href="/manager/wcm/posts">
-                                <?= __('Web Content management') ?>
-                            </a>
-                            <a class="dropdown-item" href="/manager/pim/products">
-                                <?= __('Product information management') ?>
-                            </a>
-                            <a class="dropdown-item" href="/manager/dam/medias">
-                                <?= __('Digital assets management') ?>
-                            </a>
-                            <a class="dropdown-item" href="/manager/settings/system">
-                                <?= __('Site setting and System') ?>
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        
     </div>
 </header>

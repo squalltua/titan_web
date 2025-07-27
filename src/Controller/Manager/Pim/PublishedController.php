@@ -16,9 +16,9 @@ class PublishedController extends AppController
     {
         parent::initialize();
 
+        $this->set('menuActive', 'pim');
         $this->set('subMenu', 'pim_menu');
         $this->set('subMenuActive', 'published');
-        $this->set('applicationName', __('Product information management'));
     }
     public function index()
     {
