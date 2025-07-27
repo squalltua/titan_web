@@ -13,11 +13,6 @@
                             <span class="nav-link-title"><?= __('Admin users') ?></span>
                         </a>
                     </li>
-                    <li class="<?= $subMenuActive === 'client_users' ? 'nav-item active' : 'nav-item' ?>">
-                        <a class="nav-link" href="/manager/settings/client-users">
-                            <span class="nav-link-title"><?= __('Client users') ?></span>
-                        </a>
-                    </li>
                     <li class="<?= $subMenuActive === 'roles' ? 'nav-item active' : 'nav-item' ?>">
                         <a class="nav-link" href="/manager/settings/roles">
                             <span class="nav-link-title"><?= __('Roles') ?></span>
