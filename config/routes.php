@@ -169,30 +169,6 @@ return function (RouteBuilder $routes): void {
             $builder->connect('/medias/delete/{id}', 'Manager/Dam/Medias::delete')->setPass(['id']);
         });
 
-        // สำหรับ Customer data management (CDM)
-        // $builder->prefix('Cdm', function (RouteBuilder $builder): void {
-        //     $builder->connect('/customers', 'Manager/Cdm/Customers::index');
-        //     $builder->connect('/customers/add', 'Manager/Cdm/Customers::add');
-        //     $builder->connect('/customers/detail/{id}', 'Manager/Cdm/Customers::detail')->setPass(['id']);
-        //     $builder->connect('/customers/edit/{id}', 'Manager/Cdm/Customers::edit')->setPass(['id']);
-        //     $builder->connect('/customers/delete/{id}', 'Manager/Cdm/Customers::delete')->setPass(['id']);
-
-        //     $builder->connect('/customers/notes/{customer_id}', 'Manager/Cdm/CustomerNotes::index')->setPass(['customer_id']);
-        //     $builder->connect('/customers/notes/{customer_id}/add', 'Manager/Cdm/CustomerNotes::add')->setPass(['customer_id']);
-        //     $builder->connect('/customers/notes/{customer_id}/edit/{id}', 'Manager/Cdm/CustomerNotes::edit')->setPass(['customer_id', 'id']);
-        //     $builder->connect('/customers/notes/{customer_id}/delete/{id}', 'Manager/Cdm/CustomerNotes::delete')->setPass(['customer_id', 'id']);
-
-        //     $builder->connect('/customers/orders/{customer_id}', 'Manager/Cdm/PurchaseOrders::index')->setPass(['customer_id']);
-        //     $builder->connect('/customers/orders/{customer_id}/add', 'Manager/Cdm/PurchaseOrders::add')->setPass(['customer_id']);
-        //     $builder->connect('/customers/orders/{customer_id}/edit/{id}', 'Manager/Cdm/PurchaseOrders::edit')->setPass(['customer_id', 'id']);
-        //     $builder->connect('/customers/orders/{customer_id}/delete/{id}', 'Manager/Cdm/PurchaseOrders::delete')->setPass(['customer_id', 'id']);
-
-        //     $builder->connect('/customers/contacts/{customer_id}', ['prefix' => 'Manager/Cdm', 'controller' => 'Contacts', 'action' => 'index'])->setPass(['customer_id']);
-        //     $builder->connect('/customers/contacts/{customer_id}/add', 'Manager/Cdm/Contacts::add')->setPass(['customer_id']);
-        //     $builder->connect('/customers/contacts/{cutsomer_id}/edit/{id}', 'Manager/Cdm/Contacts::edit')->setPass(['customer_id', 'id']);
-        //     $builder->connect('/customers/contacts/{customer_id}/delete/{id}', 'Manager/Cdm/Contacts::delete')->setPass(['customer_id', 'id']);
-        // });
-
         // สำหรับ Settings ของระบบ
         $builder->prefix('Settings', function (RouteBuilder $builder): void {
             $builder->connect('/system', 'Manager/Settings/SystemSettings::system');
@@ -201,11 +177,6 @@ return function (RouteBuilder $routes): void {
             $builder->connect('/admin-users/add', 'Manager/Settings/AdminUsers::add');
             $builder->connect('/admin-users/edit/{id}', 'Manager/Settings/AdminUsers::edit')->setPass(['id']);
             $builder->connect('/admin-users/delete/{id}', 'Manager/Settings/AdminUsers::delete')->setPass(['id']);
-
-            $builder->connect('/client-users', 'Manager/Settings/ClientUsers::index');
-            $builder->connect('/client-users/add', 'Manager/Settings/ClientUsers::add');
-            $builder->connect('/client-users/edit/{id}', 'Manager/Settings/ClientUsers::edit')->setPass(['id']);
-            $builder->connect('/client-users/delete/{id}', 'Manager/Settings/ClientUsers::delete')->setPass(['id']);
 
             $builder->connect('/roles', 'Manager/Settings/Roles::index');
             $builder->connect('/roles/add', 'Manager/Settings/Roles::add');
