@@ -15,8 +15,8 @@ class AdminUsersController extends AppController
     {
         parent::initialize();
 
+        $this->set('menuActive', 'settings');
         $this->set('subMenu', 'settings_menu');
-        $this->set('applicationName', __('Site setting and System'));
         $this->set('subMenuActive', 'admin_users');
     }
 

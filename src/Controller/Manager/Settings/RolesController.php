@@ -17,9 +17,9 @@ class RolesController extends AppController
     {
         parent::initialize();
 
+        $this->set('menuActive', 'settings');
         $this->set('subMenu', 'settings_menu');
         $this->set('subMenuActive', 'roles');
-        $this->set('applicationName', __('Site setting and System'));
     }
 
     /**

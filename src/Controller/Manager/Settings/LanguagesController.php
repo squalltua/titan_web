@@ -12,9 +12,9 @@ class LanguagesController extends AppController
     {
         parent::initialize();
 
+        $this->set('menuActive', 'settings');
         $this->set('subMenu', 'settings_menu');
         $this->set('subMenuActive', 'languages');
-        $this->set('applicationName', __('Site setting and System'));
     }
 
     /**
