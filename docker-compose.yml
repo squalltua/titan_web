@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  webserver:
+    build:
+      context: ./Docker_folder/bin/apache2
+    container_name: 'titanweb.httpd'
+    restart: 'always'
+    ports:
+      - "8099:80"
+      - "443:443"
+    networks:
+      - default
+    volumes:
+      - ${DOCUMENT_ROOT-./}:/var/www/html
+      - ${PHP_INI-./Docker_folder/config/php/php.ini}:/usr/local/etc/php/php.ini
+      - ${VHOSTS_DIR-./Docker_folder/config/vhosts}:/etc/apache2/sites-enabled
+      - ${LOG_DIR-./Docker_folder/logs/apache2}:/var/log/apache2
+  db:
+    image: mysql:latest
+    container_name: 'titanweb.mysql'
+    restart: 'always'
+    ports:
+      - "3309:3309"
+    volumes:
+      - ${MYSQL_DATA_DIR-./Docker_folder/data/mysql}:/docker-entrypoint-initdb.d/
+      - ${MYSQL_LOG_DIR-./Docker_folder/logs/mysql}:/docker-entrypoint-initdb.d/log/
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: tf_main
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: dev
+      MYSQL_CONNECTION: mysql
+    networks:
+      - default
+networks:
+  default:
